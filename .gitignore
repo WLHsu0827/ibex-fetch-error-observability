@@ -1,0 +1,7 @@
+/build/
+/replay/
+__pycache__/
+*.fst
+*.vcd
+*.o
+*.exe

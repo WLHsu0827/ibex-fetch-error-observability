@@ -1,0 +1,212 @@
+{
+  "source_sha256": {
+    "rtl/ibex_pkg.sv": "098cb52671fd620b777e5b8435fc07fc8865f027e83f2989330bd951e7ae64b2",
+    "rtl/ibex_icache.sv": "181f8c514a72d9b6e0a9e109fe5eecc711aedfc5c071faca5c4f6e0adc1138a8",
+    "dv/verilator/icache_fetch_fault/tb.sv": "5e07fb89c861433d06b659180b44dbd38de6e9a7fd2f12410f54742a5eb08544",
+    "dv/verilator/icache_fetch_fault/run.py": "6101da4c77a55b11f74fab71b0ccf4be22ac29e4081b2ba7e029a472b2e97dc0"
+  },
+  "simulator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "target": "0x00001000",
+  "instruction_word": "0x00000013",
+  "reference": "accepted cache-to-IF error, NOT architectural trap",
+  "cases": {
+    "hit_control": {
+      "cache_state": "warm",
+      "fault_class": "none",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00001000",
+        "enabled": false,
+        "one_shot": true,
+        "response_latency_cycles": 1,
+        "grant": "immediate"
+      },
+      "expected": {
+        "fault_injections": 0,
+        "bus_errors": 0,
+        "if_handoffs": 1,
+        "if_errors": 0,
+        "if_good_nops": 1,
+        "cache_warmed": 1,
+        "cache_hits_min": 1
+      },
+      "observed": {
+        "scenario": "hit_control",
+        "target_requests": 1,
+        "target_responses": 1,
+        "fault_injections": 0,
+        "bus_errors": 0,
+        "if_handoffs": 1,
+        "if_errors": 0,
+        "if_good_nops": 1,
+        "cache_hits": 1,
+        "cache_warmed": 1
+      },
+      "events": [
+        {
+          "cycle": 268,
+          "kind": "request",
+          "addr": "0x00001000"
+        },
+        {
+          "cycle": 269,
+          "kind": "bus_response",
+          "addr": "0x00001000",
+          "err": 0
+        },
+        {
+          "cycle": 269,
+          "kind": "cache_hit",
+          "line": "0x00001000"
+        },
+        {
+          "cycle": 270,
+          "kind": "if_handoff",
+          "addr": "0x00001000",
+          "err": 0,
+          "err_plus2": 0,
+          "rdata": "0x00000013"
+        }
+      ],
+      "deviations": {},
+      "pass": true,
+      "waveform": "build/fetch_error_pilot/hit_control/trace.vcd",
+      "trap_observed": null
+    },
+    "speculative_hit": {
+      "cache_state": "warm",
+      "fault_class": "single_bus_response_error",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00001000",
+        "enabled": true,
+        "one_shot": true,
+        "response_latency_cycles": 1,
+        "grant": "immediate"
+      },
+      "expected": {
+        "fault_injections": 1,
+        "bus_errors": 1,
+        "if_handoffs": 1,
+        "if_errors": 0,
+        "if_good_nops": 1,
+        "cache_warmed": 1,
+        "cache_hits_min": 1
+      },
+      "observed": {
+        "scenario": "speculative_hit",
+        "target_requests": 1,
+        "target_responses": 1,
+        "fault_injections": 1,
+        "bus_errors": 1,
+        "if_handoffs": 1,
+        "if_errors": 0,
+        "if_good_nops": 1,
+        "cache_hits": 1,
+        "cache_warmed": 1
+      },
+      "events": [
+        {
+          "cycle": 268,
+          "kind": "request",
+          "addr": "0x00001000"
+        },
+        {
+          "cycle": 269,
+          "kind": "bus_response",
+          "addr": "0x00001000",
+          "err": 1
+        },
+        {
+          "cycle": 269,
+          "kind": "cache_hit",
+          "line": "0x00001000"
+        },
+        {
+          "cycle": 270,
+          "kind": "if_handoff",
+          "addr": "0x00001000",
+          "err": 0,
+          "err_plus2": 0,
+          "rdata": "0x00000013"
+        }
+      ],
+      "deviations": {},
+      "pass": true,
+      "waveform": "build/fetch_error_pilot/speculative_hit/trace.vcd",
+      "trap_observed": null
+    },
+    "demand_miss": {
+      "cache_state": "cold",
+      "fault_class": "single_bus_response_error",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00001000",
+        "enabled": true,
+        "one_shot": true,
+        "response_latency_cycles": 1,
+        "grant": "immediate"
+      },
+      "expected": {
+        "fault_injections": 1,
+        "bus_errors": 1,
+        "if_handoffs": 1,
+        "if_errors": 1,
+        "if_good_nops": 0,
+        "cache_warmed": 0,
+        "cache_hits": 0
+      },
+      "observed": {
+        "scenario": "demand_miss",
+        "target_requests": 1,
+        "target_responses": 1,
+        "fault_injections": 1,
+        "bus_errors": 1,
+        "if_handoffs": 1,
+        "if_errors": 1,
+        "if_good_nops": 0,
+        "cache_hits": 0,
+        "cache_warmed": 0
+      },
+      "events": [
+        {
+          "cycle": 258,
+          "kind": "request",
+          "addr": "0x00001000"
+        },
+        {
+          "cycle": 259,
+          "kind": "bus_response",
+          "addr": "0x00001000",
+          "err": 1
+        },
+        {
+          "cycle": 260,
+          "kind": "if_handoff",
+          "addr": "0x00001000",
+          "err": 1,
+          "err_plus2": 0,
+          "rdata": "0x00000013"
+        }
+      ],
+      "deviations": {},
+      "pass": true,
+      "waveform": "build/fetch_error_pilot/demand_miss/trace.vcd",
+      "trap_observed": null
+    }
+  },
+  "bus_checker_vs_if_reference": {
+    "tp": 1,
+    "fp": 1,
+    "fn": 0,
+    "tn": 1
+  },
+  "if_checker_vs_if_reference": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "tn": 2
+  },
+  "if_checker_reference_is_self": true,
+  "pass": true
+}

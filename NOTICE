@@ -1,0 +1,15 @@
+Ibex Instruction-Fetch Error Observability Pilot
+Copyright 2026 Wei-Lun Hsu.
+
+The original experiment fixture, runners, program, measurement JSON, comparison
+and staging scripts, and documentation in this bundle were prepared with
+GitHub Copilot App assistance and are licensed under the Apache License,
+Version 2.0 (see LICENSE). This is a provenance statement, not a claim that
+every experiment was independently verified by a human.
+
+The opt-in Simple System patch modifies files of the Ibex Project at upstream
+commit 7cd891ef267e8db36813b29cb8851142ab2636d5. Original Ibex
+copyright/SPDX headers in those files are retained. The underlying upstream
+code and the derivative patch remain subject to Apache-2.0 and the Ibex
+attribution in upstream-notices/LICENSE and upstream-notices/NOTICE.
+This independent experiment is not endorsed by lowRISC.

@@ -1,0 +1,11 @@
+/experiment/* -text whitespace=-blank-at-eol
+/observations/*.json -text whitespace=-blank-at-eol
+/verification/*.json -text whitespace=-blank-at-eol
+/historical/observations/*.json -text whitespace=-blank-at-eol
+/historical/verification/*.json -text whitespace=-blank-at-eol
+/patches/*.patch -text whitespace=-blank-at-eol
+/upstream-notices/* -text whitespace=-blank-at-eol
+/LICENSE -text whitespace=-blank-at-eol
+/NOTICE -text whitespace=-blank-at-eol
+/SOURCE_MANIFEST.json -text whitespace=-blank-at-eol
+/UPSTREAM_COMMIT -text whitespace=-blank-at-eol

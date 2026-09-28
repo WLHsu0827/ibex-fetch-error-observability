@@ -1,0 +1,185 @@
+diff --git a/examples/simple_system/ibex_simple_system.core b/examples/simple_system/ibex_simple_system.core
+index ad773acd..d1cfbca1 100644
+--- a/examples/simple_system/ibex_simple_system.core
++++ b/examples/simple_system/ibex_simple_system.core
+@@ -66,6 +66,12 @@ parameters:
+     paramtype: vlogparam
+     description: "Path to a vmem file to initialize the RAM with"
+ 
++  FetchFaultPilot:
++    datatype: int
++    default: 0
++    paramtype: vlogparam
++    description: "Enable the opt-in instruction-fetch fault observability pilot"
++
+   BranchTargetALU:
+     datatype: int
+     paramtype: vlogparam
+@@ -158,6 +164,7 @@ targets:
+       - MHPMCounterNum
+       - MHPMCounterWidth
+       - SRAMInitFile
++      - FetchFaultPilot
+ 
+   lint:
+     <<: *default_target
+diff --git a/examples/simple_system/rtl/ibex_simple_system.sv b/examples/simple_system/rtl/ibex_simple_system.sv
+index 11184df4..326c5852 100644
+--- a/examples/simple_system/rtl/ibex_simple_system.sv
++++ b/examples/simple_system/rtl/ibex_simple_system.sv
+@@ -69,6 +69,7 @@ module ibex_simple_system (
+   parameter bit                 ICacheTweakInfection     = 1'b0;
+   parameter bit                 BranchPredictor          = 1'b0;
+   parameter                     SRAMInitFile             = "";
++  parameter bit                 FetchFaultPilot          = 1'b0;
+ 
+   logic clk_sys, rst_sys_n;
+ 
+@@ -131,7 +132,146 @@ module ibex_simple_system (
+   logic instr_err;
+ 
+   assign instr_gnt = instr_req;
+-  assign instr_err = '0;
++  if (FetchFaultPilot) begin : gen_fetch_fault_pilot
++    localparam logic [31:0] Target = 32'h0010_0100;
++    localparam logic [ibex_pkg::IC_INDEX_W-1:0] TargetIndex =
++        Target[ibex_pkg::IC_INDEX_HI:ibex_pkg::IC_LINE_W];
++
++    string scenario;
++    logic fault_selected_q, response_error_q, response_seen_q, target_cached_q;
++    logic target_hit_seen_q;
++    logic [31:ibex_pkg::IC_LINE_W] lookup_line_q;
++    int unsigned cycle, response_cycle, target_retired, bus_errors, cache_hits;
++    int unsigned if_good_after_bus, if_error_after_bus, retired_after_bus;
++    int unsigned target_traps, handler_retired;
++
++    initial begin
++      if (!ICache || `INSTR_CYCLE_DELAY != 0) $fatal(1, "Pilot needs ICache=1 and zero delay");
++      if (!$value$plusargs("pilot_case=%s", scenario)) $fatal(1, "Missing +pilot_case");
++      if (scenario != "hit_control" && scenario != "speculative_hit" &&
++          scenario != "demand_miss") $fatal(1, "Unknown pilot case: %s", scenario);
++    end
++
++    assign instr_err = response_error_q;
++
++    always_ff @(posedge clk_sys or negedge rst_sys_n) begin
++      if (!rst_sys_n) begin
++        fault_selected_q  <= 1'b0;
++        response_error_q  <= 1'b0;
++        response_seen_q   <= 1'b0;
++        target_cached_q   <= 1'b0;
++        target_hit_seen_q <= 1'b0;
++        lookup_line_q     <= '0;
++        cycle             <= 0;
++        response_cycle    <= 0;
++        target_retired    <= 0;
++        bus_errors        <= 0;
++        cache_hits        <= 0;
++        if_good_after_bus <= 0;
++        if_error_after_bus <= 0;
++        retired_after_bus <= 0;
++        target_traps      <= 0;
++        handler_retired   <= 0;
++      end else begin
++        cycle <= cycle + 1;
++        if (cycle > 1500) $fatal(1, "Pilot timed out waiting for target fetch");
++
++        if (u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.ic_tag_write_o &&
++            u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.ic_tag_addr_o ==
++                TargetIndex &&
++            u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.ic_tag_wdata_o ==
++                {1'b1, Target[31:ibex_pkg::IC_INDEX_HI+1]}) target_cached_q <= 1'b1;
++
++        if (u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.lookup_actual_ic0)
++          lookup_line_q <=
++              u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i
++                  .lookup_addr_ic0[31:ibex_pkg::IC_LINE_W];
++        if (u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.lookup_valid_ic1 &&
++            u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.tag_hit_ic1 &&
++            lookup_line_q == Target[31:ibex_pkg::IC_LINE_W]) begin
++          target_hit_seen_q <= 1'b1;
++          if (response_seen_q) cache_hits <= cache_hits + 1;
++        end
++
++        fault_selected_q <= 1'b0;
++        response_error_q <= 1'b0;
++        if (instr_req && instr_gnt && instr_addr == Target && !response_seen_q &&
++            !fault_selected_q &&
++            (scenario == "demand_miss" ||
++             (target_cached_q && target_hit_seen_q && target_retired >= 4))) begin
++          fault_selected_q <= 1'b1;
++          response_error_q <= scenario != "hit_control";
++          $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"request\",\"addr\":\"0x%08x\",\"branch\":%0d,\"cache_enabled\":%0d,\"target_cached\":%0d,\"target_hit_seen\":%0d,\"target_retired\":%0d}",
++                   cycle, instr_addr,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.prefetch_branch,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.icache_enable_i,
++                   target_cached_q, target_hit_seen_q, target_retired);
++        end
++        if (instr_rvalid && fault_selected_q) begin
++          response_seen_q <= 1'b1;
++          response_cycle <= cycle;
++          if (instr_err) bus_errors <= bus_errors + 1;
++          $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"bus_response\",\"err\":%0d}",
++                   cycle, instr_err);
++          $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"cache_at_response\",\"lookup_line\":\"0x%08x\",\"lookup_valid\":%0d,\"tag_hit\":%0d,\"fill_hit\":%0d,\"fill_data_hit\":%0d,\"fill_data_rvd\":%0d,\"fetch_valid\":%0d,\"fetch_ready\":%0d,\"fetch_addr\":\"0x%08x\",\"fetch_err\":%0d}",
++                   cycle, {lookup_line_q, {ibex_pkg::IC_LINE_W{1'b0}}},
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.lookup_valid_ic1,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.tag_hit_ic1,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.fill_hit_ic1,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.fill_data_hit,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.gen_icache.icache_i.fill_data_rvd,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_valid,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_ready,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_addr,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_err);
++        end
++
++        if (u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_valid &&
++            u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_ready &&
++            u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_addr == Target &&
++            (response_seen_q || (instr_rvalid && fault_selected_q))) begin
++          if (u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_err)
++            if_error_after_bus <= if_error_after_bus + 1;
++          else if_good_after_bus <= if_good_after_bus + 1;
++          $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"if_handoff\",\"addr\":\"0x%08x\",\"err\":%0d,\"rdata\":\"0x%08x\"}",
++                   cycle, u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_addr,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_err,
++                   u_top.u_ibex_top.u_ibex_core.if_stage_i.fetch_rdata);
++        end
++        if (u_top.rvfi_valid) begin
++          if (u_top.rvfi_pc_rdata == Target) begin
++            if (u_top.rvfi_trap) begin
++              target_traps <= target_traps + 1;
++              $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"rvfi_trap\"}", cycle);
++            end else begin
++              target_retired <= target_retired + 1;
++              if (response_seen_q) begin
++                retired_after_bus <= retired_after_bus + 1;
++                if (retired_after_bus == 0)
++                  $display("PILOT_CORE_EVENT:{\"cycle\":%0d,\"kind\":\"rvfi_retire\",\"pc\":\"0x%08x\",\"insn\":\"0x%08x\"}",
++                           cycle, u_top.rvfi_pc_rdata, u_top.rvfi_insn);
++              end
++            end
++          end
++          if (u_top.rvfi_pc_rdata == 32'h0010_0000 && !u_top.rvfi_trap)
++            handler_retired <= handler_retired + 1;
++        end
++
++        if (response_seen_q && cycle - response_cycle > 60) begin
++          $display("PILOT_CORE_RESULT:{\"scenario\":\"%s\",\"bus_errors\":%0d,\"cache_hits\":%0d,\"target_cached\":%0d,\"target_hit_seen\":%0d,\"if_good_after_bus\":%0d,\"if_error_after_bus\":%0d,\"retired_after_bus\":%0d,\"target_traps\":%0d,\"handler_retired\":%0d,\"mcause\":%0d,\"mepc\":\"0x%08x\",\"mtval\":\"0x%08x\"}",
++                   scenario, bus_errors, cache_hits, target_cached_q, target_hit_seen_q,
++                   if_good_after_bus,
++                   if_error_after_bus, retired_after_bus, target_traps, handler_retired,
++                   u_top.u_ibex_top.u_ibex_core.cs_registers_i.mcause_q,
++                   u_top.u_ibex_top.u_ibex_core.cs_registers_i.mepc_q,
++                   u_top.u_ibex_top.u_ibex_core.cs_registers_i.mtval_q);
++          $finish;
++        end
++      end
++    end
++  end else begin : gen_no_fetch_fault_pilot
++    assign instr_err = 1'b0;
++  end
+ 
+   `ifdef VERILATOR
+     assign clk_sys = IO_CLK;

@@ -1,0 +1,599 @@
+{
+  "source_sha256": {
+    "examples/simple_system/rtl/ibex_simple_system.sv": "d0da4c56e2787884cb8684ca096709fe717e5d740a8d5701ddfe65d23340fc68",
+    "examples/simple_system/ibex_simple_system.core": "6f06191848d44c1ae2ad1397b74ab192ef432b42869198dc77fde85fcd60b5b2",
+    "rtl/ibex_icache.sv": "181f8c514a72d9b6e0a9e109fe5eecc711aedfc5c071faca5c4f6e0adc1138a8",
+    "rtl/ibex_if_stage.sv": "58cbe00f0ce0948f7b4ac5a0294ec558d11f705b5d7694114813841743455eac",
+    "dv/verilator/icache_fetch_fault/core_program.vmem": "fc18a49218809d94d662afd95f43f68a7b3fcba3920ad1fcbdcdc39f833bed1d",
+    "dv/verilator/icache_fetch_fault/run_core.py": "a3054b3ebb6daf429f89ebd7e8123b69f1056b519c8025ad0963fe3fc842993f"
+  },
+  "binary_sha256": "129c7872357abc5ac07a62de68faa10b9f9739bb834aec5524d619d1c370f685",
+  "program": {
+    "boot": "0x00100080",
+    "handler": "0x00100000",
+    "target": "0x00100100",
+    "instruction": "0x00000013"
+  },
+  "warm_control_aligned": true,
+  "reference": "RVFI trap at target PC and entry into handler",
+  "cases": {
+    "hit_control": {
+      "fault_class": "none",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00100100",
+        "enabled": false,
+        "one_shot": true,
+        "grant": "immediate",
+        "response_latency_cycles": 1,
+        "arming": "observed target cache hit and four retired target instructions"
+      },
+      "expected": {
+        "bus_errors": 0,
+        "if_error_after_bus": 0,
+        "target_traps": 0,
+        "handler_retired": 0,
+        "target_cached": 1,
+        "target_hit_seen": 1,
+        "cache_hits_min": 1,
+        "if_good_after_bus_min": 1,
+        "retired_after_bus_min": 1
+      },
+      "expected_cache_at_response": {
+        "lookup_line": "0x00100100",
+        "lookup_valid": 1,
+        "tag_hit": 1,
+        "fill_hit_nonzero": true,
+        "fill_data_hit_nonzero": true,
+        "fill_data_rvd": 0,
+        "fetch_valid": 1,
+        "fetch_ready": 1,
+        "fetch_addr": "0x00100100",
+        "fetch_err": 0
+      },
+      "actual": {
+        "scenario": "hit_control",
+        "bus_errors": 0,
+        "cache_hits": 20,
+        "target_cached": 1,
+        "target_hit_seen": 1,
+        "if_good_after_bus": 21,
+        "if_error_after_bus": 0,
+        "retired_after_bus": 20,
+        "target_traps": 0,
+        "handler_retired": 0,
+        "mcause": 0,
+        "mepc": "0x00000000",
+        "mtval": "0x00000000"
+      },
+      "events": [
+        {
+          "cycle": 275,
+          "kind": "request",
+          "addr": "0x00100100",
+          "branch": 1,
+          "cache_enabled": 1,
+          "target_cached": 1,
+          "target_hit_seen": 1,
+          "target_retired": 86
+        },
+        {
+          "cycle": 276,
+          "kind": "bus_response",
+          "err": 0
+        },
+        {
+          "cycle": 276,
+          "kind": "cache_at_response",
+          "lookup_line": "0x00100100",
+          "lookup_valid": 1,
+          "tag_hit": 1,
+          "fill_hit": 8,
+          "fill_data_hit": 8,
+          "fill_data_rvd": 0,
+          "fetch_valid": 1,
+          "fetch_ready": 1,
+          "fetch_addr": "0x00100100",
+          "fetch_err": 0
+        },
+        {
+          "cycle": 276,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 278,
+          "kind": "rvfi_retire",
+          "pc": "0x00100100",
+          "insn": "0x00000013"
+        },
+        {
+          "cycle": 279,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 282,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 285,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 288,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 291,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 294,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 297,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 300,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 303,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 306,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 309,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 312,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 315,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 318,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 321,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 324,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 327,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 330,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 333,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 336,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        }
+      ],
+      "deviations": {},
+      "pass": true
+    },
+    "speculative_hit": {
+      "fault_class": "speculative_hit_bus_error",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00100100",
+        "enabled": true,
+        "one_shot": true,
+        "grant": "immediate",
+        "response_latency_cycles": 1,
+        "arming": "observed target cache hit and four retired target instructions"
+      },
+      "expected": {
+        "bus_errors": 1,
+        "if_error_after_bus": 0,
+        "target_traps": 0,
+        "handler_retired": 0,
+        "target_cached": 1,
+        "target_hit_seen": 1,
+        "cache_hits_min": 1,
+        "if_good_after_bus_min": 1,
+        "retired_after_bus_min": 1
+      },
+      "expected_cache_at_response": {
+        "lookup_line": "0x00100100",
+        "lookup_valid": 1,
+        "tag_hit": 1,
+        "fill_hit_nonzero": true,
+        "fill_data_hit_nonzero": true,
+        "fill_data_rvd": 0,
+        "fetch_valid": 1,
+        "fetch_ready": 1,
+        "fetch_addr": "0x00100100",
+        "fetch_err": 0
+      },
+      "actual": {
+        "scenario": "speculative_hit",
+        "bus_errors": 1,
+        "cache_hits": 20,
+        "target_cached": 1,
+        "target_hit_seen": 1,
+        "if_good_after_bus": 21,
+        "if_error_after_bus": 0,
+        "retired_after_bus": 20,
+        "target_traps": 0,
+        "handler_retired": 0,
+        "mcause": 0,
+        "mepc": "0x00000000",
+        "mtval": "0x00000000"
+      },
+      "events": [
+        {
+          "cycle": 275,
+          "kind": "request",
+          "addr": "0x00100100",
+          "branch": 1,
+          "cache_enabled": 1,
+          "target_cached": 1,
+          "target_hit_seen": 1,
+          "target_retired": 86
+        },
+        {
+          "cycle": 276,
+          "kind": "bus_response",
+          "err": 1
+        },
+        {
+          "cycle": 276,
+          "kind": "cache_at_response",
+          "lookup_line": "0x00100100",
+          "lookup_valid": 1,
+          "tag_hit": 1,
+          "fill_hit": 8,
+          "fill_data_hit": 8,
+          "fill_data_rvd": 0,
+          "fetch_valid": 1,
+          "fetch_ready": 1,
+          "fetch_addr": "0x00100100",
+          "fetch_err": 0
+        },
+        {
+          "cycle": 276,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 278,
+          "kind": "rvfi_retire",
+          "pc": "0x00100100",
+          "insn": "0x00000013"
+        },
+        {
+          "cycle": 279,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 282,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 285,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 288,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 291,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 294,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 297,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 300,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 303,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 306,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 309,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 312,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 315,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 318,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 321,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 324,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 327,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 330,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 333,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 336,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 0,
+          "rdata": "0x00000013"
+        }
+      ],
+      "deviations": {},
+      "pass": true
+    },
+    "demand_miss": {
+      "fault_class": "demanded_miss_bus_error",
+      "fault_injection": {
+        "location": "instruction bus response instr_err_i",
+        "address": "0x00100100",
+        "enabled": true,
+        "one_shot": true,
+        "grant": "immediate",
+        "response_latency_cycles": 1,
+        "arming": "first target request"
+      },
+      "expected": {
+        "bus_errors": 1,
+        "if_good_after_bus": 0,
+        "target_traps": 1,
+        "retired_after_bus": 0,
+        "cache_hits": 0,
+        "if_error_after_bus_min": 1,
+        "handler_retired_min": 1,
+        "mcause": 1,
+        "mepc": "0x00100100",
+        "mtval": "0x00100100"
+      },
+      "expected_cache_at_response": {
+        "tag_hit": 0,
+        "fill_hit_nonzero": false,
+        "fill_data_hit_nonzero": false,
+        "fill_data_rvd_nonzero": true,
+        "fetch_valid": 1,
+        "fetch_ready": 1,
+        "fetch_addr": "0x00100100",
+        "fetch_err": 1
+      },
+      "actual": {
+        "scenario": "demand_miss",
+        "bus_errors": 1,
+        "cache_hits": 0,
+        "target_cached": 0,
+        "target_hit_seen": 0,
+        "if_good_after_bus": 0,
+        "if_error_after_bus": 1,
+        "retired_after_bus": 0,
+        "target_traps": 1,
+        "handler_retired": 28,
+        "mcause": 1,
+        "mepc": "0x00100100",
+        "mtval": "0x00100100"
+      },
+      "events": [
+        {
+          "cycle": 8,
+          "kind": "request",
+          "addr": "0x00100100",
+          "branch": 1,
+          "cache_enabled": 1,
+          "target_cached": 0,
+          "target_hit_seen": 0,
+          "target_retired": 0
+        },
+        {
+          "cycle": 9,
+          "kind": "bus_response",
+          "err": 1
+        },
+        {
+          "cycle": 9,
+          "kind": "cache_at_response",
+          "lookup_line": "0x00000000",
+          "lookup_valid": 0,
+          "tag_hit": 0,
+          "fill_hit": 0,
+          "fill_data_hit": 0,
+          "fill_data_rvd": 8,
+          "fetch_valid": 1,
+          "fetch_ready": 1,
+          "fetch_addr": "0x00100100",
+          "fetch_err": 1
+        },
+        {
+          "cycle": 9,
+          "kind": "if_handoff",
+          "addr": "0x00100100",
+          "err": 1,
+          "rdata": "0x00000013"
+        },
+        {
+          "cycle": 11,
+          "kind": "rvfi_trap"
+        }
+      ],
+      "deviations": {},
+      "pass": true
+    }
+  },
+  "bus_checker_vs_trap": {
+    "tp": 1,
+    "fp": 1,
+    "fn": 0,
+    "tn": 1
+  },
+  "if_checker_vs_trap": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "tn": 2
+  },
+  "pass": true
+}
