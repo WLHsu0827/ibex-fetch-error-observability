@@ -41,10 +41,12 @@ Run `python3 scripts/audit.py` here. It checks the exact file allowlist,
 binary/size limits, absolute local paths, token-like strings and email
 literals; checks corrected source headers, current fixture/manifest/raw
 hashes, archived historical byte hashes, the patch hash, and the
-Apache/Ibex notices. If run from a newly initialized, independent
-repository it excludes `.git` internals from the file scan but checks
-local Git email identity and reachable commit messages/author metadata
-against the approved noreply identities. A zero-flag scan is **not** a legal
+Apache/Ibex notices. It excludes `.git` internals from the file scan:
+before the first commit it checks this repository's locally configured
+noreply identity; after a commit exists, it checks reachable commit
+messages and author/committer metadata instead. A read-only fresh clone
+does **not** need the reader to set the owner's author email. A zero-flag
+scan is **not** a legal
 opinion, a guarantee against unidentified secrets or a complete review of
 all possible repository metadata. The publication check must review the
 exact files and Git metadata, not only this scanner. Independent human

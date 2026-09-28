@@ -97,12 +97,19 @@ def main():
             else:
                 approved = "151040862+WLHsu0827" + chr(64) + "users.noreply.github.com"
                 copilot = "223556219+Copilot" + chr(64) + "users.noreply.github.com"
-                local = subprocess.run(
-                    ("git", "-C", str(BUNDLE), "config", "--local", "--get", "user.email"),
+                commits = subprocess.run(
+                    ("git", "-C", str(BUNDLE), "rev-list", "--max-count=1", "--all"),
                     capture_output=True, text=True, check=False,
                 )
-                if local.returncode or local.stdout.strip() != approved:
-                    findings.append(".git: local author email is not the approved noreply identity")
+                if commits.returncode:
+                    findings.append(".git: could not inspect reachable commits")
+                elif not commits.stdout.strip():
+                    local = subprocess.run(
+                        ("git", "-C", str(BUNDLE), "config", "--local", "--get", "user.email"),
+                        capture_output=True, text=True, check=False,
+                    )
+                    if local.returncode or local.stdout.strip() != approved:
+                        findings.append(".git: local author email is not the approved noreply identity")
                 history = subprocess.run(
                     ("git", "-C", str(BUNDLE), "log", "--all",
                      "--format=%ae%n%ce%n%B"),
