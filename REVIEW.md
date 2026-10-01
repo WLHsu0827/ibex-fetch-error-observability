@@ -40,11 +40,15 @@ academic paper. This is a provenance record, **not legal review or advice**.
 Run `python3 scripts/audit.py` here. It checks the exact file allowlist,
 binary/size limits, absolute local paths, token-like strings and email
 literals; checks corrected source headers, current fixture/manifest/raw
-hashes, archived historical byte hashes, the patch hash, and the
+hashes, all eight frozen observation/replay byte hashes, the patch hash, and the
 Apache/Ibex notices. It excludes `.git` internals from the file scan:
 before the first commit it checks this repository's locally configured
 noreply identity; after a commit exists, it checks reachable commit
-messages and author/committer metadata instead. A read-only fresh clone
+messages and author/committer metadata instead. Legitimate isolated Git
+worktrees are supported after checking their root and publication history;
+only app-private `refs/copilot/checkpoints/*` are excluded from the history
+scan. This does not approve publishing those refs or any other source
+repository history. A read-only fresh clone
 does **not** need the reader to set the owner's author email. A zero-flag
 scan is **not** a legal
 opinion, a guarantee against unidentified secrets or a complete review of
@@ -88,8 +92,10 @@ pinned checkout; that third checkout was **not** built or replayed.
 This preliminary rehearsal itself did not test publication or a fresh
 tool installation.
 
-**Still unverified:** fresh installation of the versioned toolchain,
-execution on a different OS/host or CI, license/legal review by counsel,
-or independent human execution of the RTL tests. The
+The historical WSL runs did **not** verify fresh tool installation or a
+different host/CI. The new gate and any actual hosted proof are recorded
+separately in [VERIFICATION.md](VERIFICATION.md), without changing that
+historical claim. **Still unverified:** license/legal review by counsel or
+independent human execution of the RTL tests. The
 public-network **upstream Ibex dependency clone itself was exercised**;
 hosting this repository does not establish upstream Ibex endorsement.

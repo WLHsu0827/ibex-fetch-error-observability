@@ -1,0 +1,61 @@
+name: Public package and fresh RTL replay
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package / offline checker contracts (not RTL)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified immutable revision
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12.3"
+      - name: Verify frozen public package and adversarial checker tests
+        run: python -B scripts/verify.py
+
+  fresh-rtl:
+    name: Fresh Ubuntu RTL replay (automated, not human)
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified immutable revision
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12.3"
+      - name: Install public tools, stage pinned source, rebuild, replay, lint and compare
+        run: python -B scripts/ci_replay.py
+      - name: Preserve bounded public evidence, including failed commands
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: public-rtl-replay-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/public-replay-evidence/*.json
+            ${{ runner.temp }}/public-replay-evidence/logs/*.log
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 9

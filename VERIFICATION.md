@@ -1,4 +1,31 @@
-# RTL verification on the originating WSL host
+# Verification evidence: package, automated RTL, and human boundaries
+
+## Public package and fresh hosted gate
+
+`python3 -B scripts/verify.py` verifies the frozen public package and checker
+contracts offline. It is **not a new RTL execution**. The separate
+[workflow](.github/workflows/replay.yml) installs tools from public package
+sources on GitHub-hosted Ubuntu 24.04, then stages, rebuilds, replays, lints
+and strictly compares against the unchanged public observations.
+
+**Hosted execution status: pending.** No passing hosted run is claimed yet.
+An actual run URL, checked commit, installed environment, job outcomes and
+per-suite pass counts will be recorded only after inspecting the run and
+its public evidence artifact. A new automated host is not independent
+human validation. **Independent end-user manual RTL execution remains
+unverified**, as do binary reproducibility and the cause of historical
+binary differences.
+
+The checker upgrade rejects duplicate JSON keys and JSON boolean/numeric
+type substitutions rather than silently accepting them. The audit now
+locks all eight existing observation/replay JSON files to their recorded
+byte hashes. Its legitimate Git-worktree support verifies the bundle root
+and publication history; only app-private `refs/copilot/checkpoints/*`
+(not pushed by a normal branch push) are excluded. Other reachable refs
+remain audited. No frozen source, manifest, patch, observation, historical
+dataset or license/notice bytes were rewritten.
+
+## Original agent-executed RTL verification on the same WSL host
 
 **Executed**, with the corrected Copyright 2026 Wei-Lun Hsu / Apache-2.0
 experiment headers. The four earlier raw JSONs are preserved, unchanged,
@@ -77,9 +104,10 @@ cache-to-IF = **1/0/0/2**. Warm speculative bus error remains an
 architectural negative (NOP retires without trap); cold demanded miss
 traps with `mcause=1`, `mepc=mtval=0x00100100`.
 
-**Still not verified:** fresh tool installation, another host/OS or CI,
-end-user independent manual execution, or security/legal review. Hosting
-these measurements does not constitute a new RTL run on GitHub. The
+**Those historical runs did not verify:** fresh tool installation, another
+host/OS or CI, end-user independent manual execution, or security/legal
+review. Merely hosting those measurements does not constitute a new RTL
+run on GitHub; hosted evidence, if available, is recorded separately above. The
 checked scenarios are three directed trials, not a population-level
 fault rate, novel Ibex bug or paper.
 
