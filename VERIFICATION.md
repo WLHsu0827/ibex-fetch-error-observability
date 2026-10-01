@@ -16,6 +16,17 @@ human validation. **Independent end-user manual RTL execution remains
 unverified**, as do binary reproducibility and the cause of historical
 binary differences.
 
+**Preserved failed hosted attempt:** [run 36885980667](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36885980667)
+tested `be309fb4e54363b6f39e7e2b4401486d6a89a27c`. The package job passed
+all 12 tests; the freshly built standalone cache passed **3/3** and its
+JSON hash matched the frozen cache. The whole-core pre-build tool-version
+hook failed with `ModuleNotFoundError: No module named 'packaging'`.
+Whole-core replay, default-off lint and final comparison were **not run**;
+this is not a passing RTL gate. The public failure artifact includes the
+actual environment, commands/exit codes, cache JSON and failure log.
+The follow-up pins the missing public Python dependency and the exact
+observed apt package revisions; the upstream tool check is not bypassed.
+
 The checker upgrade rejects duplicate JSON keys and JSON boolean/numeric
 type substitutions rather than silently accepting them. The audit now
 locks all eight existing observation/replay JSON files to their recorded

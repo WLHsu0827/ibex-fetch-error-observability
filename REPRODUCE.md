@@ -27,7 +27,11 @@ and staging refusal must fail. No tool download or local RTL build occurs.
 [`.github/workflows/replay.yml`](.github/workflows/replay.yml) has separate
 package/offline and fresh-RTL jobs. The latter uses GitHub-hosted Ubuntu
 24.04, Python **3.12.3**, apt Verilator **5.020-1**, g++-13 **13.3.0**, GNU
-make **4.3**, FuseSoC **2.4.3**, Edalize **0.6.8**, and apt `libelf-dev`.
+make **4.3**, FuseSoC **2.4.3**, Edalize **0.6.8**, Python `packaging`
+**24.2** (required by the upstream tool-version check), and apt `libelf-dev`.
+The explicit apt pins are `g++-13=13.3.0-6ubuntu2~24.04.1`,
+`make=4.3-4.1build2`, `libelf-dev=0.190-1.1ubuntu0.1`, and
+`verilator=5.020-1`, observed during the initial hosted installation.
 Installed Debian package revisions (including libelf and compiler revisions)
 and the complete resolved Python package list are captured, not inferred
 from this specification. It requires exact tool-version checks before replay.
@@ -78,6 +82,9 @@ claims; neither package tests nor a newly added workflow prove either one.
   license. An independently installed toolchain should expose `verilator`,
   `fusesoc`, `g++`, `make` and Python on `PATH`, and provide libelf headers
   and a linkable library.
+  The upstream build hook also requires Python `packaging`. In an isolated
+  Python environment, the replay-specific Python installation is
+  `python3 -m pip install fusesoc==2.4.3 edalize==0.6.8 packaging==24.2`.
   These are the historical same-host tool versions. The fresh hosted gate
   has a separate execution record in [VERIFICATION.md](VERIFICATION.md).
 - For the **previously provisioned tools on the originating WSL host only**,

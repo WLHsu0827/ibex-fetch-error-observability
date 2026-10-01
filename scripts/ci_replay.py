@@ -124,18 +124,21 @@ class Replay:
             raise RuntimeError("Fresh replay requires Ubuntu 24.04")
         self.run("apt-update", ["sudo", "apt-get", "-qq", "update"])
         self.run("apt-install", ["sudo", "apt-get", "-y", "--no-install-recommends",
-                                 "install", "verilator=5.020-1", "g++-13",
-                                 "make", "libelf-dev"])
+                                 "install", "verilator=5.020-1",
+                                 "g++-13=13.3.0-6ubuntu2~24.04.1",
+                                 "make=4.3-4.1build2", "libelf-dev=0.190-1.1ubuntu0.1"])
         self.environment["apt_packages"] = self.run(
             "apt-versions", ["dpkg-query", "-W", "-f=${Package}=${Version}\n",
                              "verilator", "g++-13", "make", "libelf-dev"],
         ).strip().splitlines()
         self.run("pip-install", [sys.executable, "-m", "pip", "install",
-                                 "--no-cache-dir", "fusesoc==2.4.3", "edalize==0.6.8"])
+                                 "--no-cache-dir", "fusesoc==2.4.3", "edalize==0.6.8",
+                                 "packaging==24.2"])
         self.environment["python_packages"] = self.run(
             "pip-versions", [sys.executable, "-m", "pip", "freeze", "--all"],
         ).strip().splitlines()
-        for name, version in (("fusesoc", "2.4.3"), ("edalize", "0.6.8")):
+        for name, version in (("fusesoc", "2.4.3"), ("edalize", "0.6.8"),
+                              ("packaging", "24.2")):
             if importlib.metadata.version(name) != version:
                 raise RuntimeError(f"Installed {name} version differs from {version}")
         self.environment["verilator"] = self.run(
@@ -148,6 +151,11 @@ class Replay:
         ).strip()
         if self.environment["compiler"] != "13.3.0":
             raise RuntimeError("Installed g++-13 must be 13.3.0")
+        self.environment["default_compiler"] = self.run(
+            "default-compiler-version", ["g++", "-dumpfullversion"],
+        ).strip()
+        if self.environment["default_compiler"] != "13.3.0":
+            raise RuntimeError("Verilator's default g++ must also be 13.3.0")
         self.environment["make"] = self.run("make-version", ["make", "--version"]).splitlines()[0]
         if self.environment["make"] != "GNU Make 4.3":
             raise RuntimeError("Installed GNU make must be 4.3")
