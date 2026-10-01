@@ -21,6 +21,10 @@ are tiny temporary copies: missing/extra/duplicate cases, required source
 hashes, RVFI/CSR results, classifications, event order/cycles, failure flags,
 and staging refusal must fail. No tool download or local RTL build occurs.
 `-B` keeps bytecode out of the exact package allowlist.
+The same entry also checks the [persistent hosted archive](verification/hosted/README.md):
+pinned archive manifests, exact downloaded payload bytes, proof input
+commits and the separate success/failure scope. This remains offline
+evidence validation, not another RTL execution.
 
 ## Automated fresh installation and RTL gate
 

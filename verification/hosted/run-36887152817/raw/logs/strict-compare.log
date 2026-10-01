@@ -1,0 +1,5 @@
+I-cache: source hashes, complete case events, assertions and checker classifications match
+I-cache: JSON byte-identical
+full core: source hashes, complete case events, assertions and checker classifications match
+full core: compiled binary SHA-256 differs
+full core: JSON NOT byte-identical (binary hash or serialization differs)

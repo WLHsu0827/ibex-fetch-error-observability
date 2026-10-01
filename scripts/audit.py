@@ -19,6 +19,9 @@ EXPECTED = {
     "experiment/core_program.vmem",
     "observations/results.json", "observations/core_results.json",
     "verification/replayed_cache.json", "verification/replayed_core.json",
+    "verification/hosted/README.md",
+    "verification/hosted/run-36887152817/manifest.json",
+    "verification/hosted/run-36885980667/manifest.json",
     "historical/README.md",
     "historical/observations/results.json", "historical/observations/core_results.json",
     "historical/verification/replayed_cache.json",
@@ -41,6 +44,12 @@ HISTORICAL_HASHES = {
     "historical/verification/replayed_cache.json": "5a0ea2a6e530f88083b9cce9c85a7bcda366dcd9458a801dd0dc388c314b0728",
     "historical/verification/replayed_core.json": "5c0721d1a0c58f9b66b69d6f36ebf5c4fb1b4042a4d0a3aaaa8b20de9b220791",
 }
+HOSTED_MANIFEST_HASHES = {
+    "verification/hosted/run-36887152817/manifest.json":
+        "4890012b5d20c6e42937f7c2910bc69151889d2274913505e26a4ef1132ff46c",
+    "verification/hosted/run-36885980667/manifest.json":
+        "4d48e6cedb3da0278a88e1465496dd49e9d58b66da18221fcf86664e0f0b187a",
+}
 SOURCE_PATHS = {
     "rtl/ibex_pkg.sv", "rtl/ibex_icache.sv", "rtl/ibex_if_stage.sv",
     "examples/simple_system/rtl/ibex_simple_system.sv",
@@ -61,15 +70,44 @@ PATTERNS = {
 }
 
 
-def main():
+def expected_paths():
+    expected = set(EXPECTED)
     findings = []
+    for name, digest in HOSTED_MANIFEST_HASHES.items():
+        path = BUNDLE / name
+        if not path.is_file() or path.is_symlink():
+            continue
+        if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            findings.append(f"{name}: hosted archive manifest bytes changed")
+            continue
+        manifest = load_json(path)
+        files = manifest["files"]
+        if (len(files) != manifest["raw_file_count"] or
+                sum(item["bytes"] for item in files.values()) != manifest["raw_bytes"]):
+            findings.append(f"{name}: hosted archive inventory totals differ")
+        for relative, metadata in files.items():
+            if re.fullmatch(r"(?:logs/[a-z0-9-]+\.log|[a-z0-9_]+\.json)", relative) is None:
+                raise ValueError(f"{name}: unexpected hosted artifact path {relative!r}")
+            raw = path.parent / "raw" / relative
+            archived_name = raw.relative_to(BUNDLE).as_posix()
+            expected.add(archived_name)
+            if raw.is_file() and not raw.is_symlink():
+                data = raw.read_bytes()
+                if (len(data) != metadata["bytes"] or
+                        hashlib.sha256(data).hexdigest() != metadata["sha256"]):
+                    findings.append(f"{archived_name}: hosted artifact bytes changed")
+    return expected, findings
+
+
+def main():
+    expected, findings = expected_paths()
     found = {str(path.relative_to(BUNDLE)).replace("\\", "/")
              for path in BUNDLE.rglob("*")
              if path.relative_to(BUNDLE).parts[0] != ".git"
              and (path.is_file() or path.is_symlink())}
-    for name in sorted(found - EXPECTED):
+    for name in sorted(found - expected):
         findings.append(f"{name}: not on the candidate allowlist")
-    for name in sorted(EXPECTED - found):
+    for name in sorted(expected - found):
         findings.append(f"{name}: missing candidate file")
 
     total_bytes = 0

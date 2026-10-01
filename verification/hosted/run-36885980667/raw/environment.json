@@ -1,0 +1,41 @@
+{
+  "kind": "fresh automated GitHub-hosted RTL replay, NOT human validation",
+  "event_commit": "57ecbb4c3f6c2b877aebaa12bd740d2298734e81",
+  "upstream_commit": "7cd891ef267e8db36813b29cb8851142ab2636d5",
+  "run_url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36885980667",
+  "python": "3.12.3 (main, Sep 26 2024, 18:18:55) [GCC 13.2.0]",
+  "runner_os": "Linux",
+  "runner_image": "20260927.320.1",
+  "build_jobs_maximum": 2,
+  "compiled_cache_restored": false,
+  "bundle_commit": "be309fb4e54363b6f39e7e2b4401486d6a89a27c",
+  "ubuntu": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "apt_packages": [
+    "g++-13=13.3.0-6ubuntu2~24.04.1",
+    "libelf-dev=0.190-1.1ubuntu0.1",
+    "make=4.3-4.1build2",
+    "verilator=5.020-1"
+  ],
+  "python_packages": [
+    "argcomplete==3.7.2",
+    "attrs==26.1.0",
+    "babel==2.18.0",
+    "edalize==0.6.8",
+    "fastjsonschema==2.22.2",
+    "fusesoc==2.4.3",
+    "Jinja2==3.1.6",
+    "jsonschema2md==1.7.0",
+    "Markdown==3.11",
+    "MarkupSafe==3.0.3",
+    "okonomiyaki==3.0.0",
+    "pip==26.2.1",
+    "pyparsing==3.3.3",
+    "PyYAML==6.0.3",
+    "simplesat==0.9.2",
+    "six==1.17.0"
+  ],
+  "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "compiler": "13.3.0",
+  "make": "GNU Make 4.3",
+  "failure": "core-build failed: {'step': 'core-build', 'command': 'fusesoc --cores-root=. run --target=sim --work-root=build/fetch_error_pilot/system_pilot --setup --build lowrisc:ibex:ibex_simple_system --make_options=-j2 --ICache=1 --FetchFaultPilot=1', 'cwd': '$RUNNER_TEMP/ibex-dependency', 'exit_code': 1, 'seconds': 1.668, 'log_truncated': False}"
+}

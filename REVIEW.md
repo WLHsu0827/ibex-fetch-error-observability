@@ -41,8 +41,13 @@ Run `python3 scripts/audit.py` here. It checks the exact file allowlist,
 binary/size limits, absolute local paths, token-like strings and email
 literals; checks corrected source headers, current fixture/manifest/raw
 hashes, all eight frozen observation/replay byte hashes, the patch hash, and the
-Apache/Ibex notices. It excludes `.git` internals from the file scan:
-before the first commit it checks this repository's locally configured
+Apache/Ibex notices.
+The [persistent hosted archive](verification/hosted/README.md) is additionally
+bounded by two pinned derived-manifest hashes and exact payload file
+inventories/lengths/hashes; its original downloaded outputs and separately
+derived provenance are not treated as replacements for the frozen records.
+It excludes `.git` internals from the file scan: before the first commit
+it checks this repository's locally configured
 noreply identity; after a commit exists, it checks reachable commit
 messages and author/committer metadata instead. Legitimate isolated Git
 worktrees are supported after checking their root and publication history;

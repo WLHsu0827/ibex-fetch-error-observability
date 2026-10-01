@@ -2,6 +2,17 @@
 
 ## Public package and fresh hosted gate
 
+**Persistent evidence:** the [hosted archive](verification/hosted/README.md)
+now retains all 30 downloaded public payload files from final-tip
+[run 36887152817](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36887152817)
+(55,971 bytes) and all 23 from the initial failed run (34,691 bytes).
+Its original success input is
+`cfeeb13460b1b4efdf924666d12df79153616638`, **not** the newer commit that
+publishes the archive. Raw outputs remain unchanged; separately labeled
+derived manifests record provenance and per-file byte hashes. This
+persists proof beyond Actions' 14-day retention without replacing any
+original/historical observations or claiming a new execution.
+
 `python3 -B scripts/verify.py` verifies the frozen public package and checker
 contracts offline. It is **not a new RTL execution**. The separate
 [workflow](.github/workflows/replay.yml) installs tools from public package

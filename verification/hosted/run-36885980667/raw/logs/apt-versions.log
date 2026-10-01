@@ -1,0 +1,4 @@
+g++-13=13.3.0-6ubuntu2~24.04.1
+libelf-dev=0.190-1.1ubuntu0.1
+make=4.3-4.1build2
+verilator=5.020-1

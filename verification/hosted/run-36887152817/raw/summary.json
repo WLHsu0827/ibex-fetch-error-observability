@@ -1,0 +1,9 @@
+{
+  "kind": "fresh automated RTL, NOT human-run",
+  "pass": true,
+  "cache_passed": 3,
+  "cache_total": 3,
+  "core_passed": 3,
+  "core_total": 3,
+  "required_commands_exit_zero": true
+}

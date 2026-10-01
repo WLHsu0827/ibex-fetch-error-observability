@@ -1,0 +1,51 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+g++-13 is already the newest version (13.3.0-6ubuntu2~24.04.1).
+make is already the newest version (4.3-4.1build2).
+Suggested packages:
+  gtkwave
+Recommended packages:
+  libsystemc-dev
+The following NEW packages will be installed:
+  fonts-font-awesome libelf-dev sphinx-rtd-theme-common verilator
+0 upgraded, 4 newly installed, 0 to remove and 25 not upgraded.
+Need to get 8537 kB of archives.
+After this operation, 32.2 MB of additional disk space will be used.
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Ign:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-font-awesome all 5.0.10+really4.7.0~dfsg-4.1
+Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libelf-dev amd64 0.190-1.1ubuntu0.1 [68.5 kB]
+Get:4 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 sphinx-rtd-theme-common all 2.0.0+dfsg-1 [1012 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 verilator amd64 5.020-1 [6941 kB]
+Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-font-awesome all 5.0.10+really4.7.0~dfsg-4.1 [516 kB]
+Fetched 8537 kB in 1min 30s (95.0 kB/s)
+Selecting previously unselected package fonts-font-awesome.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202296 files and directories currently installed.)
+Preparing to unpack .../fonts-font-awesome_5.0.10+really4.7.0~dfsg-4.1_all.deb ...
+Unpacking fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Selecting previously unselected package libelf-dev:amd64.
+Preparing to unpack .../libelf-dev_0.190-1.1ubuntu0.1_amd64.deb ...
+Unpacking libelf-dev:amd64 (0.190-1.1ubuntu0.1) ...
+Selecting previously unselected package sphinx-rtd-theme-common.
+Preparing to unpack .../sphinx-rtd-theme-common_2.0.0+dfsg-1_all.deb ...
+Unpacking sphinx-rtd-theme-common (2.0.0+dfsg-1) ...
+Selecting previously unselected package verilator.
+Preparing to unpack .../verilator_5.020-1_amd64.deb ...
+Unpacking verilator (5.020-1) ...
+Setting up libelf-dev:amd64 (0.190-1.1ubuntu0.1) ...
+Setting up fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Setting up sphinx-rtd-theme-common (2.0.0+dfsg-1) ...
+Setting up verilator (5.020-1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.

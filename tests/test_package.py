@@ -49,7 +49,9 @@ class PackageTests(unittest.TestCase):
 
     def copy_package(self):
         package = self.temp / "package"
-        for name in audit.EXPECTED:
+        expected, findings = audit.expected_paths()
+        self.assertEqual(findings, [])
+        for name in expected:
             destination = package / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / name, destination)
@@ -183,6 +185,65 @@ class PackageTests(unittest.TestCase):
             text=True, capture_output=True, check=False, timeout=30,
         )
         self.assert_rejected(result, "Refusing installation/build")
+
+    def test_hosted_archive_identity_scope_and_comparison(self):
+        hosted = ROOT / "verification/hosted"
+        success = hosted / "run-36887152817"
+        failure = hosted / "run-36885980667"
+        for archive, commit in (
+            (success, "cfeeb13460b1b4efdf924666d12df79153616638"),
+            (failure, "be309fb4e54363b6f39e7e2b4401486d6a89a27c"),
+        ):
+            manifest = json.loads((archive / "manifest.json").read_text(encoding="utf-8"))
+            env = json.loads((archive / "raw/environment.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["input_bundle_commit"], commit)
+            self.assertEqual(env["bundle_commit"], commit)
+            self.assertEqual(manifest["upstream_commit"], env["upstream_commit"])
+            self.assertEqual(manifest["source_manifest_sha256"],
+                             hashlib.sha256((ROOT / "SOURCE_MANIFEST.json").read_bytes()).hexdigest())
+            if (ROOT / ".git").exists():
+                attr = subprocess.run(
+                    ["git", "check-attr", "text", "--",
+                     (archive / "raw/logs/core-build.log").relative_to(ROOT).as_posix()],
+                    cwd=ROOT, capture_output=True, text=True, check=True,
+                )
+                self.assertTrue(attr.stdout.strip().endswith(": text: unset"))
+        commands = json.loads((success / "raw/commands.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(commands), 24)
+        self.assertTrue(all(command["exit_code"] == 0 for command in commands))
+        summary = json.loads((success / "raw/summary.json").read_text(encoding="utf-8"))
+        self.assertIs(summary["pass"], True)
+        self.assertEqual((summary["cache_passed"], summary["core_passed"]), (3, 3))
+        failed = json.loads((failure / "raw/commands.json").read_text(encoding="utf-8"))
+        outcomes = {command["step"]: command["exit_code"] for command in failed}
+        self.assertEqual(outcomes["standalone-replay"], 0)
+        self.assertEqual(outcomes["core-build"], 1)
+        self.assertTrue({"core-replay", "default-off-lint", "strict-compare",
+                         "final-package-audit"}.isdisjoint(outcomes))
+        self.assertFalse((failure / "raw/replayed_core.json").exists())
+        self.assertFalse((failure / "raw/summary.json").exists())
+        result = self.command(ROOT / "scripts/compare.py",
+                              "--cache", success / "raw/replayed_cache.json",
+                              "--core", success / "raw/replayed_core.json")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_hosted_archive_mutation_removal_and_manifest_fail(self):
+        for change in ("bytes", "missing", "manifest"):
+            with self.subTest(change=change):
+                package = self.copy_package()
+                archive = package / "verification/hosted/run-36887152817"
+                path = archive / "raw/replayed_cache.json"
+                if change == "bytes":
+                    path.write_bytes(path.read_bytes() + b" ")
+                    expected = "hosted artifact bytes changed"
+                elif change == "missing":
+                    path.unlink()
+                    expected = "missing candidate file"
+                else:
+                    manifest = archive / "manifest.json"
+                    manifest.write_bytes(manifest.read_bytes() + b" ")
+                    expected = "hosted archive manifest bytes changed"
+                self.assert_rejected(self.command(package / "scripts/audit.py"), expected)
 
     def test_stage_wrong_pin_and_dirty_checkout_fail_before_writes(self):
         checkout = self.temp / "upstream"
