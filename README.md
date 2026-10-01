@@ -60,8 +60,9 @@ for fast **package/offline validation** of the public frozen evidence and
 adversarial checker tests; this does not execute RTL. The
 [replay workflow](.github/workflows/replay.yml) separately installs tools and
 rebuilds/replays RTL on a disposable GitHub-hosted Ubuntu runner. A workflow
-file alone is not a passing run: see [VERIFICATION.md](VERIFICATION.md) for
-observed execution status. **Independent human execution is still unverified.**
+file alone is not a passing run: **a fresh hosted run has now passed**;
+see [VERIFICATION.md](VERIFICATION.md) for its actual run, environment and
+artifact evidence. **Independent human execution is still unverified.**
 The original two agent replays used separate builds on the same WSL host,
 not two independent hosts or human reproductions.
 

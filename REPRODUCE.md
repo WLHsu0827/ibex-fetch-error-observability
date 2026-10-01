@@ -59,6 +59,9 @@ runner; it is not a local installation entry point.
 See [VERIFICATION.md](VERIFICATION.md) for **actual run evidence**. Automated
 fresh-host reproduction and independent human reproduction are different
 claims; neither package tests nor a newly added workflow prove either one.
+The recorded hosted run has now exercised the fresh public installation
+and all RTL steps successfully; it does not establish human validation or
+binary reproducibility.
 
 ## Inputs and execution environment
 

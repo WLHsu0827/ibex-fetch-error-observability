@@ -93,7 +93,7 @@ This preliminary rehearsal itself did not test publication or a fresh
 tool installation.
 
 The historical WSL runs did **not** verify fresh tool installation or a
-different host/CI. The new gate and any actual hosted proof are recorded
+different host/CI. The new gate and verified automated hosted proof are recorded
 separately in [VERIFICATION.md](VERIFICATION.md), without changing that
 historical claim. **Still unverified:** license/legal review by counsel or
 independent human execution of the RTL tests. The
