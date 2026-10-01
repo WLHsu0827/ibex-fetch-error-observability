@@ -7,6 +7,66 @@ license/notice and docs belong to this repository. Keep the full Ibex
 checkout, its `.git`, builds, JSON replays
 and waveforms **outside this directory**.
 
+## One-command package verification (no RTL or EDA installation)
+
+```sh
+python3 -B scripts/verify.py
+```
+
+On Windows with the Python launcher, use `py -3.12 -B scripts\verify.py`.
+This audits source/provenance and frozen byte hashes, compares the **existing
+public** replay JSON, and runs standard-library `unittest` checks. Positive
+fixtures are frozen evidence, not freshly simulated RTL. Negative fixtures
+are tiny temporary copies: missing/extra/duplicate cases, required source
+hashes, RVFI/CSR results, classifications, event order/cycles, failure flags,
+and staging refusal must fail. No tool download or local RTL build occurs.
+`-B` keeps bytecode out of the exact package allowlist.
+The same entry also checks the [persistent hosted archive](verification/hosted/README.md):
+pinned archive manifests, exact downloaded payload bytes, proof input
+commits and the separate success/failure scope. This remains offline
+evidence validation, not another RTL execution.
+
+## Automated fresh installation and RTL gate
+
+[`.github/workflows/replay.yml`](.github/workflows/replay.yml) has separate
+package/offline and fresh-RTL jobs. The latter uses GitHub-hosted Ubuntu
+24.04, Python **3.12.3**, apt Verilator **5.020-1**, g++-13 **13.3.0**, GNU
+make **4.3**, FuseSoC **2.4.3**, Edalize **0.6.8**, Python `packaging`
+**24.2** (required by the upstream tool-version check), and apt `libelf-dev`.
+The explicit apt pins are `g++-13=13.3.0-6ubuntu2~24.04.1`,
+`make=4.3-4.1build2`, `libelf-dev=0.190-1.1ubuntu0.1`, and
+`verilator=5.020-1`, observed during the initial hosted installation.
+Installed Debian package revisions (including libelf and compiler revisions)
+and the complete resolved Python package list are captured, not inferred
+from this specification. It requires exact tool-version checks before replay.
+
+The upstream checkout is in the runner's separate temporary dependency
+directory, pinned and hash-checked by `stage.py`, with `core.autocrlf=true`
+set **only there**. Both models are freshly built without a restored
+compiled cache. Standalone already caps Verilator at `-j 2`; for the
+Edalize 0.6.8 Verilator backend, the supported **`--make_options=-j2`**
+caps the nested compilation make, and `MAKEFLAGS=-j2` also caps the
+outer make. `--setup --build` alone does **not** specify a thread limit.
+The job checks the installed backend help before using that option.
+
+The fresh job requires both three-case replays, default-off lint, strict
+comparison and final audit to exit zero, within 35 minutes. Only bounded
+public JSON and log tails are uploaded for 14 days: environment and commits,
+command/exit/timeout records, replay JSON/hashes, and success summary (only
+after every required step passes). Runner checkout/home paths are redacted;
+logs are capped at 200,000 bytes per command. No compiled binaries, tool
+bundles, VCD/FST or upstream checkout are uploaded. Newly generated data stay
+in run artifacts, never in `observations/`, `verification/` or `historical/`.
+The installer explicitly refuses execution outside a GitHub-hosted Linux
+runner; it is not a local installation entry point.
+
+See [VERIFICATION.md](VERIFICATION.md) for **actual run evidence**. Automated
+fresh-host reproduction and independent human reproduction are different
+claims; neither package tests nor a newly added workflow prove either one.
+The recorded hosted run has now exercised the fresh public installation
+and all RTL steps successfully; it does not establish human validation or
+binary reproducibility.
+
 ## Inputs and execution environment
 
 - Upstream Ibex pin: [`UPSTREAM_COMMIT`](UPSTREAM_COMMIT) =
@@ -29,7 +89,11 @@ and waveforms **outside this directory**.
   license. An independently installed toolchain should expose `verilator`,
   `fusesoc`, `g++`, `make` and Python on `PATH`, and provide libelf headers
   and a linkable library.
-  Installing these tools from scratch on another machine remains untested.
+  The upstream build hook also requires Python `packaging`. In an isolated
+  Python environment, the replay-specific Python installation is
+  `python3 -m pip install fusesoc==2.4.3 edalize==0.6.8 packaging==24.2`.
+  These are the historical same-host tool versions. The fresh hosted gate
+  has a separate execution record in [VERIFICATION.md](VERIFICATION.md).
 - For the **previously provisioned tools on the originating WSL host only**,
   set `TOOLS_ROOT` to the absolute path of that host's *ignored*,
   versioned execution-tools directory **outside this bundle**, then run before replay
@@ -84,16 +148,17 @@ order. All generated outputs are inside its ignored `build/` folder:
 
 ```sh
 cd "$REPLAY_DIR"
+export MAKEFLAGS=-j2
 python3 dv/verilator/icache_fetch_fault/run.py --trace \
   --output build/fetch_error_pilot/replayed_cache.json
 fusesoc --cores-root=. run --target=sim \
   --work-root=build/fetch_error_pilot/system_pilot --setup --build \
-  lowrisc:ibex:ibex_simple_system --ICache=1 --FetchFaultPilot=1
+  lowrisc:ibex:ibex_simple_system --make_options=-j2 --ICache=1 --FetchFaultPilot=1
 python3 dv/verilator/icache_fetch_fault/run_core.py \
   --output build/fetch_error_pilot/replayed_core.json
 fusesoc --cores-root=. run --target=lint \
   --work-root=build/fetch_error_pilot/lint_default --setup --build \
-  lowrisc:ibex:ibex_simple_system --ICache=1
+  lowrisc:ibex:ibex_simple_system --make_options=-j2 --ICache=1
 python3 "$BUNDLE/scripts/compare.py" \
   --cache build/fetch_error_pilot/replayed_cache.json \
   --core build/fetch_error_pilot/replayed_core.json
@@ -107,7 +172,7 @@ the original worktree's binary. `compare.py` requires all cases, source
 hashes, full cycle-tagged events and bus/IF/RVFI classifications to agree
 with the unabridged raw JSON. It reports separately whether the compiled
 binary SHA-256 and JSON bytes match; matching waveforms or a new
-installation are *not* inferred. The standalone results have
+installation are *not* inferred from that comparison alone. The standalone results have
 `trap_observed: null`, so do not count them as independent architectural
 trials.
 
@@ -121,4 +186,6 @@ attempt. Their packages, old build
 products, source checkout, and Git history were **not** copied into this
 repository or the staged source. The independent upstream checkout and its
 fresh build outputs are distinct. A fresh tool installation or a separate
-host/OS has not been exercised; see [REVIEW.md](REVIEW.md).
+host/OS was not exercised by those historical runs. Hosted execution is
+recorded separately in [VERIFICATION.md](VERIFICATION.md); see
+[REVIEW.md](REVIEW.md) for provenance boundaries.

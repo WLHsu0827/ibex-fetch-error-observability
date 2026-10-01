@@ -1,0 +1,3 @@
+ M examples/simple_system/ibex_simple_system.core
+ M examples/simple_system/rtl/ibex_simple_system.sv
+?? dv/verilator/icache_fetch_fault/

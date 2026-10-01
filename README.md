@@ -55,6 +55,20 @@ failure rate, general detection accuracy, or hardware claim follows.
 
 ## What is in this bundle
 
+**Three distinct verification levels:** run `python3 -B scripts/verify.py`
+for fast **package/offline validation** of the public frozen evidence and
+adversarial checker tests; this does not execute RTL. The
+[replay workflow](.github/workflows/replay.yml) separately installs tools and
+rebuilds/replays RTL on a disposable GitHub-hosted Ubuntu runner. A workflow
+file alone is not a passing run: **a fresh hosted run has now passed**;
+see [VERIFICATION.md](VERIFICATION.md) for its actual run, environment and
+artifact evidence. **Independent human execution is still unverified.**
+The [persistent public hosted archive](verification/hosted/README.md)
+retains the final-tip success and initial failure payloads beyond Actions'
+14-day artifact expiry, without replacing the original observations.
+The original two agent replays used separate builds on the same WSL host,
+not two independent hosts or human reproductions.
+
 - Complete **current-source** [standalone raw observations](observations/results.json)
   and [whole-core raw observations](observations/core_results.json), including
   cycle-tagged events, expected versus actual fields, source hashes and

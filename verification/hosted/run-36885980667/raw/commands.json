@@ -1,0 +1,154 @@
+[
+  {
+    "step": "bundle-version",
+    "command": "git rev-parse HEAD",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.004,
+    "log_truncated": false
+  },
+  {
+    "step": "apt-update",
+    "command": "sudo apt-get -qq update",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 6.227,
+    "log_truncated": false
+  },
+  {
+    "step": "apt-install",
+    "command": "sudo apt-get -y --no-install-recommends install verilator=5.020-1 g++-13 make libelf-dev",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 54.245,
+    "log_truncated": false
+  },
+  {
+    "step": "apt-versions",
+    "command": "dpkg-query -W '-f=${Package}=${Version}\n' verilator g++-13 make libelf-dev",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.016,
+    "log_truncated": false
+  },
+  {
+    "step": "pip-install",
+    "command": "/opt/hostedtoolcache/Python/3.12.3/x64/bin/python -m pip install --no-cache-dir fusesoc==2.4.3 edalize==0.6.8",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 10.287,
+    "log_truncated": false
+  },
+  {
+    "step": "pip-versions",
+    "command": "/opt/hostedtoolcache/Python/3.12.3/x64/bin/python -m pip freeze --all",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.666,
+    "log_truncated": false
+  },
+  {
+    "step": "verilator-version",
+    "command": "verilator --version",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.466,
+    "log_truncated": false
+  },
+  {
+    "step": "compiler-version",
+    "command": "g++-13 -dumpfullversion",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.069,
+    "log_truncated": false
+  },
+  {
+    "step": "make-version",
+    "command": "make --version",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.004,
+    "log_truncated": false
+  },
+  {
+    "step": "upstream-clone",
+    "command": "git clone --no-checkout --depth=1 https://github.com/lowRISC/ibex.git $RUNNER_TEMP/ibex-dependency",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 1.418,
+    "log_truncated": false
+  },
+  {
+    "step": "upstream-fetch",
+    "command": "git -C $RUNNER_TEMP/ibex-dependency fetch --depth=1 origin 7cd891ef267e8db36813b29cb8851142ab2636d5",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.265,
+    "log_truncated": false
+  },
+  {
+    "step": "upstream-line-endings",
+    "command": "git -C $RUNNER_TEMP/ibex-dependency config --local core.autocrlf true",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.004,
+    "log_truncated": false
+  },
+  {
+    "step": "upstream-checkout",
+    "command": "git -C $RUNNER_TEMP/ibex-dependency checkout --detach 7cd891ef267e8db36813b29cb8851142ab2636d5",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.315,
+    "log_truncated": false
+  },
+  {
+    "step": "upstream-version",
+    "command": "git -C $RUNNER_TEMP/ibex-dependency rev-parse HEAD",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.004,
+    "log_truncated": false
+  },
+  {
+    "step": "stage",
+    "command": "/opt/hostedtoolcache/Python/3.12.3/x64/bin/python -B $BUNDLE/scripts/stage.py --checkout $RUNNER_TEMP/ibex-dependency",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.515,
+    "log_truncated": false
+  },
+  {
+    "step": "staged-status",
+    "command": "git -C $RUNNER_TEMP/ibex-dependency status --short",
+    "cwd": "$BUNDLE",
+    "exit_code": 0,
+    "seconds": 0.016,
+    "log_truncated": false
+  },
+  {
+    "step": "standalone-replay",
+    "command": "/opt/hostedtoolcache/Python/3.12.3/x64/bin/python $RUNNER_TEMP/ibex-dependency/dv/verilator/icache_fetch_fault/run.py --trace --output build/fetch_error_pilot/replayed_cache.json",
+    "cwd": "$RUNNER_TEMP/ibex-dependency",
+    "exit_code": 0,
+    "seconds": 11.039,
+    "log_truncated": false
+  },
+  {
+    "step": "backend-options",
+    "command": "fusesoc --cores-root=. run --target=sim lowrisc:ibex:ibex_simple_system --help",
+    "cwd": "$RUNNER_TEMP/ibex-dependency",
+    "exit_code": 0,
+    "seconds": 1.568,
+    "log_truncated": false
+  },
+  {
+    "step": "core-build",
+    "command": "fusesoc --cores-root=. run --target=sim --work-root=build/fetch_error_pilot/system_pilot --setup --build lowrisc:ibex:ibex_simple_system --make_options=-j2 --ICache=1 --FetchFaultPilot=1",
+    "cwd": "$RUNNER_TEMP/ibex-dependency",
+    "exit_code": 1,
+    "seconds": 1.668,
+    "log_truncated": false
+  }
+]

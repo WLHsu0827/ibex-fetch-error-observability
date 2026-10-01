@@ -7,6 +7,9 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
+
+from evidence import load_json
 
 
 BUNDLE = Path(__file__).resolve().parents[1]
@@ -17,18 +20,27 @@ def sha256(path):
 
 
 def compare(label, recorded_path, replayed_path):
-    recorded = json.loads(recorded_path.read_text(encoding="utf-8"))
-    replayed = json.loads(replayed_path.read_text(encoding="utf-8"))
-    if not recorded["pass"] or not replayed["pass"]:
+    recorded = load_json(recorded_path)
+    replayed = load_json(replayed_path)
+    if recorded["pass"] is not True or replayed["pass"] is not True:
         raise RuntimeError(f"{label}: a runner did not pass its expectations")
 
     binary_recorded = recorded.pop("binary_sha256", None)
     binary_replayed = replayed.pop("binary_sha256", None)
     if (binary_recorded is None) != (binary_replayed is None):
         raise RuntimeError(f"{label}: compiled binary hash missing in one result")
-    if recorded != replayed:
+    if binary_recorded is not None and any(
+        not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{64}", value) is None
+        for value in (binary_recorded, binary_replayed)
+    ):
+        raise RuntimeError(f"{label}: malformed compiled binary SHA-256")
+    # Python equality treats True == 1; serialized JSON preserves evidence types.
+    def canonical(value):
+        return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
+
+    if canonical(recorded) != canonical(replayed):
         differing = sorted(key for key in recorded.keys() | replayed.keys()
-                           if recorded.get(key) != replayed.get(key))
+                           if canonical(recorded.get(key)) != canonical(replayed.get(key)))
         raise RuntimeError(f"{label}: recorded and replayed data differ in {differing}; "
                            "inspect source hashes, per-case events, and tool versions")
     print(f"{label}: source hashes, complete case events, assertions and "
