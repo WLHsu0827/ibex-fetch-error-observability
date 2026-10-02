@@ -13,11 +13,14 @@ ELF, waveform, private trace, or private full-bind hash is included.
 
 ## Implementation
 
-- [`observer.sv`](observer.sv) is the selected reset-armed instrument module.
-- [`fixture.sv`](fixture.sv) drives delayed, initial-low, held, asynchronous,
+- [`trace_phase_observer.sv`](trace_phase_observer.sv) is the selected
+  reset-armed instrument module.
+- [`trace_monitor_fixture.sv`](trace_monitor_fixture.sv) drives delayed,
+  initial-low, held, asynchronous,
   missing, repeated-reset, and fatal-text-then-hang cases.
-- [`unarmed_fixture.sv`](unarmed_fixture.sv) is a minimal fixture-only
-  counterexample that produces `Q [0, 1, 0, 1]`; it is not a CPU model.
+- [`unarmed_trace_counterexample.sv`](unarmed_trace_counterexample.sv) is a
+  minimal fixture-only counterexample that produces `Q [0, 1, 0, 1]`; it is
+  not a CPU model.
 - [`process_runner.py`](process_runner.py) records typed process outcomes,
   disables core dumps only in the owned child, bounds time, and distinguishes
   exit, signal, timeout, missing-tool, and spawn failures.

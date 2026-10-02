@@ -4,18 +4,18 @@
   "scope": "standalone synthetic trace-monitor source; no CPU bind or private evidence",
   "source_sha256": {
     ".github/workflows/trace-monitor.yml": "4dfd41acb757e73a9706f1750406827f7ec0be419b3de7c94454acc536585721",
-    "monitor/README.md": "7a51ac2570570e40552492ee5a2860209154779ab9b1d1e786bbf758114f37ca",
+    "monitor/README.md": "ae4036e6c03f3c637229e1655cba37a3dc5dd632f17677bf7434daa4fad573be",
     "monitor/__init__.py": "ad4078f49cb691e705080855cc6bb9beea95f7b26a17277af6f53ba23a8e8524",
     "monitor/evidence/.gitattributes": "dabe63faea541789c0deeb5fe96af06fc5174e1131f20f58ca4e9959befa7631",
-    "monitor/fixture.sv": "596e17619e0e64a3a10012679c0a43ec9afd9137070d87d8208a062ef87b94e3",
-    "monitor/observer.sv": "b83f36c57660a1e27bedac2b1ebbb2e34a742c00d4968e818aff1849cb8bfb8c",
     "monitor/process_runner.py": "d6a43d2241cf643fbf53be026e27cb4f06c530dc9784e440185a73824c37d5cc",
-    "monitor/run_all.py": "d2c813c3f521664f6b1d91f6cbbd648c52f8b5032421205871a07dcda1126f0f",
+    "monitor/run_all.py": "f1187e6d3ec897b91fb35faeaba60dfc772d991737ee236f64c229727a366e03",
     "monitor/tests/__init__.py": "c7de0f71fccb44d308df5791292fffa05c068217b5ee79c5074c6bad237d19c7",
     "monitor/tests/test_process_runner.py": "5e1f190072c5030295be773685a8d0e9ff379f562adb210dbde67b902b34c26a",
     "monitor/tests/test_source_manifest.py": "f130bbe0ac635868b140da70703cddfe62af4fda7923b3167f67d4c7485eba09",
     "monitor/tests/test_trace_check.py": "a9d98e02d00d142fd24a1593b6a5063aa34d7f4b9e02e5fef3c268ce4971bd6d",
     "monitor/trace_check.py": "6d8cfd4b1a48205ded61bd391e9ae0ef7882853ad2b7d6a5fc791a7a0329da42",
-    "monitor/unarmed_fixture.sv": "f06f56c1e0dd7e3690ccf6dc24825608d91a8be308836e2ba80d0c064a9dbab2"
+    "monitor/trace_monitor_fixture.sv": "8697de41dcad3e061231e205f2d365f0d14fd82e6dfe06dc30026389a848cb83",
+    "monitor/trace_phase_observer.sv": "031271d44a315c99b0716a01213b444438fbfad574125a4f35ff7bb1e2e1bf96",
+    "monitor/unarmed_trace_counterexample.sv": "81a1495e652bf9c6c337d1ea359eb513aca195b5784d3d0b2ac24ffe7b6123a4"
   }
 }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Wei-Lun Hsu
 //
-// Controlled synthetic stimulus. Values are labels, not ISA execution.
+// Controlled public synthetic stimulus. Values are labels, not ISA execution.
 module trace_monitor_fixture;
   logic clk = 1'b0;
   logic rst_n = 1'b1;

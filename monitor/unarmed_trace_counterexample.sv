@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Wei-Lun Hsu
 //
-// Minimal synthetic counterexample: logging before reset creates Q 0,1,0,1.
+// Minimal public counterexample: logging before reset creates Q 0,1,0,1.
 module unarmed_trace_counterexample;
   logic clk = 1'b0;
   logic rst_n = 1'b1;

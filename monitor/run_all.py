@@ -131,7 +131,7 @@ def run_real(output: Path) -> None:
     model = build_model(
         output,
         "trace_monitor_fixture",
-        [MONITOR / "observer.sv", MONITOR / "fixture.sv"],
+        [MONITOR / "trace_phase_observer.sv", MONITOR / "trace_monitor_fixture.sv"],
     )
     case_results: dict[str, object] = {}
     for scenario in POSITIVE_CASES:
@@ -177,7 +177,7 @@ def run_real(output: Path) -> None:
     unarmed = build_model(
         output,
         "unarmed_trace_counterexample",
-        [MONITOR / "unarmed_fixture.sv"],
+        [MONITOR / "unarmed_trace_counterexample.sv"],
     )
     status, trace = run_case(output, unarmed, "unarmed_counterexample")
     require_success(status)
@@ -200,9 +200,9 @@ def run_real(output: Path) -> None:
     source_hashes = {
         path.name: sha256(path)
         for path in (
-            MONITOR / "observer.sv",
-            MONITOR / "fixture.sv",
-            MONITOR / "unarmed_fixture.sv",
+            MONITOR / "trace_phase_observer.sv",
+            MONITOR / "trace_monitor_fixture.sv",
+            MONITOR / "unarmed_trace_counterexample.sv",
             MONITOR / "process_runner.py",
             MONITOR / "trace_check.py",
             MONITOR / "run_all.py",

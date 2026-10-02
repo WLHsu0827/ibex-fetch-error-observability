@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright 2026 Wei-Lun Hsu
 //
-// Instrument-only observer. Signal names are opaque fixture labels unless this
+// Instrument-only public observer. Signal names are opaque fixture labels unless this
 // module is explicitly integrated and qualified against a separate design.
 module trace_phase_observer (
   input logic        clk_i,
