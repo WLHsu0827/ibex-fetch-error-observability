@@ -1,0 +1,17 @@
+Fresh Ibex RVFI Next-PC Output-Port Observation
+Copyright 2026 Wei-Lun Hsu.
+
+Original program, harness, sampler, oracle, tests, automation, new observations
+and prose are Apache-2.0, with GitHub Copilot App assistance. This is not
+independent human replication or lowRISC endorsement.
+
+Stock Ibex and its vendored dependencies are fetched on hosted runners at
+4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8 without core modification. Their public
+upstream authorship, LICENSE/NOTICE and dependency license provenance are
+retained in each closed archive where tooling/source retrieval reached them.
+
+Immutable public PR2 commit fdeedd7b0c0a7b0108d6b1fdbaecdc7056164b48 was read
+as engineering prior art for typed failures, reset arming, marker/hang
+rejection and archive closure. Its Apache-2.0 public author is Wei-Lun Hsu.
+No unmerged mutable branch, private artifacts or inherited measurement
+identities/counts are a dependency.
