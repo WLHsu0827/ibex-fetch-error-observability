@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "rvfi_nextpc.tests",
+    "-v"
+  ],
+  "code": 0,
+  "cwd": "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability",
+  "duration_seconds": 0.5162055739999971,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 1780,
+    "sha256": "dd629f76968bae7aa190fbd8a5ebf2ed32171caaab7da12e3f0dcf954d64bf57"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 300
+}

@@ -15,42 +15,15 @@ from .process import identity
 from .seal import ROOT
 
 
-def privacy_review(data: bytes) -> None:
-    pattern = (
-        rb"(?i)(C:\\Users\\[A-Za-z0-9_.-]+\\|/Users/[A-Za-z0-9_.-]+/|"
-        rb"/home/(?!runner/)[A-Za-z0-9_.-]+/|gh[pousr]_[A-Za-z0-9]{20,}|"
-        rb"github_pat_[A-Za-z0-9_]{20,}|"
-        rb"-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----)"
-    )
-    if re.search(pattern, data):
-        raise ValueError("credential/private-path candidate")
-
-
-def verify_archive(directory: Path, collection: dict[str, object] | None = None) -> dict[str, object]:
+def verify_archive(directory: Path) -> dict[str, object]:
     manifest = json.loads((directory / "RAW_MANIFEST.json").read_text(encoding="ascii"))
     actual = {path.relative_to(directory).as_posix(): identity(path)
               for path in sorted(directory.rglob("*"))
               if path.is_file() and path.name != "RAW_MANIFEST.json"}
-    expected = manifest["files"]
-    missing = sorted(expected.keys() - actual.keys())
-    if manifest["schema"] != 1 or any(actual[name] != expected.get(name) for name in actual):
+    if manifest["schema"] != 1 or actual != manifest["files"]:
         raise ValueError("missing, changed or unmanifested archive bytes")
-    if collection is not None and collection["missing_files"] != missing:
-        raise ValueError("collection gap differs from unchanged artifact")
-    if missing and (collection is None or missing != ["input/.github/workflows/rvfi-nextpc.yml"]):
-        raise ValueError("missing archive bytes")
     summary = json.loads((directory / "summary.json").read_text())
     dispatch = json.loads((directory / "dispatch-input.json").read_text())
-    if missing:
-        if (
-            collection is None or collection["missing_files"] != missing
-            or collection["manifest"] != identity(directory / "RAW_MANIFEST.json")
-            or collection["source_sha"] != manifest["source_sha"]
-            or str(collection["run_id"]) != str(manifest["run_id"])
-            or summary["result"] != "STOP" or summary.get("real_compilations") != []
-            or missing != ["input/.github/workflows/rvfi-nextpc.yml"]
-        ):
-            raise ValueError("missing archive bytes; no matching explicit pre-HDL STOP collection receipt")
     if summary["source_sha"] != manifest["source_sha"] or dispatch["source_sha"] != manifest["source_sha"]:
         raise ValueError("archive source binding mismatch")
     for name in actual:
@@ -60,10 +33,9 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
         ):
             raise ValueError("model binary/build tree/wave outside public archive policy")
         data = path.read_bytes()
-        try:
-            privacy_review(data)
-        except ValueError as error:
-            raise ValueError(f"STOP privacy review: credential/private-path candidate in {name}") from error
+        if re.search(rb"(?i)(C:\\Users\\|/Users/|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_|"
+                     rb"-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----)", data):
+            raise ValueError(f"STOP privacy review: disallowed path/credential pattern in {name}")
         if name.endswith(".status.json"):
             status = json.loads(data)
             if status["kind"] not in ("exited", "signaled", "timed_out", "spawn_error"):
@@ -102,8 +74,7 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
             raise ValueError("preparation missing independent miniature qualification")
     elif summary["result"] != "STOP" or not summary.get("error"):
         raise ValueError("unrecognized/incomplete terminal closure")
-    return {"archive_integrity": "INCOMPLETE" if missing else "PASS", "missing_files": missing,
-            "result": summary["result"],
+    return {"archive_integrity": "PASS", "result": summary["result"],
             "scientific_result": summary.get("scientific_result", "NOT_QUALIFIED"),
             "source_sha": summary["source_sha"], "run_id": manifest["run_id"],
             "manifest": identity(directory / "RAW_MANIFEST.json")}
@@ -114,9 +85,7 @@ if __name__ == "__main__":
     parser.add_argument("directory", nargs="?", type=Path)
     args = parser.parse_args()
     directories = [args.directory] if args.directory else sorted((ROOT / "rvfi_nextpc" / "evidence").glob("run-*"))
-    collection_path = ROOT / "rvfi_nextpc" / "evidence" / "COLLECTION.json"
-    collections = json.loads(collection_path.read_text())["archives"] if collection_path.exists() else {}
     for directory in directories:
-        print(json.dumps(verify_archive(directory, collections.get(directory.name)), sort_keys=True))
+        print(json.dumps(verify_archive(directory), sort_keys=True))
     if not directories:
         print("NEXTPC_NO_ARCHIVE_YET: input-only, no claimed DUT result")

@@ -29,17 +29,17 @@ module rvfi_observer (
     if (fd == 0) $fatal(1, "NEXTPC_OPEN_LOG");
   end
 
-  // Falling edge samples stable registered output ports, not the rising-edge NBA input.
-  always @(negedge clk_i or negedge rst_ni) begin
-    if (!rst_ni) begin
-      if (started) begin
-        $fflush(fd);
-        $fatal(1, "NEXTPC_RESET_AFTER_START");
-      end
-      reset_seen <= 1;
-    end else if (reset_seen) begin
-      started <= 1;
+  always @(negedge rst_ni) begin
+    if (started) begin
+      $fflush(fd);
+      $fatal(1, "NEXTPC_RESET_AFTER_START");
     end
+    reset_seen = 1;
+  end
+
+  // Falling edge samples stable registered output ports, not the rising-edge NBA input.
+  always @(negedge clk_i) begin
+    if (rst_ni && reset_seen) started = 1;
     $fwrite(fd, "Q\t%0d\t%0d\t%0d\t%0d\t%0d\t%0d\t%0d\t%0d\t%0d\n",
             cycle, rst_ni, irq_software_i, irq_timer_i, irq_external_i,
             irq_fast_i, irq_nm_i, debug_req_i, rvfi_ext_debug_mode);
@@ -58,7 +58,7 @@ module rvfi_observer (
         rvfi_ext_debug_req, rvfi_ext_debug_mode, rvfi_ext_irq_valid, rvfi_ext_rf_wr_suppress);
     end
     $fflush(fd);
-    cycle <= cycle + 1;
+    cycle = cycle + 1;
   end
 
   final begin

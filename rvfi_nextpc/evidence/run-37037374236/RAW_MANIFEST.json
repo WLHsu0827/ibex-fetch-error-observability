@@ -1,0 +1,31 @@
+{
+  "files": {
+    "actions.log": {
+      "bytes": 28626,
+      "sha256": "80b9b8eb562899e9f0d7419ad1b266de7f0e3084b191fd224997d3e13ef23b67"
+    },
+    "dispatch-input.json": {
+      "bytes": 138,
+      "sha256": "e3e230e6ee69f9a712bd4d01c966efeb42038b048c92002c7bbfb60e8aa42e90"
+    },
+    "retrieval.json": {
+      "bytes": 380,
+      "sha256": "c00e033fcc37bf61df62edd66e6e747e59622e7c6c5ef72acc96a84d0bb9a3d9"
+    },
+    "retrieval.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "run.json": {
+      "bytes": 254,
+      "sha256": "3799f69629f4ec70447a6e10f0ee485afc260a1feb0203cd10d32d20bf7a5797"
+    },
+    "summary.json": {
+      "bytes": 352,
+      "sha256": "d3f3d4f595b4856c493a2c792265d2e0005c952102fee88acba53530f7c96926"
+    }
+  },
+  "run_id": "37037374236",
+  "schema": 1,
+  "source_sha": "f80fa2b5beca8d0777b88ae574f69ad7b972bedf"
+}

@@ -13,7 +13,7 @@ import tempfile
 import unittest
 
 from .check import parse, qualify
-from .archive import privacy_review, verify_archive
+from .archive import verify_archive
 from .isa import BOOT, FIELDS, decode, execute, freeze, sext
 from .process import expected_fatal, identity, require_success, run, write_json
 
@@ -201,30 +201,6 @@ class ArchiveContracts(unittest.TestCase):
         self.assertEqual((result["archive_integrity"], result["scientific_result"]),
                          ("PASS", "NOT_QUALIFIED"))
 
-    def test_declared_pre_hdl_source_gap_is_incomplete_never_pass(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
-            root = Path(temp)
-            source_sha = "b" * 40
-            write_json(root / "summary.json", {
-                "source_sha": source_sha, "result": "STOP", "error": "pre-HDL tool failure",
-                "real_compilations": [],
-            })
-            write_json(root / "dispatch-input.json", {"source_sha": source_sha})
-            files = {path.name: identity(path) for path in root.iterdir()}
-            missing = "input/.github/workflows/rvfi-nextpc.yml"
-            files[missing] = {"bytes": 1, "sha256": "a" * 64}
-            write_json(root / "RAW_MANIFEST.json", {
-                "schema": 1, "source_sha": source_sha, "run_id": "synthetic", "files": files,
-            })
-            with self.assertRaises(ValueError):
-                verify_archive(root)
-            receipt = {"missing_files": [missing], "source_sha": source_sha, "run_id": "synthetic",
-                       "manifest": identity(root / "RAW_MANIFEST.json")}
-            self.assertEqual(verify_archive(root, receipt)["archive_integrity"], "INCOMPLETE")
-            receipt["missing_files"] = ["off/cpp.tsv"]
-            with self.assertRaises(ValueError):
-                verify_archive(root, receipt)
-
     def test_changed_missing_or_extra_bytes_fail(self) -> None:
         (self.root / "extra.log").write_bytes(b"extra")
         with self.assertRaises(ValueError):
@@ -236,22 +212,6 @@ class ArchiveContracts(unittest.TestCase):
         (self.root / "summary.json").unlink()
         with self.assertRaises(ValueError):
             verify_archive(self.root)
-
-    def test_scanner_literals_are_not_source_exemptions(self) -> None:
-        source = Path(__file__).with_name("archive.py").read_bytes()
-        privacy_review(source)
-        for payload in (
-            ("github_" + "pat_" + "A" * 40).encode(),
-            ("gh" + "p_" + "B" * 36).encode(),
-            ("C:" + chr(92) + "Users" + chr(92) + "SyntheticOwner" + chr(92) + "private").encode(),
-            ("/Users" + "/SyntheticOwner/private").encode(),
-            ("/home" + "/SyntheticOwner/private").encode(),
-            ("-----BEGIN " + "OPENSSH PRIVATE KEY-----").encode(),
-        ):
-            with self.assertRaises(ValueError):
-                privacy_review(payload)
-            with self.assertRaises(ValueError):
-                privacy_review(source + payload)
 
 
 if __name__ == "__main__":

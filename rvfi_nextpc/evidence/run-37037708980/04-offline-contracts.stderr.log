@@ -1,0 +1,19 @@
+test_changed_missing_or_extra_bytes_fail (rvfi_nextpc.tests.ArchiveContracts.test_changed_missing_or_extra_bytes_fail) ... ok
+test_stop_archive_is_not_scientific_pass (rvfi_nextpc.tests.ArchiveContracts.test_stop_archive_is_not_scientific_pass) ... ok
+test_bad_encoding_and_bad_freeze (rvfi_nextpc.tests.DecoderContracts.test_bad_encoding_and_bad_freeze) ... ok
+test_independent_known_branch_vectors (rvfi_nextpc.tests.DecoderContracts.test_independent_known_branch_vectors) ... ok
+test_outcome_uses_operands_not_labels (rvfi_nextpc.tests.DecoderContracts.test_outcome_uses_operands_not_labels) ... ok
+test_flushed_bytes_and_exclusive_receipts (rvfi_nextpc.tests.ProcessContracts.test_flushed_bytes_and_exclusive_receipts) ... ok
+test_marker_then_hang_remains_timeout (rvfi_nextpc.tests.ProcessContracts.test_marker_then_hang_remains_timeout) ... ok
+test_missing_tool_and_bad_exit (rvfi_nextpc.tests.ProcessContracts.test_missing_tool_and_bad_exit) ... ok
+test_prompt_signal_and_marker (rvfi_nextpc.tests.ProcessContracts.test_prompt_signal_and_marker) ... ok
+test_image_path_operands_flags_and_premature_exit (rvfi_nextpc.tests.StreamContracts.test_image_path_operands_flags_and_premature_exit) ... ok
+test_metadata_failure_is_not_execution_failure (rvfi_nextpc.tests.StreamContracts.test_metadata_failure_is_not_execution_failure) ... ok
+test_missing_duplicate_reordered_malformed_and_controls (rvfi_nextpc.tests.StreamContracts.test_missing_duplicate_reordered_malformed_and_controls) ... ok
+test_qualified_metadata (rvfi_nextpc.tests.StreamContracts.test_qualified_metadata) ... ok
+test_sampler_disagreement (rvfi_nextpc.tests.StreamContracts.test_sampler_disagreement) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.425s
+
+OK

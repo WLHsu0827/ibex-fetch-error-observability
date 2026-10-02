@@ -153,16 +153,16 @@ class Hosted:
         self.command("apt-update", ["sudo", "apt-get", "update", "-qq"], timeout=480)
         self.command("apt-tools", [
             "sudo", "apt-get", "install", "-y", "--no-install-recommends",
-            "verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
-            "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6",
+            "verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11build1",
+            "binutils-riscv64-unknown-elf=2.42-2ubuntu2",
         ], timeout=480)
         self.command("package-versions", [
             "dpkg-query", "-W", "-f=${Package}=${Version}\\n", "verilator",
             "gcc-riscv64-unknown-elf", "binutils-riscv64-unknown-elf",
         ])
         packages = self.last_stdout().decode()
-        required = ("verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
-                    "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6")
+        required = ("verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11build1",
+                    "binutils-riscv64-unknown-elf=2.42-2ubuntu2")
         if set(packages.splitlines()) != set(required):
             raise RuntimeError("STOP: installed package version mismatch")
         self.command("venv", [sys.executable, "-m", "venv", "tools"])
@@ -202,7 +202,6 @@ class Hosted:
             raise RuntimeError("STOP: Verilator version mismatch")
         self.command("cxx-version", ["c++", "--version"])
         self.command("gcc-version", ["riscv64-unknown-elf-gcc", "--version"])
-        self.command("binutils-version", ["riscv64-unknown-elf-objcopy", "--version"])
         self.tool_identities = {
             name: identity(Path(shutil.which(name)).resolve())
             for name in ("verilator", "c++", "make", "riscv64-unknown-elf-gcc",

@@ -18,7 +18,7 @@ module sampler_fixture (
   output logic rvfi_ext_debug_mode, rvfi_ext_irq_valid, rvfi_ext_rf_wr_suppress
 );
   logic [3:0] beat = 0;
-  always_ff @(posedge clk_i or negedge rst_ni) begin
+  always_ff @(posedge clk_i) begin
     if (!rst_ni) begin
       beat <= 0;
       rvfi_valid <= 0;

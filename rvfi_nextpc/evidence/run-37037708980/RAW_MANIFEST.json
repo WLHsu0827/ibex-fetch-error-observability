@@ -1,0 +1,188 @@
+{
+  "files": {
+    "01-input-head.status.json": {
+      "bytes": 501,
+      "sha256": "3f2e5d726e2409d23f0432d7e00eb2bf9fc95ae3bc3ac5b8dc9101e465fd94cf"
+    },
+    "01-input-head.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "01-input-head.stdout.log": {
+      "bytes": 41,
+      "sha256": "f895374c27a751574c4e3facd3dad06eea8fa34aa01a9e0ec033e1f046175f0b"
+    },
+    "02-input-clean.status.json": {
+      "bytes": 515,
+      "sha256": "65735450ee795a1bca7f36fcea10071bc21a321d57b0726aa0e9cf8fbecd1cf3"
+    },
+    "02-input-clean.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "02-input-clean.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "03-attempt-history.status.json": {
+      "bytes": 710,
+      "sha256": "796c08fe023a27fead08c493cd75a6c8643d7c618ed0b027a46df94b23c01355"
+    },
+    "03-attempt-history.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "03-attempt-history.stdout.log": {
+      "bytes": 1097,
+      "sha256": "a9142cbe763d692a5d7e60f84c7f1b0e0c52f11cd8be53fbef147f946cbdb932"
+    },
+    "04-offline-contracts.status.json": {
+      "bytes": 557,
+      "sha256": "18670174ea1c3ba795763f3cf051e599cbb8e5f6a6b4d4fbdd2f57d7cd7f2693"
+    },
+    "04-offline-contracts.stderr.log": {
+      "bytes": 1780,
+      "sha256": "dd629f76968bae7aa190fbd8a5ebf2ed32171caaab7da12e3f0dcf954d64bf57"
+    },
+    "04-offline-contracts.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "05-apt-update.status.json": {
+      "bytes": 454,
+      "sha256": "fca2eab96e8134c2c877ceae6dc53e36164db2a25747d3e6d0c8829cd930e161"
+    },
+    "05-apt-update.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "05-apt-update.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "06-apt-tools.status.json": {
+      "bytes": 620,
+      "sha256": "12fe0df4663425c2bfbfabf40a58496bd51c677dad115b0f3b843bac0a9d4bfb"
+    },
+    "06-apt-tools.stderr.log": {
+      "bytes": 149,
+      "sha256": "0478aee8811155efdd3dfd3702cb4bae1d67e5234e46a25d97237615cb37f93a"
+    },
+    "06-apt-tools.stdout.log": {
+      "bytes": 475,
+      "sha256": "4d82b71f18eee2e825bc0e8524fd9cda5ac6ac02e20fb01a1c94129c67ac2978"
+    },
+    "attempt.json": {
+      "bytes": 1206,
+      "sha256": "b272d55f2f72c9dfa3847db752b04302fa3e0fc02f1beaf247ce1927b30b9c20"
+    },
+    "dispatch-input.json": {
+      "bytes": 265,
+      "sha256": "c986d0235fdae81889dc4575f2839d558de70ee0c331bb3fafe7e6ee23415406"
+    },
+    "input/.github/workflows/rvfi-nextpc.yml": {
+      "bytes": 3499,
+      "sha256": "e692d6f8f128022303d6fc2d8d18c6b2c2d07743649d05512cee08239b40ea31"
+    },
+    "input/LICENSE": {
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    "input/rvfi_nextpc/AUTHORIZATION.json": {
+      "bytes": 541,
+      "sha256": "f7a943bde5ff05b366c4ac7a97736b655e2223eaf3e246b7ecca33a6e6b4c760"
+    },
+    "input/rvfi_nextpc/SOURCE_MANIFEST.json": {
+      "bytes": 3139,
+      "sha256": "c7e60c2b8fccfede66351f494bca4d8d7f51f9dd3575f93ce769b5be0492b06f"
+    },
+    "input/rvfi_nextpc/__init__.py": {
+      "bytes": 126,
+      "sha256": "201c7280fa935cc0ae17f03eed5543679492afcd68bc45b6c4f023cad90a12bf"
+    },
+    "input/rvfi_nextpc/archive.py": {
+      "bytes": 5224,
+      "sha256": "cad89f603cd08b48cb7d175fe9b6df7f61fc9aee141c56ebbd2867fc40ce2052"
+    },
+    "input/rvfi_nextpc/check.py": {
+      "bytes": 5593,
+      "sha256": "29b16b7eab98267d642b8a4f2a7437a0440a859881ec53010db9f1857243752c"
+    },
+    "input/rvfi_nextpc/fixture.cpp": {
+      "bytes": 1203,
+      "sha256": "214515ecac68fcd1a0c018de296b9113f0e97f5632ad0ca7217327adc5818a9e"
+    },
+    "input/rvfi_nextpc/hosted.py": {
+      "bytes": 26640,
+      "sha256": "0e03fbad65af50ee939626424a9a3942096fcbb93d24d9f744aabd85be35be6b"
+    },
+    "input/rvfi_nextpc/isa.py": {
+      "bytes": 5289,
+      "sha256": "d019fdac7dc41068969286a4d869ce777aca6dc78955b4303e0c70cb55d92a3b"
+    },
+    "input/rvfi_nextpc/link.ld": {
+      "bytes": 211,
+      "sha256": "074f6ce44e20ff4d9deef502c64034fdbb6abed017020bf8479cee99157145fc"
+    },
+    "input/rvfi_nextpc/main.cpp": {
+      "bytes": 3296,
+      "sha256": "5f24f845d6cb9686d10c41f51e6734d4549d6329b1f0b349bffb96a46e2cea1c"
+    },
+    "input/rvfi_nextpc/nextpc.core": {
+      "bytes": 1034,
+      "sha256": "45ee27061bcce402a3d83f600659ddf6e928800286f17a7c422a19e29c8eadec"
+    },
+    "input/rvfi_nextpc/nextpc_top.sv": {
+      "bytes": 4807,
+      "sha256": "239e33ea5bdd828750d25d9ae57725a0bc2d7e71fff248acfaa3b52eaea1e4b3"
+    },
+    "input/rvfi_nextpc/process.py": {
+      "bytes": 2795,
+      "sha256": "4fb118b83f84cf385bc9c09459ffdf8fe9357c95c1d55d88e2acfa404c312adf"
+    },
+    "input/rvfi_nextpc/program.S": {
+      "bytes": 1519,
+      "sha256": "4c6161d7a46f6e5d8b685d360569475c5648597b45017a1d89c1b77c2c7ba22b"
+    },
+    "input/rvfi_nextpc/requirements.txt": {
+      "bytes": 265,
+      "sha256": "e6088e7e0db4bac1028998e96d85782a2691de9203cfb8add10cbd89306c40b4"
+    },
+    "input/rvfi_nextpc/rvfi_observer.sv": {
+      "bytes": 3612,
+      "sha256": "4290bc8ecfe98541de175642f463654a6a7da21cc596d24d8ccf85d8ad20aa49"
+    },
+    "input/rvfi_nextpc/sample.hpp": {
+      "bytes": 1727,
+      "sha256": "063dc8276ad1a733781d83d7c85be3193b34fc1c5cec3227b4868934698961d2"
+    },
+    "input/rvfi_nextpc/sampler_fixture.sv": {
+      "bytes": 2059,
+      "sha256": "2ebfc64d6037c0931fde57aa912a6c47fd6494cce5761a0d5f175ed3dcbb3492"
+    },
+    "input/rvfi_nextpc/seal.py": {
+      "bytes": 1773,
+      "sha256": "9d4767cfff03caf16b2abfd48c83cd7741bf726c3b6380db1a80aa6e86709c77"
+    },
+    "input/rvfi_nextpc/tests.py": {
+      "bytes": 9982,
+      "sha256": "2feb4323347e5d71056ff67ce36c7b2710ab30bae4aa5d56145500bb27c3a7d8"
+    },
+    "pipeline-error.log": {
+      "bytes": 1093,
+      "sha256": "04bef51d6c8a53b5ce6aa388fdc02e66350c96c276063dfe90d2cd4b857c3776"
+    },
+    "preflight.json": {
+      "bytes": 352,
+      "sha256": "6817b8e20e7a9b367852c4a9be132bd9e60ffbb490966bcd5312c172c2e6d836"
+    },
+    "summary.json": {
+      "bytes": 515,
+      "sha256": "c38066c2145479387a385056cc02dd154de21328b883de777086739a5c722c9f"
+    }
+  },
+  "run_id": "37037708980",
+  "schema": 1,
+  "self_hash": "intentionally absent; immutable artifact/commit identity is the outer closure",
+  "source_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13"
+}

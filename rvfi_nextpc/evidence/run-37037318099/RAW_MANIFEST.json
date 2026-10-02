@@ -1,0 +1,31 @@
+{
+  "files": {
+    "actions.log": {
+      "bytes": 28625,
+      "sha256": "20b051556b2aee4756f13cf2991c4695f8288b7cf5d4e4fc2f29a0b0456f310d"
+    },
+    "dispatch-input.json": {
+      "bytes": 130,
+      "sha256": "24f58ca360fcd17beec231d6ac15bc61c7fdf3b7ebd6ded7c25810dfac5bb1a9"
+    },
+    "retrieval.json": {
+      "bytes": 380,
+      "sha256": "5b0229072aaa9bb1f7aa63af04b1cf3eb69adc742438a5c5b4ee07c3c05a85f7"
+    },
+    "retrieval.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "run.json": {
+      "bytes": 246,
+      "sha256": "7e47adf35b36fcf3c666ceefed39cb702b8b1b191fad2e9240838e0da8c676a1"
+    },
+    "summary.json": {
+      "bytes": 352,
+      "sha256": "014e81972a43293d8563ca0072f4ac4282e21887e317fe125d7f1633025ee601"
+    }
+  },
+  "run_id": "37037318099",
+  "schema": 1,
+  "source_sha": "f80fa2b5beca8d0777b88ae574f69ad7b972bedf"
+}

@@ -13,6 +13,15 @@ the existing LICENSE keeps its original byte identity. Hosted source exports,
 program and raw evidence still use actual byte lengths/SHA256, never line
 ending normalization of observed streams.
 
+Preparation 1's original artifact is also preserved **INCOMPLETE**, not
+rewritten/reconstructed or promoted to full integrity PASS: upload-artifact's
+default hidden-file exclusion omitted `input/.github/workflows/rvfi-nextpc.yml`,
+although the original raw manifest references it. A separate collection
+receipt identifies that precise pre-HDL source gap and original manifest/
+artifact identities; every retained byte is still checked. The workflow now
+explicitly includes hidden files from its reviewed output-only staging area.
+This exception cannot admit missing observed records or any real CPU attempt.
+
 ## Scope and preregistration
 
 Pinned public stock Ibex:
@@ -62,6 +71,8 @@ and compare every recorded retirement field, never by cycles or static PC.
 The Q stream observes reset, software/timer/external/fast/NMI/debug request
 inputs and RVFI debug-mode state. R records contain actual trap/halt/intr,
 operand/writeback and interrupt/debug RVFI extension fields.
+SV also records asynchronous reset assertion; Q indices/counts are therefore
+local to each sampler and deliberately are not used to join retirements.
 
 This rules out a disagreement specific to these two port readers/phases when
 they agree. It does **not** establish simulator-independent sampling, exclude
@@ -95,7 +106,8 @@ oracle, sampler, source and tools are frozen and no retry/refreeze is allowed.
 ON can build only after qualified OFF execution, independent sampler agreement
 and strict OFF next-PC PASS. If any gate fails, the remaining pipeline stops.
 
-Ubuntu 24.04, Verilator **5.020-1**, GCC/binutils and the Python dependency
+Ubuntu 24.04, Verilator **5.020-1**, cross GCC **13.2.0-11ubuntu1+12** /
+binutils **2.42-1ubuntu1+6**, and the Python dependency
 closure are version-pinned. Actual versions, package license provenance,
 wheel URLs/hashes, reported affinity CPUs/memory/cgroup/disk, source exports,
 configs, commands and typed statuses are retained. All compilation uses
@@ -135,7 +147,7 @@ The real hosted entry point is an explicit one-command Linux `gh` dispatch
 (placeholders must be replaced by immutable, qualified identities):
 
 ```sh
-gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-one-pair -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
+gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref OWNER_BRANCH_AT_INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-one-pair -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
 ```
 
 Preparation uses the same command with `mode=prepare`,
@@ -143,6 +155,9 @@ Preparation uses the same command with `mode=prepare`,
 preparation_run. **These commands do not grant another pair.** After the
 authorized pair/STOP, independent humans need new explicit authorization
 and a distinct attempt identity; the existing workflow rejects reruns.
+GitHub dispatch requires a branch/tag ref (a bare SHA dispatch was rejected
+with HTTP 422 and created no run); checkout/source qualification still requires
+the full immutable source SHA and exact dispatch head match.
 
 ## Public contract, source support and limitations
 

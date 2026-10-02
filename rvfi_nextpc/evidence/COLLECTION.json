@@ -1,0 +1,19 @@
+{
+  "archives": {
+    "run-37037708980": {
+      "artifact_digest": "sha256:9ec08523d2713395fdddb43a14d406d3a466f1d93e6978b23d66ea7b517b8a0e",
+      "artifact_id": 11241097111,
+      "closure": "INCOMPLETE pre-HDL STOP; original artifact files/manifest untouched, no reconstruction",
+      "manifest": {
+        "bytes": 6814,
+        "sha256": "75f9f813c11ea9b4c2781033fdc8cee93dd90c680fd41f98a890e258993a9744"
+      },
+      "missing_files": [
+        "input/.github/workflows/rvfi-nextpc.yml"
+      ],
+      "run_id": "37037708980",
+      "source_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13"
+    }
+  },
+  "schema": 1
+}

@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "duration_seconds": 3.3440000000118744,
+  "kind": "exited",
+  "operation": "public Actions log retrieval, not DUT execution",
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 28625,
+    "sha256": "20b051556b2aee4756f13cf2991c4695f8288b7cf5d4e4fc2f29a0b0456f310d"
+  }
+}
