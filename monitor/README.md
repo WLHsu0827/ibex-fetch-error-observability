@@ -70,6 +70,14 @@ text bytes after CRLF-to-LF normalization and rejects lone carriage returns;
 the resulting values are therefore the actual committed LF-content hashes on
 both Windows and Linux rather than hashes of platform checkout conversions.
 
+The archived [verified run 36952633401](evidence/run-36952633401/) used
+Ubuntu 24.04, Verilator 5.020-1, GCC 13.3.0, and Python 3.12.3. It compiled
+both public fixtures without warning suppression and passed all cases. The
+directory preserves the downloaded raw text artifact, including empty files;
+[`RAW_MANIFEST.json`](evidence/run-36952633401/RAW_MANIFEST.json) records every
+byte length and SHA-256 plus the workflow, artifact, PR-head, and runner merge
+commit identities. No executable or expiring artifact ZIP is retained.
+
 Copyright 2026 Wei-Lun Hsu. Original module, fixtures, checker, runner, tests,
 and documentation were prepared with GitHub Copilot App assistance and are
 licensed under the repository's Apache-2.0 [`LICENSE`](../LICENSE). This is an

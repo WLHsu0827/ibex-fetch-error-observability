@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/build-trace_monitor_fixture/Vtrace_monitor_fixture",
+    "+trace_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/delayed/events.tsv",
+    "+CASE=delayed"
+  ],
+  "code": 0,
+  "duration_seconds": 0.004129338999973697,
+  "kind": "exited",
+  "stderr": "",
+  "stdout": "- /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor/trace_monitor_fixture.sv:104: Verilog $finish\n"
+}

@@ -49,6 +49,20 @@ class PublicSourceManifestTests(unittest.TestCase):
             for pattern in forbidden:
                 self.assertIsNone(pattern.search(text), f"{relative}: {pattern.pattern}")
 
+    def test_archived_hosted_bytes_match_raw_manifest(self):
+        evidence = ROOT / "monitor" / "evidence" / "run-36952633401"
+        manifest = json.loads((evidence / "RAW_MANIFEST.json").read_text())
+        actual = {
+            path.relative_to(evidence).as_posix()
+            for path in evidence.rglob("*")
+            if path.is_file() and path.name != "RAW_MANIFEST.json"
+        }
+        self.assertEqual(actual, set(manifest["files"]))
+        for relative, expected in manifest["files"].items():
+            raw = (evidence / relative).read_bytes()
+            self.assertEqual(len(raw), expected["length"], relative)
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), expected["sha256"], relative)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,72 @@
+{
+  "cases": {
+    "async_between_edges": {
+      "status": "exited:0",
+      "trace_sha256": "e44eeeae88bd6cf7e80a7584e82658c1b90533a6ae0d5e882982dc80c479e09c"
+    },
+    "delayed": {
+      "status": "exited:0",
+      "trace_sha256": "e44eeeae88bd6cf7e80a7584e82658c1b90533a6ae0d5e882982dc80c479e09c"
+    },
+    "fatal_text_then_hang": {
+      "expected_fatal": false,
+      "status": "timeout:124"
+    },
+    "held_reset": {
+      "status": "exited:0",
+      "trace_sha256": "e44eeeae88bd6cf7e80a7584e82658c1b90533a6ae0d5e882982dc80c479e09c"
+    },
+    "initial_low": {
+      "status": "exited:0",
+      "trace_sha256": "e44eeeae88bd6cf7e80a7584e82658c1b90533a6ae0d5e882982dc80c479e09c"
+    },
+    "no_reset": {
+      "status": "exited:0",
+      "strictly_rejected": true,
+      "trace_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reset_again": {
+      "expected_fatal": true,
+      "status": "signaled:6"
+    },
+    "unarmed_counterexample": {
+      "q_cycles": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "status": "exited:0",
+      "strictly_rejected": true,
+      "trace_sha256": "77ae71d81afe48c22bee85a3892a8f318f5a80cb58d1673018e4317cb7df06d8"
+    }
+  },
+  "environment": {
+    "github": {
+      "ref": "refs/pull/2/merge",
+      "run_attempt": "1",
+      "run_id": "36952633401",
+      "runner_arch": "X64",
+      "runner_os": "Linux",
+      "sha": "cd81d91c00692ffdd2b1b1729cd8e338afafd36b"
+    },
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "tools": {
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "python": "Python 3.12.3",
+      "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+    }
+  },
+  "model_sha256": "cc137882b0317e3b86ae10da3935b8b7b8c8c3289e0fd32300bcf67bcdd46a47",
+  "schema": 1,
+  "scope": "synthetic instrument-only trace validation",
+  "source_sha256": {
+    "process_runner.py": "d6a43d2241cf643fbf53be026e27cb4f06c530dc9784e440185a73824c37d5cc",
+    "run_all.py": "f1187e6d3ec897b91fb35faeaba60dfc772d991737ee236f64c229727a366e03",
+    "trace_check.py": "6d8cfd4b1a48205ded61bd391e9ae0ef7882853ad2b7d6a5fc791a7a0329da42",
+    "trace_monitor_fixture.sv": "8697de41dcad3e061231e205f2d365f0d14fd82e6dfe06dc30026389a848cb83",
+    "trace_phase_observer.sv": "031271d44a315c99b0716a01213b444438fbfad574125a4f35ff7bb1e2e1bf96",
+    "unarmed_trace_counterexample.sv": "81a1495e652bf9c6c337d1ea359eb513aca195b5784d3d0b2ac24ffe7b6123a4"
+  }
+}
