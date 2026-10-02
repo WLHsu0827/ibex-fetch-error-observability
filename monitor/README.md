@@ -59,7 +59,9 @@ Four positive reset shapes each produce exactly `Q [0, 1]`, one `B`, one
 `PRE`, one `POST`, and one `R`. PRE/POST are associated with synthetic cycle
 0 and R with cycle 1. The no-reset empty trace and fresh unarmed duplicate-Q
 trace must be rejected. Repeated reset must terminate with the intended fatal;
-a model that prints the same text and hangs must be classified as a timeout.
+a model that prints and flushes the exact same diagnostic before hanging must
+preserve that marker in captured output and be classified as `timeout:124`,
+never as the expected fatal.
 
 The real command writes raw stdout/stderr, typed status JSON, case TSV, tool
 environment, public source hashes, and the compiled model hash. It deliberately
@@ -70,10 +72,12 @@ text bytes after CRLF-to-LF normalization and rejects lone carriage returns;
 the resulting values are therefore the actual committed LF-content hashes on
 both Windows and Linux rather than hashes of platform checkout conversions.
 
-The archived [verified run 36952633401](evidence/run-36952633401/) used
+The first archived [verified run 36952633401](evidence/run-36952633401/) used
 Ubuntu 24.04, Verilator 5.020-1, GCC 13.3.0, and Python 3.12.3. It compiled
-both public fixtures without warning suppression and passed all cases. The
-directory preserves the downloaded raw text artifact, including empty files;
+both public fixtures without warning suppression and passed its then-current
+checks. Its live `fatal_text_then_hang` output files are honestly empty, so it
+proves timeout rejection but not capture of the intended marker. The directory
+preserves the downloaded raw text artifact, including those empty files;
 [`RAW_MANIFEST.json`](evidence/run-36952633401/RAW_MANIFEST.json) records every
 byte length and SHA-256 plus the workflow, artifact, PR-head, and runner merge
 commit identities. No executable or expiring artifact ZIP is retained.

@@ -12,6 +12,9 @@ import time
 from typing import Sequence
 
 
+RESET_DIAGNOSTIC = "TRACE_MONITOR_RESET_AFTER_START"
+
+
 @dataclass(frozen=True)
 class ProcessStatus:
     kind: str
@@ -97,9 +100,17 @@ def require_success(status: ProcessStatus) -> None:
 
 
 def is_expected_reset_fatal(status: ProcessStatus) -> bool:
-    diagnostic = "TRACE_MONITOR_RESET_AFTER_START"
     return (
         status.kind == "signaled"
         and status.code == signal.SIGABRT
-        and diagnostic in status.stdout + status.stderr
+        and RESET_DIAGNOSTIC in status.stdout + status.stderr
+    )
+
+
+def is_reset_text_timeout(status: ProcessStatus) -> bool:
+    return (
+        status.kind == "timeout"
+        and status.code == 124
+        and RESET_DIAGNOSTIC in status.stdout + status.stderr
+        and not is_expected_reset_fatal(status)
     )

@@ -3,7 +3,12 @@ import signal
 import tempfile
 import unittest
 
-from monitor.process_runner import ProcessStatus, is_expected_reset_fatal, run_bounded
+from monitor.process_runner import (
+    ProcessStatus,
+    is_expected_reset_fatal,
+    is_reset_text_timeout,
+    run_bounded,
+)
 
 
 DIAG = "TRACE_MONITOR_RESET_AFTER_START"
@@ -48,7 +53,12 @@ class FatalClassificationTests(unittest.TestCase):
                 stderr_path=directory / "stderr.log",
             )
         self.assertEqual((result.kind, result.code), ("timeout", 124))
+        self.assertIn(DIAG, result.stdout + result.stderr)
+        self.assertTrue(is_reset_text_timeout(result))
         self.assertFalse(is_expected_reset_fatal(result))
+
+    def test_silent_timeout_is_not_the_text_regression(self):
+        self.assertFalse(is_reset_text_timeout(status("timeout", 124, "")))
 
     def test_missing_tool_is_typed(self):
         with tempfile.TemporaryDirectory() as raw:

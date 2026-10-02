@@ -16,6 +16,7 @@ import unittest
 
 from monitor.process_runner import (
     is_expected_reset_fatal,
+    is_reset_text_timeout,
     require_success,
     run_bounded,
 )
@@ -168,11 +169,14 @@ def run_real(output: Path) -> None:
     status, _ = run_case(
         output, model, "fatal_text_then_hang", "fatal_text_then_hang"
     )
-    if status.kind != "timeout" or is_expected_reset_fatal(status):
-        raise RuntimeError("fatal text followed by hang was not classified timeout")
+    if not is_reset_text_timeout(status):
+        raise RuntimeError(
+            "flushed fatal text followed by hang was not captured as timeout:124"
+        )
     case_results["fatal_text_then_hang"] = {
         "status": f"{status.kind}:{status.code}",
         "expected_fatal": False,
+        "reset_diagnostic_captured": True,
     }
     unarmed = build_model(
         output,

@@ -97,6 +97,7 @@ module trace_monitor_fixture;
       end
       "fatal_text_then_hang": begin
         $display("TRACE_MONITOR_RESET_AFTER_START");
+        $fflush();
         forever #1;
       end
       default: $fatal(1, "UNKNOWN_CASE");
