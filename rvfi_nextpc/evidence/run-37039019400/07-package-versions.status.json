@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "dpkg-query",
+    "-W",
+    "-f=${Package}=${Version}\\n",
+    "verilator",
+    "gcc-riscv64-unknown-elf",
+    "binutils-riscv64-unknown-elf"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37039019400",
+  "duration_seconds": 0.009612681999996653,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 107,
+    "sha256": "09e6a2c9354a7255cbbecd3a5aaed1922a0c712968fe775d6943ef7b7642ecd7"
+  },
+  "timeout_seconds": 300
+}

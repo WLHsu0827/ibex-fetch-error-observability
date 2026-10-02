@@ -1,0 +1,228 @@
+{
+  "files": {
+    "01-input-head.status.json": {
+      "bytes": 502,
+      "sha256": "f687b8c724b5716f59390da4f95d7f19db6e32793d4019d03a0289add47886ce"
+    },
+    "01-input-head.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "01-input-head.stdout.log": {
+      "bytes": 41,
+      "sha256": "ee077b1861a8b6c64c728988688aaca919ab48c25df99dcb092cdac3c82e4436"
+    },
+    "02-input-clean.status.json": {
+      "bytes": 514,
+      "sha256": "58cc3dbb405467636f2793271d28a70ed5401981603569fbe6046897d9360dd2"
+    },
+    "02-input-clean.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "02-input-clean.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "03-attempt-history.status.json": {
+      "bytes": 710,
+      "sha256": "0cdbbd7052b587c0dedaf38c44dce488640fd12d1c65734320b930f5cf1120b1"
+    },
+    "03-attempt-history.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "03-attempt-history.stdout.log": {
+      "bytes": 1756,
+      "sha256": "3e8cf427c8642c011e29928578708f58e82ea472cf19ee149186b1ae948dd6d1"
+    },
+    "04-offline-contracts.status.json": {
+      "bytes": 557,
+      "sha256": "f88f68a7f6c4dc5e58eac9fe851593e1f9f78cd634e36611b797af818ec402a4"
+    },
+    "04-offline-contracts.stderr.log": {
+      "bytes": 2080,
+      "sha256": "36f40085273d9280a7b5808dc4b9a42dbebc962b8bb97c5b23cd5461e4b67078"
+    },
+    "04-offline-contracts.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "05-apt-update.status.json": {
+      "bytes": 459,
+      "sha256": "552b2e97b2fe1c5fbbdc5eb0dfdd6243e0cb4253bd22498219850e24b6134a55"
+    },
+    "05-apt-update.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "05-apt-update.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "06-apt-tools.status.json": {
+      "bytes": 623,
+      "sha256": "7c3cc0e1183a1e67f22c69e299fc3833c98ce3c495bd8266445ff8909bcbb90a"
+    },
+    "06-apt-tools.stderr.log": {
+      "bytes": 237,
+      "sha256": "3b419c69ff321ee6851fa5489a2bb0c9a2ef093815a709dbd05391f89767267f"
+    },
+    "06-apt-tools.stdout.log": {
+      "bytes": 3346,
+      "sha256": "2ba22b7504e3ea84bfe04413e93bd49cc630603fc8981153b1eec2600906646e"
+    },
+    "07-package-versions.status.json": {
+      "bytes": 559,
+      "sha256": "8c2cf94dfa2e3591202d49a7b378a1ca8be84295d0a5e2165079ea6f03c92156"
+    },
+    "07-package-versions.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "07-package-versions.stdout.log": {
+      "bytes": 107,
+      "sha256": "09e6a2c9354a7255cbbecd3a5aaed1922a0c712968fe775d6943ef7b7642ecd7"
+    },
+    "08-venv.status.json": {
+      "bytes": 467,
+      "sha256": "11ef1e4701ad4c5fa67389f2da89cc3ad25fe9e5290cabe692b277ad5fb00719"
+    },
+    "08-venv.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "08-venv.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "09-python-tools.status.json": {
+      "bytes": 657,
+      "sha256": "f529c37c5ceeed35db1241ea049a15d917c9bda322a2c81b4100978cdd7888f9"
+    },
+    "09-python-tools.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "09-python-tools.stdout.log": {
+      "bytes": 9150,
+      "sha256": "b8b463934d3cee36def86c6c0a3fac3907f8a5e27cf5f44a1af46206e420a96a"
+    },
+    "attempt.json": {
+      "bytes": 1517,
+      "sha256": "409a4d2c06036d2e1b9456ecd7856e0ac546d5826e4e890766ebceebfeea53c7"
+    },
+    "dispatch-input.json": {
+      "bytes": 265,
+      "sha256": "99a5483e1a275f35438d0a5d00714eb9826f056f4add193f9030ac6a190c36d5"
+    },
+    "input/.github/workflows/rvfi-nextpc.yml": {
+      "bytes": 3536,
+      "sha256": "b15250d70025c028150fdc53aa274565c1bc56c4717dbae47126ed19ce03f415"
+    },
+    "input/LICENSE": {
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    "input/rvfi_nextpc/AUTHORIZATION.json": {
+      "bytes": 541,
+      "sha256": "f7a943bde5ff05b366c4ac7a97736b655e2223eaf3e246b7ecca33a6e6b4c760"
+    },
+    "input/rvfi_nextpc/SOURCE_MANIFEST.json": {
+      "bytes": 3140,
+      "sha256": "2244eb04e42991be781d22f5e22f1e7e65a404b17e9d60c9f7cb67e4406e416b"
+    },
+    "input/rvfi_nextpc/__init__.py": {
+      "bytes": 126,
+      "sha256": "201c7280fa935cc0ae17f03eed5543679492afcd68bc45b6c4f023cad90a12bf"
+    },
+    "input/rvfi_nextpc/archive.py": {
+      "bytes": 6888,
+      "sha256": "17628e18e2a291a5e8d887e6a886b1f7ad9eef8e72aecc2d7e26221d2e220c8c"
+    },
+    "input/rvfi_nextpc/check.py": {
+      "bytes": 5593,
+      "sha256": "29b16b7eab98267d642b8a4f2a7437a0440a859881ec53010db9f1857243752c"
+    },
+    "input/rvfi_nextpc/fixture.cpp": {
+      "bytes": 1203,
+      "sha256": "214515ecac68fcd1a0c018de296b9113f0e97f5632ad0ca7217327adc5818a9e"
+    },
+    "input/rvfi_nextpc/hosted.py": {
+      "bytes": 26739,
+      "sha256": "d1b2cdb3d7dba108477a089821be194ff52b1184654663acc8ca828adca1d35f"
+    },
+    "input/rvfi_nextpc/isa.py": {
+      "bytes": 5289,
+      "sha256": "d019fdac7dc41068969286a4d869ce777aca6dc78955b4303e0c70cb55d92a3b"
+    },
+    "input/rvfi_nextpc/link.ld": {
+      "bytes": 211,
+      "sha256": "074f6ce44e20ff4d9deef502c64034fdbb6abed017020bf8479cee99157145fc"
+    },
+    "input/rvfi_nextpc/main.cpp": {
+      "bytes": 3296,
+      "sha256": "5f24f845d6cb9686d10c41f51e6734d4549d6329b1f0b349bffb96a46e2cea1c"
+    },
+    "input/rvfi_nextpc/nextpc.core": {
+      "bytes": 1034,
+      "sha256": "45ee27061bcce402a3d83f600659ddf6e928800286f17a7c422a19e29c8eadec"
+    },
+    "input/rvfi_nextpc/nextpc_top.sv": {
+      "bytes": 4807,
+      "sha256": "239e33ea5bdd828750d25d9ae57725a0bc2d7e71fff248acfaa3b52eaea1e4b3"
+    },
+    "input/rvfi_nextpc/process.py": {
+      "bytes": 2795,
+      "sha256": "4fb118b83f84cf385bc9c09459ffdf8fe9357c95c1d55d88e2acfa404c312adf"
+    },
+    "input/rvfi_nextpc/program.S": {
+      "bytes": 1519,
+      "sha256": "4c6161d7a46f6e5d8b685d360569475c5648597b45017a1d89c1b77c2c7ba22b"
+    },
+    "input/rvfi_nextpc/requirements.txt": {
+      "bytes": 294,
+      "sha256": "48c71dc55677dcb3a51565af8a98a2b8a0125db37be48194c548d2f003ce14ed"
+    },
+    "input/rvfi_nextpc/rvfi_observer.sv": {
+      "bytes": 3645,
+      "sha256": "62b869bcf3ad3b08a908824b9454dfc5b01cfcac75c2bc0ef8306aff98993222"
+    },
+    "input/rvfi_nextpc/sample.hpp": {
+      "bytes": 1727,
+      "sha256": "063dc8276ad1a733781d83d7c85be3193b34fc1c5cec3227b4868934698961d2"
+    },
+    "input/rvfi_nextpc/sampler_fixture.sv": {
+      "bytes": 2077,
+      "sha256": "839755b468c252c32d70303922309ff746f6e26c03854520fd1555ba3317fe0b"
+    },
+    "input/rvfi_nextpc/seal.py": {
+      "bytes": 1773,
+      "sha256": "9d4767cfff03caf16b2abfd48c83cd7741bf726c3b6380db1a80aa6e86709c77"
+    },
+    "input/rvfi_nextpc/tests.py": {
+      "bytes": 12121,
+      "sha256": "cd2d5fc76205929a1548c8215ab76bcaabf1ae626aaa1a567a6998a3923ac633"
+    },
+    "pip-install.json": {
+      "bytes": 14664,
+      "sha256": "8395db36fa84debe06bfb13a14fd41fffc613071ebd71de25d59d074cd700db8"
+    },
+    "pipeline-error.log": {
+      "bytes": 1121,
+      "sha256": "91787dfb24d918a73784dfd8e07418144d3585fac00d973c37d4d9ebddf6dad3"
+    },
+    "preflight.json": {
+      "bytes": 352,
+      "sha256": "46b6d737548e16461048cedff97ac444f4867366078079bca3a1ec837af35a06"
+    },
+    "summary.json": {
+      "bytes": 887,
+      "sha256": "6aa70a9b000a99b2a4a2d3f50beca8fa299d67c8814373d6014f83b85f93afa8"
+    }
+  },
+  "run_id": "37039019400",
+  "schema": 1,
+  "self_hash": "intentionally absent; immutable artifact/commit identity is the outer closure",
+  "source_sha": "c50b3975c188eea33bb7e92cb75b21bc9a04f9e2"
+}
