@@ -82,6 +82,15 @@ preserves the downloaded raw text artifact, including those empty files;
 byte length and SHA-256 plus the workflow, artifact, PR-head, and runner merge
 commit identities. No executable or expiring artifact ZIP is retained.
 
+The corrected [verified run 36953631262](evidence/run-36953631262/) is the
+acceptance proof for the live output regression. Its archived stdout contains
+exactly `TRACE_MONITOR_RESET_AFTER_START\n`; its typed status is `timeout:124`;
+and its summary records `reset_diagnostic_captured: true` with
+`expected_fatal: false`. Its
+[`RAW_MANIFEST.json`](evidence/run-36953631262/RAW_MANIFEST.json) independently
+fixes every downloaded byte length and SHA-256. The earlier archive remains
+unchanged rather than being reconstructed.
+
 Copyright 2026 Wei-Lun Hsu. Original module, fixtures, checker, runner, tests,
 and documentation were prepared with GitHub Copilot App assistance and are
 licensed under the repository's Apache-2.0 [`LICENSE`](../LICENSE). This is an
