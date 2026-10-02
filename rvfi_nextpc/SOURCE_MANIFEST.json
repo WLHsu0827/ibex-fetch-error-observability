@@ -1,89 +1,90 @@
 {
   "files": {
     ".github/workflows/rvfi-nextpc.yml": {
-      "bytes": 3596,
-      "sha256": "b9f9b6f736c8114bbb4996d6fced310780c42b7102d127c8be7f78ea246b7ca2"
+      "bytes": 3499,
+      "sha256": "e692d6f8f128022303d6fc2d8d18c6b2c2d07743649d05512cee08239b40ea31"
     },
     "LICENSE": {
       "bytes": 11560,
       "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
     },
     "rvfi_nextpc/AUTHORIZATION.json": {
-      "bytes": 555,
-      "sha256": "3bdef3d4a89ddb945148512211bba2b1d60e6d8be5a89dd66564e782e448d0b6"
+      "bytes": 541,
+      "sha256": "f7a943bde5ff05b366c4ac7a97736b655e2223eaf3e246b7ecca33a6e6b4c760"
     },
     "rvfi_nextpc/__init__.py": {
-      "bytes": 129,
-      "sha256": "5809eaaeccf87714c2fbd2fd72247115694629c36df788d8e37d0c0373f9aeca"
+      "bytes": 126,
+      "sha256": "201c7280fa935cc0ae17f03eed5543679492afcd68bc45b6c4f023cad90a12bf"
     },
     "rvfi_nextpc/archive.py": {
-      "bytes": 5315,
-      "sha256": "50290660e6cfcca0ca5f6dd48e35ea6d1665d93881fc6ace9a111d0a80965b29"
+      "bytes": 5224,
+      "sha256": "cad89f603cd08b48cb7d175fe9b6df7f61fc9aee141c56ebbd2867fc40ce2052"
     },
     "rvfi_nextpc/check.py": {
-      "bytes": 5701,
-      "sha256": "29be9b4c9abd60db4eba7f7158ab3fd4d19c0f74cdc1b48b055884da66e5282a"
+      "bytes": 5593,
+      "sha256": "29b16b7eab98267d642b8a4f2a7437a0440a859881ec53010db9f1857243752c"
     },
     "rvfi_nextpc/fixture.cpp": {
-      "bytes": 1242,
-      "sha256": "00a89fa6b6cf0e357fd8bf217476ee0e5387cabd37a9264eb1f533f6a10c179a"
+      "bytes": 1203,
+      "sha256": "214515ecac68fcd1a0c018de296b9113f0e97f5632ad0ca7217327adc5818a9e"
     },
     "rvfi_nextpc/hosted.py": {
-      "bytes": 26425,
-      "sha256": "835091c440daba712bc86cfb4f9a882d97503c3266b461ce2ea446e087b6dfe6"
+      "bytes": 26640,
+      "sha256": "0e03fbad65af50ee939626424a9a3942096fcbb93d24d9f744aabd85be35be6b"
     },
     "rvfi_nextpc/isa.py": {
-      "bytes": 5412,
-      "sha256": "1767f87ea9a74f22cca00660ff69d81fbafab52465cc7ff71718b2412c0879e8"
+      "bytes": 5289,
+      "sha256": "d019fdac7dc41068969286a4d869ce777aca6dc78955b4303e0c70cb55d92a3b"
     },
     "rvfi_nextpc/link.ld": {
-      "bytes": 221,
-      "sha256": "23f89dd6a8637c9e4448bb8ffb785cec1655215d85e0ad6f249c3fd8395c9a08"
+      "bytes": 211,
+      "sha256": "074f6ce44e20ff4d9deef502c64034fdbb6abed017020bf8479cee99157145fc"
     },
     "rvfi_nextpc/main.cpp": {
-      "bytes": 3378,
-      "sha256": "f986c16778ca1670ef270fffa9cfa6b1ce575d0586336f01c89b3e613e42cf8d"
+      "bytes": 3296,
+      "sha256": "5f24f845d6cb9686d10c41f51e6734d4549d6329b1f0b349bffb96a46e2cea1c"
     },
     "rvfi_nextpc/nextpc.core": {
-      "bytes": 1070,
-      "sha256": "6acfd073b3ba590ee42a4b81f2bc0fccea4c19e9a3644348202bf31fce9a6390"
+      "bytes": 1034,
+      "sha256": "45ee27061bcce402a3d83f600659ddf6e928800286f17a7c422a19e29c8eadec"
     },
     "rvfi_nextpc/nextpc_top.sv": {
-      "bytes": 4893,
-      "sha256": "b08eed9f1083433ccccae88936ff969c6543892701ce13f6be147faa72293664"
+      "bytes": 4807,
+      "sha256": "239e33ea5bdd828750d25d9ae57725a0bc2d7e71fff248acfaa3b52eaea1e4b3"
     },
     "rvfi_nextpc/process.py": {
-      "bytes": 2873,
-      "sha256": "a0f0499503708c55dbac02a1f11ef3d9eb02aa68bbb876a02011e978cb7fcb49"
+      "bytes": 2795,
+      "sha256": "4fb118b83f84cf385bc9c09459ffdf8fe9357c95c1d55d88e2acfa404c312adf"
     },
     "rvfi_nextpc/program.S": {
-      "bytes": 1599,
-      "sha256": "21c4e951ae90e3628a2498daaf674aa34ec48d8923868ca4e272b5d9e588b7a3"
+      "bytes": 1519,
+      "sha256": "4c6161d7a46f6e5d8b685d360569475c5648597b45017a1d89c1b77c2c7ba22b"
     },
     "rvfi_nextpc/requirements.txt": {
-      "bytes": 279,
-      "sha256": "53ca9aac5686fe14e9108626e957b7b71269484ad16acefafe65610c1de0e4f6"
+      "bytes": 265,
+      "sha256": "e6088e7e0db4bac1028998e96d85782a2691de9203cfb8add10cbd89306c40b4"
     },
     "rvfi_nextpc/rvfi_observer.sv": {
-      "bytes": 3699,
-      "sha256": "0837930051966e57ce63a4a613979b5955316db15a419dfd3d368460c13000b8"
+      "bytes": 3612,
+      "sha256": "4290bc8ecfe98541de175642f463654a6a7da21cc596d24d8ccf85d8ad20aa49"
     },
     "rvfi_nextpc/sample.hpp": {
-      "bytes": 1760,
-      "sha256": "2456ece96b35e161ecc3bffa11d6596fb74386d82479a2bc1ce319fc46e7a5f9"
+      "bytes": 1727,
+      "sha256": "063dc8276ad1a733781d83d7c85be3193b34fc1c5cec3227b4868934698961d2"
     },
     "rvfi_nextpc/sampler_fixture.sv": {
-      "bytes": 2119,
-      "sha256": "2438c903c9a46a50090efb35f3353a4f12a1acac5a759cb712da5305684a8f07"
+      "bytes": 2059,
+      "sha256": "2ebfc64d6037c0931fde57aa912a6c47fd6494cce5761a0d5f175ed3dcbb3492"
     },
     "rvfi_nextpc/seal.py": {
-      "bytes": 1451,
-      "sha256": "b5e6e83d869a78036d8918e2b159cf6931360eda9aafdff7df1a163c5db802da"
+      "bytes": 1773,
+      "sha256": "9d4767cfff03caf16b2abfd48c83cd7741bf726c3b6380db1a80aa6e86709c77"
     },
     "rvfi_nextpc/tests.py": {
-      "bytes": 10200,
-      "sha256": "6527763ebd276d7fbab07024ae7a30856377ed41cc4de83474478ac7574621c0"
+      "bytes": 9982,
+      "sha256": "2feb4323347e5d71056ff67ce36c7b2710ab30bae4aa5d56145500bb27c3a7d8"
     }
   },
+  "representation": "Git LF-normalized new text; existing LICENSE retains original bytes",
   "schema": 1
 }

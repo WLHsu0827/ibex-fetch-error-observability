@@ -168,6 +168,7 @@ class Hosted:
         self.command("venv", [sys.executable, "-m", "venv", "tools"])
         self.python = self.work / "tools" / "bin" / "python"
         self.fusesoc = self.work / "tools" / "bin" / "fusesoc"
+        os.environ["PATH"] = str(self.work / "tools" / "bin") + os.pathsep + os.environ["PATH"]
         self.command("python-tools", [
             str(self.python), "-m", "pip", "install", "--disable-pip-version-check",
             "--report", str(self.work / "pip-install.json"),
@@ -201,6 +202,12 @@ class Hosted:
             raise RuntimeError("STOP: Verilator version mismatch")
         self.command("cxx-version", ["c++", "--version"])
         self.command("gcc-version", ["riscv64-unknown-elf-gcc", "--version"])
+        self.tool_identities = {
+            name: identity(Path(shutil.which(name)).resolve())
+            for name in ("verilator", "c++", "make", "riscv64-unknown-elf-gcc",
+                         "riscv64-unknown-elf-objcopy", "python3", "fusesoc")
+        }
+        write_json(self.output / "tool-identities.json", self.tool_identities)
         self.command("git-init", ["git", "init", "-q", "upstream"])
         upstream = self.work / "upstream"
         self.command("git-origin", ["git", "remote", "add", "origin", "https://github.com/lowRISC/ibex.git"], upstream)
@@ -345,6 +352,10 @@ class Hosted:
     def measure(self, bp: int, build: Path, image: bytes, contract: dict[str, object]) -> dict[str, object]:
         label = "off" if bp == 0 else "on"
         verify()
+        if self.tool_identities != {
+            name: identity(Path(shutil.which(name)).resolve()) for name in self.tool_identities
+        }:
+            raise RuntimeError("STOP: frozen executable tool identity changed")
         write_json(self.output / f"{label}.compile-started.json", {
             "source_sha": self.args.source_sha, "freeze": identity(self.output / "freeze.json"),
             "label": label, "retry_allowed": False,

@@ -5,10 +5,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
-from .process import identity, write_json
+from .process import write_json
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "rvfi_nextpc" / "SOURCE_MANIFEST.json"
@@ -20,7 +21,15 @@ def inputs() -> dict[str, object]:
                    (".py", ".sv", ".cpp", ".hpp", ".core", ".S", ".ld", ".txt", ".json")
                    and path != MANIFEST)
     paths += [ROOT / ".github" / "workflows" / "rvfi-nextpc.yml", ROOT / "LICENSE"]
-    return {path.relative_to(ROOT).as_posix(): identity(path) for path in paths}
+    result = {}
+    for path in paths:
+        data = path.read_bytes()
+        if path != ROOT / "LICENSE":
+            data = data.replace(b"\r\n", b"\n")
+        result[path.relative_to(ROOT).as_posix()] = {
+            "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
+        }
+    return result
 
 
 def verify() -> dict[str, object]:
@@ -35,7 +44,10 @@ if __name__ == "__main__":
     parser.add_argument("--create", action="store_true")
     args = parser.parse_args()
     if args.create:
-        write_json(MANIFEST, {"schema": 1, "files": inputs()})
+        write_json(MANIFEST, {
+            "schema": 1, "files": inputs(),
+            "representation": "Git LF-normalized new text; existing LICENSE retains original bytes",
+        })
     else:
         verify()
         print("NEXTPC_SOURCE_MANIFEST_PASS")

@@ -6,6 +6,13 @@ STOP, conform, or show strict metadata mismatches. No result is promised.
 This unit is independent of the original fetch-error bundle and the open,
 unmerged public PR1 and PR2; neither is a build dependency.
 
+The first input-only push exposed Windows CRLF versus Git blob LF hashing
+in offline CI; it is retained in history, not amended or represented as HDL
+evidence. The source seal uses Git's LF-normalized new-text representation;
+the existing LICENSE keeps its original byte identity. Hosted source exports,
+program and raw evidence still use actual byte lengths/SHA256, never line
+ending normalization of observed streams.
+
 ## Scope and preregistration
 
 Pinned public stock Ibex:
