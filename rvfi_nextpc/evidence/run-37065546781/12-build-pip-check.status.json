@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37065546781/build-tools/bin/python",
+    "-m",
+    "pip",
+    "check"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37065546781",
+  "duration_seconds": 0.26674743600000284,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 30,
+    "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+  },
+  "timeout_seconds": 300
+}

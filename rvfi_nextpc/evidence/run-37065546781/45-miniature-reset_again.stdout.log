@@ -1,0 +1,3 @@
+[28] %Fatal: rvfi_observer.sv:37: Assertion failed in TOP.sampler_fixture.independent_sv: NEXTPC_RESET_AFTER_START
+%Error: /tmp/rvfi-nextpc-37065546781/inputs/rvfi_nextpc/rvfi_observer.sv:37: Verilog $stop
+Aborting...

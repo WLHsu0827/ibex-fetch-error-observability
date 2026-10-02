@@ -1,0 +1,18 @@
+﻿2026-10-02T21:03:55.3623822Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-02T21:03:55.3624900Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-02T21:03:55.3626237Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-02T21:03:55.3627147Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-02T21:03:55.3797456Z shell: /usr/bin/bash -e {0}
+2026-10-02T21:03:55.3798002Z env:
+2026-10-02T21:03:55.3798389Z   DEBIAN_FRONTEND: noninteractive
+2026-10-02T21:03:55.3798881Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-02T21:03:55.3802480Z   GH_TOKEN: ***
+2026-10-02T21:03:55.3802862Z   MODE: prepare
+2026-10-02T21:03:55.3803309Z   SOURCE_SHA: 69d0265af7f985e968eb5eabc5f687e48596d486
+2026-10-02T21:03:55.3803964Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1
+2026-10-02T21:03:55.3804562Z   PREPARATION_ATTEMPT: 1
+2026-10-02T21:03:55.3804988Z   PREPARATION_RUN: 
+2026-10-02T21:03:55.3805581Z ##[endgroup]
+2026-10-02T21:03:55.7679893Z NEXTPC_PIPELINE_STOP: STOP: ['gh', 'api', '--paginate', '--slurp', 'repos/WLHsu0827/ibex-fetch-error-observability/actions/workflows/rvfi-nextpc.yml/runs?per_page=100', '--jq', '{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}']: exited:1
+2026-10-02T21:03:55.7707714Z {"attempted_stages": 3, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1", "error": "STOP: ['gh', 'api', '--paginate', '--slurp', 'repos/WLHsu0827/ibex-fetch-error-observability/actions/workflows/rvfi-nextpc.yml/runs?per_page=100', '--jq', '{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}']: exited:1", "mode": "prepare", "preparation_run": "", "real_compilations": [], "result": "STOP", "run_attempt": "1", "run_id": "37064524358", "schema": 1, "scientific_result": "NOT_QUALIFIED", "source_sha": "69d0265af7f985e968eb5eabc5f687e48596d486"}
+2026-10-02T21:03:55.7859699Z ##[error]Process completed with exit code 1.

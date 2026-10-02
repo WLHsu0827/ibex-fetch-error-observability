@@ -1,0 +1,13 @@
+{
+  "attempted_stages": 51,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "PREPARATION_PASS",
+  "run_attempt": "1",
+  "run_id": "37065211892",
+  "schema": 1,
+  "scientific_result": "NOT_RUN",
+  "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df"
+}

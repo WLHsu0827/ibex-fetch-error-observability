@@ -1,0 +1,12 @@
+{
+  "affinity_cpus": 4,
+  "free_disk_bytes": 92408582144,
+  "limitations": "reported hosted values; no exclusivity, local floor or PPA/performance claim",
+  "make_workers": 1,
+  "os_id": "ubuntu",
+  "os_version": "24.04",
+  "python": "3.12.3",
+  "reported_memtotal_bytes": 16766414848,
+  "runner_environment": "github-hosted",
+  "runner_os": "Linux"
+}

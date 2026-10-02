@@ -1,0 +1,16 @@
+﻿2026-10-02T21:10:29.0301981Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-02T21:10:29.0304638Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-02T21:10:29.0307171Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-02T21:10:29.0309534Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-02T21:10:29.0570966Z shell: /usr/bin/bash -e {0}
+2026-10-02T21:10:29.0572068Z env:
+2026-10-02T21:10:29.0572930Z   DEBIAN_FRONTEND: noninteractive
+2026-10-02T21:10:29.0574109Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-02T21:10:29.0584388Z   GH_TOKEN: ***
+2026-10-02T21:10:29.0585296Z   MODE: prepare
+2026-10-02T21:10:29.0586355Z   SOURCE_SHA: 8afa40840e9ff469a2a74713d12c01154f2471df
+2026-10-02T21:10:29.0587962Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1
+2026-10-02T21:10:29.0589545Z   PREPARATION_ATTEMPT: 2
+2026-10-02T21:10:29.0591256Z   PREPARATION_RUN: 
+2026-10-02T21:10:29.0592738Z ##[endgroup]
+2026-10-02T21:11:16.4420841Z {"attempted_stages": 51, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1", "mode": "prepare", "preparation_run": "", "real_compilations": [], "result": "PREPARATION_PASS", "run_attempt": "1", "run_id": "37065211892", "schema": 1, "scientific_result": "NOT_RUN", "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df"}

@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37065546781/loader-fixture",
+    "/tmp/rvfi-nextpc-37065546781/loader-overflow.bin",
+    "4294967296",
+    "20000"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-nextpc-37065546781",
+  "duration_seconds": 0.005471674000006033,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 61,
+    "sha256": "4ec13eb2e04410cdfd86848e0dcf3295dd1f1649ccd42a79e3d8bab4a3677c22"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 5
+}
