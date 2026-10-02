@@ -9,6 +9,13 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "monitor" / "SOURCE_MANIFEST.json"
 
 
+def lf_bytes(path: Path) -> bytes:
+    data = path.read_bytes().replace(b"\r\n", b"\n")
+    if b"\r" in data:
+        raise AssertionError(f"{path}: lone carriage return")
+    return data
+
+
 class PublicSourceManifestTests(unittest.TestCase):
     def test_exact_public_source_hashes_and_allowlist(self):
         data = json.loads(MANIFEST.read_text())
@@ -26,7 +33,7 @@ class PublicSourceManifestTests(unittest.TestCase):
         }
         self.assertEqual(actual, expected)
         for relative, digest in data["source_sha256"].items():
-            actual_digest = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+            actual_digest = hashlib.sha256(lf_bytes(ROOT / relative)).hexdigest()
             self.assertEqual(actual_digest, digest, relative)
 
     def test_public_payload_has_no_private_path_or_token_pattern(self):

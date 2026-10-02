@@ -62,6 +62,10 @@ The real command writes raw stdout/stderr, typed status JSON, case TSV, tool
 environment, public source hashes, and the compiled model hash. It deliberately
 does not retain executables. Permanent hosted evidence is archived under
 `monitor/evidence/` only after an actual successful GitHub-hosted run.
+[`SOURCE_MANIFEST.json`](SOURCE_MANIFEST.json) hashes each public source as
+text bytes after CRLF-to-LF normalization and rejects lone carriage returns;
+the resulting values are therefore the actual committed LF-content hashes on
+both Windows and Linux rather than hashes of platform checkout conversions.
 
 Copyright 2026 Wei-Lun Hsu. Original module, fixtures, checker, runner, tests,
 and documentation were prepared with GitHub Copilot App assistance and are
