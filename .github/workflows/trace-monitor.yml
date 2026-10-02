@@ -1,0 +1,48 @@
+name: Standalone trace monitor
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/trace-monitor.yml"
+      - "monitor/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tiny-verilator:
+    name: Ubuntu 24.04 / Verilator 5.020 synthetic fixture
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Install pinned Verilator package
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends verilator=5.020-1
+          verilator --version
+          c++ --version | head -n 1
+      - name: Run offline fail-closed contracts
+        run: python3 -B -m monitor.run_all --mode offline
+      - name: Compile public observer and run real synthetic replay
+        run: python3 -B -m monitor.run_all --mode real --output monitor-ci-output
+      - name: Preserve bounded raw hosted evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: trace-monitor-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            monitor-ci-output/**/*.json
+            monitor-ci-output/**/*.log
+            monitor-ci-output/**/*.tsv
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 9
