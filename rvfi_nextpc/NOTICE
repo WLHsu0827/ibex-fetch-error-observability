@@ -8,9 +8,10 @@ independent human replication or lowRISC endorsement.
 The hosted pipeline is designed to fetch stock Ibex and its vendored
 dependencies at 4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8 without core
 modification. The original bounded preparation stopped before that RTL retrieval;
-its archive is retained unchanged. A distinct authorized recovery remains
-unvalidated until hosted qualification; there is no core result at this input
-commit. Public source interfaces/build definitions
+its archive is retained unchanged. Distinct recovery preparation qualified
+the synthetic instrumentation and stock bind lint, but the sole pair stopped
+at the strict launcher-byte identity gate before program/core compilation.
+There is no whole-core observation. Public source interfaces/build definitions
 were inspected read-only. Upstream authorship/licenses/notices remain
 applicable; dependency provenance is retained for stages actually reached.
 

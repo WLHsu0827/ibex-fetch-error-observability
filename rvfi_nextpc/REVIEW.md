@@ -57,3 +57,21 @@ provenance are recorded; full author/maintainer/environment fields are not.
 The source-input commit is unvalidated for HDL until the bounded hosted
 gates actually pass, with every failed dispatch retained and no automatic
 retry. All other publication boundaries remain unchanged.
+
+Final recovery review: two preparation dispatches and the sole pair dispatch
+are preserved. Preparation2's 219 members and pair STOP's 223 members match
+their unchanged raw manifests; all 29 source-snapshot blobs match the exact
+public input commit. Separate collections retain each complete original
+pipeline-step console member byte-for-byte, without publishing whole job
+environment dumps or rewriting a hosted artifact. Preparation1's absence of
+a source snapshot remains explicit. The derived recovery index used local
+CRLF bytes for one authorization identity; a separate correction preserves
+that index and identifies the actual immutable Git LF receipt. No original
+archive, hosted receipt, source or observed stream was overwritten.
+
+The final result is PRE-CPU STOP / NOT_QUALIFIED. Actual miniature/loader/
+stock-lint qualification is not whole-core reproduction. Only the 240-byte
+FuseSoC launcher hash differs across preparation/pair, but actual launcher
+bytes were not retained, so a run-specific shebang is a likely source-supported
+explanation, not a proven byte diagnosis. No gate normalization, source fix,
+extra dispatch, retry, merge or self-acceptance followed the pair STOP.

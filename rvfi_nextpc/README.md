@@ -1,12 +1,81 @@
-# RVFI next-PC inputs: PRE-HDL STOP / NOT_QUALIFIED
+# RVFI next-PC: PRE-CPU STOP / NOT_QUALIFIED
 
-**PRE-HDL STOP / NOT_QUALIFIED: zero real CPU builds so far.** PR3 remains
-draft. A distinct user-approved recovery epoch now permits at most four
-hosted preparation dispatches total, followed only after every final-source
-gate passes by one OFF/conditional-ON pair. This is not an extension/reset of
-the original exhausted epoch. Recovery inputs below are **unvalidated** until
-their actual hosted qualification; archive-byte integrity is not HDL or
-sampler qualification.
+**PRE-CPU STOP / NOT_QUALIFIED: zero real CPU builds or runs.** Recovery
+preparation 2 qualified the actual sampler/reset miniature, shared loader,
+dependencies/tools and stock bind lint. The sole pair dispatch then failed
+the strict preparation-to-pair executable-byte identity gate **before**
+fresh program compilation, freeze or OFF. ON never ran. Actual whole-core
+samplers and ISA execution are **NOT_RUN**, strict next-PC **NOT_QUALIFIED**;
+there is neither a positive nor negative DUT observation. PR3 remains draft,
+open/unmerged; coordinator acceptance is separate. Archive-byte integrity and
+synthetic instrumentation qualification are not whole-core reproduction.
+
+## Final recovery STOP and immutable identities
+
+| Identity/stage | Actual result |
+| --- | --- |
+| Final qualified/attempted input | `8afa40840e9ff469a2a74713d12c01154f2471df` |
+| Distinct recovery evidence archive | `6491399f5f139e2087c37d3581014d7f188dd7e0` |
+| [Recovery preparation 1](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37064524358), input `69d0265af7f985e968eb5eabc5f687e48596d486` | STOP: unsupported gh flag combination, before tools/source snapshot; original raw bytes retained, absent snapshot not reconstructed |
+| [Recovery preparation 2](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37065211892), final input | PREPARATION_PASS: all 51 stages, zero real CPU builds |
+| [Sole pair dispatch](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37065546781), same final input | STOP after stage 52 successful preparation download; strict cross-run FuseSoC launcher-byte mismatch |
+| Recovery attempts | 2/4 preparation dispatches, 1/1 pair dispatch; no reruns |
+| Fresh program/freeze/OFF/ON | 0 program compilations, no program/ISA freeze, 0 OFF/ON CPU builds or runs |
+| Actual core retirement / branch / coverage | 0 / 0 because NOT_RUN; widths/directions/outcomes NOT_MEASURED |
+| Instrumentation-only results | 26 hosted stdlib contracts, 11 actual shared-loader cases, independent three-retirement miniature and reset negatives PASS; fatal-warning stock bind lint PASS OFF/ON |
+
+The epoch is closed. Unused preparation slots do **not** authorize another
+pair, runner/window, retry or refreeze. No source/tool/oracle gate was
+normalized, waived or weakened to proceed.
+
+The sole different executable identity is the **240-byte FuseSoC launcher**:
+preparation SHA256
+`a46ebf6e3f241c340aeed6047334c995acfb930502b91b5ba6556609c3fd82bc`
+versus pair SHA256
+`d268907d8eac2653b89b06fff10ce8df2a5890943c31c36446bb17cff4d1a0ae`.
+Other executable identities match. Independent post-run comparison confirms
+byte-identical installed runtime/build code manifests, all 176 exported
+source identities per configuration, both config manifests and input
+equivalence; OFF/ON exported sources/EDAM differ only BranchPredictor.
+That consistency does **not** override the failed executable gate.
+A run-specific virtualenv shebang is a source-supported likely explanation,
+not established from the actual launcher bytes (only their hashes/lengths
+were retained). Repair/requalification/replay requires a separate decision.
+
+Stage 52 itself typed **exited:0**, with both streams empty. The subsequent
+Python RuntimeError terminated the Actions pipeline with exit 1:
+`STOP: qualified preparation identity changed: tool-identities.json`.
+The unchanged traceback is 658 bytes, SHA256
+`f7be300b8249ed668669a4f668a49f47b44ce4d2f46937bcda60bcff5d14c811`.
+Complete original pipeline-step console bytes, including that terminal error
+and final summary, are retained separately with collection receipts; they
+are not inserted into or substituted for the original hosted manifests.
+No full job/environment dump, generated tool/model binary or wave is published.
+
+[`evidence/RECOVERY_INDEX.json`](evidence/RECOVERY_INDEX.json) records all
+machine-computed run/artifact/raw/summary/console identities and actual counts.
+Its derived authorization-receipt field initially used Windows working-file
+CRLF bytes. A separate, non-overwriting
+[`RECOVERY_INDEX_AUTHORIZATION_CORRECTION.json`](evidence/RECOVERY_INDEX_AUTHORIZATION_CORRECTION.json)
+identifies this indexing error and the actual immutable Git/source-snapshot
+receipt: **1607 bytes**, SHA256
+`055ac91448def03127ed21a0f017fd64320df222a71fdb54cffb43ff97f67a8d`.
+The original index and every hosted source/raw/status/manifest remain unchanged;
+no posthoc correction is a claim about pre-run history.
+Preparation-2 and pair source snapshots each match all 29 immutable public
+input blobs byte-for-byte, including the hidden workflow.
+
+Recovery raw manifest SHA256 values are:
+preparation 1 `fb8537cbdfd5dfac2c14ba6d4906d354e0ccab1f099e01edeb4870f9f3875b37`
+(1937 bytes, 12 members);
+preparation 2 `1265e87a30f929a135ecbcb4d779ce8fa89e96b1abacfb4a9f818878a5255945`
+(32926 bytes, 219 members);
+pair STOP `b55807710041b72766f5c8ad99019a51f83fe87c366d42f80198a7853c606927`
+(33553 bytes, 223 members).
+The successful miniature alone has 3 retirements, zero branches, 20 C++/21 SV
+control samples, sampler/ISA/next-PC PASS; missing-reset and reset-after-start
+are prompt SIGABRT 6 plus markers, while marker+hang remains typed timeout.
+These are not measured fresh-core retirement or branch counts.
 
 ## Distinct recovery authorization and input changes
 
@@ -25,7 +94,8 @@ separate JSON page documents with complete total-count/unique-ID closure, and
 captures reviewed source after exact-head/clean checks but before the history
 guard. All authorization/history guards still precede every tools/HDL stage.
 All affected gates still require requalification. Three preparation slots
-remain; this failure is counted, not erased/retried.
+remained at that point; the epoch is now closed by the sole pair STOP. This
+failure is counted, not erased/retried.
 
 [`RECOVERY_AUTHORIZATION.json`](RECOVERY_AUTHORIZATION.json) records the
 user-directed decision relayed at 2026-10-03 04:46 UTC+8, identity
@@ -268,8 +338,8 @@ python3 -B -m rvfi_nextpc.seal && python3 -B -m unittest rvfi_nextpc.tests -v &&
 
 The agent uses `py -3.12 -B` for the same lightweight checks on Windows.
 The real hosted entry point is an explicit one-command Linux `gh` dispatch
-(placeholders require immutable, qualified identities and fresh approval;
-the original exhausted authorization cannot run it successfully):
+(shown for provenance, **not to run this closed epoch again**; independent
+human replay requires a new explicit scope/identity and qualification):
 
 ```sh
 gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref OWNER_BRANCH_AT_INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1 -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
