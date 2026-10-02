@@ -1,10 +1,62 @@
-# Fresh whole-core RVFI next-PC observation
+# RVFI next-PC inputs: PRE-HDL STOP / NOT_QUALIFIED
 
-**Input-only / unvalidated at this commit.** No HDL was built or simulated on
-the local Windows machine. The forthcoming hosted observations may end in
-STOP, conform, or show strict metadata mismatches. No result is promised.
-This unit is independent of the original fetch-error bundle and the open,
-unmerged public PR1 and PR2; neither is a build dependency.
+**PRE-HDL STOP / NOT_QUALIFIED: zero real CPU builds.** Both
+authorized preparation attempts are consumed. The second failed the strict
+Python dependency-closure gate, so there was no RTL checkout, stock bind lint,
+HDL miniature, program compilation, OFF/ON CPU build or pair dispatch.
+Sampler qualification and ISA execution are **NOT_RUN**; strict RVFI next-PC
+conformance is **NOT_QUALIFIED**, neither PASS nor FAIL. No third preparation
+or another pair is authorized. No HDL was built/simulated locally.
+This is a candid partial owner-repository artifact, not acceptance of a
+working/qualified whole-core reproducer. It is independent of the original
+bundle and open, unmerged public PR1/PR2; neither is a build dependency.
+
+## Actual bounded result and immutable identities
+
+| Identity/stage | Actual result |
+| --- | --- |
+| Final attempted input source | `c50b3975c188eea33bb7e92cb75b21bc9a04f9e2` |
+| Distinct evidence archive commit | `1203b53e7715dfcc8b1e30987dd247cec7127751` |
+| [Preparation 1](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37037708980) / input `b25f2d215e1652e3d102f3aa4f2478ad64b42a13` | STOP: unavailable guessed cross-tool pins; original artifact also INCOMPLETE (one hidden source file omitted) |
+| [Preparation 2](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37039019400) / final input above | STOP: nine unpinned Python transitive dependencies; complete raw archive integrity PASS, scientific result NOT_QUALIFIED |
+| Real program/CPU/pair attempts | 0 program compilations, 0 OFF/ON CPU builds, 0 pair dispatches |
+| Actual core retirements / branches | 0 / 0 **because no core run occurred**, not an empty passing trace |
+| Actual widths / outcome cells | Not measured; the eight cells below are goals, not achieved coverage |
+| Pre-run ISA path, tool/model/config freeze | Not created; preparation did not qualify |
+
+The second run passed all 16 hosted pure-stdlib contracts, including prompt
+POSIX fatal and fatal-marker-plus-hang rejection. It recorded Ubuntu 24.04
+and dpkg identities Verilator=5.020-1, cross GCC=13.2.0-11ubuntu1+12 and
+binutils=2.42-1ubuntu1+6. The subsequent actual-executable-version stages were
+**not reached**; package identities must not be called executable qualification.
+The unpinned closure was `jsonschema 4.26.0`, `zipfile2 0.0.12`,
+`jsonschema2md 1.7.0`, `babel 2.18.0`, `jsonschema-specifications 2025.9.1`,
+`markdown 3.11`, `referencing 0.37.0`, `rpds-py 2026.6.3` and
+`typing-extensions 4.16.0`. These are a remaining tooling blocker, not a DUT
+or metadata finding. No closure/oracle gate was weakened to continue.
+
+The [machine-computed evidence index](evidence/INDEX.json) records the exact
+run/artifact/source/manifest identities and zero-real-attempt journal.
+Preparation 1 artifact `11241097111` has Actions digest
+`sha256:9ec08523d2713395fdddb43a14d406d3a466f1d93e6978b23d66ea7b517b8a0e`;
+its original RAW_MANIFEST SHA256 is
+`75f9f813c11ea9b4c2781033fdc8cee93dd90c680fd41f98a890e258993a9744`.
+Preparation 2 artifact `11241379084` has Actions digest
+`sha256:eb9385c0fa0e3fc5fa257c5f131b57af535ebc83f18491754c12ed435a59f656`;
+its RAW_MANIFEST SHA256 is
+`06750c5684d6b45bd8690653de1d4eb08d2a05d35f25f55fa2572f70516ab10a`.
+Outer artifact digests identify the uploaded ZIP, while raw manifests identify
+their member bytes; they are not interchangeable. Final documentation head
+and its exact-head offline CI are recorded on the owner PR, not self-hashed
+into these prior immutable receipts.
+
+Initial source `f80fa2b5beca8d0777b88ae574f69ad7b972bedf` and failed
+[push offline run](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37037318099) /
+[PR offline run](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37037374236)
+are retained unchanged. They were offline source-seal failures, not additional
+authorized preparation or CPU attempts. Further hosted qualification requires
+fresh approval routed through the coordinator; this work does not claim that
+approval or coordinator acceptance.
 
 The first input-only push exposed Windows CRLF versus Git blob LF hashing
 in offline CI; it is retained in history, not amended or represented as HDL
@@ -107,8 +159,9 @@ ON can build only after qualified OFF execution, independent sampler agreement
 and strict OFF next-PC PASS. If any gate fails, the remaining pipeline stops.
 
 Ubuntu 24.04, Verilator **5.020-1**, cross GCC **13.2.0-11ubuntu1+12** /
-binutils **2.42-1ubuntu1+6**, and the Python dependency
-closure are version-pinned. Actual versions, package license provenance,
+binutils **2.42-1ubuntu1+6**, and the requested Python dependencies
+are version-pinned. Complete closure equality is enforced, not assumed
+(and was the final STOP here). Planned actual versions, package license provenance,
 wheel URLs/hashes, reported affinity CPUs/memory/cgroup/disk, source exports,
 configs, commands and typed statuses are retained. All compilation uses
 `-j1`, recursive make inherits `MAKEFLAGS=-j1`, each real build is bounded
@@ -144,7 +197,8 @@ python3 -B -m rvfi_nextpc.seal && python3 -B -m unittest rvfi_nextpc.tests -v &&
 
 The agent uses `py -3.12 -B` for the same lightweight checks on Windows.
 The real hosted entry point is an explicit one-command Linux `gh` dispatch
-(placeholders must be replaced by immutable, qualified identities):
+(placeholders require immutable, qualified identities and fresh approval;
+the current exhausted authorization cannot run it successfully):
 
 ```sh
 gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref OWNER_BRANCH_AT_INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-one-pair -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
