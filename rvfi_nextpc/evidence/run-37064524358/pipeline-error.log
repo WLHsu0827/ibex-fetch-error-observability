@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 560, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 495, in execute
+    self.guard()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 85, in guard
+    self.command("attempt-history", [
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 59, in command
+    require_success(status)
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/process.py", line 74, in require_success
+    raise RuntimeError(f"STOP: {status['argv']}: {status['kind']}:{status['code']}")
+RuntimeError: STOP: ['gh', 'api', '--paginate', '--slurp', 'repos/WLHsu0827/ibex-fetch-error-observability/actions/workflows/rvfi-nextpc.yml/runs?per_page=100', '--jq', '{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}']: exited:1

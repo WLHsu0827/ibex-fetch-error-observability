@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import copy
+import json
 import os
 from pathlib import Path
 import signal
@@ -15,6 +16,7 @@ import unittest
 from .check import parse, qualify
 from .archive import privacy_review, verify_archive
 from .dependencies import TARGET, canonical, compatible_wheel, graph, marker, satisfies, validate
+from .history import parse_history, qualify_history
 from .isa import BOOT, FIELDS, FIRST_ORDER, decode, execute, freeze, sext
 from .process import expected_fatal, identity, require_success, run, write_json
 
@@ -115,6 +117,123 @@ class DependencyContracts(unittest.TestCase):
             validate(altered)
         self.assertEqual(lock["target"], TARGET)
         graph(lock["groups"]["build"]["packages"], lock["source_build"]["requires"])
+
+
+class HistoryContracts(unittest.TestCase):
+    def setUp(self) -> None:
+        self.auth = json.loads(Path(__file__).with_name("RECOVERY_AUTHORIZATION.json").read_text())
+        self.legacy = json.loads(Path(__file__).with_name("AUTHORIZATION.json").read_text())["identity"]
+        self.source = "a" * 40
+        self.records = [
+            self.record(1, f"RVFI next-PC prepare p1 {self.legacy}", "failure"),
+            self.record(2, f"RVFI next-PC prepare p2 {self.legacy}", "failure"),
+            self.record(3, f"RVFI next-PC prepare p1 {self.auth['identity']}", "failure"),
+            self.record(4, f"RVFI next-PC prepare p2 {self.auth['identity']}", None),
+        ]
+
+    def record(self, run_id: int, title: str, conclusion: str | None) -> dict[str, object]:
+        return dict(id=run_id, head_sha=self.source, display_title=title,
+                    event="workflow_dispatch", run_attempt=1,
+                    status="completed" if conclusion else "in_progress", conclusion=conclusion)
+
+    def pages(self) -> str:
+        return "\n".join(json.dumps({"total_count": 4, "runs": page})
+                         for page in (self.records[:2], self.records[2:]))
+
+    def qualify(self, records: list[dict[str, object]]) -> list[dict[str, object]]:
+        return qualify_history(records, self.auth, self.legacy, "4", self.source, "prepare", 2, "")
+
+    def test_all_pages_both_epochs_current_exactly_once(self) -> None:
+        records = parse_history(self.pages())
+        self.assertEqual(len(records), 4)
+        authorized = self.qualify(records)
+        self.assertEqual([item["id"] for item in authorized], [3, 4])
+        self.assertEqual(sum(item["id"] == 4 for item in authorized), 1)
+
+    def test_empty_failed_truncated_malformed_or_missing_page_rejected(self) -> None:
+        for text in (
+            "", " ", '{"message":"API request failed"}', self.pages()[:-2],
+            json.dumps({"total_count": 4, "runs": self.records[:2]}),
+            self.pages() + "unparsed suffix",
+            json.dumps({"total_count": 0, "runs": []}),
+            json.dumps({"total_count": 1, "runs": [{"id": 4}]}),
+        ):
+            with self.assertRaises(ValueError):
+                parse_history(text)
+
+    def test_duplicate_current_and_rerun_rejected(self) -> None:
+        duplicate = json.dumps({"total_count": 5, "runs": self.records + [self.records[-1]]})
+        with self.assertRaises(ValueError):
+            parse_history(duplicate)
+        for index in (0, 3):
+            records = copy.deepcopy(self.records)
+            records[index]["run_attempt"] = 2
+            with self.assertRaises(ValueError):
+                self.qualify(records)
+
+    def test_missing_current_counter_reset_and_pair_requires_same_source(self) -> None:
+        for index, field, value in (
+            (3, "id", 5), (3, "head_sha", "b" * 40),
+            (3, "display_title", f"RVFI next-PC prepare p1 {self.auth['identity']}"),
+        ):
+            records = copy.deepcopy(self.records)
+            records[index][field] = value
+            with self.assertRaises(ValueError):
+                self.qualify(records)
+        records = copy.deepcopy(self.records)
+        records[-1]["conclusion"] = "success"
+        records.append(self.record(5, f"RVFI next-PC pair p0 {self.auth['identity']}", None))
+        result = qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
+        self.assertEqual(len(result), 3)
+        records[3]["head_sha"] = "b" * 40
+        with self.assertRaises(ValueError):
+            qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
+
+    def test_failed_guard_cannot_admit_tools_or_hdl_and_snapshot_follows_checks(self) -> None:
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from .hosted import Hosted
+
+        for case in ("head", "api_failure", "truncated_history", "rerun"):
+            pipeline = Hosted.__new__(Hosted)
+            pipeline.auth = self.auth
+            pipeline.args = SimpleNamespace(authorization=self.auth["identity"], source_sha=self.source,
+                                            mode="prepare", preparation_attempt=2, preparation_run="")
+            calls = []
+            records = copy.deepcopy(self.records)
+            if case == "rerun":
+                records[-1]["run_attempt"] = 2
+            stdout = {
+                "input-head": ("b" * 40 if case == "head" else self.source).encode(),
+                "attempt-history": (self.pages()[:-2] if case == "truncated_history" else
+                                    json.dumps({"total_count": 4, "runs": records})).encode(),
+            }
+
+            def command(name: str, *args: object, **kwargs: object) -> None:
+                calls.append(name)
+                if name == "attempt-history" and case == "api_failure":
+                    raise RuntimeError("typed API command exited 1")
+
+            pipeline.command = command
+            pipeline.last_stdout = lambda: stdout[calls[-1]]
+            pipeline.capture_sources = lambda: calls.append("capture_sources")
+            pipeline.setup = lambda: calls.append("forbidden_tools")
+            environment = {
+                "GITHUB_ACTIONS": "true", "RUNNER_ENVIRONMENT": "github-hosted",
+                "GITHUB_REPOSITORY": self.auth["repository"], "GITHUB_RUN_ATTEMPT": "1",
+                "GITHUB_RUN_ID": "4", "GITHUB_ACTOR": "WLHsu0827",
+            }
+            with patch.dict(os.environ, environment), patch("rvfi_nextpc.hosted.platform.system",
+                                                            return_value="Linux"), patch(
+                "rvfi_nextpc.hosted.verify", return_value={}
+            ):
+                with self.assertRaises((RuntimeError, ValueError)):
+                    pipeline.execute()
+            self.assertNotIn("forbidden_tools", calls)
+            if case == "head":
+                self.assertNotIn("capture_sources", calls)
+            else:
+                self.assertEqual(calls, ["input-head", "input-clean", "capture_sources", "attempt-history"])
 
 
 class StreamContracts(unittest.TestCase):

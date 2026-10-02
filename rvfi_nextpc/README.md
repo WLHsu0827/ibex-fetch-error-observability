@@ -10,6 +10,23 @@ sampler qualification.
 
 ## Distinct recovery authorization and input changes
 
+Recovery preparation **1/4**:
+[run 37064524358](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37064524358),
+input `69d0265af7f985e968eb5eabc5f687e48596d486`, STOP before tooling:
+the new history command incorrectly combined gh `--slurp` and `--jq`.
+The typed command exited 1; stdout is empty and stderr is 1578 unchanged
+bytes. No install, RTL, HDL, program or CPU stage ran. The exact original
+artifact is preserved under `evidence/run-37064524358`; raw-byte integrity
+PASS does not imply full source collection or instrumentation qualification.
+Source capture had not run yet in that attempt, so its immutable public input
+commit supplies the source identity, **not reconstructed artifact members**.
+The next input corrects the command to supported `--paginate`/`--jq`, parses
+separate JSON page documents with complete total-count/unique-ID closure, and
+captures reviewed source after exact-head/clean checks but before the history
+guard. All authorization/history guards still precede every tools/HDL stage.
+All affected gates still require requalification. Three preparation slots
+remain; this failure is counted, not erased/retried.
+
 [`RECOVERY_AUTHORIZATION.json`](RECOVERY_AUTHORIZATION.json) records the
 user-directed decision relayed at 2026-10-03 04:46 UTC+8, identity
 `WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1`, four preparation attempts

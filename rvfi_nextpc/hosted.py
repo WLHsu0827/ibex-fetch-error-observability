@@ -18,6 +18,7 @@ import traceback
 
 from .check import qualify
 from .isa import BOOT, MAX_CYCLES, freeze
+from .history import parse_history, qualify_history
 from .process import expected_fatal, identity, require_success, run, write_json
 from .seal import ROOT, verify
 from .tests import tiny_contract
@@ -82,35 +83,18 @@ class Hosted:
             raise RuntimeError("STOP: checkout/source SHA mismatch")
         verify()
         self.command("input-clean", ["git", "diff", "--exit-code", "HEAD"], ROOT)
+        self.capture_sources()
         self.command("attempt-history", [
-            "gh", "api", "--paginate", "--slurp",
+            "gh", "api", "--paginate",
             f"repos/{self.auth['repository']}/actions/workflows/rvfi-nextpc.yml/runs?per_page=100",
-            "--jq", "{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}",
+            "--jq", "{total_count,runs:[.workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}",
         ], ROOT)
-        history = json.loads(self.last_stdout())
-        authorized = [r for r in history["runs"]
-                      if r["event"] == "workflow_dispatch"
-                      and r["display_title"].endswith(" " + self.auth["identity"])]
-        prepares = [r for r in authorized if " prepare " in r["display_title"]]
-        pairs = [r for r in authorized if " pair " in r["display_title"]]
-        if any(r["run_attempt"] != 1 for r in authorized):
-            raise RuntimeError("STOP: an epoch run was rerun")
-        if len(prepares) > self.auth["max_preparations"] or len(pairs) > self.auth["max_pairs"]:
-            raise RuntimeError("STOP: authorization attempt budget exhausted")
-        current = [r for r in authorized if str(r["id"]) == os.environ["GITHUB_RUN_ID"]]
-        if len(current) != 1 or current[0]["head_sha"] != self.args.source_sha:
-            raise RuntimeError("STOP: workflow/source binding mismatch")
-        if self.args.mode == "prepare":
-            if pairs or self.args.preparation_attempt != len(prepares) or not 1 <= len(prepares) <= 4:
-                raise RuntimeError("STOP: invalid preparation journal sequence")
-        else:
-            previous = [r for r in prepares if str(r["id"]) == self.args.preparation_run]
-            if len(previous) != 1 or previous[0]["conclusion"] != "success":
-                raise RuntimeError("STOP: missing successful preparation run")
-            if previous[0]["head_sha"] != self.args.source_sha:
-                raise RuntimeError("STOP: changed inputs require requalification")
-            if len(pairs) != 1:
-                raise RuntimeError("STOP: pair journal mismatch")
+        authorized = qualify_history(
+            parse_history(self.last_stdout().decode()), self.auth,
+            json.loads((ROOT / "rvfi_nextpc" / "AUTHORIZATION.json").read_text())["identity"],
+            os.environ["GITHUB_RUN_ID"], self.args.source_sha, self.args.mode,
+            self.args.preparation_attempt, self.args.preparation_run,
+        )
         write_json(self.output / "attempt.json", {
             "schema": 1, "authorization": self.auth, "source_sha": self.args.source_sha,
             "run_id": os.environ["GITHUB_RUN_ID"], "run_attempt": 1,
@@ -121,15 +105,9 @@ class Hosted:
 
     def setup(self) -> None:
         self.work.mkdir(exist_ok=False)
-        (self.output / "input").mkdir()
         shutil.copytree(ROOT / "rvfi_nextpc", self.work / "inputs" / "rvfi_nextpc",
                         ignore=shutil.ignore_patterns("evidence", "__pycache__"))
-        for filename in verify()["files"]:
-            destination = self.output / "input" / filename
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(ROOT / filename, destination)
-        shutil.copyfile(ROOT / "rvfi_nextpc" / "SOURCE_MANIFEST.json",
-                        self.output / "input" / "rvfi_nextpc" / "SOURCE_MANIFEST.json")
+
         release = dict(line.split("=", 1) for line in Path("/etc/os-release").read_text().splitlines()
                        if "=" in line)
         memory = int(next(line.split()[1] for line in Path("/proc/meminfo").read_text().splitlines()
@@ -153,6 +131,18 @@ class Hosted:
             raise RuntimeError("STOP: Ubuntu 24.04 required")
         if cpus < 1 or memory < 2 * 1024**3 or disk.free < 8 * 1024**3:
             raise RuntimeError("STOP: insufficient reported hosted resources")
+        self.tools()
+
+    def capture_sources(self) -> None:
+        (self.output / "input").mkdir()
+        for filename in verify()["files"]:
+            destination = self.output / "input" / filename
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / filename, destination)
+        shutil.copyfile(ROOT / "rvfi_nextpc" / "SOURCE_MANIFEST.json",
+                        self.output / "input" / "rvfi_nextpc" / "SOURCE_MANIFEST.json")
+
+    def tools(self) -> None:
         os.environ.update(MAKEFLAGS="-j1", CMAKE_BUILD_PARALLEL_LEVEL="1", PYTHONDONTWRITEBYTECODE="1")
         self.command("offline-contracts", [sys.executable, "-B", "-m", "unittest", "rvfi_nextpc.tests", "-v"], ROOT)
         self.command("apt-update", ["sudo", "apt-get", "update", "-qq"], timeout=480)

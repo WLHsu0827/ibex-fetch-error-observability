@@ -1,0 +1,14 @@
+{
+  "attempted_stages": 3,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+  "error": "STOP: ['gh', 'api', '--paginate', '--slurp', 'repos/WLHsu0827/ibex-fetch-error-observability/actions/workflows/rvfi-nextpc.yml/runs?per_page=100', '--jq', '{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}']: exited:1",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "STOP",
+  "run_attempt": "1",
+  "run_id": "37064524358",
+  "schema": 1,
+  "scientific_result": "NOT_QUALIFIED",
+  "source_sha": "69d0265af7f985e968eb5eabc5f687e48596d486"
+}
