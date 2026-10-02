@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/build-trace_monitor_fixture/Vtrace_monitor_fixture",
+    "+trace_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/fatal_text_then_hang/events.tsv",
+    "+CASE=fatal_text_then_hang"
+  ],
+  "code": 124,
+  "duration_seconds": 3.007496101000015,
+  "kind": "timeout",
+  "stderr": "",
+  "stdout": "TRACE_MONITOR_RESET_AFTER_START\n"
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/build-trace_monitor_fixture/Vtrace_monitor_fixture",
+    "+trace_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/reset_again/events.tsv",
+    "+CASE=reset_again"
+  ],
+  "code": 6,
+  "duration_seconds": 0.15407832800019605,
+  "kind": "signaled",
+  "stderr": "",
+  "stdout": "[9000] %Fatal: trace_phase_observer.sv:63: Assertion failed in TOP.trace_monitor_fixture.dut: TRACE_MONITOR_RESET_AFTER_START\n%Error: /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor/trace_phase_observer.sv:63: Verilog $stop\nAborting...\n"
+}

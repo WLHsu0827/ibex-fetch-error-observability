@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/build-unarmed_trace_counterexample/Vunarmed_trace_counterexample",
+    "+trace_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor-ci-output/unarmed_counterexample/events.tsv"
+  ],
+  "code": 0,
+  "duration_seconds": 0.004173220999973637,
+  "kind": "exited",
+  "stderr": "",
+  "stdout": "- /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/monitor/unarmed_trace_counterexample.sv:39: Verilog $finish\n"
+}
