@@ -7,13 +7,17 @@ from __future__ import annotations
 from collections import Counter
 from pathlib import Path
 
-from .isa import FIELDS, MAX_CYCLES, decode, execute, word
+from .isa import FIELDS, FIRST_ORDER, MAX_CYCLES, decode, execute, word
 
 
 def parse(path: Path) -> tuple[list[dict[str, int]], int]:
     records: list[dict[str, int]] = []
     reset, started, cycle = False, False, 0
-    for line in path.read_text(encoding="ascii").splitlines():
+    text = path.read_text(encoding="ascii")
+    if not text.endswith("\n"):
+        raise ValueError("truncated unflushed stream")
+    retirement_cycle = -1
+    for line in text.splitlines():
         parts = line.split("\t")
         if not parts or parts[0] not in ("Q", "R"):
             raise ValueError("malformed stream tag")
@@ -39,7 +43,10 @@ def parse(path: Path) -> tuple[list[dict[str, int]], int]:
             if not started or len(values) != len(FIELDS) + 1 or values[0] != cycle - 1:
                 raise ValueError("unarmed/malformed retirement")
             record = dict(zip(FIELDS, values[1:]))
-            if record["order"] != len(records):
+            if values[0] == retirement_cycle:
+                raise ValueError("multiple retirements in one sampled cycle")
+            retirement_cycle = values[0]
+            if record["order"] != FIRST_ORDER + len(records):
                 raise ValueError("duplicate/missing/reordered dynamic order")
             if any(record[key] for key in (
                 "trap", "halt", "intr", "rmask", "wmask", "pre_mip", "post_mip",
@@ -88,16 +95,14 @@ def qualify(cpp: Path, sv: Path, image: bytes, contract: dict[str, object]) -> d
             record["rs2"] != expected["rs2"] or record["b"] != expected["b"]
         ):
             raise ValueError("retired branch rs2 differs from independent ISA state")
-        if record["rd"] != expected["rd"] or (
-            record["rd"] and record["value"] != expected["value"]
-        ):
+        if record["rd"] != expected["rd"] or record["value"] != expected["value"]:
             raise ValueError("retired writeback differs from ISA")
         if index + 1 < len(first) and first[index + 1]["pc"] != expected["next_pc"]:
             raise ValueError("following retirement differs from decoded ISA successor")
         if cell:
             cells[cell] += 1
         if record["next_pc"] != expected["next_pc"]:
-            mismatches.append({"order": index, "pc": record["pc"], "insn": record["insn"],
+            mismatches.append({"order": record["order"], "pc": record["pc"], "insn": record["insn"],
                                "observed": record["next_pc"], "required": expected["next_pc"],
                                "region": frozen["region"], "cell": cell})
     if dict(cells) != contract["coverage"]:

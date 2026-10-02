@@ -15,6 +15,7 @@ filesets:
     files:
       - main.cpp: {file_type: cppSource}
       - sample.hpp: {is_include_file: true, file_type: cppSource}
+      - image.hpp: {is_include_file: true, file_type: cppSource}
 parameters:
   RVFI: {datatype: bool, paramtype: vlogdefine, default: true}
   OBSERVER_TARGET: {datatype: str, paramtype: vlogdefine, default: ibex_top}

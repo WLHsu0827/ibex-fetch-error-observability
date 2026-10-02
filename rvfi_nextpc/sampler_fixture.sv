@@ -30,7 +30,7 @@ module sampler_fixture (
     end else begin
       if (beat < 10) beat <= beat + 1'b1;
       rvfi_valid <= beat >= 2 && beat < 5;
-      rvfi_order <= 64'(beat) - 2;
+      rvfi_order <= 64'(beat) - 1;
       rvfi_pc_rdata <= 32'h80000080 + 4 * (32'(beat) - 2);
       rvfi_pc_wdata <= 32'h80000084 + 4 * (32'(beat) - 2);
       rvfi_rs1_rdata <= 32'(beat) - 2;

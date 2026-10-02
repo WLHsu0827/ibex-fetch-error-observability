@@ -1,6 +1,60 @@
 # RVFI next-PC inputs: PRE-HDL STOP / NOT_QUALIFIED
 
-**PRE-HDL STOP / NOT_QUALIFIED: zero real CPU builds.** Both
+**PRE-HDL STOP / NOT_QUALIFIED: zero real CPU builds so far.** PR3 remains
+draft. A distinct user-approved recovery epoch now permits at most four
+hosted preparation dispatches total, followed only after every final-source
+gate passes by one OFF/conditional-ON pair. This is not an extension/reset of
+the original exhausted epoch. Recovery inputs below are **unvalidated** until
+their actual hosted qualification; archive-byte integrity is not HDL or
+sampler qualification.
+
+## Distinct recovery authorization and input changes
+
+[`RECOVERY_AUTHORIZATION.json`](RECOVERY_AUTHORIZATION.json) records the
+user-directed decision relayed at 2026-10-03 04:46 UTC+8, identity
+`WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1`, four preparation attempts
+**total** and one pair dispatch. Every created preparation run counts,
+including tools-only/pre-HDL failures. Reruns, automatic retries, erased
+attempts and source/counter resets are forbidden; infrastructure/resource
+breaches stop the epoch. ON requires qualified OFF; CPU builds/runs are at
+most once each. No harness/program/oracle/source changes or refreeze are
+permitted after OFF compilation starts. No named-config extra pair, local
+HDL/install, private input, DUT patch, oracle weakening or merge is authorized.
+Coordinator acceptance is separate.
+
+The complete artifact lock is [`DEPENDENCY_LOCK.json`](DEPENDENCY_LOCK.json):
+the retained report's 23 exact runtime distributions plus pinned pip, with
+canonical names, complete nested requirements/markers, CPython 3.12.3/Linux
+x86_64 compatibility, public artifact lengths/SHA256 and license provenance.
+`jsonschema2md 1.7.0` has no compatible CPython-3.12 wheel; its sdist is
+retained at the original hash, not silently substituted. Its separate
+52-distribution build closure includes the required Poetry plugin and Babel
+2.17.0; runtime Babel remains 2.18.0. Hosted preparation inspects actual
+wheel/sdist metadata before installation, installs only verified artifacts
+without dependency downloads or build isolation, and independently validates
+installed closure with the packaging PEP-508 parser and pip check. Public
+metadata generation is stdlib-only; it does not install or execute package
+source locally. License file identities are retained without author or
+environment dumps. `dependencies.py --create` is a lock-authoring command,
+not part of normal CI; CI only verifies the frozen lock.
+
+Source review also corrected FuseSoC's explicit work directory and stock
+first-order contract (reset order 0 is incremented before the first RVFI
+retirement, so the first observed order is **1**). Actual shared C++ loader
+negative contracts must qualify on the hosted runner before CPU work.
+Host G++13 package 13.3.0-6ubuntu2~24.04.1 / executable 13.3.0 and Make
+4.3-4.1build2 / executable 4.3 are explicit, not silent compiler substitutes.
+All actual package/executable identities and installed Python code hashes
+must match the same-source successful preparation before the pair.
+Real build bounds are tightened to 1400 seconds each (below the original
+1500 ceiling), with 60 seconds/20000 cycles per run, a 57-minute pipeline
+deadline and a 60-minute job. Pair admission reserves both worst-case builds,
+both runs and closure before OFF. Compilation explicitly selects G++13 and
+one worker, including recursive make.
+
+## Preserved original authorization STOP
+
+**Original epoch PRE-HDL STOP / NOT_QUALIFIED: zero real CPU builds.** Both
 authorized preparation attempts are consumed. The second failed the strict
 Python dependency-closure gate, so there was no RTL checkout, stock bind lint,
 HDL miniature, program compilation, OFF/ON CPU build or pair dispatch.
@@ -102,7 +156,7 @@ operands, branch outcomes and required successor PCs from the fresh binary
 prediction, trace labels or the DUT's `pc_wdata`.
 
 The linked start is `0x80000080`; the boot input is `0x80000000` (stock
-Ibex boots at +0x80). The first RVFI record must be dynamic order 0 at the
+Ibex boots at +0x80). The first RVFI record must be dynamic order 1 at the
 fresh start, with no earlier record silently discarded. All program records,
 three explicit 32-bit NOP drain instructions, and four terminal `jal x0,0`
 retirements are retained and checked. The binary ends at the terminal word.
@@ -150,8 +204,8 @@ archive closure or a green workflow is not a pair/scientific PASS.
 Normal push, pull-request and evidence-head CI is **offline/archive-only**.
 Only explicit `workflow_dispatch` can install tools or perform HDL work.
 The workflow requires the full immutable input SHA and the exact authorization
-identity in `AUTHORIZATION.json`. GitHub run history, run-attempt=1 and an
-exclusive receipt gate at most two preparation-only dispatches and one pair.
+identity in `RECOVERY_AUTHORIZATION.json`. GitHub run history, run-attempt=1 and an
+exclusive receipt gate at most four recovery preparation-only dispatches and one pair.
 Preparation source changes require another same-source preparation. There
 are no automatic retries; after OFF compilation begins the harness, program,
 oracle, sampler, source and tools are frozen and no retry/refreeze is allowed.
@@ -165,7 +219,7 @@ are version-pinned. Complete closure equality is enforced, not assumed
 wheel URLs/hashes, reported affinity CPUs/memory/cgroup/disk, source exports,
 configs, commands and typed statuses are retained. All compilation uses
 `-j1`, recursive make inherits `MAKEFLAGS=-j1`, each real build is bounded
-to 1500 seconds, and the job to 60 minutes (pipeline budget 55 minutes).
+to 1400 seconds, and the job to 60 minutes (pipeline budget 57 minutes).
 Reported hosted resource values are not local Windows/WSL floors, exclusive
 host ownership, or performance/PPA measurements.
 
@@ -198,14 +252,14 @@ python3 -B -m rvfi_nextpc.seal && python3 -B -m unittest rvfi_nextpc.tests -v &&
 The agent uses `py -3.12 -B` for the same lightweight checks on Windows.
 The real hosted entry point is an explicit one-command Linux `gh` dispatch
 (placeholders require immutable, qualified identities and fresh approval;
-the current exhausted authorization cannot run it successfully):
+the original exhausted authorization cannot run it successfully):
 
 ```sh
-gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref OWNER_BRANCH_AT_INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-one-pair -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
+gh workflow run rvfi-nextpc.yml --repo WLHsu0827/ibex-fetch-error-observability --ref OWNER_BRANCH_AT_INPUT_SHA -f mode=pair -f source_sha=INPUT_SHA -f authorization=WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1 -f preparation_attempt=0 -f preparation_run=SUCCESSFUL_SAME_SOURCE_PREPARATION_RUN
 ```
 
 Preparation uses the same command with `mode=prepare`,
-`preparation_attempt=1` (or the sole permitted second attempt) and no
+`preparation_attempt=1` (up to 4 total in the new epoch) and no
 preparation_run. **These commands do not grant another pair.** After the
 authorized pair/STOP, independent humans need new explicit authorization
 and a distinct attempt identity; the existing workflow rejects reruns.

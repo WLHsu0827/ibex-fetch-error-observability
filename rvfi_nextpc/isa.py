@@ -9,6 +9,7 @@ from collections import Counter
 BOOT = 0x80000080
 TERMINAL_RETIREMENTS = 4
 MAX_CYCLES = 20000
+FIRST_ORDER = 1
 FIELDS = (
     "order", "pc", "insn", "next_pc", "rs1", "rs2", "a", "b", "rd", "value",
     "trap", "halt", "intr", "mode", "ixl", "rmask", "wmask", "pre_mip", "post_mip",
@@ -85,6 +86,8 @@ def execute(pc: int, insn: int, regs: list[int]) -> tuple[dict[str, int], str | 
         value, successor = successor & 0xFFFFFFFF, pc + imm
     if rd:
         regs[rd] = value
+    else:
+        value = 0
     return {"pc": pc, "insn": insn, "next_pc": successor & 0xFFFFFFFF,
             "rs1": rs1, "rs2": rs2, "a": a, "b": b, "rd": rd, "value": value}, cell
 
@@ -101,7 +104,7 @@ def freeze(image: bytes, drain: int, terminal: int) -> dict[str, object]:
     for order in range(512):
         insn = word(image, pc)
         expected, cell = execute(pc, insn, regs)
-        expected["order"] = order
+        expected["order"] = order + FIRST_ORDER
         expected["region"] = "terminal" if pc == terminal else "drain" if pc >= drain else "program"
         path.append(expected)
         if cell:

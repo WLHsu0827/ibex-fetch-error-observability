@@ -21,6 +21,7 @@ from .isa import BOOT, MAX_CYCLES, freeze
 from .process import expected_fatal, identity, require_success, run, write_json
 from .seal import ROOT, verify
 from .tests import tiny_contract
+from .toolchain import wheel_metadata
 
 
 class Hosted:
@@ -28,10 +29,10 @@ class Hosted:
         self.args = args
         self.output = Path(args.output).resolve()
         self.output.mkdir(parents=True, exist_ok=False)
-        self.auth = json.loads((ROOT / "rvfi_nextpc" / "AUTHORIZATION.json").read_text())
+        self.auth = json.loads((ROOT / "rvfi_nextpc" / "RECOVERY_AUTHORIZATION.json").read_text())
         self.work = Path("/tmp") / f"rvfi-nextpc-{os.environ.get('GITHUB_RUN_ID', 'human')}"
         self.stage = 0
-        self.deadline = time.monotonic() + 55 * 60
+        self.deadline = time.monotonic() + 57 * 60
         self.summary: dict[str, object] = {
             "schema": 1, "result": "STOP", "mode": args.mode,
             "source_sha": args.source_sha, "authorization": args.authorization,
@@ -68,6 +69,8 @@ class Hosted:
             raise RuntimeError("STOP: self-hosted runners are outside authorization")
         if self.args.authorization != self.auth["identity"]:
             raise RuntimeError("STOP: authorization identity mismatch")
+        if os.environ.get("GITHUB_ACTOR") != "WLHsu0827":
+            raise RuntimeError("STOP: authorization requires owner dispatch")
         if os.environ.get("GITHUB_REPOSITORY") != self.auth["repository"]:
             raise RuntimeError("STOP: repository mismatch")
         if os.environ.get("GITHUB_RUN_ATTEMPT") != "1":
@@ -80,23 +83,25 @@ class Hosted:
         verify()
         self.command("input-clean", ["git", "diff", "--exit-code", "HEAD"], ROOT)
         self.command("attempt-history", [
-            "gh", "api", f"repos/{self.auth['repository']}/actions/workflows/rvfi-nextpc.yml/runs?per_page=100",
-            "--jq", "{total_count, runs:[.workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}",
+            "gh", "api", "--paginate", "--slurp",
+            f"repos/{self.auth['repository']}/actions/workflows/rvfi-nextpc.yml/runs?per_page=100",
+            "--jq", "{runs:[.[].workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}",
         ], ROOT)
         history = json.loads(self.last_stdout())
-        if history["total_count"] > 100:
-            raise RuntimeError("STOP: bounded history page insufficient")
         authorized = [r for r in history["runs"]
-                      if r["event"] == "workflow_dispatch" and self.auth["identity"] in r["display_title"]]
+                      if r["event"] == "workflow_dispatch"
+                      and r["display_title"].endswith(" " + self.auth["identity"])]
         prepares = [r for r in authorized if " prepare " in r["display_title"]]
         pairs = [r for r in authorized if " pair " in r["display_title"]]
-        if len(prepares) > 2 or len(pairs) > 1:
+        if any(r["run_attempt"] != 1 for r in authorized):
+            raise RuntimeError("STOP: an epoch run was rerun")
+        if len(prepares) > self.auth["max_preparations"] or len(pairs) > self.auth["max_pairs"]:
             raise RuntimeError("STOP: authorization attempt budget exhausted")
         current = [r for r in authorized if str(r["id"]) == os.environ["GITHUB_RUN_ID"]]
         if len(current) != 1 or current[0]["head_sha"] != self.args.source_sha:
             raise RuntimeError("STOP: workflow/source binding mismatch")
         if self.args.mode == "prepare":
-            if pairs or self.args.preparation_attempt != len(prepares):
+            if pairs or self.args.preparation_attempt != len(prepares) or not 1 <= len(prepares) <= 4:
                 raise RuntimeError("STOP: invalid preparation journal sequence")
         else:
             previous = [r for r in prepares if str(r["id"]) == self.args.preparation_run]
@@ -155,57 +160,90 @@ class Hosted:
             "sudo", "apt-get", "install", "-y", "--no-install-recommends",
             "verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
             "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6",
+            "fonts-font-awesome=5.0.10+really4.7.0~dfsg-4.1",
+            "sphinx-rtd-theme-common=2.0.0+dfsg-1",
+            "g++-13=13.3.0-6ubuntu2~24.04.1", "make=4.3-4.1build2",
         ], timeout=480)
         self.command("package-versions", [
             "dpkg-query", "-W", "-f=${Package}=${Version}\\n", "verilator",
             "gcc-riscv64-unknown-elf", "binutils-riscv64-unknown-elf",
+            "fonts-font-awesome", "sphinx-rtd-theme-common", "g++-13", "make",
         ])
         packages = self.last_stdout().decode()
         required = ("verilator=5.020-1", "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
-                    "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6")
+                    "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6",
+                    "fonts-font-awesome=5.0.10+really4.7.0~dfsg-4.1",
+                    "sphinx-rtd-theme-common=2.0.0+dfsg-1",
+                    "g++-13=13.3.0-6ubuntu2~24.04.1", "make=4.3-4.1build2")
         if set(packages.splitlines()) != set(required):
             raise RuntimeError("STOP: installed package version mismatch")
-        self.command("venv", [sys.executable, "-m", "venv", "tools"])
+        if platform.python_version() != "3.12.3" or platform.machine() != "x86_64":
+            raise RuntimeError("STOP: locked CPython 3.12.3 / Linux x86_64 required")
+        os.environ.update(CXX="g++-13", CC="gcc-13", PIP_NO_INPUT="1",
+                          PIP_DISABLE_PIP_VERSION_CHECK="1", PIP_CONFIG_FILE="/dev/null")
+        artifacts = self.work / "artifacts"
+        self.command("locked-artifact-preflight", [
+            sys.executable, "-B", "-m", "rvfi_nextpc.toolchain", "download",
+            "--directory", str(artifacts), "--output", str(self.output),
+        ], ROOT, timeout=480)
+        self.command("build-venv", [sys.executable, "-m", "venv", "build-tools"])
+        build_python = self.work / "build-tools" / "bin" / "python"
+        self.command("locked-build-tools", [
+            str(build_python), "-m", "pip", "install", "--no-deps", "--no-index",
+            "--require-hashes", "--find-links", str(artifacts / "build"),
+            "-r", str(ROOT / "rvfi_nextpc" / "build-requirements.txt"),
+        ], timeout=300)
+        self.command("build-tool-closure", [
+            str(build_python), "-B", "-m", "rvfi_nextpc.toolchain", "installed",
+            "--group", "build", "--output", str(self.output),
+        ], ROOT)
+        self.command("build-pip-check", [str(build_python), "-m", "pip", "check"])
+        source_package = next((artifacts / "runtime").glob("jsonschema2md-*.tar.gz"))
+        wheel_directory = self.work / "built-tool-wheel"
+        self.command("locked-source-tool-build", [
+            str(build_python), "-m", "pip", "wheel", "--no-deps", "--no-index",
+            "--no-build-isolation", "--wheel-dir", str(wheel_directory), str(source_package),
+        ], timeout=300)
+        tool_wheel = next(wheel_directory.glob("jsonschema2md-*.whl"))
+        metadata = wheel_metadata(tool_wheel)
+        if metadata["name"] != "jsonschema2md" or metadata["version"] != "1.7.0":
+            raise RuntimeError("STOP: source-built tool identity mismatch")
+        write_json(self.output / "built-tool-wheel.json", {
+            "schema": 1, "source": identity(source_package), "wheel": identity(tool_wheel),
+            "metadata": metadata, "build_lock": identity(ROOT / "rvfi_nextpc" / "DEPENDENCY_LOCK.json"),
+        })
+        self.command("runtime-venv", [sys.executable, "-m", "venv", "tools"])
         self.python = self.work / "tools" / "bin" / "python"
         self.fusesoc = self.work / "tools" / "bin" / "fusesoc"
         os.environ["PATH"] = str(self.work / "tools" / "bin") + os.pathsep + os.environ["PATH"]
         self.command("python-tools", [
-            str(self.python), "-m", "pip", "install", "--disable-pip-version-check",
-            "--report", str(self.work / "pip-install.json"),
-            "-r", "inputs/rvfi_nextpc/requirements.txt",
+            str(self.python), "-m", "pip", "install", "--no-deps", "--no-index",
+            *[str(path) for path in sorted((artifacts / "runtime").glob("*.whl"))],
+            str(tool_wheel),
         ], timeout=480)
-        pins = dict(line.split("==") for line in (ROOT / "rvfi_nextpc" / "requirements.txt").read_text().splitlines()
-                    if "==" in line)
-        normalize = lambda name: name.lower().replace("_", "-")
-        pins = {normalize(name): version for name, version in pins.items()}
-        report = json.loads((self.work / "pip-install.json").read_text())
-        write_json(self.output / "pip-install.json", {
-            "schema": 1,
-            "packages": [{"name": item["metadata"]["name"], "version": item["metadata"]["version"],
-                          "download_info": item["download_info"], "license": item["metadata"].get("license"),
-                          "classifiers": item["metadata"].get("classifiers", [])}
-                         for item in report["install"]],
-            "boundary": "whitelisted dependency identities, not an environment or author-email dump",
-        })
-        installed = {normalize(item["metadata"]["name"]): item["metadata"]["version"]
-                     for item in report["install"]}
-        if installed != pins:
-            raise RuntimeError(f"STOP: unpinned dependency closure: {installed}")
-        self.command("tool-versions", [
-            str(self.python), "-c",
-            "import importlib.metadata as m,json; print(json.dumps([{"
-            "'name':d.metadata['Name'],'version':d.version,'license':d.metadata.get('License'),"
-            "'classifiers':d.metadata.get_all('Classifier',[])} for d in m.distributions()],sort_keys=True))",
-        ])
+        self.command("runtime-tool-closure", [
+            str(self.python), "-B", "-m", "rvfi_nextpc.toolchain", "installed",
+            "--group", "runtime", "--output", str(self.output),
+        ], ROOT)
+        self.command("runtime-pip-check", [str(self.python), "-m", "pip", "check"])
         self.command("verilator-version", ["verilator", "--version"])
         if not self.last_stdout().decode().startswith("Verilator 5.020 "):
             raise RuntimeError("STOP: Verilator version mismatch")
-        self.command("cxx-version", ["c++", "--version"])
+        self.command("cxx-version", ["g++-13", "--version"])
+        if "13.3.0" not in self.last_stdout().decode().splitlines()[0]:
+            raise RuntimeError("STOP: host C++ compiler version mismatch")
         self.command("gcc-version", ["riscv64-unknown-elf-gcc", "--version"])
+        if "13.2.0" not in self.last_stdout().decode().splitlines()[0]:
+            raise RuntimeError("STOP: cross compiler version mismatch")
         self.command("binutils-version", ["riscv64-unknown-elf-objcopy", "--version"])
+        if not self.last_stdout().decode().splitlines()[0].endswith(" 2.42"):
+            raise RuntimeError("STOP: cross binutils executable version mismatch")
+        self.command("make-version", ["make", "--version"])
+        if self.last_stdout().decode().splitlines()[0] != "GNU Make 4.3":
+            raise RuntimeError("STOP: make executable version mismatch")
         self.tool_identities = {
             name: identity(Path(shutil.which(name)).resolve())
-            for name in ("verilator", "c++", "make", "riscv64-unknown-elf-gcc",
+            for name in ("verilator", "g++-13", "gcc-13", "make", "riscv64-unknown-elf-gcc",
                          "riscv64-unknown-elf-objcopy", "python3", "fusesoc")
         }
         write_json(self.output / "tool-identities.json", self.tool_identities)
@@ -230,7 +268,7 @@ class Hosted:
         build = self.work / "builds" / label
         self.command(f"configure-{label}", [
             str(self.fusesoc), "--cores-root=upstream", "--cores-root=inputs/rvfi_nextpc",
-            "run", "--setup", "--target=sim", f"--build-root={build}",
+            "run", "--setup", "--target=sim", f"--work-root={build}",
             "wlh:observations:nextpc:1.0", f"--BranchPredictor={bp}",
         ])
         edam_path = next(build.glob("*.eda.yml"))
@@ -247,6 +285,7 @@ class Hosted:
         for path in build.glob("*.vc"):
             shutil.copyfile(path, destination / path.name)
         shutil.copyfile(build / "Makefile", destination / "Makefile")
+        shutil.copyfile(build / "config.mk", destination / "config.mk")
         config = {
             "BranchPredictor": bp, "WritebackStage": 0, "BranchTargetALU": 0,
             "RV32ZC": "RV32Zca", "RV32M": "RV32MFast", "RV32B": "RV32BNone",
@@ -276,13 +315,16 @@ class Hosted:
     def miniature(self) -> None:
         build = self.work / "miniature"
         self.command("miniature-build", [
-            "verilator", "--cc", "--exe", "--build", "-j", "1", "-Wall",
+            "verilator", "--cc", "--exe", "-Wall",
             "--top-module", "sampler_fixture", "-DOBSERVER_TARGET=sampler_fixture",
             "--Mdir", str(build), "-CFLAGS", "-std=c++17 -Wall -Wextra -Werror",
             str(self.work / "inputs/rvfi_nextpc/sampler_fixture.sv"),
             str(self.work / "inputs/rvfi_nextpc/rvfi_observer.sv"),
             str(self.work / "inputs/rvfi_nextpc/fixture.cpp"),
         ], timeout=300)
+        self.command("miniature-single-worker-make", [
+            "make", "-j1", "-f", "Vsampler_fixture.mk", "CXX=g++-13", "CC=gcc-13",
+        ], build, timeout=300)
         results: dict[str, object] = {}
         for scenario in ("good", "no_reset", "reset_again"):
             destination = self.output / f"miniature-{scenario}"
@@ -306,6 +348,65 @@ class Hosted:
                     raise RuntimeError("STOP: reset fixture did not preserve preceding observations")
                 results[scenario] = {"expected_negative": "PASS", "kind": status["kind"], "code": status["code"]}
         write_json(self.output / "miniature-qualification.json", results)
+
+    def loader(self) -> None:
+        binary = self.work / "loader-fixture"
+        self.command("strict-loader-build", [
+            "g++-13", "-std=c++17", "-Wall", "-Wextra", "-Werror",
+            str(self.work / "inputs/rvfi_nextpc/loader_fixture.cpp"), "-o", str(binary),
+        ], timeout=60)
+        results = {}
+        cases = {
+            "good": (bytes.fromhex("130000006f000000"), str(BOOT + 4), "20000", 0),
+            "empty": (b"", str(BOOT), "20000", 2),
+            "truncated": (b"\x6f\0\0", str(BOOT), "20000", 2),
+            "oversized": (b"\0" * 2050, str(BOOT), "20000", 2),
+            "wrong_terminal": (bytes.fromhex("13000000"), str(BOOT), "20000", 2),
+            "wrong_boundary": (bytes.fromhex("6f000000"), str(BOOT + 2), "20000", 2),
+            "negative": (bytes.fromhex("6f000000"), "-1", "20000", 2),
+            "overflow": (bytes.fromhex("6f000000"), "4294967296", "20000", 2),
+            "trailing_text": (bytes.fromhex("6f000000"), str(BOOT) + "x", "20000", 2),
+            "zero_budget": (bytes.fromhex("6f000000"), str(BOOT), "0", 2),
+            "over_budget": (bytes.fromhex("6f000000"), str(BOOT), "20001", 2),
+        }
+        for name, (data, terminal, budget, code) in cases.items():
+            path = self.work / f"loader-{name}.bin"
+            with path.open("xb") as stream:
+                stream.write(data)
+            status = self.command(f"strict-loader-{name}", [str(binary), str(path), terminal, budget],
+                                  timeout=5, check=False)
+            if status["kind"] != "exited" or status["code"] != code:
+                raise RuntimeError("STOP: actual shared loader contract failed")
+            if code == 2 and b"NEXTPC_LOADER_REJECT" not in next(
+                self.output.glob(f"{self.stage:02d}-*.stderr.log")
+            ).read_bytes():
+                raise RuntimeError("STOP: loader rejection lacks explicit diagnostic")
+            results[name] = {"kind": status["kind"], "code": status["code"], "contract": "PASS"}
+        write_json(self.output / "loader-qualification.json", results)
+
+    def preparation_binding(self) -> None:
+        previous = self.work / "qualified-preparation"
+        self.command("qualified-preparation-download", [
+            "gh", "run", "download", self.args.preparation_run, "--repo", self.auth["repository"],
+            "--name", f"rvfi-nextpc-run-{self.args.preparation_run}-attempt-1", "--dir", str(previous),
+        ], timeout=120)
+        from .archive import verify_archive
+
+        result = verify_archive(previous)
+        if result["result"] != "PREPARATION_PASS" or result["source_sha"] != self.args.source_sha:
+            raise RuntimeError("STOP: preparation artifact not final-source qualified")
+        names = ("tool-identities.json", "runtime-installed-tools.json", "build-installed-tools.json",
+                 "off/compiled-sources.json", "on/compiled-sources.json",
+                 "off/config.json", "on/config.json", "input-equivalence.json")
+        for name in names:
+            if (previous / name).read_bytes() != (self.output / name).read_bytes():
+                raise RuntimeError(f"STOP: qualified preparation identity changed: {name}")
+        write_json(self.output / "preparation-binding.json", {
+            "schema": 1, "source_sha": self.args.source_sha, "run_id": self.args.preparation_run,
+            "raw_manifest": identity(previous / "RAW_MANIFEST.json"),
+            "equal_identities": {name: identity(previous / name) for name in names},
+            "result": "PASS",
+        })
 
     def program(self) -> tuple[bytes, dict[str, object]]:
         self.command("compile-program-once", [
@@ -362,7 +463,10 @@ class Hosted:
             "label": label, "retry_allowed": False,
         })
         self.summary["real_compilations"].append(label)
-        self.command(f"{label}-compile-once", ["make", "-j1", "NUM_JOBS=1"], build, timeout=1500)
+        self.command(f"{label}-compile-once", [
+            "make", "-j1", "NUM_JOBS=1", "CXX=g++-13", "CC=gcc-13",
+        ], build,
+                     timeout=self.auth["max_build_seconds"])
         binary = build / "Vnextpc_top"
         if not binary.exists():
             binary = build / "obj_dir" / "Vnextpc_top"
@@ -390,6 +494,7 @@ class Hosted:
     def execute(self) -> None:
         self.guard()
         self.setup()
+        self.loader()
         self.miniature()
         builds = [self.configure(bp) for bp in (0, 1)]
         for bp, (build, edam) in enumerate(builds):
@@ -398,7 +503,11 @@ class Hosted:
         if self.args.mode == "prepare":
             self.summary.update(result="PREPARATION_PASS", scientific_result="NOT_RUN")
             return
+        self.preparation_binding()
         image, contract = self.program()
+        required_time = 2 * (self.auth["max_build_seconds"] + self.auth["max_run_seconds"]) + 60
+        if self.deadline - time.monotonic() < required_time:
+            raise RuntimeError("STOP: insufficient deadline budget for one bounded pair and closure")
         frozen = {
             "schema": 1, "source_sha": self.args.source_sha, "ibex_sha": self.auth["ibex"],
             "authorization": self.auth["identity"], "run_id": os.environ["GITHUB_RUN_ID"],
@@ -425,6 +534,8 @@ class Hosted:
             with (self.output / "pipeline-error.log").open("x", encoding="ascii", errors="backslashreplace") as stream:
                 traceback.print_exception(error, file=stream)
         self.summary["attempted_stages"] = self.stage
+        if error is not None:
+            self.summary.setdefault("scientific_result", "NOT_QUALIFIED")
         write_json(self.output / "summary.json", self.summary)
         write_json(self.output / "RAW_MANIFEST.json", {
             "schema": 1, "source_sha": self.args.source_sha, "run_id": os.environ.get("GITHUB_RUN_ID"),

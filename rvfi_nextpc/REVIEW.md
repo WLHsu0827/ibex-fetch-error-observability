@@ -30,7 +30,7 @@ Agent review boundary, not legal advice or a human signature:
   Failed preparation/measurement attempts will be archived honestly as
   STOP. Scientific FAIL will never be relabeled pair PASS.
 
-Final review: both preparation attempts and the original offline failures are
+Original-epoch review: both preparation attempts and the original offline failures are
 archived. Original preparation-1 retained files/manifest are unchanged and
 explicitly INCOMPLETE, with the missing hidden workflow source recorded in a
 separate collection receipt; no bytes were reconstructed. Preparation-2
@@ -39,9 +39,21 @@ contracts rejecting injected realistic synthetic tokens/private paths/keys,
 even when appended to scanner source; no file or directory is exempted.
 No model, wave, private ELF/log/receipt or secret is published.
 
-The final outcome is STOP at the strict transitive-dependency gate, with zero
+The original outcome is STOP at the strict transitive-dependency gate, with zero
 real core/program/HDL attempts and no scientific qualification. The README and
 machine evidence index preserve exact identities and limitations. No automatic
 merge, upstream submission, profile editing, auth-account switching, force
 push, DCO or human signature was performed or authorized. This is an agent
 publication review, not human attestation or coordinator acceptance.
+
+Recovery input review: the distinct user-authorized epoch retains those
+original bytes and exhausted receipt. Its new dependency lock is derived
+from the public retained package report and sanitized public PyPI metadata,
+including the separate complete jsonschema2md source-build closure. No
+package was installed or package source executed locally. Hosted artifact
+metadata is checked before installation; installed closure is independently
+parsed with packaging and pip check. License identities/public metadata
+provenance are recorded; full author/maintainer/environment fields are not.
+The source-input commit is unvalidated for HDL until the bounded hosted
+gates actually pass, with every failed dispatch retained and no automatic
+retry. All other publication boundaries remain unchanged.

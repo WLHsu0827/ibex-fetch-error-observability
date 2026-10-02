@@ -7,8 +7,10 @@ independent human replication or lowRISC endorsement.
 
 The hosted pipeline is designed to fetch stock Ibex and its vendored
 dependencies at 4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8 without core
-modification. Actual bounded preparation stopped before that RTL retrieval;
-there is no hosted core result. Public source interfaces/build definitions
+modification. The original bounded preparation stopped before that RTL retrieval;
+its archive is retained unchanged. A distinct authorized recovery remains
+unvalidated until hosted qualification; there is no core result at this input
+commit. Public source interfaces/build definitions
 were inspected read-only. Upstream authorship/licenses/notices remain
 applicable; dependency provenance is retained for stages actually reached.
 
@@ -17,3 +19,11 @@ as engineering prior art for typed failures, reset arming, marker/hang
 rejection and archive closure. Its Apache-2.0 public author is Wei-Lun Hsu.
 No unmerged mutable branch, private artifacts or inherited measurement
 identities/counts are a dependency.
+
+Tooling licenses and exact public artifact hashes are recorded in
+DEPENDENCY_LOCK.json and hosted downloaded-tool-metadata.json (when reached).
+The separate source-build tooling is not vendored or redistributed as model
+binaries. Poetry and its dependencies retain their own licenses; runtime
+FuseSoC/EDAlize retain their public BSD notices. Pinned jsonschema2md is
+Apache-2.0; okonomiyaki and simplesat retain public BSD licenses. Wheel and
+sdist license-file hashes/public provenance are not human legal attestation.

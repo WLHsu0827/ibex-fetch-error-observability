@@ -3,6 +3,7 @@
 #include "Vnextpc_top.h"
 #include "verilated.h"
 #include "sample.hpp"
+#include "image.hpp"
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -13,18 +14,16 @@
 int main(int argc, char **argv) {
   try {
     if (argc != 6) throw std::runtime_error("arguments: image cpp-log terminal budget +sv_log=...");
+    const auto terminal = decimal(argv[3]);
+    const auto budget = decimal(argv[4]);
+    const auto bytes = load_image(argv[1], terminal, budget);
+    if (std::string(argv[5]).rfind("+sv_log=", 0) != 0 || std::string(argv[5]).size() == 8)
+      throw std::runtime_error("missing exact SV stream argument");
+    std::ofstream log(argv[2], std::ios::binary);
+    if (!log) throw std::runtime_error("cannot open C++ stream");
     VerilatedContext context;
     context.commandArgs(argc, argv);
     Vnextpc_top model{&context};
-    std::ifstream image(argv[1], std::ios::binary);
-    if (!image) throw std::runtime_error("cannot open fresh program");
-    std::vector<unsigned char> bytes{std::istreambuf_iterator<char>(image), {}};
-    if (bytes.empty() || bytes.size() > 2048) throw std::runtime_error("invalid fresh image size");
-    std::ofstream log(argv[2], std::ios::binary);
-    if (!log) throw std::runtime_error("cannot open C++ stream");
-    const auto terminal = std::stoul(argv[3], nullptr, 0);
-    const auto budget = std::stoul(argv[4], nullptr, 0);
-    if (budget > 20000 || budget == 0) throw std::runtime_error("invalid cycle limit");
     auto rom = [&bytes](uint32_t address) {
       uint32_t result = 0;
       if (address < 0x80000000 || address >= 0x80001000 || (address & 3))
@@ -48,7 +47,7 @@ int main(int argc, char **argv) {
     uint32_t response = 0;
     unsigned terminals = 0;
     for (unsigned cycle = 0; cycle < budget; ++cycle) {
-      model.rst_ni = cycle < 2 || cycle >= 7;
+      model.rst_ni = cycle >= 5;
       model.instr_rvalid_i = model.rst_ni && pending;
       model.instr_rdata_i = response;
       model.eval();

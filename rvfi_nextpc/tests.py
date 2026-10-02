@@ -14,7 +14,8 @@ import unittest
 
 from .check import parse, qualify
 from .archive import privacy_review, verify_archive
-from .isa import BOOT, FIELDS, decode, execute, freeze, sext
+from .dependencies import TARGET, canonical, compatible_wheel, graph, marker, satisfies, validate
+from .isa import BOOT, FIELDS, FIRST_ORDER, decode, execute, freeze, sext
 from .process import expected_fatal, identity, require_success, run, write_json
 
 
@@ -23,7 +24,7 @@ def tiny_contract() -> tuple[bytes, dict[str, object]]:
     path, regs = [], [0] * 32
     for index in range(3):
         record, _ = execute(BOOT + 4 * index, 0x00140413, regs)
-        record.update(order=index, region="program")
+        record.update(order=index + FIRST_ORDER, region="program")
         path.append(record)
     return image, {"path": path, "coverage": {}}
 
@@ -67,6 +68,54 @@ class DecoderContracts(unittest.TestCase):
         with self.assertRaises(ValueError):
             freeze(b"\x13\0\0\0" * 3 + b"\x6f\0\0\0", BOOT, BOOT + 12)
 
+    def test_x0_writeback_is_zero(self) -> None:
+        result, _ = execute(BOOT, 0x0000006F, [0] * 32)
+        self.assertEqual((result["rd"], result["value"], result["next_pc"]), (0, 0, BOOT))
+
+
+class DependencyContracts(unittest.TestCase):
+    def test_canonical_names_and_versions(self) -> None:
+        self.assertEqual(canonical("Typing__Extensions.foo"), "typing-extensions-foo")
+        self.assertTrue(satisfies("3.12.3", ">=3.9,<4"))
+        self.assertFalse(satisfies("3.12.3", "<3.10"))
+        self.assertFalse(satisfies("3.12.3", "!=3.12.*"))
+        with self.assertRaises(ValueError):
+            satisfies("3.12.3", "unparsed")
+
+    def test_target_markers_do_not_use_local_windows(self) -> None:
+        self.assertTrue(marker('python_version < "3.13" and sys_platform == "linux"'))
+        self.assertFalse(marker('python_version < "3.9"'))
+        self.assertTrue(marker('extra == "plugin"', "plugin"))
+        self.assertFalse(marker('extra == "test"'))
+        with self.assertRaises(ValueError):
+            marker("__import__('os').getcwd()")
+
+    def test_platform_and_python_wheels(self) -> None:
+        self.assertTrue(compatible_wheel("package-1.0-cp312-cp312-manylinux_2_17_x86_64.whl"))
+        self.assertFalse(compatible_wheel("package-1.0-cp313-cp313-manylinux_2_39_x86_64.whl"))
+        self.assertFalse(compatible_wheel("package-1.0-cp312-cp312-win_amd64.whl"))
+        self.assertFalse(compatible_wheel("package-1.0-cp312-cp312-manylinux_2_40_x86_64.whl"))
+
+    def test_complete_lock_and_missing_dependency(self) -> None:
+        import json
+
+        lock = json.loads(Path(__file__).with_name("DEPENDENCY_LOCK.json").read_text())
+        validate(lock)
+        altered = copy.deepcopy(lock)
+        del altered["groups"]["runtime"]["packages"]["typing-extensions"]
+        with self.assertRaises(ValueError):
+            validate(altered)
+        altered = copy.deepcopy(lock)
+        altered["groups"]["runtime"]["packages"]["babel"]["version"] = "1.0"
+        with self.assertRaises(ValueError):
+            validate(altered)
+        altered = copy.deepcopy(lock)
+        altered["groups"]["runtime"]["packages"]["Pip"] = altered["groups"]["runtime"]["packages"].pop("pip")
+        with self.assertRaises(ValueError):
+            validate(altered)
+        self.assertEqual(lock["target"], TARGET)
+        graph(lock["groups"]["build"]["packages"], lock["source_build"]["requires"])
+
 
 class StreamContracts(unittest.TestCase):
     def setUp(self) -> None:
@@ -108,7 +157,8 @@ class StreamContracts(unittest.TestCase):
             self.text + "unrecognized\n",
             self.text.replace("Q\t2\t1\t0", "Q\t2\t1\t1"),
             self.text + "Q\t5\t0\t0\t0\t0\t0\t0\t0\t0\n",
-            self.text.replace("R\t2\t0\t", "R\t2\t1\t"),
+            self.text.replace("R\t2\t1\t", "R\t2\t2\t"),
+            self.text.rstrip("\n"),
         ]
         for variant in variants:
             self.cpp.write_text(variant, encoding="ascii")

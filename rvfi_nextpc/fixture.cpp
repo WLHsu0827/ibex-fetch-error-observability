@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
   model.irq_fast_i = model.irq_nm_i = model.debug_req_i = 0;
   model.eval();
   for (unsigned cycle = 0; cycle < 20; ++cycle) {
-    model.rst_ni = scenario == "no_reset" || cycle < 2 || cycle >= 7;
+    model.rst_ni = scenario == "no_reset" || cycle >= 5;
     if (scenario == "reset_again" && cycle == 14) model.rst_ni = 0;
     model.eval();
     model.clk_i = 1;

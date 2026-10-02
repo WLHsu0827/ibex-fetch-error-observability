@@ -21,13 +21,13 @@ on:
         type: string
         required: true
       authorization:
-        description: Exact AUTHORIZATION.json identity; no reruns or automatic retries
+        description: Exact recovery authorization identity; original epoch exhausted
         type: string
         required: true
       preparation_attempt:
-        description: 1 or 2 for preparation, 0 for pair
+        description: Recovery preparation 1 to 4 total, 0 for the sole pair
         type: choice
-        options: ["0", "1", "2"]
+        options: ["0", "1", "2", "3", "4"]
         default: "0"
         required: true
       preparation_run:
@@ -55,6 +55,7 @@ jobs:
           persist-credentials: false
       - run: |
           python3 -B -m rvfi_nextpc.seal
+          python3 -B -m rvfi_nextpc.dependencies
           python3 -B -m unittest rvfi_nextpc.tests -v
           python3 -B -m rvfi_nextpc.archive
 
