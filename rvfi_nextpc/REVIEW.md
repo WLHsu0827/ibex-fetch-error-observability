@@ -103,3 +103,15 @@ alias identity was not independently recorded. Separate complete original
 pipeline console collections preserve terminal errors without publishing
 other job/environment dumps. Program binaries are allowed newly authored
 inputs; generated tool/model binaries, waves and build trees are excluded.
+
+New memory-admission input review: the separately relayed exact user selection
+authorizes a new bounded epoch, not requalification of rejected old streams.
+New v2 admission retains/descriptively checks every read mask, independently
+observes real bus/alert controls and preserves strict non-memory ISA and next-PC
+requirements. No old raw result is recomputed with the new parser. The new
+driver gate binds actual explicit CXX/LINK and a bounded helper/subtool/include
+scope, not universal dependency closure. Public Verilator/riscv-formal source
+was read as engineering/contract rationale; their code is not copied into DUT
+or changed. Original installed make/helper text may be retained under their
+public license/attribution; no executable/model binary or full build tree.
+The new inputs remain UNVALIDATED until their own actual hosted gates pass.

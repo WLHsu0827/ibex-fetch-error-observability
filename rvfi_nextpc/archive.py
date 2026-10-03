@@ -103,6 +103,7 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
         if summary["authorization"] in (
             "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
             "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+            "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
         ):
             loader = json.loads((directory / "loader-qualification.json").read_text())
             if set(loader) != {"good", "empty", "truncated", "oversized", "wrong_terminal",
@@ -115,13 +116,47 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
                 tools = json.loads((directory / f"{group}-installed-tools.json").read_text())
                 if not tools["closure"].startswith("PASS"):
                     raise ValueError("preparation missing strict installed dependency closure")
-        if summary["authorization"] == "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1":
+        if summary["authorization"] in (
+            "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+            "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+        ):
             from .entrypoint import compare
 
             compare(directory, directory)
             for label in ("off", "on"):
                 if json.loads((directory / label / "build-command-contract.json").read_text())["result"] != "PASS":
                     raise ValueError("preparation missing actual generated build command check")
+        if summary["authorization"] == "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1":
+            from .drivers import validate_probe, validate_recipes
+            from .tests import tiny_contract
+
+            scope = json.loads((directory / "driver-scope.json").read_text())
+            recursive = json.loads((directory / "recursive-drivers.json").read_text())
+            if recursive["result"] != "PASS" or recursive["installed_make"] != identity(
+                directory / "installed-verilated.mk"
+            ):
+                raise ValueError("missing qualified actual LINK/driver identities")
+            validate_probe("\n".join(key + "=" + value for key, value in recursive["expanded"].items()))
+            validate_recipes((directory / "miniature-generated.mk").read_text(),
+                             (directory / "installed-verilated.mk").read_text())
+            if not scope["files"] or scope["make"] != recursive["invocation"]:
+                raise ValueError("missing installed helper/include scope")
+            required = {"good", "extra_read", "no_reset", "reset_again", "pre_request", "post_request",
+                        "grant", "response", "data_error", "write_control", "minor_alert", "internal_alert",
+                        "bus_alert", "irq", "debug_req", "debug_mode", "memory_opcode", "write_mask",
+                        "trap", "halt", "intr", "privilege", "rf_suppress", "hang"}
+            if set(miniature) != required:
+                raise ValueError("missing actual independent bus/admission miniature cases")
+            image, contract = tiny_contract()
+            for scenario in ("good", "extra_read"):
+                result = qualify(directory / f"miniature-{scenario}/cpp.tsv",
+                                 directory / f"miniature-{scenario}/sv.tsv", image, contract)
+                if miniature[scenario] != result:
+                    raise ValueError("miniature v2 raw/qualification mismatch")
+            if any(miniature[scenario]["expected_negative"] != "PASS" for scenario in required - {
+                "good", "extra_read"
+            }):
+                raise ValueError("actual admission negative not qualified")
     elif summary["result"] != "STOP" or not summary.get("error"):
         raise ValueError("unrecognized/incomplete terminal closure")
     return {"archive_integrity": "INCOMPLETE" if missing else "PASS", "missing_files": missing,

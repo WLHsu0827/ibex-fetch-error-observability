@@ -1,4 +1,78 @@
-# RVFI next-PC: OFF-QUALIFICATION STOP / NOT_QUALIFIED
+# RVFI next-PC: new memory-admission inputs UNVALIDATED
+
+**New user-authorized memory-admission epoch: UNVALIDATED inputs, no new hosted
+dispatch or CPU build yet.** The accepted stable-tools **OFF-QUALIFICATION
+STOP / NOT_QUALIFIED** below remains immutable and is not requalified.
+[`MEMORY_ADMISSION_AUTHORIZATION.json`](MEMORY_ADMISSION_AUTHORIZATION.json)
+quotes the exact new user selection relayed by the coordinator. The continuation
+turn began 2026-10-03 16:57:35.079 UTC+8; that is **not** the exact approval
+timestamp. New bounds: four total preparations, one conditional pair; no old
+unused slots. PR3 remains draft and every old raw/status/auth/manifest/console
+gap is preserved.
+
+### Preregistered admission `nonmemory-nextpc-v2`
+
+This is strict next-PC observation on a fixed independently decoded **non-memory
+ISA path**, with independently observed no-data-request/transaction controls.
+It is **not full memory-RVFI verification**. All four-bit read masks are retained,
+domain-checked, compared between readers and reported descriptively; there is
+no observed-value whitelist, erase, normalization, or memory metadata PASS.
+Write masks, unsupported/load/store opcodes, privilege, trap/halt/intr,
+IRQ/debug and write/control/alert predicates remain strict. The new parser
+requires an explicit v2 header and cannot admit/requalify the old rejected TSVs.
+
+Pinned stock
+[`ibex_core.sv:2092-2093`](https://github.com/lowRISC/ibex/blob/4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8/rtl/ibex_core.sv#L2092-L2093)
+gates masks by `data_we_o`, not `data_req_o`, and
+[`2259-2267`](https://github.com/lowRISC/ibex/blob/4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8/rtl/ibex_core.sv#L2259-L2267)
+maps type00 to mask15. The referenced
+[`riscv-formal check:160-175`](https://github.com/SymbioticEDA/riscv-formal/blob/4f29e83a8387a81467716548f165fd97045af617/checks/rvfi_insn_check.sv#L160-L175)
+requires spec-needed read bits, not that extra read bits be zero. This justifies
+a **new** admission scope, not a claim that the old stricter gate passed or that
+extra read-mask bits prove architectural access.
+
+`S` identifies schema/reader/admission, `P` captures settled pre-transfer
+controls, `Q` post-rising-eval C++ versus falling-edge SV controls/retirements.
+C++ reads exported real ports before rising and after eval; the separately
+stock-top-bound SV observer reads controls at rising active/pre-NBA and falling
+edges plus initial async reset. Neither reconstructs the other's stream.
+Requests even without grant, grant/response without a request, writes,
+data-error/alerts and IRQ/debug are forbidden at both observed phases. Idle
+byte-enable/address/write-data information is retained/domain-checked without
+equating it to a transaction. Initial reset-before-clock and complete pre/post
+phase sequencing are mandatory; SV's extra async reset sample is explicit.
+Dynamic retirements join by order/PC/instruction and all fields, not cycles.
+This covers the sampled synchronous phases, not every simulator transient,
+and both readers still share one simulator/DUT.
+
+Hosted actual-module negatives include independent pre-only and post-generated
+requests, spurious grant/response, writes/errors/alerts/IRQ/debug, non-memory
+encoding rejection despite zero masks, write masks and retirement flags,
+reset failures and actual marker+hang timeout. Legal extra masks1/5/15 must
+remain raw and descriptively reported. Offline contracts additionally check
+all16 read values, malformed/missing/truncated phases/domains, disagreement and
+unchanged strict ISA/path/writeback/next-PC requirements.
+
+### Actual recursive driver qualification
+
+Explicit supported make assignments bind `CXX` **and `LINK`** to
+`/usr/bin/g++-13`, `CC` to gcc-13, AR to ar, Python/perl helpers and empty
+OBJCACHE, with recursive `-j1`/NUM_JOBS1. New preparation exercises the actual
+installed Verilator5.020 `verilated.mk` and generated miniature recipe,
+retaining original recipe bytes and make-expanded variables. Wrong aliases,
+unbound LINK, missing/truncated receipts and multiworker flags fail closed.
+Resolved driver/helper bytes/versions, GCC-reported compiler/assembler/linker
+subtools and installed Verilator include code/recipes bind preparation,
+pair and freeze exactly. Actual model compile/link commands and generated
+model recipe are retained after the sole build. No installed/generated stock
+recipe or launcher is edited. This is bounded driver/input provenance,
+**not universal OS, system-header, shared-library or toolchain closure**.
+The supported isolated FuseSoC module and original unused launcher checks
+remain mandatory. Each run-local generated recipe is independently validated
+and retained; its user-source paths legitimately differ between runs, while
+active drivers and installed recipes bind exactly without generic normalization.
+
+## Accepted closed stable-tools OFF-QUALIFICATION STOP
 
 **OFF-QUALIFICATION STOP / NOT_QUALIFIED: one OFF CPU build/run; ON NOT_RUN.**
 The new stable-tools preparation and actual entrypoint binding passed. One

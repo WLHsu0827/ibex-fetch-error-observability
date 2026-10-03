@@ -16,7 +16,9 @@ import sys
 import time
 import traceback
 
-from .check import qualify
+from .check import parse, qualify
+from .admission import NAME, SCHEMA
+from .drivers import DRIVERS, MAKE, PROBE, validate_commands, validate_probe, validate_recipes
 from .isa import BOOT, MAX_CYCLES, freeze
 from .entrypoint import FLAGS, compare as compare_entrypoints
 from .inputs import boundaries, build_options, validate_elf
@@ -32,7 +34,7 @@ class Hosted:
         self.args = args
         self.output = Path(args.output).resolve()
         self.output.mkdir(parents=True, exist_ok=False)
-        self.auth = json.loads((ROOT / "rvfi_nextpc" / "STABLE_TOOLS_AUTHORIZATION.json").read_text())
+        self.auth = json.loads((ROOT / "rvfi_nextpc" / "MEMORY_ADMISSION_AUTHORIZATION.json").read_text())
         self.work = Path("/tmp") / f"rvfi-nextpc-{os.environ.get('GITHUB_RUN_ID', 'human')}"
         self.stage = 0
         self.deadline = time.monotonic() + 57 * 60
@@ -42,6 +44,7 @@ class Hosted:
             "run_id": os.environ.get("GITHUB_RUN_ID"),
             "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
             "preparation_run": args.preparation_run, "real_compilations": [],
+            "admission": NAME, "stream_schema": SCHEMA,
         }
         write_json(self.output / "dispatch-input.json", {
             "schema": 1, "mode": args.mode, "source_sha": args.source_sha,
@@ -171,7 +174,8 @@ class Hosted:
             raise RuntimeError("STOP: installed package version mismatch")
         if platform.python_version() != "3.12.3" or platform.machine() != "x86_64":
             raise RuntimeError("STOP: locked CPython 3.12.3 / Linux x86_64 required")
-        os.environ.update(CXX="g++-13", CC="gcc-13", PIP_NO_INPUT="1",
+        os.environ.update(CXX=DRIVERS["CXX"], CC=DRIVERS["CC"], LINK=DRIVERS["LINK"],
+                          PIP_NO_INPUT="1",
                           PIP_DISABLE_PIP_VERSION_CHECK="1", PIP_CONFIG_FILE="/dev/null")
         artifacts = self.work / "artifacts"
         self.command("locked-artifact-preflight", [
@@ -255,6 +259,7 @@ class Hosted:
         }
         self.tool_identities["active-runtime-python"] = identity(self.python.resolve())
         write_json(self.output / "tool-identities.json", self.tool_identities)
+        self.driver_scope()
         self.command("git-init", ["git", "init", "-q", "upstream"])
         upstream = self.work / "upstream"
         self.command("git-origin", ["git", "remote", "add", "origin", "https://github.com/lowRISC/ibex.git"], upstream)
@@ -295,10 +300,15 @@ class Hosted:
         shutil.copyfile(build / "Makefile", destination / "Makefile")
         shutil.copyfile(build / "config.mk", destination / "config.mk")
         vc = next(build.glob("*.vc")).read_text()
+        outer = (build / "Makefile").read_text()
+        if "$(MAKE) $(MAKE_OPTIONS) -f $<" not in outer or "MAKE_OPTIONS      := \n" not in (
+            build / "config.mk"
+        ).read_text():
+            raise RuntimeError("STOP: generated recursive make/worker recipe changed")
         write_json(destination / "build-command-contract.json", {
             "result": "PASS", "verilator_argv": build_options((build / "config.mk").read_text(), vc),
             "active_fusesoc_invocation": self.fusesoc,
-            "make": ["make", "-j1", "NUM_JOBS=1", "CXX=g++-13", "CC=gcc-13"],
+            "make": MAKE, "driver_scope": identity(self.output / "driver-scope.json"),
         })
         config = {
             "BranchPredictor": bp, "WritebackStage": 0, "BranchTargetALU": 0,
@@ -336,32 +346,131 @@ class Hosted:
             str(self.work / "inputs/rvfi_nextpc/rvfi_observer.sv"),
             str(self.work / "inputs/rvfi_nextpc/fixture.cpp"),
         ], timeout=300)
-        self.command("miniature-single-worker-make", [
-            "make", "-j1", "-f", "Vsampler_fixture.mk", "CXX=g++-13", "CC=gcc-13",
-        ], build, timeout=300)
+        generated = build / "Vsampler_fixture.mk"
+        validate_recipes(generated.read_text(), self.installed_make.read_text())
+        shutil.copyfile(generated, self.output / "miniature-generated.mk")
+        self.command("actual-recursive-driver-probe", [
+            *MAKE, "--no-print-directory", "-f",
+            str(self.work / "inputs/rvfi_nextpc/driver_probe.mk"), "nextpc-outer-driver-probe",
+        ], build)
+        expanded = validate_probe(self.last_stdout().decode())
+        write_json(self.output / "recursive-drivers.json", {
+            "result": "PASS", "expanded": expanded,
+            "installed_make": identity(self.installed_make),
+            "generated_make": identity(generated),
+            "invocation": MAKE,
+        })
+        self.command("miniature-single-worker-make", [*MAKE, "-f", generated.name],
+                     build, timeout=300)
+        write_json(self.output / "miniature-actual-commands.json",
+                   validate_commands(self.last_stdout().decode(), "Vsampler_fixture"))
         results: dict[str, object] = {}
-        for scenario in ("good", "no_reset", "reset_again"):
+        controls = ("pre_request", "post_request", "grant", "response", "data_error",
+                    "write_control", "minor_alert", "internal_alert", "bus_alert",
+                    "irq", "debug_req", "debug_mode")
+        retired = ("memory_opcode", "write_mask", "trap", "halt", "intr", "privilege", "rf_suppress")
+        for scenario in ("good", "extra_read", "no_reset", "reset_again", *controls, *retired, "hang"):
             destination = self.output / f"miniature-{scenario}"
             destination.mkdir()
             status = self.command(f"miniature-{scenario}", [
                 str(build / "Vsampler_fixture"), scenario, str(destination / "cpp.tsv"),
                 f"+sv_log={destination / 'sv.tsv'}",
-            ], timeout=10, check=False)
-            if scenario == "good":
+            ], timeout=0.5 if scenario == "hang" else 10, check=False)
+            prefix = f"{self.stage:02d}-miniature-{scenario}"
+            text = (self.output / f"{prefix}.stdout.log").read_bytes() + (
+                self.output / f"{prefix}.stderr.log").read_bytes()
+            if scenario in ("good", "extra_read"):
                 require_success(status)
                 image, contract = tiny_contract()
                 results[scenario] = qualify(destination / "cpp.tsv", destination / "sv.tsv", image, contract)
+                if scenario == "extra_read" and results[scenario]["read_mask_histogram"] != {
+                    "1": 1, "5": 1, "15": 1
+                }:
+                    raise RuntimeError("STOP: actual extra read information not retained")
+            elif scenario == "hang":
+                if status["kind"] != "timed_out" or b"NEXTPC_CONTROL" not in text or (
+                    expected_fatal(status, text, b"NEXTPC_CONTROL")
+                ):
+                    raise RuntimeError("STOP: actual marker+hang misclassified")
+                results[scenario] = {"expected_negative": "PASS", "kind": status["kind"], "code": status["code"]}
+            elif scenario in retired:
+                require_success(status)
+                image, contract = tiny_contract()
+                try:
+                    qualify(destination / "cpp.tsv", destination / "sv.tsv", image, contract)
+                except ValueError as error:
+                    results[scenario] = {"expected_negative": "PASS", "error": str(error)}
+                else:
+                    raise RuntimeError(f"STOP: actual {scenario} unexpectedly admitted")
             else:
-                prefix = f"{self.stage:02d}-miniature-{scenario}"
-                text = (self.output / f"{prefix}.stdout.log").read_bytes() + (
-                    self.output / f"{prefix}.stderr.log").read_bytes()
-                marker = b"NEXTPC_MISSING_RESET" if scenario == "no_reset" else b"NEXTPC_RESET_AFTER_START"
+                marker = (b"NEXTPC_MISSING_RESET" if scenario == "no_reset" else
+                          b"NEXTPC_RESET_AFTER_START" if scenario == "reset_again" else b"NEXTPC_CONTROL")
                 if not expected_fatal(status, text, marker):
                     raise RuntimeError(f"STOP: miniature {scenario} was not a prompt SIGABRT + marker")
                 if scenario == "reset_again" and b"R\t" not in (destination / "sv.tsv").read_bytes():
                     raise RuntimeError("STOP: reset fixture did not preserve preceding observations")
                 results[scenario] = {"expected_negative": "PASS", "kind": status["kind"], "code": status["code"]}
+                if scenario in controls:
+                    for reader in ("cpp", "sv"):
+                        try:
+                            parse(destination / f"{reader}.tsv")
+                        except ValueError as error:
+                            if "observed bus" not in str(error):
+                                raise RuntimeError("STOP: negative lacks actual independent control evidence") from error
+                        else:
+                            raise RuntimeError("STOP: independent control negative admitted")
         write_json(self.output / "miniature-qualification.json", results)
+
+    def driver_scope(self) -> None:
+        self.command("installed-verilator-root", ["verilator", "--getenv", "VERILATOR_ROOT"])
+        root = Path(self.last_stdout().decode().strip())
+        if not root.is_absolute():
+            raise RuntimeError("STOP: missing actual installed Verilator root")
+        self.installed_make = root / "include" / "verilated.mk"
+        self.driver_files = {}
+
+        def capture(path: Path) -> None:
+            resolved = path.resolve(strict=True)
+            self.driver_files[str(resolved)] = identity(resolved)
+
+        for path in sorted((root / "include").rglob("*")):
+            if path.is_file() and path.suffix in (".h", ".cpp", ".mk"):
+                capture(path)
+        for value in DRIVERS.values():
+            if value:
+                capture(Path(value))
+        for name in ("gcc-13", "ar", "as", "ld", "perl", "python3"):
+            self.command("active-driver-version-" + name, [name, "--version"])
+        for name in ("verilator", "verilator_bin", "make", "as", "ld", "ar", "sh", "rm",
+                     "cat", "xargs", "uname"):
+            located = shutil.which(name)
+            if not located:
+                raise RuntimeError(f"STOP: actual helper missing: {name}")
+            capture(Path(located))
+        capture(root / "bin" / "verilator_includer")
+        shutil.copyfile(self.installed_make, self.output / "installed-verilated.mk")
+        shutil.copyfile(root / "bin" / "verilator_includer", self.output / "installed-verilator-includer.py")
+        for compiler, programs in (
+            ("/usr/bin/g++-13", ("cc1plus", "collect2", "as", "ld", "lto-wrapper")),
+            ("/usr/bin/riscv64-unknown-elf-gcc", ("cc1", "collect2", "as", "ld", "lto-wrapper")),
+        ):
+            for program in programs:
+                self.command("resolved-driver-" + Path(compiler).name + "-" + program,
+                             [compiler, "-print-prog-name=" + program])
+                name = self.last_stdout().decode().strip()
+                located = name if Path(name).is_absolute() else shutil.which(name)
+                if not located:
+                    raise RuntimeError("STOP: unresolved compiler subtool")
+                capture(Path(located))
+            self.command("driver-target-" + Path(compiler).name, [compiler, "-dumpmachine"])
+        write_json(self.output / "driver-scope.json", {
+            "schema": 1, "make": MAKE, "files": self.driver_files,
+            "scope": "Exact resolved compiler/LINK/archiver/helpers, GCC-reported assembler/linker/compiler subtools, installed Verilator include code/recipes. Bounded snapshot, not universal OS/shared-library/system-header/toolchain closure.",
+        })
+
+    def verify_drivers(self) -> None:
+        if any(identity(Path(path)) != expected for path, expected in self.driver_files.items()):
+            raise RuntimeError("STOP: frozen actual compiler/link/helper/include identity changed")
 
     def loader(self) -> None:
         binary = self.work / "loader-fixture"
@@ -411,16 +520,29 @@ class Hosted:
             raise RuntimeError("STOP: preparation artifact not final-source qualified")
         names = ("tool-identities.json", "runtime-installed-tools.json", "build-installed-tools.json",
                  "off/compiled-sources.json", "on/compiled-sources.json",
-                 "off/config.json", "on/config.json", "input-equivalence.json")
+                 "off/config.json", "on/config.json", "input-equivalence.json", "driver-scope.json",
+                 "installed-verilated.mk", "installed-verilator-includer.py", "miniature-qualification.json")
         for name in names:
             if (previous / name).read_bytes() != (self.output / name).read_bytes():
                 raise RuntimeError(f"STOP: qualified preparation identity changed: {name}")
         active = compare_entrypoints(previous, self.output)
+        prior_drivers = json.loads((previous / "recursive-drivers.json").read_text())
+        current_drivers = json.loads((self.output / "recursive-drivers.json").read_text())
+        for key in ("result", "expanded", "installed_make", "invocation"):
+            if prior_drivers[key] != current_drivers[key]:
+                raise RuntimeError("STOP: actual qualified recursive driver expansion changed")
         write_json(self.output / "preparation-binding.json", {
             "schema": 1, "source_sha": self.args.source_sha, "run_id": self.args.preparation_run,
             "raw_manifest": identity(previous / "RAW_MANIFEST.json"),
             "equal_identities": {name: identity(previous / name) for name in names},
             "equal_active_entrypoint": active,
+            "equal_recursive_drivers": {key: current_drivers[key] for key in
+                                        ("expanded", "installed_make", "invocation")},
+            "generated_recipe_bytes": {
+                "preparation": identity(previous / "miniature-generated.mk"),
+                "pair": identity(self.output / "miniature-generated.mk"),
+                "boundary": "Exact raw recipes retained and validated independently; generated user-source paths are run-local. Active resolved drivers and installed recipes/code bind exactly, no generic byte normalization.",
+            },
             "unused_launcher_diagnostics": {
                 "preparation": identity(previous / "fusesoc-launcher.txt"),
                 "pair": identity(self.output / "fusesoc-launcher.txt"),
@@ -473,6 +595,7 @@ class Hosted:
     def measure(self, bp: int, build: Path, image: bytes, contract: dict[str, object]) -> dict[str, object]:
         label = "off" if bp == 0 else "on"
         verify()
+        self.verify_drivers()
         current = {name: identity(self.python.resolve() if name == "active-runtime-python" else
                                  Path(shutil.which(name)).resolve()) for name in self.tool_identities}
         if self.tool_identities != current:
@@ -485,15 +608,31 @@ class Hosted:
         for item, expected in json.loads((self.output / label / "compiled-sources.json").read_text()).items():
             if identity(build / item) != expected:
                 raise RuntimeError("STOP: frozen exported RTL/harness source changed")
+        for name in ("Makefile", "config.mk", *[path.name for path in build.glob("*.vc")]):
+            if identity(build / name) != identity(self.output / label / name):
+                raise RuntimeError("STOP: frozen actual make/config/sampler invocation input changed")
+        if identity(next(build.glob("*.eda.yml"))) != identity(self.output / label / "effective.eda.yml"):
+            raise RuntimeError("STOP: frozen actual exported configuration changed")
         write_json(self.output / f"{label}.compile-started.json", {
             "source_sha": self.args.source_sha, "freeze": identity(self.output / "freeze.json"),
             "label": label, "retry_allowed": False,
         })
         self.summary["real_compilations"].append(label)
-        self.command(f"{label}-compile-once", [
-            "make", "-j1", "NUM_JOBS=1", "CXX=g++-13", "CC=gcc-13",
-        ], build,
+        self.command(f"{label}-compile-once", MAKE, build,
                      timeout=self.auth["max_build_seconds"])
+        actual_commands = validate_commands(self.last_stdout().decode(), "Vnextpc_top")
+        generated = build / "Vnextpc_top.mk"
+        validate_recipes(generated.read_text(), self.installed_make.read_text(),
+                         (build / "Makefile").read_text())
+        shutil.copyfile(generated, self.output / label / "generated-model.mk")
+        self.command(f"{label}-actual-driver-probe", [
+            *MAKE, "-f", generated.name, "--eval", PROBE, "nextpc-driver-probe",
+        ], build)
+        write_json(self.output / label / "actual-drivers.json", {
+            "result": "PASS", "expanded": validate_probe(self.last_stdout().decode()),
+            "generated_make": identity(generated), "driver_scope": identity(self.output / "driver-scope.json"),
+            "actual_commands": actual_commands,
+        })
         binary = build / "Vnextpc_top"
         if not binary.exists():
             binary = build / "obj_dir" / "Vnextpc_top"
@@ -516,6 +655,7 @@ class Hosted:
         write_json(destination / "qualification.json", result)
         self.summary[label] = result
         verify()
+        self.verify_drivers()
         return result
 
     def capture_entrypoint(self, name: str = "entrypoint.json") -> None:
@@ -544,7 +684,7 @@ class Hosted:
         if self.deadline - time.monotonic() < required_time:
             raise RuntimeError("STOP: insufficient deadline budget for one bounded pair and closure")
         frozen = {
-            "schema": 1, "source_sha": self.args.source_sha, "ibex_sha": self.auth["ibex"],
+            "schema": 2, "source_sha": self.args.source_sha, "admission": NAME, "stream_schema": SCHEMA, "ibex_sha": self.auth["ibex"],
             "authorization": self.auth["identity"], "run_id": os.environ["GITHUB_RUN_ID"],
             "source_manifest": verify(), "program_elf": identity(self.output / "fresh.elf"),
             "program_bytes": identity(self.output / "fresh.bin"),

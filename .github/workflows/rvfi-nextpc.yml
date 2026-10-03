@@ -21,11 +21,11 @@ on:
         type: string
         required: true
       authorization:
-        description: Exact stable-tools authorization; both older epochs closed
+        description: Exact memory-admission authorization; all three older epochs closed
         type: string
         required: true
       preparation_attempt:
-        description: New stable-tools preparation 1 to 4 total, 0 for the sole pair
+        description: New memory-admission preparation 1 to 4 total, 0 for the sole pair
         type: choice
         options: ["0", "1", "2", "3", "4"]
         default: "0"

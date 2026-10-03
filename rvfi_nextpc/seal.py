@@ -19,7 +19,7 @@ MANIFEST = ROOT / "rvfi_nextpc" / "SOURCE_MANIFEST.json"
 def inputs() -> dict[str, object]:
     paths = sorted(path for path in (ROOT / "rvfi_nextpc").iterdir()
                    if path.is_file() and path.suffix in
-                   (".py", ".sv", ".cpp", ".hpp", ".core", ".S", ".ld", ".txt", ".json")
+                   (".py", ".sv", ".cpp", ".hpp", ".core", ".S", ".ld", ".txt", ".json", ".mk")
                    and path != MANIFEST)
     paths += [ROOT / ".github" / "workflows" / "rvfi-nextpc.yml", ROOT / "LICENSE"]
     result = {}

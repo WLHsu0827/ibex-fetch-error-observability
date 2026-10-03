@@ -14,6 +14,7 @@ FIELDS = (
     "order", "pc", "insn", "next_pc", "rs1", "rs2", "a", "b", "rd", "value",
     "trap", "halt", "intr", "mode", "ixl", "rmask", "wmask", "pre_mip", "post_mip",
     "nmi", "nmi_int", "debug_req", "debug_mode", "irq_valid", "rf_suppress",
+    "mem_addr", "mem_rdata", "mem_wdata",
 )
 
 

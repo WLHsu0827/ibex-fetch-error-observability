@@ -15,6 +15,8 @@ import tempfile
 import unittest
 
 from .check import parse, qualify
+from .admission import CONTROLS, NAME, SCHEMA, control
+from .drivers import DRIVERS, MAKE, validate_commands, validate_probe, validate_recipes
 from .archive import privacy_review, verify_archive
 from .dependencies import TARGET, canonical, compatible_wheel, graph, marker, satisfies, validate
 from .history import parse_history, qualify_history
@@ -35,13 +37,17 @@ def tiny_contract() -> tuple[bytes, dict[str, object]]:
 
 
 def synthetic_stream(contract: dict[str, object]) -> str:
-    lines = ["Q\t0\t1\t0\t0\t0\t0\t0\t0\t0", "Q\t1\t0\t0\t0\t0\t0\t0\t0\t0"]
+    def q(phase: str, cycle: int, reset: int) -> str:
+        return phase + "\t" + str(cycle) + "\t" + "\t".join(
+            str(reset if field == "reset" else 0) for field in CONTROLS
+        )
+    lines = [f"S\t{SCHEMA}\tcpp\t{NAME}", q("P", 0, 0), q("Q", 0, 0)]
     for index, expected in enumerate(contract["path"]):
         record = dict.fromkeys(FIELDS, 0)
         record.update({key: value for key, value in expected.items() if key in FIELDS})
         record.update(mode=3, ixl=1)
-        cycle = index + 2
-        lines.append(f"Q\t{cycle}\t1\t0\t0\t0\t0\t0\t0\t0")
+        cycle = index + 1
+        lines.extend([q("P", cycle, 1), q("Q", cycle, 1)])
         lines.append("R\t" + str(cycle) + "\t" + "\t".join(str(record[key]) for key in FIELDS))
     return "\n".join(lines) + "\n"
 
@@ -124,7 +130,7 @@ class DependencyContracts(unittest.TestCase):
 
 class HistoryContracts(unittest.TestCase):
     def setUp(self) -> None:
-        self.auth = json.loads(Path(__file__).with_name("STABLE_TOOLS_AUTHORIZATION.json").read_text())
+        self.auth = json.loads(Path(__file__).with_name("MEMORY_ADMISSION_AUTHORIZATION.json").read_text())
         self.legacy = json.loads(Path(__file__).with_name("AUTHORIZATION.json").read_text())["identity"]
         self.source = "a" * 40
         self.closed = [
@@ -152,7 +158,7 @@ class HistoryContracts(unittest.TestCase):
 
     def test_all_pages_both_epochs_current_exactly_once(self) -> None:
         records = parse_history(self.pages())
-        self.assertEqual(len(records), 7)
+        self.assertEqual(len(records), len(self.closed) + 2)
         authorized = self.qualify(records)
         self.assertEqual([item["id"] for item in authorized], [3, 4])
         self.assertEqual(sum(item["id"] == 4 for item in authorized), 1)
@@ -169,10 +175,10 @@ class HistoryContracts(unittest.TestCase):
                 parse_history(text)
 
     def test_duplicate_current_and_rerun_rejected(self) -> None:
-        duplicate = json.dumps({"total_count": 8, "runs": self.records + [self.records[-1]]})
+        duplicate = json.dumps({"total_count": len(self.records) + 1, "runs": self.records + [self.records[-1]]})
         with self.assertRaises(ValueError):
             parse_history(duplicate)
-        for index in (0, 2, 4, 6):
+        for index in range(len(self.records)):
             records = copy.deepcopy(self.records)
             records[index]["run_attempt"] = 2
             with self.assertRaises(ValueError):
@@ -180,8 +186,8 @@ class HistoryContracts(unittest.TestCase):
 
     def test_missing_current_counter_reset_and_pair_requires_same_source(self) -> None:
         for index, field, value in (
-            (6, "id", 5), (6, "head_sha", "b" * 40),
-            (6, "display_title", f"RVFI next-PC prepare p1 {self.auth['identity']}"),
+            (-1, "id", 5), (-1, "head_sha", "b" * 40),
+            (-1, "display_title", f"RVFI next-PC prepare p1 {self.auth['identity']}"),
         ):
             records = copy.deepcopy(self.records)
             records[index][field] = value
@@ -192,7 +198,7 @@ class HistoryContracts(unittest.TestCase):
         records.append(self.record(5, f"RVFI next-PC pair p0 {self.auth['identity']}", None))
         result = qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
         self.assertEqual(len(result), 3)
-        records[6]["head_sha"] = "b" * 40
+        records[-2]["head_sha"] = "b" * 40
         with self.assertRaises(ValueError):
             qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
 
@@ -396,9 +402,10 @@ class StreamContracts(unittest.TestCase):
 
     def test_metadata_failure_is_not_execution_failure(self) -> None:
         parts = self.text.splitlines()
-        row = parts[3].split("\t")
+        index = next(i for i, line in enumerate(parts) if line.startswith("R\t"))
+        row = parts[index].split("\t")
         row[2 + FIELDS.index("next_pc")] = str(BOOT - 8)
-        parts[3] = "\t".join(row)
+        parts[index] = "\t".join(row)
         changed = "\n".join(parts) + "\n"
         self.cpp.write_text(changed, encoding="ascii")
         self.sv.write_text(changed, encoding="ascii")
@@ -412,14 +419,16 @@ class StreamContracts(unittest.TestCase):
 
     def test_missing_duplicate_reordered_malformed_and_controls(self) -> None:
         lines = self.text.splitlines()
+        first_r = next(i for i, line in enumerate(lines) if line.startswith("R\t"))
         variants = [
             "\n".join(lines[2:]) + "\n",
-            "\n".join(lines[:4] + [lines[3]] + lines[4:]) + "\n",
-            "\n".join(lines[:4] + lines[6:] + lines[4:6]) + "\n",
+            "\n".join(lines[:first_r + 1] + [lines[first_r]] + lines[first_r + 1:]) + "\n",
+            "\n".join(lines[:first_r] + lines[first_r + 3:] + lines[first_r:first_r + 3]) + "\n",
             self.text + "unrecognized\n",
             self.text.replace("Q\t2\t1\t0", "Q\t2\t1\t1"),
-            self.text + "Q\t5\t0\t0\t0\t0\t0\t0\t0\t0\n",
-            self.text.replace("R\t2\t1\t", "R\t2\t2\t"),
+            self.text + "P\t4\t0" + "\t0" * (len(CONTROLS) - 1) + "\nQ\t4\t0"
+            + "\t0" * (len(CONTROLS) - 1) + "\n",
+            self.text.replace("R\t1\t1\t", "R\t1\t2\t"),
             self.text.rstrip("\n"),
         ]
         for variant in variants:
@@ -430,16 +439,17 @@ class StreamContracts(unittest.TestCase):
     def test_image_path_operands_flags_and_premature_exit(self) -> None:
         for field in ("pc", "insn", "a", "value", "trap", "halt", "intr", "debug_mode"):
             parts = self.text.splitlines()
-            row = parts[3].split("\t")
+            index = next(i for i, line in enumerate(parts) if line.startswith("R\t"))
+            row = parts[index].split("\t")
             position = 2 + FIELDS.index(field)
             row[position] = str(int(row[position]) + 1)
-            parts[3] = "\t".join(row)
+            parts[index] = "\t".join(row)
             changed = "\n".join(parts) + "\n"
             self.cpp.write_text(changed, encoding="ascii")
             self.sv.write_text(changed, encoding="ascii")
             with self.assertRaises(ValueError):
                 qualify(self.cpp, self.sv, self.image, self.contract)
-        short = "\n".join(self.text.splitlines()[:-2]) + "\n"
+        short = "\n".join(self.text.splitlines()[:-3]) + "\n"
         self.cpp.write_text(short, encoding="ascii")
         self.sv.write_text(short, encoding="ascii")
         with self.assertRaises(ValueError):
@@ -450,6 +460,108 @@ class StreamContracts(unittest.TestCase):
         self.sv.write_text(self.text, encoding="ascii")
         with self.assertRaises(ValueError):
             qualify(self.cpp, self.sv, self.image, mutated)
+
+    def test_all_read_mask_information_retained_not_memory_metadata_pass(self) -> None:
+        for mask in range(16):
+            lines = self.text.splitlines()
+            for index, line in enumerate(lines):
+                if line.startswith("R\t"):
+                    parts = line.split("\t")
+                    parts[2 + FIELDS.index("rmask")] = str(mask)
+                    lines[index] = "\t".join(parts)
+            text = "\n".join(lines) + "\n"
+            self.cpp.write_text(text, encoding="ascii")
+            self.sv.write_text(text, encoding="ascii")
+            result = qualify(self.cpp, self.sv, self.image, self.contract)
+            self.assertEqual(result["read_mask_histogram"], {str(mask): 3})
+            self.assertEqual(result["memory_metadata"], "NOT_VERIFIED")
+
+    def test_old_schema_never_admitted_or_requalified(self) -> None:
+        self.cpp.write_text(self.text.partition("\n")[2], encoding="ascii")
+        with self.assertRaisesRegex(ValueError, "legacy streams"):
+            parse(self.cpp)
+
+    def test_pre_post_bus_fields_missing_out_of_domain_and_all_safety_negatives(self) -> None:
+        for phase in ("P", "Q"):
+            for name in CONTROLS:
+                if name in ("reset", "data_be", "data_addr", "data_wdata"):
+                    continue
+                lines = self.text.splitlines()
+                index = next(i for i, line in enumerate(lines) if line.startswith(phase + "\t1\t"))
+                parts = lines[index].split("\t")
+                parts[2 + CONTROLS.index(name)] = "1"
+                lines[index] = "\t".join(parts)
+                self.cpp.write_text("\n".join(lines) + "\n", encoding="ascii")
+                with self.assertRaisesRegex(ValueError, "observed bus"):
+                    parse(self.cpp)
+        variants = [
+            self.text.replace("P\t1\t", "P\t2\t"),
+            self.text.replace("S\t2\t", "S\t3\t"),
+            self.text.replace("P\t1\t", "X\t1\t"),
+            "\n".join(line for line in self.text.splitlines() if not line.startswith("P\t")) + "\n",
+        ]
+        for text in variants:
+            self.cpp.write_text(text, encoding="ascii")
+            with self.assertRaises(ValueError):
+                parse(self.cpp)
+        for field, value in (("rmask", 16), ("wmask", 1), ("insn", 0x00042403)):
+            lines = self.text.splitlines()
+            index = next(i for i, line in enumerate(lines) if line.startswith("R\t"))
+            parts = lines[index].split("\t")
+            parts[2 + FIELDS.index(field)] = str(value)
+            lines[index] = "\t".join(parts)
+            self.cpp.write_text("\n".join(lines) + "\n", encoding="ascii")
+            with self.assertRaises(ValueError):
+                parse(self.cpp)
+        for field, value in (("data_be", 16), ("data_req", 2), ("data_addr", 0x100000000)):
+            values = [0] * len(CONTROLS)
+            values[CONTROLS.index(field)] = value
+            with self.assertRaises(ValueError):
+                control(values)
+
+
+class DriverContracts(unittest.TestCase):
+    def test_actual_link_compile_archive_commands_and_changed_inputs(self) -> None:
+        good = "/usr/bin/g++-13 -c -o main.o main.cpp\n/usr/bin/ar -rc model.a model.o\n/usr/bin/g++-13 main.o model.a -o Vfixture\n"
+        self.assertEqual(validate_commands(good, "Vfixture")["compile_commands"], 1)
+        for text in (good.replace("/usr/bin/g++-13", "g++"), good + good,
+                     good.replace("/usr/bin/ar", "ar"), good.replace(" -c ", " ")):
+            with self.assertRaises(ValueError):
+                validate_commands(text, "Vfixture")
+        from .hosted import Hosted
+
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "installed-verilated.mk"
+            path.write_bytes(b"qualified original bytes")
+            hosted = Hosted.__new__(Hosted)
+            hosted.driver_files = {str(path): identity(path)}
+            hosted.verify_drivers()
+            path.write_bytes(b"changed link/include/helper bytes")
+            with self.assertRaises(RuntimeError):
+                hosted.verify_drivers()
+
+    def test_exact_expanded_link_alias_and_single_worker(self) -> None:
+        good = "\n".join(f"{key}={value}" for key, value in DRIVERS.items()) + "\nMAKEFLAGS= -j1 -- NUM_JOBS=1\n"
+        self.assertEqual(validate_probe(good)["LINK"], "/usr/bin/g++-13")
+        for bad in (good.replace("LINK=/usr/bin/g++-13", "LINK=g++"),
+                    good.replace("-j1", "-j2"), good.replace("-j1", "-j"),
+                    good.replace("LINK=", "MISSING="), good + "LINK=/usr/bin/g++-13\n",
+                    good[:-4]):
+            with self.assertRaises(ValueError):
+                validate_probe(bad)
+        self.assertIn("LINK=/usr/bin/g++-13", MAKE)
+
+    def test_installed_and_generated_recipe_mutations_fail(self) -> None:
+        generated = "include $(VERILATOR_ROOT)/include/verilated.mk\n$(LINK) objects\n"
+        included = ("CXX = g++\nLINK = g++\nAR = ar\nPYTHON3 = python3\nPERL = perl\n"
+                    "$(CXX) -c\n$(AR) -rc\n$(PYTHON3) $(VERILATOR_ROOT)/bin/verilator_includer\n")
+        outer = "$(MAKE) $(MAKE_OPTIONS) -f $<\n$(VERILATOR)\n"
+        validate_recipes(generated, included, outer)
+        for a, b, c in ((generated.replace("$(LINK)", "g++"), included, outer),
+                        (generated, included.replace("LINK = g++\n", ""), outer),
+                        (generated, included, outer.replace("$(MAKE)", "make -j4"))):
+            with self.assertRaises(ValueError):
+                validate_recipes(a, b, c)
 
 
 class ProcessContracts(unittest.TestCase):

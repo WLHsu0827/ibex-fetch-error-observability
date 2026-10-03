@@ -35,3 +35,11 @@ PipScriptMaker (MIT license), with artifact/license provenance retained.
 New launcher observations do not reconstruct missing old bytes. Descriptive
 raw counts do not waive the failed gate or establish architectural execution,
 a DUT bug, support status, novelty or human replication.
+
+New nonmemory-nextpc-v2 admission and explicit recursive driver checks are
+original public tests, not a waiver/requalification of old STOP bytes.
+Public contract rationale references pinned SymbioticEDA/riscv-formal
+4f29e83a8387a81467716548f165fd97045af617 (ISC-style license).
+Hosted retained installed Verilator5.020 make/helper source keeps its original
+Wilson Snyder copyright and LGPL-3.0-only OR Artistic-2.0 SPDX/notices.
+No generated model or tool executable is redistributed.

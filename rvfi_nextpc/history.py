@@ -67,7 +67,8 @@ def qualify_history(
 
     if "closed_epochs" in authorization:
         if [item["identity"] for item in authorization["closed_epochs"]] != [
-            legacy_identity, "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1"
+            legacy_identity, "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+            "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
         ]:
             raise ValueError("closed authorization epochs omitted or changed")
         for closed in authorization["closed_epochs"]:

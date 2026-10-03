@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
       throw std::runtime_error("missing exact SV stream argument");
     std::ofstream log(argv[2], std::ios::binary);
     if (!log) throw std::runtime_error("cannot open C++ stream");
+    log << "S\t2\tcpp\tnonmemory-nextpc-v2\n";
     VerilatedContext context;
     context.commandArgs(argc, argv);
     Vnextpc_top model{&context};
@@ -42,6 +43,7 @@ int main(int argc, char **argv) {
     model.irq_fast_i = model.irq_nm_i = model.debug_req_i = 0;
     model.instr_rvalid_i = 0;
     model.instr_rdata_i = 0;
+    model.data_gnt_i = model.data_rvalid_i = model.data_err_i = 0;
     model.eval();
     bool pending = false;
     uint32_t response = 0;
@@ -53,12 +55,11 @@ int main(int argc, char **argv) {
       model.eval();
       const bool request = model.rst_ni && model.instr_req_o;
       const uint32_t address = model.instr_addr_o;
+      controls(log, model, cycle, 'P');
       model.clk_i = 1;
       context.timeInc(1);
       model.eval();
       sample(log, model, cycle);
-      if (model.data_req_o || model.alert_minor_o || model.alert_major_internal_o || model.alert_major_bus_o)
-        throw std::runtime_error("unexpected data request or DUT alert");
       if (model.rvfi_valid && model.rvfi_pc_rdata == terminal) ++terminals;
       model.clk_i = 0;
       context.timeInc(1);
