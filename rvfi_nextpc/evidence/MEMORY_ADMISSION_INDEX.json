@@ -1,0 +1,534 @@
+{
+  "accepted_old_stop_head": "9fd372183a3ba2125894f96b30a349744addc1ed",
+  "actual_attempts": {
+    "off_cpu_builds": 1,
+    "off_cpu_runs": 0,
+    "on_cpu_builds": 0,
+    "on_cpu_runs": 0,
+    "pair_dispatches": 1,
+    "pair_limit": 1,
+    "preparation_dispatches": 2,
+    "preparation_limit": 4,
+    "program_compilations": 1,
+    "reruns": 0
+  },
+  "authorization": {
+    "immutable_git_blob": {
+      "bytes": 3380,
+      "sha256": "66e5f7882a61a03ab8ae4bf1545697c5ed7772986bb4428d0894368397351d81"
+    },
+    "path": "rvfi_nextpc/MEMORY_ADMISSION_AUTHORIZATION.json",
+    "semantics": "Immutable Git LF bytes, equal to every new hosted snapshot; continuation turn start is not exact approval time.",
+    "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454"
+  },
+  "epoch": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+  "epoch_closed": true,
+  "identity_boundary": "Source/run/archive/final-head identities are distinct. Enclosing immutable archive commit is the outer identity, not an index self-hash.",
+  "limitations": [
+    "Preparation's actual file-based recursive miniature probe passed; the post-build --eval model probe was not exercised there and failed after OFF compilation.",
+    "Exact original /bin/sh syntax error is retained. Self-quoted --eval text in MAKEFLAGS is a source-supported diagnosis, not a separately executed repair or proof.",
+    "No whole-core retirement/control streams or terminal marker exist in this epoch. Frozen ISA coverage is preregistration, not observed qualification.",
+    "Stock pinned Ibex remains unmodified; RV32Zca/WB0/BTA0/ICache0 with BP0/1 is outside the named experimental configuration.",
+    "Independent C++/SV output-port readers share one simulator/DUT and sampled phases; this is not exhaustive simulator/transient independence or full memory-RVFI verification.",
+    "Bounded installed driver/helper/subtool/include identities are not universal OS/shared-library/system-header/toolchain closure.",
+    "Fresh public compilation yielded image bytes equal to earlier public compilation, but a distinct ELF identity. No old ELF or hash was reused as an input.",
+    "All original/recovery/stable-tool STOP bytes and hidden-source/missing-launcher/indexing limitations remain unchanged, not reconstructed or requalified.",
+    "No DUT bug, architectural misexecution, novelty, performance, general error-rate, human replication or parent-acceptance claim."
+  ],
+  "program": {
+    "all_frozen_prior_receipts_postbuild_equal": true,
+    "boundaries": {
+      "boot": 2147483776,
+      "drain": 2147483932,
+      "terminal": 2147483944
+    },
+    "boundary": "Fresh public program compiled once and frozen before first OFF build. Expected path/coverage only; no CPU execution or actual terminal/coverage result.",
+    "contract": {
+      "bytes": 14762,
+      "sha256": "90cfa6c70b1c32ba6a33e37643248786a559ee3378a4ce1d0ffb08b38015921d"
+    },
+    "elf": {
+      "bytes": 1280,
+      "sha256": "a5bf8993506f7005ddc95daf3a0dae3ae5bf87de0cd505a9c7ad7cd52ba4ca76"
+    },
+    "freeze": {
+      "bytes": 72503,
+      "sha256": "192b51ca134be3df9718e824da7e0d398bf51d31436ba32c85a5215700171c51"
+    },
+    "frozen_prior_receipts": 433,
+    "image": {
+      "bytes": 172,
+      "sha256": "58d63f5b5ae10fa1cb759dcb674b0e91e27338a8b404cc8c193af0b4d737266d"
+    },
+    "preregistered_coverage": {
+      "16:backward:0": 2,
+      "16:backward:1": 3,
+      "16:forward:0": 2,
+      "16:forward:1": 2,
+      "32:backward:0": 2,
+      "32:backward:1": 3,
+      "32:forward:0": 2,
+      "32:forward:1": 2
+    },
+    "preregistered_path_retirements": 63
+  },
+  "qualification": {
+    "admission": "nonmemory-nextpc-v2",
+    "final_source_preparation": "PASS",
+    "memory_metadata": "NOT_VERIFIED",
+    "off_build_process": "exited:0",
+    "off_model_expanded_driver_receipt": "NOT_QUALIFIED",
+    "off_sampler_controls_isa_nextpc_coverage_terminal": "NOT_RUN",
+    "on": "NOT_RUN",
+    "preparation_binding": "PASS",
+    "scientific_result": "NOT_QUALIFIED",
+    "stream_schema": 2
+  },
+  "qualified_and_attempted_source": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+  "remaining_scope": "CLOSED. Archive/documentation only; no source/tool/program/oracle/sampler edit, refreeze, reprobe or CPU retry after OFF start. Unused preparation slots authorize no second pair.",
+  "runs": [
+    {
+      "active_entrypoint": {
+        "distribution": "fusesoc",
+        "entry_point": "fusesoc.main:main",
+        "flags": [
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "interpreter": {
+          "bytes": 8020928,
+          "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+        },
+        "launcher_body": {
+          "bytes": 165,
+          "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+        },
+        "lock": {
+          "bytes": 79391,
+          "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+        },
+        "module": {
+          "bytes": 23564,
+          "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+        },
+        "python_version": "3.12.3",
+        "runtime_code": {
+          "bytes": 147192,
+          "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+        },
+        "version": "2.4.3"
+      },
+      "archive_integrity": "PASS",
+      "artifact_id": "11272181799",
+      "console_collection": {
+        "bytes": 552,
+        "sha256": "3c3548a2e1217f65a14d1c2a1a39eb16588adf4c9628ebc4b19ff6dac666d1ec"
+      },
+      "downloaded_zip": {
+        "bytes": 327077,
+        "sha256": "c2750ed21b9838f65e439ba8d129d4a39311174156d6b390d373956114d1bd1e"
+      },
+      "original_unused_launcher": {
+        "argv": [
+          "/tmp/rvfi-nextpc-37117670041/tools/bin/python",
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "launcher": {
+          "bytes": 213,
+          "sha256": "4e76cab00afb7f3b8803e41e5c55a8f34c4853909a2712a2bfe5d855fb4f6a53"
+        },
+        "launcher_path": "/tmp/rvfi-nextpc-37117670041/tools/bin/fusesoc",
+        "python_resolved": "/usr/bin/python3.12",
+        "shebang": "#!/tmp/rvfi-nextpc-37117670041/tools/bin/python"
+      },
+      "pipeline_console": {
+        "bytes": 2506,
+        "sha256": "5185fb7850a38ee4811781bce0d42006ee43a0d7e5cae2cbb528f8eb1b5064ac"
+      },
+      "raw_manifest": {
+        "bytes": 39141,
+        "sha256": "72f1c8df56cf8d95c3a32bf29566a7353abd3242439b9b4ed8488a268c241805"
+      },
+      "raw_members": 253,
+      "run_attempt": 1,
+      "run_id": "37117670041",
+      "source_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815",
+      "source_snapshots_exact_git_blobs": 37,
+      "summary": {
+        "admission": "nonmemory-nextpc-v2",
+        "attempted_stages": 65,
+        "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+        "error": "STOP: ['verilator', '--cc', '--exe', '-Wall', '--top-module', 'sampler_fixture', '-DOBSERVER_TARGET=sampler_fixture', '--Mdir', '/tmp/rvfi-nextpc-37117670041/miniature', '-CFLAGS', '-std=c++17 -Wall -Wextra -Werror', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/fixture.cpp']: exited:1",
+        "mode": "prepare",
+        "preparation_run": "",
+        "real_compilations": [],
+        "result": "STOP",
+        "run_attempt": "1",
+        "run_id": "37117670041",
+        "schema": 1,
+        "scientific_result": "NOT_QUALIFIED",
+        "source_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815",
+        "stream_schema": 2
+      },
+      "summary_identity": {
+        "bytes": 862,
+        "sha256": "3e5a18b11257a79a60fa8f14a187af972e4f0c04e9446923c193f2183518b283"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37117670041"
+    },
+    {
+      "active_entrypoint": {
+        "distribution": "fusesoc",
+        "entry_point": "fusesoc.main:main",
+        "flags": [
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "interpreter": {
+          "bytes": 8020928,
+          "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+        },
+        "launcher_body": {
+          "bytes": 165,
+          "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+        },
+        "lock": {
+          "bytes": 79391,
+          "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+        },
+        "module": {
+          "bytes": 23564,
+          "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+        },
+        "python_version": "3.12.3",
+        "runtime_code": {
+          "bytes": 147192,
+          "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+        },
+        "version": "2.4.3"
+      },
+      "archive_integrity": "PASS",
+      "artifact_id": "11271679411",
+      "console_collection": {
+        "bytes": 552,
+        "sha256": "15eccf96580e22b74e5648cf24d94840c957267748cc7ec40966c93a1769debc"
+      },
+      "downloaded_zip": {
+        "bytes": 423180,
+        "sha256": "e6a8c96afa77fcfbeb881302448808bc1fc920a7bbe7aa6782402b1194599c1b"
+      },
+      "original_unused_launcher": {
+        "argv": [
+          "/tmp/rvfi-nextpc-37118113760/tools/bin/python",
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "launcher": {
+          "bytes": 213,
+          "sha256": "517e4a8393846c760d285aeae363b4d75b79873f90588aa4ecdd703d64cd8585"
+        },
+        "launcher_path": "/tmp/rvfi-nextpc-37118113760/tools/bin/fusesoc",
+        "python_resolved": "/usr/bin/python3.12",
+        "shebang": "#!/tmp/rvfi-nextpc-37118113760/tools/bin/python"
+      },
+      "pipeline_console": {
+        "bytes": 1519,
+        "sha256": "ba43b67e65f7d70be4b2ae92232a9202b87babccb32918df105b6b510598b53b"
+      },
+      "raw_manifest": {
+        "bytes": 63369,
+        "sha256": "209d9b19eec6c6d213210d63e71aa8bd90b19305f20e63a62b35bbd727d19c89"
+      },
+      "raw_members": 415,
+      "run_attempt": 1,
+      "run_id": "37118113760",
+      "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+      "source_snapshots_exact_git_blobs": 37,
+      "summary": {
+        "admission": "nonmemory-nextpc-v2",
+        "attempted_stages": 97,
+        "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+        "mode": "prepare",
+        "preparation_run": "",
+        "real_compilations": [],
+        "result": "PREPARATION_PASS",
+        "run_attempt": "1",
+        "run_id": "37118113760",
+        "schema": 1,
+        "scientific_result": "NOT_RUN",
+        "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+        "stream_schema": 2
+      },
+      "summary_identity": {
+        "bytes": 426,
+        "sha256": "89f4b1a40b9929b2d3d00c568a4818621bade3eb8c4d7ec331158aaf00a8c106"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118113760"
+    },
+    {
+      "active_entrypoint": {
+        "distribution": "fusesoc",
+        "entry_point": "fusesoc.main:main",
+        "flags": [
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "interpreter": {
+          "bytes": 8020928,
+          "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+        },
+        "launcher_body": {
+          "bytes": 165,
+          "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+        },
+        "lock": {
+          "bytes": 79391,
+          "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+        },
+        "module": {
+          "bytes": 23564,
+          "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+        },
+        "python_version": "3.12.3",
+        "runtime_code": {
+          "bytes": 147192,
+          "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+        },
+        "version": "2.4.3"
+      },
+      "archive_integrity": "PASS",
+      "artifact_id": "11272850043",
+      "console_collection": {
+        "bytes": 552,
+        "sha256": "1f0da85077c6449d2114dd51aa4c9265dee9999e84a0907825470e4783bb28c1"
+      },
+      "downloaded_zip": {
+        "bytes": 456112,
+        "sha256": "e965213155a91131a7bac3f870f135a1be6271600d0f27cf93dd903c39936c6d"
+      },
+      "original_unused_launcher": {
+        "argv": [
+          "/tmp/rvfi-nextpc-37118514047/tools/bin/python",
+          "-I",
+          "-B",
+          "-m",
+          "fusesoc.main"
+        ],
+        "launcher": {
+          "bytes": 213,
+          "sha256": "187576e95b4e48c0d88969eff17dfabe48923cc9bf7d3304d8522d329bd46908"
+        },
+        "launcher_path": "/tmp/rvfi-nextpc-37118514047/tools/bin/fusesoc",
+        "python_resolved": "/usr/bin/python3.12",
+        "shebang": "#!/tmp/rvfi-nextpc-37118514047/tools/bin/python"
+      },
+      "pipeline_console": {
+        "bytes": 2534,
+        "sha256": "4069de339ede3919da48755a89116aa2dd8b448cb47875ca5c3e8d3000c480cf"
+      },
+      "raw_manifest": {
+        "bytes": 68322,
+        "sha256": "e828fa5ca1c8fd660ed3b0a2d8ba5d866c6f81fb6df2929a39637109a0c33f38"
+      },
+      "raw_members": 448,
+      "run_attempt": 1,
+      "run_id": "37118514047",
+      "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+      "source_snapshots_exact_git_blobs": 37,
+      "summary": {
+        "admission": "nonmemory-nextpc-v2",
+        "attempted_stages": 105,
+        "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+        "error": "STOP: ['make', '-j1', 'NUM_JOBS=1', 'CXX=/usr/bin/g++-13', 'CC=/usr/bin/gcc-13', 'LINK=/usr/bin/g++-13', 'AR=/usr/bin/ar', 'PYTHON3=/usr/bin/python3', 'PERL=/usr/bin/perl', 'OBJCACHE=', '-f', 'Vnextpc_top.mk', '--eval', \"nextpc-driver-probe: ; @printf '%s\\\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'\", 'nextpc-driver-probe']: exited:2",
+        "mode": "pair",
+        "preparation_run": "37118113760",
+        "real_compilations": [
+          "off"
+        ],
+        "result": "STOP",
+        "run_attempt": "1",
+        "run_id": "37118514047",
+        "schema": 1,
+        "scientific_result": "NOT_QUALIFIED",
+        "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+        "stream_schema": 2
+      },
+      "summary_identity": {
+        "bytes": 889,
+        "sha256": "843c3a5d14ac02c2fd2edca3342965101d8dc4b13f68dcbaa44401e9d4752463"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118514047"
+    }
+  ],
+  "schema": 1,
+  "status": "PRE-RUN STOP / NOT_QUALIFIED",
+  "tools_and_drivers": {
+    "active_entrypoint_equal": {
+      "distribution": "fusesoc",
+      "entry_point": "fusesoc.main:main",
+      "flags": [
+        "-I",
+        "-B",
+        "-m",
+        "fusesoc.main"
+      ],
+      "interpreter": {
+        "bytes": 8020928,
+        "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+      },
+      "launcher_body": {
+        "bytes": 165,
+        "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+      },
+      "lock": {
+        "bytes": 79391,
+        "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+      },
+      "module": {
+        "bytes": 23564,
+        "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+      },
+      "python_version": "3.12.3",
+      "runtime_code": {
+        "bytes": 147192,
+        "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+      },
+      "version": "2.4.3"
+    },
+    "bounded_installed_files": 72,
+    "driver_scope_identity": {
+      "bytes": 12226,
+      "sha256": "b3efee8bc39247a60b5770f9023c7d38e079d5b14a13c1be36019d7fed12374d"
+    },
+    "generated_model_make": {
+      "bytes": 2229,
+      "sha256": "cfa45b3f974d438735603f4969cd4fa528e99c5edf216caf1ad3b9a71f261569"
+    },
+    "installed_make": {
+      "bytes": 12468,
+      "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+    },
+    "off_compile_original_command_parser": {
+      "archiver": "/usr/bin/ar",
+      "compile_commands": 17,
+      "link_argv": [
+        "/usr/bin/g++-13",
+        "main.o",
+        "verilated.o",
+        "verilated_dpi.o",
+        "verilated_threads.o",
+        "Vnextpc_top__ALL.a",
+        "-pthread",
+        "-lpthread",
+        "-latomic",
+        "-o",
+        "Vnextpc_top"
+      ]
+    },
+    "off_compile_original_status": {
+      "argv": [
+        "make",
+        "-j1",
+        "NUM_JOBS=1",
+        "CXX=/usr/bin/g++-13",
+        "CC=/usr/bin/gcc-13",
+        "LINK=/usr/bin/g++-13",
+        "AR=/usr/bin/ar",
+        "PYTHON3=/usr/bin/python3",
+        "PERL=/usr/bin/perl",
+        "OBJCACHE="
+      ],
+      "code": 0,
+      "cwd": "/tmp/rvfi-nextpc-37118514047/builds/off",
+      "duration_seconds": 13.30034306799999,
+      "kind": "exited",
+      "schema": 1,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 16074,
+        "sha256": "cbb955da258087c8431ed20d676be81bb873bf79168f89df3fdc0738f2d5f167"
+      },
+      "timeout_seconds": 1400
+    },
+    "postbuild_probe_original_status": {
+      "argv": [
+        "make",
+        "-j1",
+        "NUM_JOBS=1",
+        "CXX=/usr/bin/g++-13",
+        "CC=/usr/bin/gcc-13",
+        "LINK=/usr/bin/g++-13",
+        "AR=/usr/bin/ar",
+        "PYTHON3=/usr/bin/python3",
+        "PERL=/usr/bin/perl",
+        "OBJCACHE=",
+        "-f",
+        "Vnextpc_top.mk",
+        "--eval",
+        "nextpc-driver-probe: ; @printf '%s\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'",
+        "nextpc-driver-probe"
+      ],
+      "code": 2,
+      "cwd": "/tmp/rvfi-nextpc-37118514047/builds/off",
+      "duration_seconds": 0.16698802799999157,
+      "kind": "exited",
+      "schema": 1,
+      "stderr": {
+        "bytes": 92,
+        "sha256": "f111fc3e89e2f417a7f761c504ef5dfc4bcbc403952a92add8186ae4423733c1"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 300
+    },
+    "postbuild_probe_qualification": "NOT_QUALIFIED: original exited2 stops before model/run identity. No posthoc successful probe substituted.",
+    "postbuild_probe_stderr": {
+      "bytes": 92,
+      "sha256": "f111fc3e89e2f417a7f761c504ef5dfc4bcbc403952a92add8186ae4423733c1"
+    },
+    "recursive_miniature_expansion_equal": {
+      "expanded": {
+        "AR": "/usr/bin/ar",
+        "CC": "/usr/bin/gcc-13",
+        "CXX": "/usr/bin/g++-13",
+        "LINK": "/usr/bin/g++-13",
+        "MAKEFLAGS": " -j1 --no-print-directory -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE=",
+        "OBJCACHE": "",
+        "PERL": "/usr/bin/perl",
+        "PYTHON3": "/usr/bin/python3"
+      },
+      "installed_make": {
+        "bytes": 12468,
+        "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+      },
+      "invocation": [
+        "make",
+        "-j1",
+        "NUM_JOBS=1",
+        "CXX=/usr/bin/g++-13",
+        "CC=/usr/bin/gcc-13",
+        "LINK=/usr/bin/g++-13",
+        "AR=/usr/bin/ar",
+        "PYTHON3=/usr/bin/python3",
+        "PERL=/usr/bin/perl",
+        "OBJCACHE="
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "expanded": {
+    "AR": "/usr/bin/ar",
+    "CC": "/usr/bin/gcc-13",
+    "CXX": "/usr/bin/g++-13",
+    "LINK": "/usr/bin/g++-13",
+    "MAKEFLAGS": " -j1 --no-print-directory -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE=",
+    "OBJCACHE": "",
+    "PERL": "/usr/bin/perl",
+    "PYTHON3": "/usr/bin/python3"
+  },
+  "generated_make": {
+    "bytes": 2016,
+    "sha256": "c82cb9cb7a43d99ea6e9a353efb6fb7b6c3c576831805831272e1cf7c9e107f8"
+  },
+  "installed_make": {
+    "bytes": 12468,
+    "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+  },
+  "invocation": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE="
+  ],
+  "result": "PASS"
+}

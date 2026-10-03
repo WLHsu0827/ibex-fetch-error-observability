@@ -1,0 +1,143 @@
+{
+  "bus_alert": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "data_error": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "debug_mode": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "debug_req": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "extra_read": {
+    "admission": "nonmemory-nextpc-v2",
+    "branches": 0,
+    "coverage": {},
+    "cpp_cycles": 20,
+    "isa_execution": "PASS",
+    "memory_metadata": "NOT_VERIFIED",
+    "mismatches": [],
+    "observed_no_data_transactions": "PASS",
+    "read_mask_histogram": {
+      "1": 1,
+      "15": 1,
+      "5": 1
+    },
+    "retirements": 3,
+    "samplers": "PASS",
+    "stream_schema": 2,
+    "strict_next_pc": "PASS",
+    "sv_cycles": 21
+  },
+  "good": {
+    "admission": "nonmemory-nextpc-v2",
+    "branches": 0,
+    "coverage": {},
+    "cpp_cycles": 20,
+    "isa_execution": "PASS",
+    "memory_metadata": "NOT_VERIFIED",
+    "mismatches": [],
+    "observed_no_data_transactions": "PASS",
+    "read_mask_histogram": {
+      "0": 3
+    },
+    "retirements": 3,
+    "samplers": "PASS",
+    "stream_schema": 2,
+    "strict_next_pc": "PASS",
+    "sv_cycles": 21
+  },
+  "grant": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "halt": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "expected_negative": "PASS"
+  },
+  "hang": {
+    "code": 124,
+    "expected_negative": "PASS",
+    "kind": "timed_out"
+  },
+  "internal_alert": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "intr": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "expected_negative": "PASS"
+  },
+  "irq": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "memory_opcode": {
+    "error": "unsupported base encoding 00042403",
+    "expected_negative": "PASS"
+  },
+  "minor_alert": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "no_reset": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "post_request": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "pre_request": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "privilege": {
+    "error": "unexpected ISA/privilege mode",
+    "expected_negative": "PASS"
+  },
+  "reset_again": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "response": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "rf_suppress": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "expected_negative": "PASS"
+  },
+  "trap": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "expected_negative": "PASS"
+  },
+  "write_control": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "write_mask": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "expected_negative": "PASS"
+  }
+}

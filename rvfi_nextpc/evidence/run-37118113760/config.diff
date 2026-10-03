@@ -1,0 +1,10 @@
+--- off
++++ on
+@@ -1,6 +1,6 @@
+ {
+   "BaseIsa": "BaseIsaRV32I",
+-  "BranchPredictor": 0,
++  "BranchPredictor": 1,
+   "BranchTargetALU": 0,
+   "DbgTriggerEn": 0,
+   "ICache": 0,

@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "sudo",
+    "apt-get",
+    "install",
+    "-y",
+    "--no-install-recommends",
+    "verilator=5.020-1",
+    "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
+    "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6",
+    "fonts-font-awesome=5.0.10+really4.7.0~dfsg-4.1",
+    "sphinx-rtd-theme-common=2.0.0+dfsg-1",
+    "g++-13=13.3.0-6ubuntu2~24.04.1",
+    "make=4.3-4.1build2"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 6.480740101000002,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 237,
+    "sha256": "3b419c69ff321ee6851fa5489a2bb0c9a2ef093815a709dbd05391f89767267f"
+  },
+  "stdout": {
+    "bytes": 3363,
+    "sha256": "b4e9b7c32de66eba08e9ee290dd5a7cbf2dcee616f96d4219363a3b679fe630a"
+  },
+  "timeout_seconds": 480
+}

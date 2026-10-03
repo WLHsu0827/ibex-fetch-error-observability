@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37118514047/loader-fixture",
+    "/tmp/rvfi-nextpc-37118514047/loader-wrong_terminal.bin",
+    "2147483776",
+    "20000"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 0.003470070000005876,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 47,
+    "sha256": "73b6f85570e8b5a287fcfc64f22e474444dfe5b8a03f7139521b0b54bd1ca5d4"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 5
+}

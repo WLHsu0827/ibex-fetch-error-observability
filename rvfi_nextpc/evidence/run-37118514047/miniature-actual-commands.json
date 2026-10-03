@@ -1,0 +1,16 @@
+{
+  "archiver": "/usr/bin/ar",
+  "compile_commands": 4,
+  "link_argv": [
+    "/usr/bin/g++-13",
+    "fixture.o",
+    "verilated.o",
+    "verilated_threads.o",
+    "Vsampler_fixture__ALL.a",
+    "-pthread",
+    "-lpthread",
+    "-latomic",
+    "-o",
+    "Vsampler_fixture"
+  ]
+}

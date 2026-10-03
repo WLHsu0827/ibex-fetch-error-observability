@@ -1,0 +1,15 @@
+80000080 T _start
+80000088 t back_ceq
+80000096 t back_cne
+800000a8 t back_eq
+800000bc t back_ne
+800000d2 t forward_ceq_taken
+800000dc t forward_ceq_not_taken
+800000e2 t forward_cne_taken
+800000ec t forward_cne_not_taken
+800000fc t forward_eq_taken
+80000108 t forward_eq_not_taken
+80000110 t forward_ne_taken
+8000011c T drain
+8000011c t forward_ne_not_taken
+80000128 T terminal

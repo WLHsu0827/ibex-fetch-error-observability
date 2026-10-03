@@ -1,14 +1,16 @@
-# RVFI next-PC: new memory-admission inputs UNVALIDATED
+# RVFI next-PC: memory-admission PRE-RUN STOP
 
-**New user-authorized memory-admission epoch: NOT_QUALIFIED; preparation1/4
-STOP, zero new program/CPU builds.** The accepted stable-tools **OFF-QUALIFICATION
+**PRE-RUN STOP / NOT_QUALIFIED: one OFF CPU build, zero OFF/ON CPU runs;
+ON not compiled.** The accepted stable-tools **OFF-QUALIFICATION
 STOP / NOT_QUALIFIED** below remains immutable and is not requalified.
 [`MEMORY_ADMISSION_AUTHORIZATION.json`](MEMORY_ADMISSION_AUTHORIZATION.json)
 quotes the exact new user selection relayed by the coordinator. The continuation
 turn began 2026-10-03 16:57:35.079 UTC+8; that is **not** the exact approval
 timestamp. New bounds: four total preparations, one conditional pair; no old
-unused slots. PR3 remains draft and every old raw/status/auth/manifest/console
-gap is preserved.
+unused slots. This epoch is now **CLOSED**, consuming **2/4 preparations and
+1/1 pair dispatch**, with no reruns. The two unused preparations cannot
+authorize another pair/window. PR3 remains draft and every old
+raw/status/auth/manifest/console gap is preserved.
 
 Preparation1 [37117670041](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37117670041)
 consumed one attempt on input `6342f9fe8e92738f5fa01e6d11a4bcf60983a815`.
@@ -17,8 +19,54 @@ reset in a posedge-only process, producing fatal `SYNCASYNCNET`. Its original
 raw/status/source/console bytes are retained unchanged; no warning waiver
 or DUT edit. The revised observer uses the same async reset domain explicitly,
 emitting P only at real rising clocks (reset assertion occurs with clock low).
-All final-source gates must requalify; prior tool/loader gates cannot substitute
-for the new full preparation. No program/freeze/CPU/pair attempt has occurred.
+Preparation2 fully requalified the revised source; the prior failed attempt
+and old tool/loader gates were not substituted or retroactively promoted.
+
+| Stage/identity | Exact result |
+| --- | --- |
+| Final qualified and attempted input | `8b1492e638c44b9b19b5226f9317b42cb16e4454` |
+| [Preparation2](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118113760) | 97 stages; 24 runtime/52 build packages, 11 shared-loader cases, 24 actual bus/control/reset/sampler cases, recursive driver probe, both stock fatal-warning lints and 176-source/BP-only equivalence PASS |
+| [Sole pair](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118514047) | Same-source preparation/entrypoint/driver binding PASS; fresh program/freeze; one OFF build; stage105 post-build driver probe exited2 |
+| OFF compilation | Exited0, 13.300343 seconds, explicit `/usr/bin/g++-13` CXX and LINK, recursive `-j1`/NUM_JOBS1; a bounded process receipt, not a performance result |
+| Failed model driver probe | Original `/bin/sh: 1: Syntax error: "(" unexpected`, `make: *** [<builtin>: nextpc-driver-probe] Error 2`; zero stdout |
+| Whole-core samplers/control/ISA/next-PC/coverage/terminal | NOT_RUN / NOT_QUALIFIED; no CPU stream or actual terminal marker |
+| ON | No compile-start receipt, model or run; NOT_RUN |
+
+The failed post-build `--eval` probe formats `MAKEFLAGS` inside shell single
+quotes. GNU make propagates its own quoted `--eval` text into those flags:
+this is a source-supported self-quoting diagnosis of the retained shell error,
+not a separately executed fix. Preparation's actual file-based recursive
+miniature probe passed but did not exercise this distinct post-build probe.
+The model-expanded-driver gate therefore remains **NOT_QUALIFIED** despite
+successful compilation and independently parsed original CXX/LINK/AR commands.
+No source/tool/program/oracle/sampler edit, reprobe, refreeze, CPU run or retry
+followed the OFF compile start. No qualified pair or positive/negative anomaly
+outcome is claimed.
+
+The fresh pre-OFF contract independently froze 63 expected retirements,
+18 branches and all eight width/direction/outcome cells. These are
+**preregistered expectations only**, not observed coverage: 56 program,
+3 drain NOP and 4 terminal `jal x0,0` records; boot `0x80000080`,
+drain `0x8000011c`, terminal `0x80000128`, first dynamic order1. New hosted
+image: 172 bytes / SHA256
+`58d63f5b5ae10fa1cb759dcb674b0e91e27338a8b404cc8c193af0b4d737266d`.
+New ELF: 1280 bytes / SHA256
+`a5bf8993506f7005ddc95daf3a0dae3ae5bf87de0cd505a9c7ad7cd52ba4ca76`.
+It was compiled once from the new public source, not loaded from an older
+archive; equal public image bytes do not constitute new execution evidence.
+Freeze: 72503 bytes / SHA256
+`192b51ca134be3df9718e824da7e0d398bf51d31436ba32c85a5215700171c51`;
+all 433 prior receipts remain exact after the failed post-build probe.
+
+[`evidence/MEMORY_ADMISSION_INDEX.json`](evidence/MEMORY_ADMISSION_INDEX.json)
+binds the immutable Git-LF authorization, distinct sources/runs, original
+launchers, bounded driver identities, fresh inputs and actual terminal
+statuses. New raw archives contain **253 / 415 / 448 members**, each with all
+37 source snapshots equal to its source Git blobs; no missing new member was
+reconstructed. Separate collections retain the complete original pipeline-step
+consoles, not a rewritten artifact or full job/environment dump. Scientific
+NOT_QUALIFIED is separate from archive integrity PASS. All older STOPs and
+missing-source/launcher/indexing limitations remain unchanged.
 
 ### Preregistered admission `nonmemory-nextpc-v2`
 

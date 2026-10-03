@@ -115,3 +115,26 @@ was read as engineering/contract rationale; their code is not copied into DUT
 or changed. Original installed make/helper text may be retained under their
 public license/attribution; no executable/model binary or full build tree.
 The new inputs remain UNVALIDATED until their own actual hosted gates pass.
+
+Memory-admission final review: preparation1's fatal reset-domain lint failure
+remains unchanged. Revised exact source8b1492e638c44b9b19b5226f9317b42cb16e4454
+passed full preparation2. The sole pair bound that source, active module,
+72 installed driver/helper/include identities, 24/52 locked code closures
+and recursive miniature expansion exactly. One fresh public program/freeze
+and one OFF compilation occurred, then the distinct post-build --eval driver
+probe exited2 on an original shell syntax error. Preparation had not exercised
+that self-quoting probe. No whole-core simulation, raw retirement/control
+stream, actual coverage/terminal or next-PC result exists in this epoch; ON
+was not compiled. The result is PRE-RUN STOP / NOT_QUALIFIED, not reproduction.
+
+All253/415/448 raw members and37 source snapshots per new run, three original
+new launchers and complete selected original pipeline-step consoles were
+independently retrieved and byte-checked. New image/ELF are allowed fresh public
+program inputs; no model/tool binary, wave/build tree or whole job/environment
+dump is redistributed. Freeze433 prior receipts remain unchanged. The new
+index uses canonical immutable Git LF authorization/source bytes; old evidence,
+authorizations, indexes, consoles and missing-byte limitations remain exact.
+No source/tool/program/checker/sampler repair, refreeze, reprobe or retry was
+performed after OFF started. The2prep/1pair epoch is closed; unused preparation
+slots permit no further measurement. PR3 stays draft pending separate parent
+acceptance of this honest bounded STOP publication.

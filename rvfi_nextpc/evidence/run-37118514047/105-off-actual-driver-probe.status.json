@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "-f",
+    "Vnextpc_top.mk",
+    "--eval",
+    "nextpc-driver-probe: ; @printf '%s\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'",
+    "nextpc-driver-probe"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-nextpc-37118514047/builds/off",
+  "duration_seconds": 0.16698802799999157,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 92,
+    "sha256": "f111fc3e89e2f417a7f761c504ef5dfc4bcbc403952a92add8186ae4423733c1"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 300
+}
