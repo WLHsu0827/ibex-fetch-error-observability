@@ -25,6 +25,7 @@ and old tool/loader gates were not substituted or retroactively promoted.
 | Stage/identity | Exact result |
 | --- | --- |
 | Final qualified and attempted input | `8b1492e638c44b9b19b5226f9317b42cb16e4454` |
+| Immutable memory-admission evidence archive | `688e39983ae233b66a2eee036f2b409a3e148c7f` |
 | [Preparation2](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118113760) | 97 stages; 24 runtime/52 build packages, 11 shared-loader cases, 24 actual bus/control/reset/sampler cases, recursive driver probe, both stock fatal-warning lints and 176-source/BP-only equivalence PASS |
 | [Sole pair](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37118514047) | Same-source preparation/entrypoint/driver binding PASS; fresh program/freeze; one OFF build; stage105 post-build driver probe exited2 |
 | OFF compilation | Exited0, 13.300343 seconds, explicit `/usr/bin/g++-13` CXX and LINK, recursive `-j1`/NUM_JOBS1; a bounded process receipt, not a performance result |
