@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/g++-13",
+    "-print-prog-name=collect2"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118113760",
+  "duration_seconds": 0.004105816000006257,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 46,
+    "sha256": "c0b7638fa61ef43107d74ccefe76e6f9cd3c061bfee7d6ffd58a7b783012afed"
+  },
+  "timeout_seconds": 300
+}

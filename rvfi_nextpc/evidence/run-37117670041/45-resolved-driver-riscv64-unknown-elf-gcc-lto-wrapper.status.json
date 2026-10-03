@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/riscv64-unknown-elf-gcc",
+    "-print-prog-name=lto-wrapper"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37117670041",
+  "duration_seconds": 0.003428990999999826,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 52,
+    "sha256": "3157a6555144a40adb3b21d3412ad8db6f5dda0581b8868d8c83841c5532935a"
+  },
+  "timeout_seconds": 300
+}

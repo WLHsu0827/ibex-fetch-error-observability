@@ -1,0 +1,25 @@
+{
+  "active_fusesoc_invocation": [
+    "/tmp/rvfi-nextpc-37095066929/tools/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "fusesoc.main"
+  ],
+  "make": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=g++-13",
+    "CC=gcc-13"
+  ],
+  "result": "PASS",
+  "verilator_argv": [
+    "-DDISABLE_PRIM_CDC_RAND_DELAY",
+    "-Wall",
+    "--unroll-count",
+    "72",
+    "-CFLAGS",
+    "-std=c++17 -Wall -Wextra -Werror"
+  ]
+}

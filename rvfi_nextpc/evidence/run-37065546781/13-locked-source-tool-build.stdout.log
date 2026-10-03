@@ -1,0 +1,9 @@
+Processing ./artifacts/runtime/jsonschema2md-1.7.0.tar.gz
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: jsonschema2md
+  Building wheel for jsonschema2md (pyproject.toml): started
+  Building wheel for jsonschema2md (pyproject.toml): finished with status 'done'
+  Created wheel for jsonschema2md: filename=jsonschema2md-1.7.0-cp312-cp312-manylinux_2_39_x86_64.whl size=31465 sha256=dddfac261e45c4103e759cbb5e41bf5c829b532fd5586e15c506097415232303
+  Stored in directory: /home/runner/.cache/pip/wheels/cc/d4/f8/4413cf4b45b6106c71d509d018e964fa73556ded48363ed93e
+Successfully built jsonschema2md

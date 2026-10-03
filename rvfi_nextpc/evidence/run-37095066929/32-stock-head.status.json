@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "git",
+    "rev-parse",
+    "HEAD"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929/upstream",
+  "duration_seconds": 0.003899966000005861,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 41,
+    "sha256": "0e7401ebd1b0bfa1cce6fd23028200e460af9b2f3f2ee45522f3ff32a0c50893"
+  },
+  "timeout_seconds": 300
+}

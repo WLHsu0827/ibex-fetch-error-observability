@@ -1,0 +1,56 @@
+{
+  "files": {
+    "01-input-head.status.json": {
+      "bytes": 502,
+      "sha256": "eafd5f8edada55cd15bfdfa95057124beec0b2e7c5d8c8ed07a16eab54ccd1fe"
+    },
+    "01-input-head.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "01-input-head.stdout.log": {
+      "bytes": 41,
+      "sha256": "0f3282f2b48a1abe311ec49ec91cde34b7678d081c3ce983ea37a6545cc51c99"
+    },
+    "02-input-clean.status.json": {
+      "bytes": 515,
+      "sha256": "8a8b3c679492ebcc69d2f8575a8c2c70f62f19ff62fd8e69d3d0422caff2359d"
+    },
+    "02-input-clean.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "02-input-clean.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "03-attempt-history.status.json": {
+      "bytes": 735,
+      "sha256": "1edcc834274a8d462599eeec4b7b1d1cffd11aaefb2e7ade4ed7fb477dc626e7"
+    },
+    "03-attempt-history.stderr.log": {
+      "bytes": 1578,
+      "sha256": "7bdf927ad941f23f9ddd4b3c6102ad2f6f50faa93c4341fd7e589c219a7c6b13"
+    },
+    "03-attempt-history.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dispatch-input.json": {
+      "bytes": 267,
+      "sha256": "f31511ac6eefd879a6adc2e2a5dbbcfbf7b6a89da5f77548f18d27dbd91058d4"
+    },
+    "pipeline-error.log": {
+      "bytes": 1167,
+      "sha256": "19455664df3e962f3b434e4f956172de167fe7ec1e1689db5b51b14c58dc56b4"
+    },
+    "summary.json": {
+      "bytes": 626,
+      "sha256": "013faa7b977c8fac45354e7c0230e805565e87a18fafb1b5328a7ffbafef6e09"
+    }
+  },
+  "run_id": "37064524358",
+  "schema": 1,
+  "self_hash": "intentionally absent; immutable artifact/commit identity is the outer closure",
+  "source_sha": "69d0265af7f985e968eb5eabc5f687e48596d486"
+}

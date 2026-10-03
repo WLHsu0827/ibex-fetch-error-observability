@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37094924126/loader-fixture",
+    "/tmp/rvfi-nextpc-37094924126/loader-good.bin",
+    "2147483780",
+    "20000"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37094924126",
+  "duration_seconds": 0.0036152369999911116,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 27,
+    "sha256": "29b61453681dbfc57a4e369e9dcd8e8b42b1bcd24f3da476bed3407aa217456a"
+  },
+  "timeout_seconds": 5
+}

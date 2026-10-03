@@ -1,0 +1,10 @@
+%Warning-SYNCASYNCNET: /tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv:4:22: Signal flopped as both synchronous and async: 'rst_ni'
+                       /tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv:28:3: ... Location of async usage
+   28 |   always_ff @(posedge clk_i or negedge rst_ni) begin
+      |   ^~~~~~~~~
+                       /tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv:41:27: ... Location of sync usage
+   41 |             phase, index, rst_ni, irq_software_i, irq_timer_i, irq_external_i,
+      |                           ^~~~~~
+                       ... For warning description see https://verilator.org/warn/SYNCASYNCNET?v=5.020
+                       ... Use "/* verilator lint_off SYNCASYNCNET */" and lint_on around source to disable this message.
+%Error: Exiting due to 1 warning(s)

@@ -1,0 +1,28 @@
+usage: main.py [-h] [--version] [--cores-root CORES_ROOT] [--config CONFIG]
+               [--monochrome] [--verbose] [--log-file LOG_FILE]
+               {fetch,core,tool,list-cores,core-info,gen,list-paths,library,run,config}
+               ...
+
+positional arguments:
+  {fetch,core,tool,list-cores,core-info,gen,list-paths,library,run,config}
+    fetch               Fetch a remote core and its dependencies to local
+                        cache
+    core                Subcommands for dealing with cores
+    tool                Subcommands for dealing with tools
+    list-cores          List available cores
+    core-info           Display details about a core
+    gen                 Run or show information about generators
+    list-paths          Display the search order for core root paths
+    library             Subcommands for dealing with library management
+    run                 Start a tool flow
+    config              Read/write config default section [main]
+
+options:
+  -h, --help            show this help message and exit
+  --version             Display the FuseSoC version
+  --cores-root CORES_ROOT
+                        Add additional directories containing cores
+  --config CONFIG       Specify the config file to use
+  --monochrome          Don't use color for messages
+  --verbose             More info messages
+  --log-file LOG_FILE   Write log messages to file

@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "verilator",
+    "--cc",
+    "--exe",
+    "-Wall",
+    "--top-module",
+    "sampler_fixture",
+    "-DOBSERVER_TARGET=sampler_fixture",
+    "--Mdir",
+    "/tmp/rvfi-nextpc-37118113760/miniature",
+    "-CFLAGS",
+    "-std=c++17 -Wall -Wextra -Werror",
+    "/tmp/rvfi-nextpc-37118113760/inputs/rvfi_nextpc/sampler_fixture.sv",
+    "/tmp/rvfi-nextpc-37118113760/inputs/rvfi_nextpc/rvfi_observer.sv",
+    "/tmp/rvfi-nextpc-37118113760/inputs/rvfi_nextpc/fixture.cpp"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118113760",
+  "duration_seconds": 0.06590024400000516,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 300
+}

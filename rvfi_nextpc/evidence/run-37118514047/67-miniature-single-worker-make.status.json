@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "-f",
+    "Vsampler_fixture.mk"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118514047/miniature",
+  "duration_seconds": 5.830835045000001,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 2899,
+    "sha256": "e6076e0fdb6d0c60265f06308b6eb4a224ea796dfc72ba0b62d5d797d37d1ab3"
+  },
+  "timeout_seconds": 300
+}

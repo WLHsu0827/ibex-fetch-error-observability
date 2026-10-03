@@ -1,0 +1,42 @@
+test_changed_missing_or_extra_bytes_fail (rvfi_nextpc.tests.ArchiveContracts.test_changed_missing_or_extra_bytes_fail) ... ok
+test_declared_pre_hdl_source_gap_is_incomplete_never_pass (rvfi_nextpc.tests.ArchiveContracts.test_declared_pre_hdl_source_gap_is_incomplete_never_pass) ... ok
+test_scanner_literals_are_not_source_exemptions (rvfi_nextpc.tests.ArchiveContracts.test_scanner_literals_are_not_source_exemptions) ... ok
+test_source_config_and_elf_byte_mutations_fail_closed (rvfi_nextpc.tests.ArchiveContracts.test_source_config_and_elf_byte_mutations_fail_closed) ... ok
+test_stop_archive_is_not_scientific_pass (rvfi_nextpc.tests.ArchiveContracts.test_stop_archive_is_not_scientific_pass) ... ok
+test_bad_encoding_and_bad_freeze (rvfi_nextpc.tests.DecoderContracts.test_bad_encoding_and_bad_freeze) ... ok
+test_independent_known_branch_vectors (rvfi_nextpc.tests.DecoderContracts.test_independent_known_branch_vectors) ... ok
+test_outcome_uses_operands_not_labels (rvfi_nextpc.tests.DecoderContracts.test_outcome_uses_operands_not_labels) ... ok
+test_x0_writeback_is_zero (rvfi_nextpc.tests.DecoderContracts.test_x0_writeback_is_zero) ... ok
+test_canonical_names_and_versions (rvfi_nextpc.tests.DependencyContracts.test_canonical_names_and_versions) ... ok
+test_complete_lock_and_missing_dependency (rvfi_nextpc.tests.DependencyContracts.test_complete_lock_and_missing_dependency) ... ok
+test_platform_and_python_wheels (rvfi_nextpc.tests.DependencyContracts.test_platform_and_python_wheels) ... ok
+test_target_markers_do_not_use_local_windows (rvfi_nextpc.tests.DependencyContracts.test_target_markers_do_not_use_local_windows) ... ok
+test_changed_interpreter_module_package_code_or_lock_fails (rvfi_nextpc.tests.EntrypointContracts.test_changed_interpreter_module_package_code_or_lock_fails) ... ok
+test_changed_version_invocation_and_malformed_identity_fails (rvfi_nextpc.tests.EntrypointContracts.test_changed_version_invocation_and_malformed_identity_fails) ... ok
+test_missing_duplicate_truncated_and_unretained_raw_receipts_fail (rvfi_nextpc.tests.EntrypointContracts.test_missing_duplicate_truncated_and_unretained_raw_receipts_fail) ... ok
+test_realistic_unrelated_body_invalid_shebang_and_resolution_fails (rvfi_nextpc.tests.EntrypointContracts.test_realistic_unrelated_body_invalid_shebang_and_resolution_fails) ... ok
+test_supported_active_module_allows_only_reviewed_unused_path_difference (rvfi_nextpc.tests.EntrypointContracts.test_supported_active_module_allows_only_reviewed_unused_path_difference) ... ok
+test_all_pages_both_epochs_current_exactly_once (rvfi_nextpc.tests.HistoryContracts.test_all_pages_both_epochs_current_exactly_once) ... ok
+test_closed_epochs_cannot_reopen_reset_or_change_identity (rvfi_nextpc.tests.HistoryContracts.test_closed_epochs_cannot_reopen_reset_or_change_identity) ... ok
+test_duplicate_current_and_rerun_rejected (rvfi_nextpc.tests.HistoryContracts.test_duplicate_current_and_rerun_rejected) ... ok
+test_empty_failed_truncated_malformed_or_missing_page_rejected (rvfi_nextpc.tests.HistoryContracts.test_empty_failed_truncated_malformed_or_missing_page_rejected) ... ok
+test_failed_guard_cannot_admit_tools_or_hdl_and_snapshot_follows_checks (rvfi_nextpc.tests.HistoryContracts.test_failed_guard_cannot_admit_tools_or_hdl_and_snapshot_follows_checks) ... ok
+test_missing_current_counter_reset_and_pair_requires_same_source (rvfi_nextpc.tests.HistoryContracts.test_missing_current_counter_reset_and_pair_requires_same_source) ... ok
+test_flushed_bytes_and_exclusive_receipts (rvfi_nextpc.tests.ProcessContracts.test_flushed_bytes_and_exclusive_receipts) ... ok
+test_marker_then_hang_remains_timeout (rvfi_nextpc.tests.ProcessContracts.test_marker_then_hang_remains_timeout) ... ok
+test_missing_tool_and_bad_exit (rvfi_nextpc.tests.ProcessContracts.test_missing_tool_and_bad_exit) ... ok
+test_prompt_signal_and_marker (rvfi_nextpc.tests.ProcessContracts.test_prompt_signal_and_marker) ... ok
+test_actual_prior_generated_shell_quoting_rejected_and_repaired (rvfi_nextpc.tests.ProgramInputContracts.test_actual_prior_generated_shell_quoting_rejected_and_repaired) ... ok
+test_boundary_missing_duplicate_changed_and_boot_rejected (rvfi_nextpc.tests.ProgramInputContracts.test_boundary_missing_duplicate_changed_and_boot_rejected) ... ok
+test_canonical_git_authorization_matches_retained_source_not_local_crlf (rvfi_nextpc.tests.ProgramInputContracts.test_canonical_git_authorization_matches_retained_source_not_local_crlf) ... ok
+test_elf_image_identity_class_boot_and_truncation (rvfi_nextpc.tests.ProgramInputContracts.test_elf_image_identity_class_boot_and_truncation) ... ok
+test_image_path_operands_flags_and_premature_exit (rvfi_nextpc.tests.StreamContracts.test_image_path_operands_flags_and_premature_exit) ... ok
+test_metadata_failure_is_not_execution_failure (rvfi_nextpc.tests.StreamContracts.test_metadata_failure_is_not_execution_failure) ... ok
+test_missing_duplicate_reordered_malformed_and_controls (rvfi_nextpc.tests.StreamContracts.test_missing_duplicate_reordered_malformed_and_controls) ... ok
+test_qualified_metadata (rvfi_nextpc.tests.StreamContracts.test_qualified_metadata) ... ok
+test_sampler_disagreement (rvfi_nextpc.tests.StreamContracts.test_sampler_disagreement) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 0.635s
+
+OK

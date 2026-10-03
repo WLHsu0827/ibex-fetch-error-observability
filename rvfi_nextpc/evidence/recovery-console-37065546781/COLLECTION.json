@@ -1,0 +1,19 @@
+{
+  "boundary": "Separate post-run retrieval receipt; not inserted into or substituted for original hosted RAW_MANIFEST.",
+  "files": {
+    "pipeline-console.txt": {
+      "bytes": 1728,
+      "sha256": "17c809be0e92cdacd4fe88142674a48f1e302ae3863ffd059301fbde099509c7"
+    }
+  },
+  "original_member": "Bounded dispatched observation and closure (not scientific PASS)/3_No automatic retries; always close Python pipeline receipts.txt",
+  "retrieval": "GitHub run logs ZIP; selected complete pipeline-step member, unchanged bytes; no full job/environment dump published.",
+  "retrieved_logs_zip": {
+    "bytes": 27679,
+    "sha256": "2a695adc9826b3bae7418596bcea52938051eb28b9ec37dda0bb44cd49538620"
+  },
+  "run_id": "37065546781",
+  "schema": 1,
+  "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+  "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37065546781"
+}

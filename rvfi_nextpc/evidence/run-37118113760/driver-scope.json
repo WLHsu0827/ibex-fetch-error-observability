@@ -1,0 +1,306 @@
+{
+  "files": {
+    "/usr/bin/cat": {
+      "bytes": 39384,
+      "sha256": "0d5c6788b9e87eb2f6672ae7dd1fb1fc9e4d13b930d988f28e4c040ff5b79c19"
+    },
+    "/usr/bin/dash": {
+      "bytes": 129784,
+      "sha256": "86d31f6fb799e91fa21bad341484564510ca287703a16e9e46c53338776f4f42"
+    },
+    "/usr/bin/make": {
+      "bytes": 259808,
+      "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"
+    },
+    "/usr/bin/perl": {
+      "bytes": 4023408,
+      "sha256": "47bdc8a342556c1d140084417ef6cacd79a3362e4b6cc1e4754df55bdf1e3683"
+    },
+    "/usr/bin/python3.12": {
+      "bytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "/usr/bin/rm": {
+      "bytes": 59912,
+      "sha256": "78721a1709e77e74163f73067cef7049496463325adb300f4b7fd6155fca1c62"
+    },
+    "/usr/bin/uname": {
+      "bytes": 35336,
+      "sha256": "c6e023b172383fae5318c600e6f2f3a153513df62bf06ad6c9269296d2a78e89"
+    },
+    "/usr/bin/verilator": {
+      "bytes": 23493,
+      "sha256": "4c6292ab82e57b7f34ab26dbae86ba9c494bacfb088b6ff34be93c553d1301b1"
+    },
+    "/usr/bin/verilator_bin": {
+      "bytes": 10993608,
+      "sha256": "25f33046f0055a6982c67cdc55081685a844abb50d044cfda087bd418db9be6c"
+    },
+    "/usr/bin/x86_64-linux-gnu-ar": {
+      "bytes": 55792,
+      "sha256": "6452af2eea333b8c65e1adb92964fc8f97863ab003fa13f9d12bff5345cd7dbe"
+    },
+    "/usr/bin/x86_64-linux-gnu-as": {
+      "bytes": 745768,
+      "sha256": "21aff249b692b5c31a44007491f922dcb49f41323e362c57d2ada3f52eddb7f0"
+    },
+    "/usr/bin/x86_64-linux-gnu-g++-13": {
+      "bytes": 1027128,
+      "sha256": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769"
+    },
+    "/usr/bin/x86_64-linux-gnu-gcc-13": {
+      "bytes": 1023032,
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26"
+    },
+    "/usr/bin/x86_64-linux-gnu-ld.bfd": {
+      "bytes": 1359128,
+      "sha256": "e9ceb054c12207970f2726dfc07e9a66b411602748628baf27399f02a9bbb31b"
+    },
+    "/usr/bin/xargs": {
+      "bytes": 63912,
+      "sha256": "fa3818410ee7be85ca1484ce44e7c3043fb2d0b8402b42dcd9c3ffca78eb02fa"
+    },
+    "/usr/lib/gcc/riscv64-unknown-elf/13.2.0/cc1": {
+      "bytes": 27786400,
+      "sha256": "c77dcc80dac7131d02192ccb0d9a821d55fee147d076554ad4af7a7c4b771733"
+    },
+    "/usr/lib/gcc/riscv64-unknown-elf/13.2.0/collect2": {
+      "bytes": 1015080,
+      "sha256": "96b195d0cec91e74c19a9f75526151b63784482543ebf627c1a58df873a48d06"
+    },
+    "/usr/lib/gcc/riscv64-unknown-elf/13.2.0/lto-wrapper": {
+      "bytes": 2383616,
+      "sha256": "78b415030ec61381413f894ecab987c2d7a62d77e81c252c0df1f7c013364da3"
+    },
+    "/usr/lib/riscv64-unknown-elf/bin/as": {
+      "bytes": 1635000,
+      "sha256": "fee3834340dc32bcde541648eec65b3d0ee19e950af8918649171a1c90fbcb31"
+    },
+    "/usr/lib/riscv64-unknown-elf/bin/ld": {
+      "bytes": 1844536,
+      "sha256": "c2270bf4a24fe0ebef9947ea70627a3ba3b080fc993b61f717cbd9034b09dcb3"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus": {
+      "bytes": 32675168,
+      "sha256": "840b332fb62ec6f694ac77d91fe69ef7f80b0d69512ed89374af0ee7a506255d"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2": {
+      "bytes": 336056,
+      "sha256": "4d1f341ae5b763b513258ee2812422a45e063c30a2f1924a0cf63d3699f3a158"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper": {
+      "bytes": 831800,
+      "sha256": "f6d39bcfb1c2798c704e275a4ed2c1fe6374ebfb6aa0c5f3f3b6c669e1ff2e13"
+    },
+    "/usr/share/verilator/bin/verilator_includer": {
+      "bytes": 960,
+      "sha256": "35eb42ac191488cec88fbdc8681214633f34d1b9c06efdfb38d13ef018f994ac"
+    },
+    "/usr/share/verilator/include/gtkwave/fastlz.h": {
+      "bytes": 3685,
+      "sha256": "4dd943f4063e0d13034a87bd66a54f689014b3ea5f92c07b9938f271ffa38a0c"
+    },
+    "/usr/share/verilator/include/gtkwave/fst_config.h": {
+      "bytes": 429,
+      "sha256": "d8b84770187034bb7aee6c41eeb49725e84ad9dc1d3302903dfc979b03b4d6ad"
+    },
+    "/usr/share/verilator/include/gtkwave/fst_win_unistd.h": {
+      "bytes": 1593,
+      "sha256": "15ec1054e9c5fa8118060ca5b5dab0bbb2d4879c43b53c9457cb416fce97b19f"
+    },
+    "/usr/share/verilator/include/gtkwave/fstapi.h": {
+      "bytes": 18479,
+      "sha256": "9b401991a1d433eec862a8636e2d218e9e572df7a4e62643ebccbf88fc417377"
+    },
+    "/usr/share/verilator/include/gtkwave/lz4.h": {
+      "bytes": 18872,
+      "sha256": "cee1c5b0b553cd610a73c6823e12b286402644668f7b43037df4c86c388bb41e"
+    },
+    "/usr/share/verilator/include/gtkwave/wavealloca.h": {
+      "bytes": 1431,
+      "sha256": "c328c316a145aba0473ac6a5201ca832da4bbb5c97374e914cb4ac400b0bb235"
+    },
+    "/usr/share/verilator/include/verilated.cpp": {
+      "bytes": 131544,
+      "sha256": "b784038c3cf821588ff4576653b540355889c0621bc258d1b349c29a63836c35"
+    },
+    "/usr/share/verilator/include/verilated.h": {
+      "bytes": 42562,
+      "sha256": "5dae77881c31423d9e0ed126192eaed0721b3f88dd2d7a709c57152e2a861c35"
+    },
+    "/usr/share/verilator/include/verilated.mk": {
+      "bytes": 12468,
+      "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+    },
+    "/usr/share/verilator/include/verilated_config.h": {
+      "bytes": 1204,
+      "sha256": "95d2fcc785c2f940a3e343d49cfaf5e1e5dfc2125495955de09e7c5e1a920f07"
+    },
+    "/usr/share/verilator/include/verilated_cov.cpp": {
+      "bytes": 21114,
+      "sha256": "891fb8fa8c14f547a2ba6f54d7d4649559777895a7c05882fb125984e6e39b3d"
+    },
+    "/usr/share/verilator/include/verilated_cov.h": {
+      "bytes": 7773,
+      "sha256": "250013cf22c84dd79901065c7d10937a1fe48ef088f382feab8dfad74c6fd833"
+    },
+    "/usr/share/verilator/include/verilated_cov_key.h": {
+      "bytes": 3911,
+      "sha256": "161e775d21f12cafc838ce80bd17618141342cf407791414320757c17fad853c"
+    },
+    "/usr/share/verilator/include/verilated_dpi.cpp": {
+      "bytes": 32405,
+      "sha256": "a13d61239de4c25e1c3af900a12ee4ea08ba6701775a67eec258ee7cee57b492"
+    },
+    "/usr/share/verilator/include/verilated_dpi.h": {
+      "bytes": 3754,
+      "sha256": "69fa17a0144e9649f40c4dff4469b4890afb65d31217ef8dc6f19a1b7b827db3"
+    },
+    "/usr/share/verilator/include/verilated_fst_c.cpp": {
+      "bytes": 14873,
+      "sha256": "c7ac049abe738c6a447da40ea2a86e587d01c944dbcf95784e6a2cab02526643"
+    },
+    "/usr/share/verilator/include/verilated_fst_c.h": {
+      "bytes": 10559,
+      "sha256": "ca77336b3b4708c252fac5ad31b603ae36f7ce5328da7abd92794a614bf85591"
+    },
+    "/usr/share/verilator/include/verilated_fst_sc.cpp": {
+      "bytes": 971,
+      "sha256": "4db20e688619bdaa82267405104a182038b5061b90ff02c43ca738050013b5e3"
+    },
+    "/usr/share/verilator/include/verilated_fst_sc.h": {
+      "bytes": 1993,
+      "sha256": "6620d7d758b5b217b84511c1b44dda9146fc6ec0e7d348a7d9e8a4952cefaf08"
+    },
+    "/usr/share/verilator/include/verilated_funcs.h": {
+      "bytes": 101888,
+      "sha256": "db34fde6fae46db0dbfa6ad8858d29a6005d2db97b5817e285233fa4d7c2c9d4"
+    },
+    "/usr/share/verilator/include/verilated_imp.h": {
+      "bytes": 23433,
+      "sha256": "27b13119d9dc0a5be17a3d87e377ba8a7dc00310244ec50f943a20f6ab74c009"
+    },
+    "/usr/share/verilator/include/verilated_intrinsics.h": {
+      "bytes": 1558,
+      "sha256": "9731d3b3dad87cdf86e1e8e3909f4e477d1251a894f6a5816df509881d545a14"
+    },
+    "/usr/share/verilator/include/verilated_probdist.cpp": {
+      "bytes": 7473,
+      "sha256": "834dca26103672962f72c8175561ff7360fc16d814b9efbf5c9eb0551b486cd5"
+    },
+    "/usr/share/verilator/include/verilated_profiler.cpp": {
+      "bytes": 8750,
+      "sha256": "c6c89625b8c93466d00b89cb86c9ef147d9ef613b7efbbbb3055d35d97e3af9f"
+    },
+    "/usr/share/verilator/include/verilated_profiler.h": {
+      "bytes": 9938,
+      "sha256": "f4836c8eaeeba19ad3858a513825a0ef50530f17b4a11e083ae7e44c89608317"
+    },
+    "/usr/share/verilator/include/verilated_save.cpp": {
+      "bytes": 9683,
+      "sha256": "0486fac12c0ffe87f220aa92bb5b4594acf4fdf954f3c409424ba892620ae6da"
+    },
+    "/usr/share/verilator/include/verilated_save.h": {
+      "bytes": 12237,
+      "sha256": "e25098f63bd1866afa751c24846bf1962b8fc37e87fff192ee817ca0a4fe9d29"
+    },
+    "/usr/share/verilator/include/verilated_sc.h": {
+      "bytes": 2135,
+      "sha256": "22881611a751634ecaf7eb30836199b944dba6a9e80efae7bb2da04d66a1b991"
+    },
+    "/usr/share/verilator/include/verilated_sc_trace.h": {
+      "bytes": 8304,
+      "sha256": "5734da6f799f650435390cec5ea06cb53cea8be66abdecf47bcf9f1e1cd1a682"
+    },
+    "/usr/share/verilator/include/verilated_sym_props.h": {
+      "bytes": 10406,
+      "sha256": "a1dbc1e3a05adf95b3d8d8e849f648c02a06d309e758c1ac129ebcd62e5ff623"
+    },
+    "/usr/share/verilator/include/verilated_syms.h": {
+      "bytes": 2690,
+      "sha256": "e6a16c7c8052e390a6fc8a28cd7f944e0054e6c3f121f2671389468bb4bfe1f1"
+    },
+    "/usr/share/verilator/include/verilated_threads.cpp": {
+      "bytes": 3505,
+      "sha256": "c1290e944bb50e80ee5bf27ab1efdc032aac023ade148ef74d6a45db8bb6f132"
+    },
+    "/usr/share/verilator/include/verilated_threads.h": {
+      "bytes": 7821,
+      "sha256": "2164e6b4aa0f366097d95f9e979ce0f999391e7c46183fd31a869a4f7b662b3d"
+    },
+    "/usr/share/verilator/include/verilated_timing.cpp": {
+      "bytes": 8237,
+      "sha256": "6b0c49ac5a5a8c74562282fd4ebd2c4a46733ce85f50458da9c0c8928cbf780d"
+    },
+    "/usr/share/verilator/include/verilated_timing.h": {
+      "bytes": 19554,
+      "sha256": "ed2d0d0c25265210f0ee7ca8cb8d834921221785762fc1c630eb52a01b107b7d"
+    },
+    "/usr/share/verilator/include/verilated_trace.h": {
+      "bytes": 24231,
+      "sha256": "e75cfc2f3eb93f2a9680e0697501b95249679d4cf4aa1f998de4ce09bbf25fc2"
+    },
+    "/usr/share/verilator/include/verilated_trace_imp.h": {
+      "bytes": 36268,
+      "sha256": "9512d1d986deefbe0641d4d3c523868f429e26c7195cd31b516b73bc7ee7da9e"
+    },
+    "/usr/share/verilator/include/verilated_types.h": {
+      "bytes": 65161,
+      "sha256": "dd56d87f929e7c2a10879e245ce1a7fe30056e86d42e37f5eca5fedf4c020a48"
+    },
+    "/usr/share/verilator/include/verilated_vcd_c.cpp": {
+      "bytes": 23864,
+      "sha256": "ac9353d13ce64c5ef1cea5279893a4c288a22a72d4be1512757ebf98bd3a5120"
+    },
+    "/usr/share/verilator/include/verilated_vcd_c.h": {
+      "bytes": 13977,
+      "sha256": "63c6de3a22a25d13b8e802d8facb75cf0257fe47acfdf6fe21916535368ddfff"
+    },
+    "/usr/share/verilator/include/verilated_vcd_sc.cpp": {
+      "bytes": 976,
+      "sha256": "f8d7875cc945086238dc0db55b729ced24ed1f1d8a62b3235b277bad2dcbb0eb"
+    },
+    "/usr/share/verilator/include/verilated_vcd_sc.h": {
+      "bytes": 2049,
+      "sha256": "1f62f52c30cdec9113598c0abd698a50cafa515c26cf9e24cd13e28cbbd8f6f8"
+    },
+    "/usr/share/verilator/include/verilated_vpi.cpp": {
+      "bytes": 115349,
+      "sha256": "f099b4917638437fd853d49bf34a4163848de552a4379a0b34517e5386e4998e"
+    },
+    "/usr/share/verilator/include/verilated_vpi.h": {
+      "bytes": 2123,
+      "sha256": "29d9299f6de596c1e30ae59626fad50e80b2eb18a369a0dea1332a234fe68108"
+    },
+    "/usr/share/verilator/include/verilatedos.h": {
+      "bytes": 24609,
+      "sha256": "65774ad8f3dc4384d0d43900cb25dfe6c447229ae36ca4ce64618524c7671246"
+    },
+    "/usr/share/verilator/include/vltstd/sv_vpi_user.h": {
+      "bytes": 22983,
+      "sha256": "efaf9987f27c9734df3dde28d457fa36c5f64504b86aa292df423bd61cab2a76"
+    },
+    "/usr/share/verilator/include/vltstd/svdpi.h": {
+      "bytes": 18556,
+      "sha256": "bbe9cb930e7d0c16b9fab2d2744169c2eaaa8cfca797631138883a194681a1fb"
+    },
+    "/usr/share/verilator/include/vltstd/vpi_user.h": {
+      "bytes": 45550,
+      "sha256": "6ec3e0d8d9fe696fd494b609db9d83d4f61d7d47458b5a19d3bf6de35f3b4d16"
+    }
+  },
+  "make": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE="
+  ],
+  "schema": 1,
+  "scope": "Exact resolved compiler/LINK/archiver/helpers, GCC-reported assembler/linker/compiler subtools, installed Verilator include code/recipes. Bounded snapshot, not universal OS/shared-library/system-header/toolchain closure."
+}

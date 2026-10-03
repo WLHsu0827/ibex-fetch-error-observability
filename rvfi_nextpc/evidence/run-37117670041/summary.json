@@ -1,0 +1,16 @@
+{
+  "admission": "nonmemory-nextpc-v2",
+  "attempted_stages": 65,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+  "error": "STOP: ['verilator', '--cc', '--exe', '-Wall', '--top-module', 'sampler_fixture', '-DOBSERVER_TARGET=sampler_fixture', '--Mdir', '/tmp/rvfi-nextpc-37117670041/miniature', '-CFLAGS', '-std=c++17 -Wall -Wextra -Werror', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/fixture.cpp']: exited:1",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "STOP",
+  "run_attempt": "1",
+  "run_id": "37117670041",
+  "schema": 1,
+  "scientific_result": "NOT_QUALIFIED",
+  "source_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815",
+  "stream_schema": 2
+}

@@ -1,0 +1,48 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37095066929/tools/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-deps",
+    "--no-index",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/argcomplete-3.6.2-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/attrs-25.3.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/babel-2.18.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/edalize-0.6.2-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/fastjsonschema-2.21.2-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/fusesoc-2.4.3-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/jinja2-3.1.6-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/jsonschema-4.26.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/jsonschema_specifications-2025.9.1-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/mako-1.3.10-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/markdown-3.11-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/okonomiyaki-0.17.1-py2.py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/packaging-25.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/pip-25.3-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/pyparsing-3.2.3-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/referencing-0.37.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/simplesat-0.9.2-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/six-1.17.0-py2.py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/typing_extensions-4.16.0-py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/zipfile2-0.0.12-py2.py3-none-any.whl",
+    "/tmp/rvfi-nextpc-37095066929/built-tool-wheel/jsonschema2md-1.7.0-cp312-cp312-manylinux_2_39_x86_64.whl"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 1.6695537070000057,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 2545,
+    "sha256": "5cfaaad917cf1e2bf5dc2576b820437cd786b85bae8f8573e1ca5ef0eae8b387"
+  },
+  "timeout_seconds": 480
+}

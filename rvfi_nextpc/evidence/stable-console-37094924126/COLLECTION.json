@@ -1,0 +1,17 @@
+{
+  "boundary": "Post-run collection of the complete unchanged original pipeline-step log member. Separate from hosted RAW_MANIFEST. Other job/environment logs are not published.",
+  "files": {
+    "pipeline-console.txt": {
+      "bytes": 1455,
+      "sha256": "5416bd1915fa1483079901298bcdc21a1640964fbc0a0cfcde7581315893823f"
+    }
+  },
+  "run_id": "37094924126",
+  "schema": 1,
+  "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+  "zip": {
+    "bytes": 28647,
+    "sha256": "9beac27b0a3389dd4164ed08e2d2e361e9cf8f71f0bd9ea25ef0176fc1d9769d"
+  },
+  "zip_member": "Bounded dispatched observation and closure (not scientific PASS)/3_No automatic retries; always close Python pipeline receipts.txt"
+}

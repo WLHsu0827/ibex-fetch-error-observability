@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/g++-13",
+    "-dumpmachine"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118113760",
+  "duration_seconds": 0.004176136999987534,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 17,
+    "sha256": "08cababdf891ccbf96eb376f1e84f279f70302fb13d84e5f98637becdfc6d989"
+  },
+  "timeout_seconds": 300
+}

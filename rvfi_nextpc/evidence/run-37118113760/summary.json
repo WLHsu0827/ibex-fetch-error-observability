@@ -1,0 +1,15 @@
+{
+  "admission": "nonmemory-nextpc-v2",
+  "attempted_stages": 97,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "PREPARATION_PASS",
+  "run_attempt": "1",
+  "run_id": "37118113760",
+  "schema": 1,
+  "scientific_result": "NOT_RUN",
+  "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+  "stream_schema": 2
+}

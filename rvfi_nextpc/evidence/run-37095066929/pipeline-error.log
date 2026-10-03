@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 595, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 558, in execute
+    off = self.measure(0, builds[0][0], image, contract)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 514, in measure
+    result = qualify(destination / "cpp.tsv", destination / "sv.tsv", image, contract)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/check.py", line 70, in qualify
+    first, cpp_cycles = parse(cpp)
+                        ^^^^^^^^^^
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/check.py", line 55, in parse
+    raise ValueError("unexpected trap/halt/interrupt/debug/memory")
+ValueError: unexpected trap/halt/interrupt/debug/memory

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "dpkg-query",
+    "-W",
+    "-f=${Package}=${Version}\\n",
+    "verilator",
+    "gcc-riscv64-unknown-elf",
+    "binutils-riscv64-unknown-elf",
+    "fonts-font-awesome",
+    "sphinx-rtd-theme-common",
+    "g++-13",
+    "make"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37065546781",
+  "duration_seconds": 0.018947958000012477,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 241,
+    "sha256": "17c459387c1c2cd7e472281e92a8eff2bff9e3abba7f8d09515f6311dffe8660"
+  },
+  "timeout_seconds": 300
+}

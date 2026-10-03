@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "riscv64-unknown-elf-gcc",
+    "-march=rv32ic",
+    "-mabi=ilp32",
+    "-nostdlib",
+    "-nostartfiles",
+    "-Wl,--no-relax",
+    "-T",
+    "inputs/rvfi_nextpc/link.ld",
+    "inputs/rvfi_nextpc/program.S",
+    "-o",
+    "fresh.elf"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 0.018478279999996516,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 300
+}

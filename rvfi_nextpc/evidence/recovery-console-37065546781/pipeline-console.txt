@@ -1,0 +1,18 @@
+﻿2026-10-02T21:13:48.8830313Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-02T21:13:48.8833549Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-02T21:13:48.8836343Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-02T21:13:48.8838896Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-02T21:13:48.9153667Z shell: /usr/bin/bash -e {0}
+2026-10-02T21:13:48.9155017Z env:
+2026-10-02T21:13:48.9156089Z   DEBIAN_FRONTEND: noninteractive
+2026-10-02T21:13:48.9157547Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-02T21:13:48.9171082Z   GH_TOKEN: ***
+2026-10-02T21:13:48.9171990Z   MODE: pair
+2026-10-02T21:13:48.9173028Z   SOURCE_SHA: 8afa40840e9ff469a2a74713d12c01154f2471df
+2026-10-02T21:13:48.9174729Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1
+2026-10-02T21:13:48.9176314Z   PREPARATION_ATTEMPT: 0
+2026-10-02T21:13:48.9177353Z   PREPARATION_RUN: 37065211892
+2026-10-02T21:13:48.9178474Z ##[endgroup]
+2026-10-02T21:14:56.3767324Z NEXTPC_PIPELINE_STOP: STOP: qualified preparation identity changed: tool-identities.json
+2026-10-02T21:14:56.3961440Z {"attempted_stages": 52, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1", "error": "STOP: qualified preparation identity changed: tool-identities.json", "mode": "pair", "preparation_run": "37065211892", "real_compilations": [], "result": "STOP", "run_attempt": "1", "run_id": "37065546781", "schema": 1, "scientific_result": "NOT_QUALIFIED", "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df"}
+2026-10-02T21:14:56.4157835Z ##[error]Process completed with exit code 1.

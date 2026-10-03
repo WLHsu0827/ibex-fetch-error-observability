@@ -1,0 +1,53 @@
+Fresh Ibex RVFI Next-PC Output-Port Observation
+Copyright 2026 Wei-Lun Hsu.
+
+Original program, harness, sampler, oracle, tests, automation, new observations
+and prose are Apache-2.0, with GitHub Copilot App assistance. This is not
+independent human replication or lowRISC endorsement.
+
+The hosted pipeline is designed to fetch stock Ibex and its vendored
+dependencies at 4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8 without core
+modification. Original PRE-HDL STOP and recovery-1 PRE-CPU STOP archives remain
+unchanged. The new stable-tool epoch qualified its actual module entrypoint
+and retained original new launcher bytes. One fresh program and OFF core
+build/run completed, then strict OFF qualification rejected nonzero read-mask
+metadata; ON was not run. There is no qualified pair or ISA/next-PC conformance
+result. Public source interfaces/build definitions
+were inspected read-only. Upstream authorship/licenses/notices remain
+applicable; dependency provenance is retained for stages actually reached.
+
+Immutable public PR2 commit fdeedd7b0c0a7b0108d6b1fdbaecdc7056164b48 was read
+as engineering prior art for typed failures, reset arming, marker/hang
+rejection and archive closure. Its Apache-2.0 public author is Wei-Lun Hsu.
+No unmerged mutable branch, private artifacts or inherited measurement
+identities/counts are a dependency.
+
+Tooling licenses and exact public artifact hashes are recorded in
+DEPENDENCY_LOCK.json and hosted downloaded-tool-metadata.json (when reached).
+The separate source-build tooling is not vendored or redistributed as model
+binaries. Poetry and its dependencies retain their own licenses; runtime
+FuseSoC/EDAlize retain their public BSD notices. Pinned jsonschema2md is
+Apache-2.0; okonomiyaki and simplesat retain public BSD licenses. Wheel and
+sdist license-file hashes/public provenance are not human legal attestation.
+
+The minimal unused-launcher body in entrypoint.py matches public pip25.3
+PipScriptMaker (MIT license), with artifact/license provenance retained.
+New launcher observations do not reconstruct missing old bytes. Descriptive
+raw counts do not waive the failed gate or establish architectural execution,
+a DUT bug, support status, novelty or human replication.
+
+New nonmemory-nextpc-v2 admission and explicit recursive driver checks are
+original public tests, not a waiver/requalification of old STOP bytes.
+Public contract rationale references pinned SymbioticEDA/riscv-formal
+4f29e83a8387a81467716548f165fd97045af617 (ISC-style license).
+Hosted retained installed Verilator5.020 make/helper source keeps its original
+Wilson Snyder copyright and LGPL-3.0-only OR Artistic-2.0 SPDX/notices.
+No generated model or tool executable is redistributed.
+
+The separately authorized memory-admission epoch preserves every older STOP.
+Its versioned non-memory scope and actual bus/control samplers qualified in
+new miniatures; preparation2 passed on exact new source. A fresh public program
+was compiled/frozen and OFF compiled once with explicit qualified CXX+LINK,
+then the distinct post-build driver probe failed. No new whole-core run or
+ISA/next-PC/coverage/terminal outcome exists. These are PRE-RUN STOP archives,
+not a DUT-bug or human-replication claim; no gate waiver or retry followed OFF.

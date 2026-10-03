@@ -1,0 +1,8 @@
+CXX=/usr/bin/g++-13
+CC=/usr/bin/gcc-13
+LINK=/usr/bin/g++-13
+AR=/usr/bin/ar
+PYTHON3=/usr/bin/python3
+PERL=/usr/bin/perl
+OBJCACHE=
+MAKEFLAGS= -j1 --no-print-directory -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE=

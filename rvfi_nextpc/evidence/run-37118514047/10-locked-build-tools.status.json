@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37118514047/build-tools/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-deps",
+    "--no-index",
+    "--require-hashes",
+    "--find-links",
+    "/tmp/rvfi-nextpc-37118514047/artifacts/build",
+    "-r",
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/build-requirements.txt"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 4.976913984999996,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 12470,
+    "sha256": "2a119bc2cce7baf29b3481500639f6b20c2707f12547bb73fd4a79e1813f1a10"
+  },
+  "timeout_seconds": 300
+}

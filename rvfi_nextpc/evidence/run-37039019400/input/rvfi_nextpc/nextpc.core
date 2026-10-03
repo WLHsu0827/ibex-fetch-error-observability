@@ -1,0 +1,36 @@
+CAPI=2:
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Wei-Lun Hsu
+name: "wlh:observations:nextpc:1.0"
+description: "Fresh stock whole-core RVFI output-port observation"
+filesets:
+  rtl:
+    depend:
+      - lowrisc:ibex:ibex_top
+    files:
+      - nextpc_top.sv
+      - rvfi_observer.sv
+    file_type: systemVerilogSource
+  cpp:
+    files:
+      - main.cpp: {file_type: cppSource}
+      - sample.hpp: {is_include_file: true, file_type: cppSource}
+parameters:
+  RVFI: {datatype: bool, paramtype: vlogdefine, default: true}
+  OBSERVER_TARGET: {datatype: str, paramtype: vlogdefine, default: ibex_top}
+  BranchPredictor: {datatype: int, paramtype: vlogparam, default: 0}
+targets:
+  sim:
+    default_tool: verilator
+    filesets: [rtl, cpp]
+    toplevel: nextpc_top
+    parameters: [RVFI, OBSERVER_TARGET, BranchPredictor]
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          - "-Wall"
+          - "--unroll-count"
+          - "72"
+          - "-CFLAGS"
+          - "-std=c++17 -Wall -Wextra -Werror"

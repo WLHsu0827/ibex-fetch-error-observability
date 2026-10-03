@@ -1,0 +1,34 @@
+{
+  "fusesoc": {
+    "bytes": 240,
+    "sha256": "a46ebf6e3f241c340aeed6047334c995acfb930502b91b5ba6556609c3fd82bc"
+  },
+  "g++-13": {
+    "bytes": 1027128,
+    "sha256": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769"
+  },
+  "gcc-13": {
+    "bytes": 1023032,
+    "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26"
+  },
+  "make": {
+    "bytes": 259808,
+    "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"
+  },
+  "python3": {
+    "bytes": 8020928,
+    "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+  },
+  "riscv64-unknown-elf-gcc": {
+    "bytes": 2562368,
+    "sha256": "8c7a8599f3e56e6abe23d4d54025f77ad03efd4113394eac16f1d6060b626974"
+  },
+  "riscv64-unknown-elf-objcopy": {
+    "bytes": 1031992,
+    "sha256": "d4afe748d23929c4d42d349bffd1c9fd753bff6b28564121349b2ef0c0624b4a"
+  },
+  "verilator": {
+    "bytes": 23493,
+    "sha256": "4c6292ab82e57b7f34ab26dbae86ba9c494bacfb088b6ff34be93c553d1301b1"
+  }
+}
