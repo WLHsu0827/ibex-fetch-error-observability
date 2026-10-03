@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "as",
+    "--version"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37117670041",
+  "duration_seconds": 0.006176731000003599,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 327,
+    "sha256": "fe8d630c0d32e52bd4600a48e9f99f99a0c381f4754c990c9db429724b6fb417"
+  },
+  "timeout_seconds": 300
+}

@@ -581,8 +581,8 @@ class ProcessContracts(unittest.TestCase):
 
     def test_marker_then_hang_remains_timeout(self) -> None:
         status = run([sys.executable, "-c",
-                      "import os,time; os.write(1,b'NEXTPC_RESET_AFTER_START\\n'); time.sleep(10)"],
-                     self.root, self.root, "hang", 0.2)
+                      "import os,time; os.write(1,b'NEXTPC_RESET_AFTER_START\\n'); time.sleep(30)"],
+                     self.root, self.root, "hang", 5)
         text = (self.root / "hang.stdout.log").read_bytes()
         self.assertEqual(status["kind"], "timed_out")
         self.assertIn(b"NEXTPC_RESET_AFTER_START", text)

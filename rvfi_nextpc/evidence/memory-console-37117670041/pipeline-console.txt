@@ -1,0 +1,18 @@
+﻿2026-10-03T10:49:49.3658229Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-03T10:49:49.3661184Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-03T10:49:49.3664362Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-03T10:49:49.3666914Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-03T10:49:49.3928102Z shell: /usr/bin/bash -e {0}
+2026-10-03T10:49:49.3929236Z env:
+2026-10-03T10:49:49.3930130Z   DEBIAN_FRONTEND: noninteractive
+2026-10-03T10:49:49.3931350Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-03T10:49:49.3944007Z   GH_TOKEN: ***
+2026-10-03T10:49:49.3944900Z   MODE: prepare
+2026-10-03T10:49:49.3945941Z   SOURCE_SHA: 6342f9fe8e92738f5fa01e6d11a4bcf60983a815
+2026-10-03T10:49:49.3947700Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1
+2026-10-03T10:49:49.3949342Z   PREPARATION_ATTEMPT: 1
+2026-10-03T10:49:49.3950336Z   PREPARATION_RUN: 
+2026-10-03T10:49:49.3951274Z ##[endgroup]
+2026-10-03T10:50:26.1878975Z NEXTPC_PIPELINE_STOP: STOP: ['verilator', '--cc', '--exe', '-Wall', '--top-module', 'sampler_fixture', '-DOBSERVER_TARGET=sampler_fixture', '--Mdir', '/tmp/rvfi-nextpc-37117670041/miniature', '-CFLAGS', '-std=c++17 -Wall -Wextra -Werror', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/fixture.cpp']: exited:1
+2026-10-03T10:50:26.2103595Z {"admission": "nonmemory-nextpc-v2", "attempted_stages": 65, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1", "error": "STOP: ['verilator', '--cc', '--exe', '-Wall', '--top-module', 'sampler_fixture', '-DOBSERVER_TARGET=sampler_fixture', '--Mdir', '/tmp/rvfi-nextpc-37117670041/miniature', '-CFLAGS', '-std=c++17 -Wall -Wextra -Werror', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/fixture.cpp']: exited:1", "mode": "prepare", "preparation_run": "", "real_compilations": [], "result": "STOP", "run_attempt": "1", "run_id": "37117670041", "schema": 1, "scientific_result": "NOT_QUALIFIED", "source_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815", "stream_schema": 2}
+2026-10-03T10:50:26.2275192Z ##[error]Process completed with exit code 1.

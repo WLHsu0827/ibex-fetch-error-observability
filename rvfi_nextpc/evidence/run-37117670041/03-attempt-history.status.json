@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--paginate",
+    "repos/WLHsu0827/ibex-fetch-error-observability/actions/workflows/rvfi-nextpc.yml/runs?per_page=100",
+    "--jq",
+    "{total_count,runs:[.workflow_runs[]|{id,head_sha,display_title,event,run_attempt,status,conclusion}]}"
+  ],
+  "code": 0,
+  "cwd": "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability",
+  "duration_seconds": 1.3697189670000007,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 7389,
+    "sha256": "7645642811f97abcae7c14c80d55c6585a5a4fc4ef8cb177fca5c5bb93bd2049"
+  },
+  "timeout_seconds": 300
+}

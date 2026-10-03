@@ -52,9 +52,17 @@ module rvfi_observer (
   endtask
 
   // Inputs/outputs settled before the rising edge: sample before sequential NBA updates.
-  always @(posedge clk_i) begin
-    controls("P", pre_cycle);
-    pre_cycle <= pre_cycle + 1;
+  always @(posedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      // Reset is asserted with clock low; only real rising edges emit P samples.
+      if (clk_i) begin
+        controls("P", pre_cycle);
+        pre_cycle <= pre_cycle + 1;
+      end
+    end else begin
+      controls("P", pre_cycle);
+      pre_cycle <= pre_cycle + 1;
+    end
   end
 
   // Falling edge samples stable registered output ports, not the rising-edge NBA input.

@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/g++-13",
+    "-print-prog-name=cc1plus"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37117670041",
+  "duration_seconds": 0.004065109000002565,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 45,
+    "sha256": "3cf1bad0c4b2b5e0a6d569f800f949510f194bb594dcfaeddb1394fd3cc91758"
+  },
+  "timeout_seconds": 300
+}

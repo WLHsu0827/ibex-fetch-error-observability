@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37117670041/loader-fixture",
+    "/tmp/rvfi-nextpc-37117670041/loader-zero_budget.bin",
+    "2147483776",
+    "0"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-nextpc-37117670041",
+  "duration_seconds": 0.003508019000008744,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 41,
+    "sha256": "e94f71adc40acdbfadfe8759fe551cf6dd0638cfef9f96ca702c102866f6385a"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 5
+}

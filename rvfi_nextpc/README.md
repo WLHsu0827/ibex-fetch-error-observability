@@ -1,7 +1,7 @@
 # RVFI next-PC: new memory-admission inputs UNVALIDATED
 
-**New user-authorized memory-admission epoch: UNVALIDATED inputs, no new hosted
-dispatch or CPU build yet.** The accepted stable-tools **OFF-QUALIFICATION
+**New user-authorized memory-admission epoch: NOT_QUALIFIED; preparation1/4
+STOP, zero new program/CPU builds.** The accepted stable-tools **OFF-QUALIFICATION
 STOP / NOT_QUALIFIED** below remains immutable and is not requalified.
 [`MEMORY_ADMISSION_AUTHORIZATION.json`](MEMORY_ADMISSION_AUTHORIZATION.json)
 quotes the exact new user selection relayed by the coordinator. The continuation
@@ -9,6 +9,16 @@ turn began 2026-10-03 16:57:35.079 UTC+8; that is **not** the exact approval
 timestamp. New bounds: four total preparations, one conditional pair; no old
 unused slots. PR3 remains draft and every old raw/status/auth/manifest/console
 gap is preserved.
+
+Preparation1 [37117670041](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37117670041)
+consumed one attempt on input `6342f9fe8e92738f5fa01e6d11a4bcf60983a815`.
+Stage65 actual miniature lint exited1: new pre-transfer observer read async
+reset in a posedge-only process, producing fatal `SYNCASYNCNET`. Its original
+raw/status/source/console bytes are retained unchanged; no warning waiver
+or DUT edit. The revised observer uses the same async reset domain explicitly,
+emitting P only at real rising clocks (reset assertion occurs with clock low).
+All final-source gates must requalify; prior tool/loader gates cannot substitute
+for the new full preparation. No program/freeze/CPU/pair attempt has occurred.
 
 ### Preregistered admission `nonmemory-nextpc-v2`
 
