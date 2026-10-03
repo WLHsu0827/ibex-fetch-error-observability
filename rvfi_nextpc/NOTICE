@@ -7,11 +7,12 @@ independent human replication or lowRISC endorsement.
 
 The hosted pipeline is designed to fetch stock Ibex and its vendored
 dependencies at 4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8 without core
-modification. The original bounded preparation stopped before that RTL retrieval;
-its archive is retained unchanged. Distinct recovery preparation qualified
-the synthetic instrumentation and stock bind lint, but the sole pair stopped
-at the strict launcher-byte identity gate before program/core compilation.
-There is no whole-core observation. Public source interfaces/build definitions
+modification. Original PRE-HDL STOP and recovery-1 PRE-CPU STOP archives remain
+unchanged. The new stable-tool epoch qualified its actual module entrypoint
+and retained original new launcher bytes. One fresh program and OFF core
+build/run completed, then strict OFF qualification rejected nonzero read-mask
+metadata; ON was not run. There is no qualified pair or ISA/next-PC conformance
+result. Public source interfaces/build definitions
 were inspected read-only. Upstream authorship/licenses/notices remain
 applicable; dependency provenance is retained for stages actually reached.
 
@@ -28,3 +29,9 @@ binaries. Poetry and its dependencies retain their own licenses; runtime
 FuseSoC/EDAlize retain their public BSD notices. Pinned jsonschema2md is
 Apache-2.0; okonomiyaki and simplesat retain public BSD licenses. Wheel and
 sdist license-file hashes/public provenance are not human legal attestation.
+
+The minimal unused-launcher body in entrypoint.py matches public pip25.3
+PipScriptMaker (MIT license), with artifact/license provenance retained.
+New launcher observations do not reconstruct missing old bytes. Descriptive
+raw counts do not waive the failed gate or establish architectural execution,
+a DUT bug, support status, novelty or human replication.

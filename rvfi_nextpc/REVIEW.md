@@ -83,3 +83,23 @@ validate the unused original launcher, bind actual interpreter/module/code,
 and requalify all changed gates in a distinct approval epoch. New ELF and
 generated-shell negatives address the remaining unrun program/build path.
 The old PRE-CPU STOP and missing bytes remain immutable limitations.
+
+Stable-tools final review: new preparation241 and pair276 raw members and
+all33 source snapshots per run are byte-identical to hosted manifests and
+immutable Git input. Both original213-byte new launchers are retained; only
+their new run-specific shebang differs, with exact active interpreter/module/
+installed-code identities equal. This does not reconstruct old missing bytes.
+New derived authorization/index identities are computed from immutable Git LF
+blobs and roundtripped through staged public bytes, not local working CRLF.
+
+The final result is OFF-QUALIFICATION STOP / NOT_QUALIFIED. One fresh public
+172-byte image/1280-byte ELF, exclusive freeze, one OFF build/run and both
+independent raw streams are archived. Raw63-record agreement and decoded18-
+branch/all8-cell counts are descriptive only: the unchanged strict parser
+rejects read-mask15 from order1 before ISA/next-PC qualification. ON is absent.
+No field is filtered/waived, no gate or source changed after OFF, and no retry
+occurred. Stock generated recursive linking uses a retained g++ command whose
+alias identity was not independently recorded. Separate complete original
+pipeline console collections preserve terminal errors without publishing
+other job/environment dumps. Program binaries are allowed newly authored
+inputs; generated tool/model binaries, waves and build trees are excluded.

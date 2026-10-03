@@ -1,16 +1,18 @@
-# RVFI next-PC: PRE-CPU STOP / NOT_QUALIFIED
+# RVFI next-PC: OFF-QUALIFICATION STOP / NOT_QUALIFIED
 
-**PRE-CPU STOP / NOT_QUALIFIED: zero real CPU builds or runs.** Recovery
-preparation 2 qualified the actual sampler/reset miniature, shared loader,
-dependencies/tools and stock bind lint. The sole pair dispatch then failed
-the strict preparation-to-pair executable-byte identity gate **before**
-fresh program compilation, freeze or OFF. ON never ran. Actual whole-core
-samplers and ISA execution are **NOT_RUN**, strict next-PC **NOT_QUALIFIED**;
-there is neither a positive nor negative DUT observation. PR3 remains draft,
-open/unmerged; coordinator acceptance is separate. Archive-byte integrity and
-synthetic instrumentation qualification are not whole-core reproduction.
+**OFF-QUALIFICATION STOP / NOT_QUALIFIED: one OFF CPU build/run; ON NOT_RUN.**
+The new stable-tools preparation and actual entrypoint binding passed. One
+fresh program was compiled and frozen before OFF. The OFF process exited 0
+at its explicit four-terminal-record boundary, but the unchanged strict
+checker rejected `rvfi_mem_rmask=15` from order 1. It stopped before ISA and
+next-PC qualification; no completed qualified OFF/ON pair, next-PC PASS/FAIL,
+positive/negative anomaly result or architectural conclusion is claimed.
+PR3 remains draft/open/unmerged; coordinator acceptance is separate.
+Archive integrity, synthetic qualification and descriptive raw counts are
+not a waiver of the failed gate. No source/tool/oracle changes or retry
+followed OFF compilation.
 
-## New stable-tools epoch: unvalidated inputs
+## Stable-tools epoch: immutable terminal STOP
 
 At 2026-10-03 11:46:59 UTC+8 the coordinator relayed the user's reply
 "可以 開始吧" approving the stable-entrypoint repair, requalification and
@@ -19,8 +21,71 @@ records a distinct epoch, `WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1`.
 The established conservative **four total preparations / one conditional
 OFF/ON pair** bounds are retained, not claimed as a newly selected expansion.
 Both older epochs remain closed; all prior evidence and collection limitations
-are untouched. These new inputs are **not qualified until new same-source
-hosted gates pass**, and the prior PRE-CPU STOP is not a new observation.
+are untouched. This epoch consumed **1/4 preparations and 1/1 pair dispatch**,
+with no reruns. It is now closed; unused preparation slots cannot authorize
+another pair/window. The prior PRE-CPU STOP is preserved below as history,
+not the current build count.
+
+| Identity/stage | Exact value/result |
+| --- | --- |
+| Qualified/attempted source | `e2cede4e8b89dba481665fdcda370e1e9d9aebaa` |
+| Stable-tools evidence archive | `bdc93ceefebbdde0c4352beaf5ebb59c5db9ae00` |
+| [Preparation 1](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37094924126) | All 56 stages PASS, 37 hosted stdlib contracts, loader/actual sampler/reset miniature, both stock bind lints and generated build command checks |
+| [Sole pair](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37095066929) | 64 stages; fresh program/freeze, one OFF build/run; strict OFF rejection; ON not started |
+| OFF process | Build exited 0 in 13.3508 seconds; run exited 0 in 0.00624 seconds, `NEXTPC_COMPLETE terminal_records=4 cycles=99`; bounded receipts, not performance claims |
+| OFF actual raw streams | 63 retirement records each, complete fields identical, 99 C++/100 SV control samples; not official sampler qualification PASS |
+| OFF rejected field | `rmask=15` on all 63 records, including first order 1 / PC `0x80000080` / instruction `0x00000a13` |
+| OFF control/ISA/next-PC gates | Memory-mask predicate rejected; ISA/next-PC qualification not reached, NOT_QUALIFIED |
+| ON | No compile-start receipt, model, run or stream; NOT_RUN |
+
+No interrupt/debug/trap/halt field is nonzero in the retained raw samples.
+The C++ run's data-request/alert guards did not fire. Nevertheless, the
+preregistered mask predicate rejects and was **not** weakened. Pinned public
+[`ibex_core.sv:2088-2093`](https://github.com/lowRISC/ibex/blob/4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8/rtl/ibex_core.sv#L2088-L2093)
+captures the read mask from `data_we_o ? 4'b0000 : rvfi_mem_mask_int`;
+this supports reviewing the checker/metadata-contract boundary in a separately
+authorized future phase, not an architectural-memory-access or new-bug claim.
+There is no posthoc permissive checker, record filtering or metadata result.
+
+The pre-OFF frozen path has **63 retirements / 18 branches**, with all eight
+width/direction/outcome cells. Descriptive counts decoded independently from
+actual OFF instruction bits and retired operands have the same counts below;
+they are **unqualified raw diagnostics**, not ISA/next-PC acceptance:
+
+| Width | Direction | Not taken | Taken |
+| --- | --- | --- | --- |
+| 16 | backward | 2 | 3 |
+| 16 | forward | 2 | 2 |
+| 32 | backward | 2 | 3 |
+| 32 | forward | 2 | 2 |
+
+All raw records are retained: 56 program, 3 explicit RV32 NOP drain, 4 terminal
+`jal x0,0` records; boot `0x80000080`, drain `0x8000011c`, terminal `0x80000128`.
+Fresh image: 172 bytes, SHA256
+`58d63f5b5ae10fa1cb759dcb674b0e91e27338a8b404cc8c193af0b4d737266d`.
+Fresh ELF: 1280 bytes, SHA256
+`33ac01e94d46005de0ca1ac1cf2bb8c866794124ca758ef043c3730d932be46a`.
+Exclusive freeze: 44744 bytes, SHA256
+`0b2d303265b2b4c33810ee961920a60bfc409aaf1e924e0a233a9fc6e664bc24`.
+Every frozen prior receipt remains byte-identical after the run; hashes alone
+do not prove trusted timestamps or human replication.
+
+[`evidence/STABLE_TOOLS_INDEX.json`](evidence/STABLE_TOOLS_INDEX.json) records
+machine-computed statuses, artifact/raw/console identities, active entrypoint,
+raw-only counts and limitations. Its authorization identity uses the actual
+immutable Git LF blob (3002 bytes, SHA256
+`8ca24e4dc4b743bedbd4ba7f39ee3d3be5f8039e01861da3e1587e23297ab65d`),
+equal to both hosted snapshots, not local CRLF working bytes. Each new archive
+has all 33 source snapshot members equal to its input Git blobs.
+Preparation manifest: 36319 bytes / 241 members, SHA256
+`c849f7f161d6b16fc6ba888f322871c2097d642bde0a56bf3b258d63aae5d7d3`.
+Pair manifest: 41484 bytes / 276 members, SHA256
+`baf900a5eabfa5b23642707c9e8941e0e9ada2567382115deb11630dc5e73edb`.
+The unchanged terminal traceback is 1196 bytes, SHA256
+`b028ac93d23160c427691573061ff02666b8ee613040eb9638c4599f1af09ea7`;
+complete original pipeline-step console is separately retained (1695 bytes,
+SHA256 `76268659f53cb508c71458542c5081c064ab0cc5b7ab90ac10dc32ab514c20e9`).
+Neither is substituted for or inserted into the hosted manifest.
 
 Pinned FuseSoC 2.4.3 has no package `__main__`, but public
 [`fusesoc/main.py`](https://github.com/olofk/fusesoc/blob/2.4.3/fusesoc/main.py)
@@ -32,6 +97,18 @@ Receipts bind interpreter bytes, CPython version, module bytes, exact locked
 distribution and installed package code, source/config identities and command.
 `-I` excludes caller Python-path/user-site overrides. No active identity is
 normalized or exempted.
+
+The preparation/pair/off active receipts agree exactly: CPython 3.12.3 binary
+8020928 bytes / SHA256
+`e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f`,
+FuseSoC module 23564 bytes / SHA256
+`f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53`.
+The two retained **new** launchers are each 213 bytes:
+preparation SHA256 `d4f4dcb6c4f5f178af74081e1ff3fc446e7c02a481e8c0e4e4b08bd615714fd2`,
+pair SHA256 `30e04f940176ff6a75afc54cb15e20b899865dd7406fb74119f4c90ae0d32506`.
+Their original bytes demonstrate only the new run-specific shebang difference;
+their exact common 165-byte body is unchanged. This does not retroactively
+prove anything about the unretained old 240-byte launchers.
 
 The **unused** generated launcher is still retained as original text with
 its full length/SHA256, exact shebang, active interpreter path/resolution and
@@ -52,8 +129,16 @@ allocated text versus objcopy image and unique boot/drain/terminal symbols
 now fail closed before freezing. No program/RTL has been compiled locally.
 Pure-stdlib contracts cover both repairs, all three authorization epochs,
 malicious identity/input changes and immutable Git versus CRLF receipt bytes.
+All locked 24-runtime/52-build closures, actual package/executable versions,
+176-source manifests and OFF/ON effective config equivalence requalified.
+Only BranchPredictor differs. The generated stock recursive link command uses
+the `g++` alias; its command is retained, but that alias was not independently
+hashed beyond the recorded `g++-13` compiler identity. No broader complete-tool
+identity claim is made. No binaries/models/waves/build trees or full job
+environment dumps are published, except the expressly allowed fresh program
+ELF/image.
 
-## Final recovery STOP and immutable identities
+## Closed recovery-1 PRE-CPU STOP and immutable identities
 
 | Identity/stage | Actual result |
 | --- | --- |
