@@ -93,7 +93,7 @@ def download(lock: dict[str, object], directory: Path, output: Path) -> None:
     })
 
 
-def installed(lock: dict[str, object], group: str, output: Path) -> None:
+def installed_report(lock: dict[str, object], group: str) -> dict[str, object]:
     from packaging.markers import default_environment
     from packaging.requirements import Requirement
     from packaging.specifiers import SpecifierSet
@@ -134,11 +134,15 @@ def installed(lock: dict[str, object], group: str, output: Path) -> None:
         for entry in item.files or []:
             if str(entry).endswith((".py", ".so", ".pyd")) and ".." not in Path(str(entry)).parts:
                 sources[f"{name}/{entry}"] = identity(Path(item.locate_file(entry)))
-    write_json(output / f"{group}-installed-tools.json", {
+    return {
         "schema": 1, "packages": actual,
         "actual_marker_environment": {key: environment[key] for key in TARGET},
         "installed_code": sources, "closure": "PASS (exact equality and independent packaging parser)",
-    })
+    }
+
+
+def installed(lock: dict[str, object], group: str, output: Path) -> None:
+    write_json(output / f"{group}-installed-tools.json", installed_report(lock, group))
 
 
 if __name__ == "__main__":

@@ -10,6 +10,49 @@ there is neither a positive nor negative DUT observation. PR3 remains draft,
 open/unmerged; coordinator acceptance is separate. Archive-byte integrity and
 synthetic instrumentation qualification are not whole-core reproduction.
 
+## New stable-tools epoch: unvalidated inputs
+
+At 2026-10-03 11:46:59 UTC+8 the coordinator relayed the user's reply
+"可以 開始吧" approving the stable-entrypoint repair, requalification and
+bounded hosted replay phase. [`STABLE_TOOLS_AUTHORIZATION.json`](STABLE_TOOLS_AUTHORIZATION.json)
+records a distinct epoch, `WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1`.
+The established conservative **four total preparations / one conditional
+OFF/ON pair** bounds are retained, not claimed as a newly selected expansion.
+Both older epochs remain closed; all prior evidence and collection limitations
+are untouched. These new inputs are **not qualified until new same-source
+hosted gates pass**, and the prior PRE-CPU STOP is not a new observation.
+
+Pinned FuseSoC 2.4.3 has no package `__main__`, but public
+[`fusesoc/main.py`](https://github.com/olofk/fusesoc/blob/2.4.3/fusesoc/main.py)
+explicitly supports `__main__` and its distribution declares
+`fusesoc.main:main`. The active command is the resolved qualified venv Python
+with **`-I -B -m fusesoc.main`**, not its generated console-script launcher.
+New hosted gates exercise that exact CLI (`--version`, help and actual setup).
+Receipts bind interpreter bytes, CPython version, module bytes, exact locked
+distribution and installed package code, source/config identities and command.
+`-I` excludes caller Python-path/user-site overrides. No active identity is
+normalized or exempted.
+
+The **unused** generated launcher is still retained as original text with
+its full length/SHA256, exact shebang, active interpreter path/resolution and
+public pinned pip-template provenance. Its body must match the exact
+pip 25.3 `PipScriptMaker` body; unrelated edits, invalid paths/resolution,
+missing/duplicate/truncated receipts and active identity changes reject.
+Only the explicitly qualified per-run venv path in this unused diagnostic
+may differ across runs. New launcher bytes cannot prove the missing old bytes.
+The pinned runtime installer is explicitly upgraded to locked pip 25.3
+before creating these diagnostics. Runtime24/build52 closure pins are unchanged.
+
+The remaining execution-path audit also found that Edalize 0.6.2 joins
+`verilator_options` into a make shell command: the former multiword CFLAGS
+were unquoted in the exported `config.mk`. The new harness core quotes the
+single CFLAGS argument and checks actual exported shell parsing before
+measurement, without adding a warning waiver. Fresh ELF class/ISA/entry,
+allocated text versus objcopy image and unique boot/drain/terminal symbols
+now fail closed before freezing. No program/RTL has been compiled locally.
+Pure-stdlib contracts cover both repairs, all three authorization epochs,
+malicious identity/input changes and immutable Git versus CRLF receipt bytes.
+
 ## Final recovery STOP and immutable identities
 
 | Identity/stage | Actual result |

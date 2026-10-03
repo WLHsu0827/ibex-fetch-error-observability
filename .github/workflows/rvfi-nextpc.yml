@@ -21,11 +21,11 @@ on:
         type: string
         required: true
       authorization:
-        description: Exact recovery authorization identity; original epoch exhausted
+        description: Exact stable-tools authorization; both older epochs closed
         type: string
         required: true
       preparation_attempt:
-        description: Recovery preparation 1 to 4 total, 0 for the sole pair
+        description: New stable-tools preparation 1 to 4 total, 0 for the sole pair
         type: choice
         options: ["0", "1", "2", "3", "4"]
         default: "0"

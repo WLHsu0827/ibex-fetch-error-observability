@@ -34,4 +34,4 @@ targets:
           - "--unroll-count"
           - "72"
           - "-CFLAGS"
-          - "-std=c++17 -Wall -Wextra -Werror"
+          - "'-std=c++17 -Wall -Wextra -Werror'"

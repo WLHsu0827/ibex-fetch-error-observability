@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 from .process import write_json
 
@@ -37,6 +38,13 @@ def verify() -> dict[str, object]:
     if manifest["schema"] != 1 or manifest["files"] != inputs():
         raise ValueError("source/workflow/license manifest mismatch")
     return manifest
+
+
+def git_identity(name: str, ref: str = "HEAD") -> dict[str, object]:
+    if name not in inputs():
+        raise ValueError("not a sealed public input")
+    data = subprocess.check_output(["git", "show", f"{ref}:{name}"], cwd=ROOT)
+    return {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
 
 
 if __name__ == "__main__":

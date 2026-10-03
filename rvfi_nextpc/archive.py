@@ -100,7 +100,10 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
         miniature = json.loads((directory / "miniature-qualification.json").read_text())
         if miniature["good"]["samplers"] != "PASS":
             raise ValueError("preparation missing independent miniature qualification")
-        if summary["authorization"] == "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1":
+        if summary["authorization"] in (
+            "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+            "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+        ):
             loader = json.loads((directory / "loader-qualification.json").read_text())
             if set(loader) != {"good", "empty", "truncated", "oversized", "wrong_terminal",
                                "wrong_boundary", "negative", "overflow", "trailing_text",
@@ -112,6 +115,13 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
                 tools = json.loads((directory / f"{group}-installed-tools.json").read_text())
                 if not tools["closure"].startswith("PASS"):
                     raise ValueError("preparation missing strict installed dependency closure")
+        if summary["authorization"] == "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1":
+            from .entrypoint import compare
+
+            compare(directory, directory)
+            for label in ("off", "on"):
+                if json.loads((directory / label / "build-command-contract.json").read_text())["result"] != "PASS":
+                    raise ValueError("preparation missing actual generated build command check")
     elif summary["result"] != "STOP" or not summary.get("error"):
         raise ValueError("unrecognized/incomplete terminal closure")
     return {"archive_integrity": "INCOMPLETE" if missing else "PASS", "missing_files": missing,

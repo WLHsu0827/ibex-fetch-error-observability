@@ -18,6 +18,8 @@ import traceback
 
 from .check import qualify
 from .isa import BOOT, MAX_CYCLES, freeze
+from .entrypoint import FLAGS, compare as compare_entrypoints
+from .inputs import boundaries, build_options, validate_elf
 from .history import parse_history, qualify_history
 from .process import expected_fatal, identity, require_success, run, write_json
 from .seal import ROOT, verify
@@ -30,7 +32,7 @@ class Hosted:
         self.args = args
         self.output = Path(args.output).resolve()
         self.output.mkdir(parents=True, exist_ok=False)
-        self.auth = json.loads((ROOT / "rvfi_nextpc" / "RECOVERY_AUTHORIZATION.json").read_text())
+        self.auth = json.loads((ROOT / "rvfi_nextpc" / "STABLE_TOOLS_AUTHORIZATION.json").read_text())
         self.work = Path("/tmp") / f"rvfi-nextpc-{os.environ.get('GITHUB_RUN_ID', 'human')}"
         self.stage = 0
         self.deadline = time.monotonic() + 57 * 60
@@ -204,8 +206,12 @@ class Hosted:
         })
         self.command("runtime-venv", [sys.executable, "-m", "venv", "tools"])
         self.python = self.work / "tools" / "bin" / "python"
-        self.fusesoc = self.work / "tools" / "bin" / "fusesoc"
+        self.fusesoc = [str(self.python), *FLAGS]
         os.environ["PATH"] = str(self.work / "tools" / "bin") + os.pathsep + os.environ["PATH"]
+        pinned_pip = next((artifacts / "runtime").glob("pip-25.3-*.whl"))
+        self.command("pinned-runtime-installer", [
+            str(self.python), "-m", "pip", "install", "--no-deps", "--no-index", str(pinned_pip),
+        ])
         self.command("python-tools", [
             str(self.python), "-m", "pip", "install", "--no-deps", "--no-index",
             *[str(path) for path in sorted((artifacts / "runtime").glob("*.whl"))],
@@ -216,6 +222,16 @@ class Hosted:
             "--group", "runtime", "--output", str(self.output),
         ], ROOT)
         self.command("runtime-pip-check", [str(self.python), "-m", "pip", "check"])
+        self.capture_entrypoint()
+        self.command("active-fusesoc-version", [*self.fusesoc, "--version"])
+        if self.last_stdout().decode().strip() != "2.4.3":
+            raise RuntimeError("STOP: active module CLI version mismatch")
+        self.command("active-fusesoc-help", [*self.fusesoc, "--help"])
+        if b"--cores-root" not in self.last_stdout():
+            raise RuntimeError("STOP: active module CLI root option missing")
+        self.command("active-fusesoc-run-help", [*self.fusesoc, "run", "--help"])
+        if b"--work-root" not in self.last_stdout() or b"--setup" not in self.last_stdout():
+            raise RuntimeError("STOP: active module CLI setup options missing")
         self.command("verilator-version", ["verilator", "--version"])
         if not self.last_stdout().decode().startswith("Verilator 5.020 "):
             raise RuntimeError("STOP: Verilator version mismatch")
@@ -234,8 +250,10 @@ class Hosted:
         self.tool_identities = {
             name: identity(Path(shutil.which(name)).resolve())
             for name in ("verilator", "g++-13", "gcc-13", "make", "riscv64-unknown-elf-gcc",
-                         "riscv64-unknown-elf-objcopy", "python3", "fusesoc")
+                         "riscv64-unknown-elf-objcopy", "riscv64-unknown-elf-nm",
+                         "riscv64-unknown-elf-objdump", "python3")
         }
+        self.tool_identities["active-runtime-python"] = identity(self.python.resolve())
         write_json(self.output / "tool-identities.json", self.tool_identities)
         self.command("git-init", ["git", "init", "-q", "upstream"])
         upstream = self.work / "upstream"
@@ -257,7 +275,7 @@ class Hosted:
         label = "off" if bp == 0 else "on"
         build = self.work / "builds" / label
         self.command(f"configure-{label}", [
-            str(self.fusesoc), "--cores-root=upstream", "--cores-root=inputs/rvfi_nextpc",
+            *self.fusesoc, "--cores-root=upstream", "--cores-root=inputs/rvfi_nextpc",
             "run", "--setup", "--target=sim", f"--work-root={build}",
             "wlh:observations:nextpc:1.0", f"--BranchPredictor={bp}",
         ])
@@ -276,6 +294,12 @@ class Hosted:
             shutil.copyfile(path, destination / path.name)
         shutil.copyfile(build / "Makefile", destination / "Makefile")
         shutil.copyfile(build / "config.mk", destination / "config.mk")
+        vc = next(build.glob("*.vc")).read_text()
+        write_json(destination / "build-command-contract.json", {
+            "result": "PASS", "verilator_argv": build_options((build / "config.mk").read_text(), vc),
+            "active_fusesoc_invocation": self.fusesoc,
+            "make": ["make", "-j1", "NUM_JOBS=1", "CXX=g++-13", "CC=gcc-13"],
+        })
         config = {
             "BranchPredictor": bp, "WritebackStage": 0, "BranchTargetALU": 0,
             "RV32ZC": "RV32Zca", "RV32M": "RV32MFast", "RV32B": "RV32BNone",
@@ -391,10 +415,17 @@ class Hosted:
         for name in names:
             if (previous / name).read_bytes() != (self.output / name).read_bytes():
                 raise RuntimeError(f"STOP: qualified preparation identity changed: {name}")
+        active = compare_entrypoints(previous, self.output)
         write_json(self.output / "preparation-binding.json", {
             "schema": 1, "source_sha": self.args.source_sha, "run_id": self.args.preparation_run,
             "raw_manifest": identity(previous / "RAW_MANIFEST.json"),
             "equal_identities": {name: identity(previous / name) for name in names},
+            "equal_active_entrypoint": active,
+            "unused_launcher_diagnostics": {
+                "preparation": identity(previous / "fusesoc-launcher.txt"),
+                "pair": identity(self.output / "fusesoc-launcher.txt"),
+                "boundary": "Not executed. Each exact pinned body/shebang/path checked; only per-run venv path may differ.",
+            },
             "result": "PASS",
         })
 
@@ -406,11 +437,9 @@ class Hosted:
         ])
         self.command("program-bytes", ["riscv64-unknown-elf-objcopy", "-O", "binary", "fresh.elf", "fresh.bin"])
         self.command("program-symbols", ["riscv64-unknown-elf-nm", "-n", "fresh.elf"])
-        symbols = {parts[2]: int(parts[0], 16) for line in self.last_stdout().decode().splitlines()
-                   if len(parts := line.split()) == 3}
-        if symbols["_start"] != BOOT:
-            raise RuntimeError("STOP: boot/image mismatch")
+        symbols = boundaries(self.last_stdout().decode())
         image = (self.work / "fresh.bin").read_bytes()
+        validate_elf((self.work / "fresh.elf").read_bytes(), image)
         contract = freeze(image, symbols["drain"], symbols["terminal"])
         shutil.copyfile(self.work / "fresh.elf", self.output / "fresh.elf")
         shutil.copyfile(self.work / "fresh.bin", self.output / "fresh.bin")
@@ -444,10 +473,18 @@ class Hosted:
     def measure(self, bp: int, build: Path, image: bytes, contract: dict[str, object]) -> dict[str, object]:
         label = "off" if bp == 0 else "on"
         verify()
-        if self.tool_identities != {
-            name: identity(Path(shutil.which(name)).resolve()) for name in self.tool_identities
-        }:
+        current = {name: identity(self.python.resolve() if name == "active-runtime-python" else
+                                 Path(shutil.which(name)).resolve()) for name in self.tool_identities}
+        if self.tool_identities != current:
             raise RuntimeError("STOP: frozen executable tool identity changed")
+        self.capture_entrypoint(f"{label}-entrypoint.json")
+        compare_entrypoints(self.output, self.output, current_name=f"{label}-entrypoint.json")
+        for name in ("fresh.elf", "fresh.bin"):
+            if identity(self.work / name) != identity(self.output / name):
+                raise RuntimeError("STOP: frozen program identity changed")
+        for item, expected in json.loads((self.output / label / "compiled-sources.json").read_text()).items():
+            if identity(build / item) != expected:
+                raise RuntimeError("STOP: frozen exported RTL/harness source changed")
         write_json(self.output / f"{label}.compile-started.json", {
             "source_sha": self.args.source_sha, "freeze": identity(self.output / "freeze.json"),
             "label": label, "retry_allowed": False,
@@ -480,6 +517,14 @@ class Hosted:
         self.summary[label] = result
         verify()
         return result
+
+    def capture_entrypoint(self, name: str = "entrypoint.json") -> None:
+        self.command("active-entrypoint-identity", [
+            str(self.python), "-B", "-m", "rvfi_nextpc.entrypoint",
+            "--output", str(self.output), "--name", name, "--python", str(self.python),
+            "--runtime", str(self.output / "runtime-installed-tools.json"),
+            "--lock", str(ROOT / "rvfi_nextpc" / "DEPENDENCY_LOCK.json"),
+        ], ROOT)
 
     def execute(self) -> None:
         self.guard()

@@ -49,6 +49,8 @@ def qualify_history(
     records: list[dict[str, object]], authorization: dict[str, object], legacy_identity: str,
     current_id: str, source_sha: str, mode: str, preparation_attempt: int, preparation_run: str,
 ) -> list[dict[str, object]]:
+    if any(item["run_attempt"] != 1 for item in records):
+        raise ValueError("workflow rerun is unauthorized")
     def epoch(identity: str) -> list[dict[str, object]]:
         result = [item for item in records if item["event"] == "workflow_dispatch"
                   and item["display_title"].endswith(" " + identity)]
@@ -63,11 +65,30 @@ def qualify_history(
                 raise ValueError("malformed authorized dispatch title")
         return result
 
-    old = epoch(legacy_identity)
-    if len(old) != 2 or any(" pair " in item["display_title"] for item in old) or (
-        sorted(item["display_title"].split()[3] for item in old) != ["p1", "p2"]
-    ):
-        raise ValueError("original exhausted epoch history changed")
+    if "closed_epochs" in authorization:
+        if [item["identity"] for item in authorization["closed_epochs"]] != [
+            legacy_identity, "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1"
+        ]:
+            raise ValueError("closed authorization epochs omitted or changed")
+        for closed in authorization["closed_epochs"]:
+            actual = epoch(closed["identity"])
+            expected = closed["runs"]
+            if len(actual) != len(expected):
+                raise ValueError("closed epoch dispatch count changed")
+            for frozen in expected:
+                found = [item for item in actual if item["id"] == frozen["id"]]
+                title = f"RVFI next-PC {frozen['mode']} p{frozen['preparation_attempt']} {closed['identity']}"
+                if len(found) != 1 or found[0]["display_title"] != title or (
+                    found[0]["head_sha"] != frozen["head_sha"]
+                    or found[0]["conclusion"] != frozen["conclusion"] or found[0]["status"] != "completed"
+                ):
+                    raise ValueError("closed epoch immutable run identity changed")
+    else:
+        old = epoch(legacy_identity)
+        if len(old) != 2 or any(" pair " in item["display_title"] for item in old) or (
+            sorted(item["display_title"].split()[3] for item in old) != ["p1", "p2"]
+        ):
+            raise ValueError("original exhausted epoch history changed")
     authorized = epoch(authorization["identity"])
     prepares = [item for item in authorized if " prepare " in item["display_title"]]
     pairs = [item for item in authorized if " pair " in item["display_title"]]

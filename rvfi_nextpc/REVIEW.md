@@ -75,3 +75,11 @@ FuseSoC launcher hash differs across preparation/pair, but actual launcher
 bytes were not retained, so a run-specific shebang is a likely source-supported
 explanation, not a proven byte diagnosis. No gate normalization, source fix,
 extra dispatch, retry, merge or self-acceptance followed the pair STOP.
+
+New stable-tools inputs are independently authored from public pinned FuseSoC
+2.4.3 and pip25.3 entrypoint sources, not reconstructed old launcher bytes.
+They execute supported `python -I -B -m fusesoc.main`, retain and strictly
+validate the unused original launcher, bind actual interpreter/module/code,
+and requalify all changed gates in a distinct approval epoch. New ELF and
+generated-shell negatives address the remaining unrun program/build path.
+The old PRE-CPU STOP and missing bytes remain immutable limitations.

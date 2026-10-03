@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import struct
 import sys
 import tempfile
 import unittest
@@ -17,6 +18,8 @@ from .check import parse, qualify
 from .archive import privacy_review, verify_archive
 from .dependencies import TARGET, canonical, compatible_wheel, graph, marker, satisfies, validate
 from .history import parse_history, qualify_history
+from .entrypoint import FLAGS, LAUNCHER_BODY, compare as compare_entrypoints, digest, read_receipt, validate as validate_entrypoint
+from .inputs import boundaries, build_options, validate_elf
 from .isa import BOOT, FIELDS, FIRST_ORDER, decode, execute, freeze, sext
 from .process import expected_fatal, identity, require_success, run, write_json
 
@@ -121,12 +124,16 @@ class DependencyContracts(unittest.TestCase):
 
 class HistoryContracts(unittest.TestCase):
     def setUp(self) -> None:
-        self.auth = json.loads(Path(__file__).with_name("RECOVERY_AUTHORIZATION.json").read_text())
+        self.auth = json.loads(Path(__file__).with_name("STABLE_TOOLS_AUTHORIZATION.json").read_text())
         self.legacy = json.loads(Path(__file__).with_name("AUTHORIZATION.json").read_text())["identity"]
         self.source = "a" * 40
+        self.closed = [
+            self.record(item["id"], f"RVFI next-PC {item['mode']} p{item['preparation_attempt']} {epoch['identity']}",
+                        item["conclusion"]) | {"head_sha": item["head_sha"]}
+            for epoch in self.auth["closed_epochs"] for item in epoch["runs"]
+        ]
         self.records = [
-            self.record(1, f"RVFI next-PC prepare p1 {self.legacy}", "failure"),
-            self.record(2, f"RVFI next-PC prepare p2 {self.legacy}", "failure"),
+            *self.closed,
             self.record(3, f"RVFI next-PC prepare p1 {self.auth['identity']}", "failure"),
             self.record(4, f"RVFI next-PC prepare p2 {self.auth['identity']}", None),
         ]
@@ -137,15 +144,15 @@ class HistoryContracts(unittest.TestCase):
                     status="completed" if conclusion else "in_progress", conclusion=conclusion)
 
     def pages(self) -> str:
-        return "\n".join(json.dumps({"total_count": 4, "runs": page})
-                         for page in (self.records[:2], self.records[2:]))
+        return "\n".join(json.dumps({"total_count": len(self.records), "runs": page})
+                         for page in (self.records[:2], self.records[2:5], self.records[5:]))
 
     def qualify(self, records: list[dict[str, object]]) -> list[dict[str, object]]:
         return qualify_history(records, self.auth, self.legacy, "4", self.source, "prepare", 2, "")
 
     def test_all_pages_both_epochs_current_exactly_once(self) -> None:
         records = parse_history(self.pages())
-        self.assertEqual(len(records), 4)
+        self.assertEqual(len(records), 7)
         authorized = self.qualify(records)
         self.assertEqual([item["id"] for item in authorized], [3, 4])
         self.assertEqual(sum(item["id"] == 4 for item in authorized), 1)
@@ -162,10 +169,10 @@ class HistoryContracts(unittest.TestCase):
                 parse_history(text)
 
     def test_duplicate_current_and_rerun_rejected(self) -> None:
-        duplicate = json.dumps({"total_count": 5, "runs": self.records + [self.records[-1]]})
+        duplicate = json.dumps({"total_count": 8, "runs": self.records + [self.records[-1]]})
         with self.assertRaises(ValueError):
             parse_history(duplicate)
-        for index in (0, 3):
+        for index in (0, 2, 4, 6):
             records = copy.deepcopy(self.records)
             records[index]["run_attempt"] = 2
             with self.assertRaises(ValueError):
@@ -173,8 +180,8 @@ class HistoryContracts(unittest.TestCase):
 
     def test_missing_current_counter_reset_and_pair_requires_same_source(self) -> None:
         for index, field, value in (
-            (3, "id", 5), (3, "head_sha", "b" * 40),
-            (3, "display_title", f"RVFI next-PC prepare p1 {self.auth['identity']}"),
+            (6, "id", 5), (6, "head_sha", "b" * 40),
+            (6, "display_title", f"RVFI next-PC prepare p1 {self.auth['identity']}"),
         ):
             records = copy.deepcopy(self.records)
             records[index][field] = value
@@ -185,7 +192,7 @@ class HistoryContracts(unittest.TestCase):
         records.append(self.record(5, f"RVFI next-PC pair p0 {self.auth['identity']}", None))
         result = qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
         self.assertEqual(len(result), 3)
-        records[3]["head_sha"] = "b" * 40
+        records[6]["head_sha"] = "b" * 40
         with self.assertRaises(ValueError):
             qualify_history(records, self.auth, self.legacy, "5", self.source, "pair", 0, "4")
 
@@ -206,7 +213,7 @@ class HistoryContracts(unittest.TestCase):
             stdout = {
                 "input-head": ("b" * 40 if case == "head" else self.source).encode(),
                 "attempt-history": (self.pages()[:-2] if case == "truncated_history" else
-                                    json.dumps({"total_count": 4, "runs": records})).encode(),
+                                    json.dumps({"total_count": len(records), "runs": records})).encode(),
             }
 
             def command(name: str, *args: object, **kwargs: object) -> None:
@@ -234,6 +241,142 @@ class HistoryContracts(unittest.TestCase):
                 self.assertNotIn("capture_sources", calls)
             else:
                 self.assertEqual(calls, ["input-head", "input-clean", "capture_sources", "attempt-history"])
+
+    def test_closed_epochs_cannot_reopen_reset_or_change_identity(self) -> None:
+        for field, value in (("id", 42), ("head_sha", "b" * 40), ("conclusion", "success")):
+            records = copy.deepcopy(self.records)
+            records[0][field] = value
+            with self.assertRaises(ValueError):
+                self.qualify(records)
+        for epoch in self.auth["closed_epochs"]:
+            records = self.records + [self.record(42, f"RVFI next-PC prepare p3 {epoch['identity']}", None)]
+            with self.assertRaises(ValueError):
+                self.qualify(records)
+
+
+class EntrypointContracts(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+
+    def receipt(self, run_id: int) -> tuple[dict[str, object], bytes]:
+        python = f"/tmp/rvfi-nextpc-{run_id}/tools/bin/python"
+        launcher = ("#!" + python + "\n").encode() + LAUNCHER_BODY
+        active = {name: digest(name.encode()) for name in ("interpreter", "module", "lock", "runtime_code")}
+        active.update(flags=FLAGS, distribution="fusesoc", version="2.4.3",
+                      entry_point="fusesoc.main:main", python_version="3.12.3",
+                      launcher_body=digest(LAUNCHER_BODY))
+        return {"schema": 1, "active": active, "diagnostic": {
+            "argv": [python, *FLAGS], "python_resolved": "/usr/bin/python3.12",
+            "launcher_path": python.rsplit("/", 1)[0] + "/fusesoc",
+            "launcher": digest(launcher), "shebang": "#!" + python,
+        }}, launcher
+
+    def store(self, run_id: int, changed: str | None = None) -> Path:
+        root = self.root / str(run_id)
+        root.mkdir()
+        receipt, raw = self.receipt(run_id)
+        if changed:
+            receipt["active"][changed] = digest(b"changed")
+        write_json(root / "entrypoint.json", receipt)
+        (root / "fusesoc-launcher.txt").write_bytes(raw)
+        return root
+
+    def test_supported_active_module_allows_only_reviewed_unused_path_difference(self) -> None:
+        first, second = self.store(100), self.store(200)
+        self.assertNotEqual((first / "fusesoc-launcher.txt").read_bytes(), (second / "fusesoc-launcher.txt").read_bytes())
+        self.assertEqual(compare_entrypoints(first, second)["flags"], FLAGS)
+
+    def test_changed_interpreter_module_package_code_or_lock_fails(self) -> None:
+        first = self.store(100)
+        for index, field in enumerate(("interpreter", "module", "runtime_code", "lock")):
+            with self.assertRaises(ValueError):
+                compare_entrypoints(first, self.store(200 + index, field))
+
+    def test_changed_version_invocation_and_malformed_identity_fails(self) -> None:
+        for field, value in (
+            ("version", "2.4.4"), ("flags", ["-B", "-m", "fusesoc.main"]),
+            ("entry_point", "fusesoc.main:evil"), ("interpreter", {"sha256": "a" * 63, "bytes": 1}),
+            ("launcher_body", digest(LAUNCHER_BODY + b"unrelated")),
+        ):
+            receipt, raw = self.receipt(100)
+            receipt["active"][field] = value
+            with self.assertRaises(ValueError):
+                validate_entrypoint(receipt, raw)
+
+    def test_realistic_unrelated_body_invalid_shebang_and_resolution_fails(self) -> None:
+        receipt, raw = self.receipt(100)
+        for mutated in (raw[:-1], raw + b"print('unrelated')\n", raw.replace(b"#!", b"# "),
+                        raw.replace(b"/tools/bin/python", b"/tools/bin/other")):
+            changed = copy.deepcopy(receipt)
+            changed["diagnostic"]["launcher"] = digest(mutated)
+            with self.assertRaises(ValueError):
+                validate_entrypoint(changed, mutated)
+        for path in ("/tmp/python", "/usr/bin/../bin/python3.12", "/usr/bin/python3.13"):
+            changed = copy.deepcopy(receipt)
+            changed["diagnostic"]["python_resolved"] = path
+            with self.assertRaises(ValueError):
+                validate_entrypoint(changed, raw)
+
+    def test_missing_duplicate_truncated_and_unretained_raw_receipts_fail(self) -> None:
+        first, second = self.store(100), self.store(200)
+        path = second / "entrypoint.json"
+        original = path.read_text()
+        for text in ('{"schema":1,' + original[1:], original[:-3], original.replace('"module":', '"missing":')):
+            path.write_text(text)
+            with self.assertRaises(ValueError):
+                compare_entrypoints(first, second)
+        path.write_text(original)
+        (second / "fusesoc-launcher.txt").unlink()
+        with self.assertRaises(FileNotFoundError):
+            compare_entrypoints(first, second)
+
+
+class ProgramInputContracts(unittest.TestCase):
+    def test_canonical_git_authorization_matches_retained_source_not_local_crlf(self) -> None:
+        from .seal import git_identity, inputs
+
+        name = "rvfi_nextpc/RECOVERY_AUTHORIZATION.json"
+        snapshot = Path(__file__).with_name("evidence") / "run-37065211892/input" / name
+        self.assertEqual(git_identity(name), identity(snapshot))
+        self.assertEqual(inputs()[name], identity(snapshot))
+        self.assertNotEqual(digest(snapshot.read_bytes().replace(b"\n", b"\r\n")), identity(snapshot))
+
+    def test_actual_prior_generated_shell_quoting_rejected_and_repaired(self) -> None:
+        root = Path(__file__).with_name("evidence") / "run-37065211892/off"
+        config, vc = (root / "config.mk").read_text(), next(root.glob("*.vc")).read_text()
+        with self.assertRaises(ValueError):
+            build_options(config, vc)
+        good = config.replace("-CFLAGS -std=c++17 -Wall -Wextra -Werror",
+                              "-CFLAGS '-std=c++17 -Wall -Wextra -Werror'")
+        self.assertEqual(build_options(good, vc)[-1], "-std=c++17 -Wall -Wextra -Werror")
+        with self.assertRaises(ValueError):
+            build_options(good, vc.replace("-DOBSERVER_TARGET=ibex_top", ""))
+
+    def test_boundary_missing_duplicate_changed_and_boot_rejected(self) -> None:
+        good = "80000080 T _start\n800000a0 T drain\n800000ac T terminal\n"
+        self.assertEqual(boundaries(good)["terminal"], BOOT + 44)
+        for bad in (good + good, good.replace("80000080", "80000082"),
+                    good.replace("T drain", "D drain"), good.replace("T terminal", "T missing")):
+            with self.assertRaises(ValueError):
+                boundaries(bad)
+
+    def test_elf_image_identity_class_boot_and_truncation(self) -> None:
+        image = bytes.fromhex("130000006f000000")
+        names = b"\0.text\0.shstrtab\0"
+        offset = 52 + len(image) + len(names)
+        header = struct.pack("<16sHHIIIIIHHHHHH", b"\x7fELF\x01\x01\x01" + b"\0" * 9,
+                             2, 243, 1, BOOT, 0, offset, 1, 52, 0, 0, 40, 3, 2)
+        data = header + image + names + b"\0" * 40 + struct.pack(
+            "<IIIIIIIIII", 1, 1, 6, BOOT, 52, len(image), 0, 0, 2, 0
+        ) + struct.pack("<IIIIIIIIII", 7, 3, 0, 0, 52 + len(image), len(names), 0, 0, 1, 0)
+        validate_elf(data, image)
+        for bad, binary in ((data, image[:-1]), (data[:-1], image),
+                            (data.replace(b"\x7fELF", b"BAD!"), image),
+                            (data[:24] + (BOOT + 2).to_bytes(4, "little") + data[28:], image)):
+            with self.assertRaises(ValueError):
+                validate_elf(bad, binary)
 
 
 class StreamContracts(unittest.TestCase):
@@ -405,6 +548,23 @@ class ArchiveContracts(unittest.TestCase):
         (self.root / "summary.json").unlink()
         with self.assertRaises(ValueError):
             verify_archive(self.root)
+
+    def test_source_config_and_elf_byte_mutations_fail_closed(self) -> None:
+        for name in ("source.sv", "config.json", "fresh.elf"):
+            with tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                for source in self.root.iterdir():
+                    if source.name != "RAW_MANIFEST.json":
+                        (root / source.name).write_bytes(source.read_bytes())
+                (root / name).write_bytes(b"public synthetic identity")
+                write_json(root / "RAW_MANIFEST.json", {
+                    "schema": 1, "source_sha": "a" * 40, "run_id": "synthetic",
+                    "files": {p.name: identity(p) for p in root.iterdir()},
+                })
+                verify_archive(root)
+                (root / name).write_bytes(b"changed")
+                with self.assertRaises(ValueError):
+                    verify_archive(root)
 
     def test_scanner_literals_are_not_source_exemptions(self) -> None:
         source = Path(__file__).with_name("archive.py").read_bytes()
