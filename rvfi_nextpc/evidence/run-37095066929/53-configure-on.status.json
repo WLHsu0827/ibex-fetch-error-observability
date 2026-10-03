@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37095066929/tools/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "fusesoc.main",
+    "--cores-root=upstream",
+    "--cores-root=inputs/rvfi_nextpc",
+    "run",
+    "--setup",
+    "--target=sim",
+    "--work-root=/tmp/rvfi-nextpc-37095066929/builds/on",
+    "wlh:observations:nextpc:1.0",
+    "--BranchPredictor=1"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.9678914259999942,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 2722,
+    "sha256": "5a8d0b6b5759ff791eaeb307febe22cb0106ce05e0d33a78a78dc261b4529e69"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 300
+}

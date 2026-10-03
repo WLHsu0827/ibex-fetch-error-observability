@@ -1,0 +1,23 @@
+{
+  "good": {
+    "branches": 0,
+    "coverage": {},
+    "cpp_cycles": 20,
+    "isa_execution": "PASS",
+    "mismatches": [],
+    "retirements": 3,
+    "samplers": "PASS",
+    "strict_next_pc": "PASS",
+    "sv_cycles": 21
+  },
+  "no_reset": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  },
+  "reset_again": {
+    "code": 6,
+    "expected_negative": "PASS",
+    "kind": "signaled"
+  }
+}

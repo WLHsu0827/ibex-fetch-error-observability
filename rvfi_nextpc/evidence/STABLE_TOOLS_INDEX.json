@@ -1,0 +1,296 @@
+{
+  "actual_attempts": {
+    "off_cpu_builds": 1,
+    "off_cpu_runs": 1,
+    "on_cpu_builds": 0,
+    "on_cpu_runs": 0,
+    "pair_dispatches": 1,
+    "preparation_dispatches": 1,
+    "program_compilations": 1,
+    "reruns": 0
+  },
+  "authorization": {
+    "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+    "immutable_git_blob": {
+      "bytes": 3002,
+      "sha256": "8ca24e4dc4b743bedbd4ba7f39ee3d3be5f8039e01861da3e1587e23297ab65d"
+    },
+    "path": "rvfi_nextpc/STABLE_TOOLS_AUTHORIZATION.json",
+    "semantics": "Exact immutable Git LF blob equals both hosted source snapshots; no local CRLF indexing.",
+    "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+  },
+  "limitations": [
+    "Same custom outside-named experimental configuration; no new named-config pair.",
+    "Independent port readers share the same Verilator/DUT; agreement does not exhaust sampling/simulator alternatives.",
+    "Stock generated recursive model link command uses g++; its command is retained but that alias was not independently hashed beyond the recorded g++-13 compiler identity.",
+    "No DUT bug, architectural misexecution, novelty, PPA, general error-rate or human-replication claim.",
+    "Every older archive/authorization/collection/index/console and missing-file/launcher limitation remains unchanged."
+  ],
+  "off_raw_descriptive_only": {
+    "decoded_branch_counts_from_raw_operands": {
+      "16:backward:0": 2,
+      "16:backward:1": 3,
+      "16:forward:0": 2,
+      "16:forward:1": 2,
+      "32:backward:0": 2,
+      "32:backward:1": 3,
+      "32:forward:0": 2,
+      "32:forward:1": 2
+    },
+    "qualification": "NOT_QUALIFIED: original strict parser rejects rmask15 from order1 before ISA/next-PC. Descriptive counts do not waive any field, filter records or promote sampler/ISA/metadata PASS.",
+    "regions": {
+      "drain": 3,
+      "program": 56,
+      "terminal": 4
+    },
+    "rejected_fields": {
+      "rmask=15": 63
+    },
+    "retirement_fields_equal": true,
+    "retirements_each_stream": 63,
+    "streams": {
+      "cpp": {
+        "bytes": 7229,
+        "sha256": "d8ec1cd084933d2ab10732fb48f0fd714576af1fe26fb62d6416982b83cb280b"
+      },
+      "sv": {
+        "bytes": 7251,
+        "sha256": "5a70d65aa4df84d5473aa2139cc779ff0720422686debb7405395254ad026a9b"
+      }
+    }
+  },
+  "program": {
+    "all_frozen_prior_receipt_bytes_postrun_equal": true,
+    "contract": {
+      "bytes": 14762,
+      "sha256": "90cfa6c70b1c32ba6a33e37643248786a559ee3378a4ce1d0ffb08b38015921d"
+    },
+    "elf": {
+      "bytes": 1280,
+      "sha256": "33ac01e94d46005de0ca1ac1cf2bb8c866794124ca758ef043c3730d932be46a"
+    },
+    "freeze": {
+      "bytes": 44744,
+      "sha256": "0b2d303265b2b4c33810ee961920a60bfc409aaf1e924e0a233a9fc6e664bc24"
+    },
+    "image": {
+      "bytes": 172,
+      "sha256": "58d63f5b5ae10fa1cb759dcb674b0e91e27338a8b404cc8c193af0b4d737266d"
+    },
+    "pre_run_branches": 18,
+    "pre_run_coverage": {
+      "16:backward:0": 2,
+      "16:backward:1": 3,
+      "16:forward:0": 2,
+      "16:forward:1": 2,
+      "32:backward:0": 2,
+      "32:backward:1": 3,
+      "32:forward:0": 2,
+      "32:forward:1": 2
+    },
+    "pre_run_path_retirements": 63,
+    "semantics": "Exclusive freeze closed before OFF compile per retained command journal; hashes alone are not a trusted timestamp."
+  },
+  "remaining_scope": "Archive/documentation only. OFF has started; no changes, refreeze or retry. Unused preparation slots do not authorize a second pair.",
+  "runs": [
+    {
+      "archive_integrity": "PASS",
+      "artifact": {
+        "digest": "sha256:4857a00e41e9724718b2107a2d2a139e4001625ffe1204a0b3054d9c5f5e1371",
+        "id": 11264140617,
+        "name": "rvfi-nextpc-run-37094924126-attempt-1",
+        "size_in_bytes": 340909
+      },
+      "console_collection": {
+        "bytes": 709,
+        "sha256": "9b8d5ef090ed29aad8be3396cc1ea404a767e642666fb7e8ef12f5c935e32b8a"
+      },
+      "pipeline_console": {
+        "bytes": 1455,
+        "sha256": "5416bd1915fa1483079901298bcdc21a1640964fbc0a0cfcde7581315893823f"
+      },
+      "raw_manifest": {
+        "bytes": 36319,
+        "sha256": "c849f7f161d6b16fc6ba888f322871c2097d642bde0a56bf3b258d63aae5d7d3"
+      },
+      "raw_members": 241,
+      "run_attempt": 1,
+      "run_id": "37094924126",
+      "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+      "source_snapshots_exact_git_blobs": 33,
+      "summary": {
+        "attempted_stages": 56,
+        "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+        "mode": "prepare",
+        "preparation_run": "",
+        "real_compilations": [],
+        "result": "PREPARATION_PASS",
+        "run_attempt": "1",
+        "run_id": "37094924126",
+        "schema": 1,
+        "scientific_result": "NOT_RUN",
+        "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+      },
+      "summary_identity": {
+        "bytes": 362,
+        "sha256": "1ca68d248f8fb05c3e9c901c2b627f05bc97b34c8b407971e213c2090de08840"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37094924126"
+    },
+    {
+      "archive_integrity": "PASS",
+      "artifact": {
+        "digest": "sha256:de6cea81c5bc5ca51fc628a7678fb6b821fec7caa4a1a7e92bd4818a6b3114ea",
+        "id": 11264050972,
+        "name": "rvfi-nextpc-run-37095066929-attempt-1",
+        "size_in_bytes": 368075
+      },
+      "console_collection": {
+        "bytes": 700,
+        "sha256": "5fddf87381460385af0c1d0dd505af05fc40e0d3cafb44fbf8ddfbb49c888dcc"
+      },
+      "pipeline_console": {
+        "bytes": 1695,
+        "sha256": "76268659f53cb508c71458542c5081c064ab0cc5b7ab90ac10dc32ab514c20e9"
+      },
+      "raw_manifest": {
+        "bytes": 41484,
+        "sha256": "baf900a5eabfa5b23642707c9e8941e0e9ada2567382115deb11630dc5e73edb"
+      },
+      "raw_members": 276,
+      "run_attempt": 1,
+      "run_id": "37095066929",
+      "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+      "source_snapshots_exact_git_blobs": 33,
+      "summary": {
+        "attempted_stages": 64,
+        "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+        "error": "unexpected trap/halt/interrupt/debug/memory",
+        "mode": "pair",
+        "preparation_run": "37094924126",
+        "real_compilations": [
+          "off"
+        ],
+        "result": "STOP",
+        "run_attempt": "1",
+        "run_id": "37095066929",
+        "schema": 1,
+        "scientific_result": "NOT_QUALIFIED",
+        "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+      },
+      "summary_identity": {
+        "bytes": 435,
+        "sha256": "2b97a2e6aff7250fadba76e6df1a07d4fa890be4a9b61818890439c642a7a021"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37095066929"
+    }
+  ],
+  "schema": 1,
+  "scientific_result": "NOT_QUALIFIED",
+  "stable_active_entrypoint": {
+    "distribution": "fusesoc",
+    "entry_point": "fusesoc.main:main",
+    "flags": [
+      "-I",
+      "-B",
+      "-m",
+      "fusesoc.main"
+    ],
+    "interpreter": {
+      "bytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "launcher_body": {
+      "bytes": 165,
+      "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+    },
+    "lock": {
+      "bytes": 79391,
+      "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+    },
+    "module": {
+      "bytes": 23564,
+      "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+    },
+    "python_version": "3.12.3",
+    "runtime_code": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "version": "2.4.3"
+  },
+  "terminal_failure": {
+    "error": "unexpected trap/halt/interrupt/debug/memory",
+    "first_rejected_retirement": {
+      "insn": "0x00000a13",
+      "order": 1,
+      "pc": "0x80000080",
+      "rmask": 15
+    },
+    "last_command": {
+      "argv": [
+        "/tmp/rvfi-nextpc-37095066929/builds/off/Vnextpc_top",
+        "/tmp/rvfi-nextpc-37095066929/fresh.bin",
+        "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/off/cpp.tsv",
+        "2147483944",
+        "20000",
+        "+sv_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/off/sv.tsv"
+      ],
+      "code": 0,
+      "cwd": "/tmp/rvfi-nextpc-37095066929",
+      "duration_seconds": 0.006236602000001312,
+      "kind": "exited",
+      "schema": 1,
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 85,
+        "sha256": "85da03d2d160ec346b68a34dd8506ca09f8ee8ce71b55bb8d01611319f364778"
+      },
+      "timeout_seconds": 60
+    },
+    "on": "NOT_RUN",
+    "pipeline_error": {
+      "bytes": 1196,
+      "sha256": "b028ac93d23160c427691573061ff02666b8ee613040eb9638c4599f1af09ea7"
+    }
+  },
+  "terminal_result": "OFF_QUALIFICATION_STOP",
+  "unused_launchers": {
+    "pair": {
+      "argv": [
+        "/tmp/rvfi-nextpc-37095066929/tools/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "fusesoc.main"
+      ],
+      "launcher": {
+        "bytes": 213,
+        "sha256": "30e04f940176ff6a75afc54cb15e20b899865dd7406fb74119f4c90ae0d32506"
+      },
+      "launcher_path": "/tmp/rvfi-nextpc-37095066929/tools/bin/fusesoc",
+      "python_resolved": "/usr/bin/python3.12",
+      "shebang": "#!/tmp/rvfi-nextpc-37095066929/tools/bin/python"
+    },
+    "preparation": {
+      "argv": [
+        "/tmp/rvfi-nextpc-37094924126/tools/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "fusesoc.main"
+      ],
+      "launcher": {
+        "bytes": 213,
+        "sha256": "d4f4dcb6c4f5f178af74081e1ff3fc446e7c02a481e8c0e4e4b08bd615714fd2"
+      },
+      "launcher_path": "/tmp/rvfi-nextpc-37094924126/tools/bin/fusesoc",
+      "python_resolved": "/usr/bin/python3.12",
+      "shebang": "#!/tmp/rvfi-nextpc-37094924126/tools/bin/python"
+    },
+    "proof": "Original new launcher bytes retained. Same exact pinned165-byte body; only run-specific shebang differs. No claim about missing old240-byte launcher bodies."
+  }
+}

@@ -1,0 +1,18 @@
+﻿2026-10-03T04:00:29.2309605Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-03T04:00:29.2310836Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-03T04:00:29.2311967Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-03T04:00:29.2313025Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-03T04:00:29.2583362Z shell: /usr/bin/bash -e {0}
+2026-10-03T04:00:29.2583979Z env:
+2026-10-03T04:00:29.2584461Z   DEBIAN_FRONTEND: noninteractive
+2026-10-03T04:00:29.2585077Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-03T04:00:29.2590621Z   GH_TOKEN: ***
+2026-10-03T04:00:29.2591110Z   MODE: pair
+2026-10-03T04:00:29.2591677Z   SOURCE_SHA: e2cede4e8b89dba481665fdcda370e1e9d9aebaa
+2026-10-03T04:00:29.2592560Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1
+2026-10-03T04:00:29.2593375Z   PREPARATION_ATTEMPT: 0
+2026-10-03T04:00:29.2593926Z   PREPARATION_RUN: 37094924126
+2026-10-03T04:00:29.2594522Z ##[endgroup]
+2026-10-03T04:01:29.3304518Z NEXTPC_PIPELINE_STOP: unexpected trap/halt/interrupt/debug/memory
+2026-10-03T04:01:29.3543934Z {"attempted_stages": 64, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1", "error": "unexpected trap/halt/interrupt/debug/memory", "mode": "pair", "preparation_run": "37094924126", "real_compilations": ["off"], "result": "STOP", "run_attempt": "1", "run_id": "37095066929", "schema": 1, "scientific_result": "NOT_QUALIFIED", "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"}
+2026-10-03T04:01:29.3720124Z ##[error]Process completed with exit code 1.

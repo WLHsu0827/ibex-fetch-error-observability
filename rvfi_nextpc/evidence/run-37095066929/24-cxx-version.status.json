@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "g++-13",
+    "--version"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.010542731000001027,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 249,
+    "sha256": "b240ade48d7a4743cb2e7940990dd5a8dbc15120543c7eadd9541435edd2efd2"
+  },
+  "timeout_seconds": 300
+}

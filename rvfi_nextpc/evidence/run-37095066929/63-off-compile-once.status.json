@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=g++-13",
+    "CC=gcc-13"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929/builds/off",
+  "duration_seconds": 13.350780666999981,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 15882,
+    "sha256": "587b2a02d099f1d96a6d3ad74bb40463141654db6d37ec93a3b2b244240d5731"
+  },
+  "timeout_seconds": 1400
+}
