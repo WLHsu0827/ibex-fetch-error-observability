@@ -5,10 +5,11 @@
 
 import argparse
 import hashlib
-import json
 from pathlib import Path
 import re
+import sys
 
+sys.dont_write_bytecode = True
 from evidence import load_json
 
 
@@ -19,30 +20,59 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def first_difference(recorded, replayed, path="$"):
+    if type(recorded) is not type(replayed):
+        return f"{path}: expected {type(recorded).__name__}, received {type(replayed).__name__}"
+    if isinstance(recorded, dict):
+        missing = recorded.keys() - replayed.keys()
+        extra = replayed.keys() - recorded.keys()
+        if missing:
+            return f"{path}.{sorted(missing)[0]}: missing field"
+        if extra:
+            return f"{path}.{sorted(extra)[0]}: unexpected field"
+        for key in sorted(recorded):
+            difference = first_difference(recorded[key], replayed[key], f"{path}.{key}")
+            if difference is not None:
+                return difference
+    elif isinstance(recorded, list):
+        if len(recorded) != len(replayed):
+            return f"{path}: expected {len(recorded)} entries, received {len(replayed)}"
+        for index, (expected, actual) in enumerate(zip(recorded, replayed)):
+            difference = first_difference(expected, actual, f"{path}[{index}]")
+            if difference is not None:
+                return difference
+    elif recorded != replayed or (
+        isinstance(recorded, float) and recorded.hex() != replayed.hex()
+    ):
+        return f"{path}: value differs"
+    return None
+
+
 def compare(label, recorded_path, replayed_path):
     recorded = load_json(recorded_path)
     replayed = load_json(replayed_path)
-    if recorded["pass"] is not True or replayed["pass"] is not True:
-        raise RuntimeError(f"{label}: a runner did not pass its expectations")
+    for path, data in ((recorded_path, recorded), (replayed_path, replayed)):
+        if data.get("pass") is not True:
+            raise RuntimeError(f"{label}: {path}: 'pass' must be the JSON boolean true; "
+                               "a runner did not pass its expectations")
 
-    binary_recorded = recorded.pop("binary_sha256", None)
-    binary_replayed = replayed.pop("binary_sha256", None)
-    if (binary_recorded is None) != (binary_replayed is None):
-        raise RuntimeError(f"{label}: compiled binary hash missing in one result")
-    if binary_recorded is not None and any(
-        not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{64}", value) is None
-        for value in (binary_recorded, binary_replayed)
-    ):
-        raise RuntimeError(f"{label}: malformed compiled binary SHA-256")
-    # Python equality treats True == 1; serialized JSON preserves evidence types.
-    def canonical(value):
-        return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
+    has_binary = "binary_sha256" in recorded
+    if has_binary != ("binary_sha256" in replayed):
+        raise RuntimeError(f"{label}: {replayed_path}: compiled binary hash field "
+                           "is missing or unexpected for this suite")
+    binary_recorded = binary_replayed = None
+    if has_binary:
+        binary_recorded = recorded.pop("binary_sha256")
+        binary_replayed = replayed.pop("binary_sha256")
+        if any(not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{64}", value) is None
+               for value in (binary_recorded, binary_replayed)):
+            raise RuntimeError(f"{label}: malformed compiled binary SHA-256")
 
-    if canonical(recorded) != canonical(replayed):
-        differing = sorted(key for key in recorded.keys() | replayed.keys()
-                           if canonical(recorded.get(key)) != canonical(replayed.get(key)))
-        raise RuntimeError(f"{label}: recorded and replayed data differ in {differing}; "
-                           "inspect source hashes, per-case events, and tool versions")
+    difference = first_difference(recorded, replayed)
+    if difference is not None:
+        raise RuntimeError(f"{label}: {replayed_path}: recorded and replayed data differ "
+                           f"at {difference}; inspect source hashes, per-case events, "
+                           "and tool versions")
     print(f"{label}: source hashes, complete case events, assertions and "
           "checker classifications match")
     if binary_recorded is not None:
@@ -56,8 +86,11 @@ def compare(label, recorded_path, replayed_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache", required=True, type=Path)
-    parser.add_argument("--core", required=True, type=Path)
+    parser.add_argument("--cache", required=True, type=Path,
+                        help="complete standalone replay JSON (not a log or summary)")
+    parser.add_argument("--core", required=True, type=Path,
+                        help="complete whole-core replay JSON; only its valid binary "
+                             "hash value may differ from the recorded evidence")
     args = parser.parse_args()
     compare("I-cache", BUNDLE / "observations/results.json", args.cache)
     compare("full core", BUNDLE / "observations/core_results.json", args.core)

@@ -7,8 +7,10 @@ import hashlib
 from pathlib import Path
 import re
 import subprocess
+import sys
 
-from evidence import load_json
+sys.dont_write_bytecode = True
+from evidence import load_json, load_source_manifest
 
 
 BUNDLE = Path(__file__).resolve().parents[1]
@@ -49,13 +51,6 @@ HOSTED_MANIFEST_HASHES = {
         "4890012b5d20c6e42937f7c2910bc69151889d2274913505e26a4ef1132ff46c",
     "verification/hosted/run-36885980667/manifest.json":
         "4d48e6cedb3da0278a88e1465496dd49e9d58b66da18221fcf86664e0f0b187a",
-}
-SOURCE_PATHS = {
-    "rtl/ibex_pkg.sv", "rtl/ibex_icache.sv", "rtl/ibex_if_stage.sv",
-    "examples/simple_system/rtl/ibex_simple_system.sv",
-    "examples/simple_system/ibex_simple_system.core",
-    *(f"dv/verilator/icache_fetch_fault/{name}" for name in
-      ("tb.sv", "run.py", "run_core.py", "core_program.vmem")),
 }
 PATTERNS = {
     "local absolute path": re.compile(
@@ -183,9 +178,7 @@ def main():
                 or "upstream-notices/NOTICE" not in (BUNDLE / "NOTICE").read_text(encoding="utf-8")):
             findings.append("NOTICE: original author or upstream attribution absent")
     if "SOURCE_MANIFEST.json" in found:
-        manifest = load_json(BUNDLE / "SOURCE_MANIFEST.json")
-        if set(manifest["source_sha256"]) != SOURCE_PATHS:
-            findings.append("SOURCE_MANIFEST.json: source list differs from expected nine files")
+        manifest = load_source_manifest(BUNDLE / "SOURCE_MANIFEST.json")
         if (BUNDLE / "UPSTREAM_COMMIT").read_text(encoding="ascii").strip() != manifest["upstream_commit"]:
             findings.append("SOURCE_MANIFEST.json: upstream pin differs")
         patch = BUNDLE / "patches/simple-system-fetch-fault.patch"

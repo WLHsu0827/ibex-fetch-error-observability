@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Verify the public package and checker contracts; never execute RTL."""
 
+import argparse
 import os
 from pathlib import Path
 import subprocess
@@ -10,6 +11,12 @@ import sys
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        epilog="Requires Python and Git only. For fresh RTL, see the separately "
+               "labeled GitHub-hosted workflow in REPRODUCE.md.",
+    )
+    parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
     commands = [

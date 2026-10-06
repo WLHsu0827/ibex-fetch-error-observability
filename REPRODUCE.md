@@ -7,7 +7,26 @@ license/notice and docs belong to this repository. Keep the full Ibex
 checkout, its `.git`, builds, JSON replays
 and waveforms **outside this directory**.
 
+## Obtain the review branch
+
+The upgrade is in open, unmerged [PR #1](https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/1).
+A default-branch clone does not yet include `scripts/verify.py`. From a
+directory where the destination does not already exist:
+
+```sh
+git clone --single-branch --branch wlhsu0827-ibex-replay-ci \
+  https://github.com/WLHsu0827/ibex-fetch-error-observability.git
+cd ibex-fetch-error-observability
+```
+
+On Windows, use the same clone command on one line. Do not run package
+verification from a directory containing the dependency checkout or
+generated build outputs; the audit deliberately uses an exact file allowlist.
+
 ## One-command package verification (no RTL or EDA installation)
+
+Requires Git and Python 3.12; the checker uses only the Python standard
+library. No `pip install` is needed.
 
 ```sh
 python3 -B scripts/verify.py
@@ -26,7 +45,33 @@ pinned archive manifests, exact downloaded payload bytes, proof input
 commits and the separate success/failure scope. This remains offline
 evidence validation, not another RTL execution.
 
+Success ends with `OK` and exit status zero, after both suites print
+`classifications match`. The frozen whole-core binary hashes differ, which
+is explicitly reported and permitted; missing, null or malformed binary
+hash fields are not. All other fields and JSON types must agree, including
+the case set and event order. Unknown command-line flags fail before
+verification; `python3 -B scripts/verify.py --help` describes this offline
+entry without running checks.
+
+**Diagnosing a failure:** a replay comparison reports the input filename
+and first differing JSON path (for example, an event cycle within a named
+case). Truncated JSON, duplicate keys, non-object records, non-finite
+numbers and malformed manifest fields fail with a diagnostic, not a Python
+traceback. Check the replay command, source pin and tool versions; do not
+edit the frozen reference or strip unexpected fields to obtain a pass.
+For missing or changed package bytes, use a new clone of the review branch
+and preserve the failed output separately. Package CLI help and staging
+do not create bytecode, even without `-B`; retain `-B` for the complete test
+entry so test discovery also leaves no `__pycache__` in the audited bundle.
+
 ## Automated fresh installation and RTL gate
+
+The **fresh replay entry is the workflow**, not a flag on `verify.py` and
+not a local invocation of `ci_replay.py`. Commits to the existing PR trigger
+its published same-pin/same-case gate automatically. Inspect the
+[PR checks](https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/1/checks)
+for the exact head SHA and require **both** jobs to finish successfully;
+an older archived success does not prove a newer head.
 
 [`.github/workflows/replay.yml`](.github/workflows/replay.yml) has separate
 package/offline and fresh-RTL jobs. The latter uses GitHub-hosted Ubuntu
@@ -126,7 +171,7 @@ REPLAY_DIR="${REPLAY_DIR:-$(dirname "$BUNDLE")/ibex-fetch-replay}"
 git clone --no-checkout https://github.com/lowRISC/ibex.git "$REPLAY_DIR"
 git -C "$REPLAY_DIR" config --local core.autocrlf true
 git -C "$REPLAY_DIR" checkout --detach "$(cat "$BUNDLE/UPSTREAM_COMMIT")"
-python3 "$BUNDLE/scripts/stage.py" --checkout "$REPLAY_DIR"
+python3 -B "$BUNDLE/scripts/stage.py" --checkout "$REPLAY_DIR"
 ```
 
 Choose a new `REPLAY_DIR` (or remove only a previously inspected throwaway
@@ -159,10 +204,10 @@ python3 dv/verilator/icache_fetch_fault/run_core.py \
 fusesoc --cores-root=. run --target=lint \
   --work-root=build/fetch_error_pilot/lint_default --setup --build \
   lowrisc:ibex:ibex_simple_system --make_options=-j2 --ICache=1
-python3 "$BUNDLE/scripts/compare.py" \
+python3 -B "$BUNDLE/scripts/compare.py" \
   --cache build/fetch_error_pilot/replayed_cache.json \
   --core build/fetch_error_pilot/replayed_core.json
-python3 "$BUNDLE/scripts/audit.py"
+python3 -B "$BUNDLE/scripts/audit.py"
 ```
 
 Both experiment runners use their location under `dv/verilator/icache_fetch_fault/`

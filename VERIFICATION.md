@@ -83,6 +83,18 @@ and publication history; only app-private `refs/copilot/checkpoints/*`
 remain audited. No frozen source, manifest, patch, observation, historical
 dataset or license/notice bytes were rewritten.
 
+The current offline checker also distinguishes **field presence from
+null**: an unexpected `binary_sha256: null` on a cache result is rejected,
+not discarded as though absent. Binary-hash differences remain permitted
+only when both records contain valid hashes. Strict JSON parsing and the
+shared nine-source manifest contract give filename-specific failures for
+malformed input; comparison identifies the first differing typed field or
+ordered event. CLI help/staging leave the package bytecode-free, and the
+offline entry rejects unsupported flags rather than implying a fresh run.
+These contracts use tiny temporary mutations of public evidence, not new
+RTL cases or observations. Original eight JSON records, 19 protected
+files and the complete published hosted archive remain unchanged.
+
 ## Original agent-executed RTL verification on the same WSL host
 
 **Executed**, with the corrected Copyright 2026 Wei-Lun Hsu / Apache-2.0
