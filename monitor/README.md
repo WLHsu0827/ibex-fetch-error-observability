@@ -25,7 +25,8 @@ ELF, waveform, private trace, or private full-bind hash is included.
   disables core dumps only in the owned child, bounds time, and distinguishes
   exit, signal, timeout, missing-tool, and spawn failures.
 - [`trace_check.py`](trace_check.py) enforces exact row widths, consecutive
-  cycles, event counts, and controlled PRE/POST/R phase and order associations.
+  physical row order, unsigned field syntax/ranges, event counts, and
+  controlled PRE/POST/R phase and order associations.
 
 An intended repeated-reset failure passes only when the model promptly emits
 the exact diagnostic and terminates by `SIGABRT`. Timeout 124, conventional
@@ -40,6 +41,19 @@ Offline contracts need only Python 3.12 and the standard library:
 python -B -m monitor.run_all --mode offline
 ```
 
+Validate an existing synthetic TSV without installing Verilator:
+
+```sh
+python -B -m monitor.run_all --mode check --trace path/to/events.tsv
+```
+
+Input is UTF-8, tab-separated, and uses the exact decimal/fixed-width hex
+schema emitted by the public observer. Success prints one JSON record with the
+trace SHA-256 and row counts. Rejection
+exits nonzero with a line, row kind, field name, or expected physical sequence;
+negative values, loose or over-width hex, out-of-range bit/index fields,
+partial/extra/duplicate rows, and reordered phases are rejected.
+
 The real replay compiles the public observer and fixtures, then executes every
 case through the same strict checker:
 
@@ -52,6 +66,11 @@ Real replay requires exactly Verilator 5.020 and a C++ compiler. Builds use
 GitHub-hosted job installs Ubuntu 24.04's `verilator=5.020-1`; its hosted VM
 policy is separate from the user's local 8 GiB experiment floor and neither
 changes nor lowers that local policy.
+
+Run all commands from the repository root with Python 3.12 or newer. Offline
+and check modes use only the standard library and are supported on Windows and
+Linux. Real mode is validated on the documented Ubuntu hosted image; other
+platform/toolchain combinations are not claimed.
 
 ## Expected evidence and limitations
 

@@ -39,6 +39,28 @@ def run_offline() -> None:
         raise SystemExit(1)
 
 
+def check_trace(path: Path) -> None:
+    if not path.is_file():
+        raise SystemExit(f"trace does not exist or is not a file: {path}")
+    try:
+        rows = parse_trace(path)
+        require_positive_trace(rows)
+    except (OSError, UnicodeError, TraceError) as exc:
+        raise SystemExit(f"trace rejected: {exc}") from exc
+    print(
+        json.dumps(
+            {
+                "result": "PASS",
+                "scope": "synthetic instrument-only trace validation",
+                "trace": str(path),
+                "trace_sha256": sha256(path),
+                "row_counts": {kind: len(values) for kind, values in rows.items()},
+            },
+            sort_keys=True,
+        )
+    )
+
+
 def execute(
     argv: list[str], directory: Path, name: str, timeout_seconds: float
 ):
@@ -228,12 +250,24 @@ def run_real(output: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=("offline", "real"), required=True)
+    parser.add_argument("--mode", choices=("offline", "check", "real"), required=True)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--trace", type=Path)
     args = parser.parse_args()
     if args.mode == "offline":
+        if args.output is not None or args.trace is not None:
+            parser.error("--mode offline does not accept --output or --trace")
         run_offline()
         return
+    if args.mode == "check":
+        if args.trace is None:
+            parser.error("--mode check requires --trace PATH")
+        if args.output is not None:
+            parser.error("--mode check does not accept --output")
+        check_trace(args.trace.resolve())
+        return
+    if args.trace is not None:
+        parser.error("--mode real does not accept --trace")
     if args.output is None:
         with tempfile.TemporaryDirectory(prefix="trace-monitor-") as directory:
             run_real(Path(directory))
