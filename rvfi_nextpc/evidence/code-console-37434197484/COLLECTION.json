@@ -1,0 +1,12 @@
+{
+  "boundary": "Complete original synthetic-make step only, collected separately; not a whole job/environment dump or measurement console.",
+  "member": "CODE_ONLY synthetic GNU make contracts (no HDL or CPU)/3_Preinstalled GNU make on disposable synthetic recipes only.txt",
+  "pipeline_console": {
+    "bytes": 2170,
+    "sha256": "35fd283e9f12b678a8c6ee664157fd5985485451a278179e2b55bca09d80f31f"
+  },
+  "run_id": "37434197484",
+  "schema": 1,
+  "scope": "CODE_ONLY",
+  "source_sha": "d0212cc1796921dfd325e32df6c45589f155ebec"
+}

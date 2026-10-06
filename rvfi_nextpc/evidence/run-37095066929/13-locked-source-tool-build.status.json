@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37095066929/build-tools/bin/python",
+    "-m",
+    "pip",
+    "wheel",
+    "--no-deps",
+    "--no-index",
+    "--no-build-isolation",
+    "--wheel-dir",
+    "/tmp/rvfi-nextpc-37095066929/built-tool-wheel",
+    "/tmp/rvfi-nextpc-37095066929/artifacts/runtime/jsonschema2md-1.7.0.tar.gz"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.9180154710000039,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 700,
+    "sha256": "ae5623810e58d22445fdff2c1bd640aad6328d40958e9b88a5964396a8353172"
+  },
+  "timeout_seconds": 300
+}

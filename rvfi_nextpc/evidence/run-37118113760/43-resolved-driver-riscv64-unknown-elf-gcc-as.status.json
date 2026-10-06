@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/riscv64-unknown-elf-gcc",
+    "-print-prog-name=as"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118113760",
+  "duration_seconds": 0.003695343000003959,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 76,
+    "sha256": "54418cda9166ac1fc03dc76689dab9cd64e3d02fbeb1b625cf1b154e65d8b7c3"
+  },
+  "timeout_seconds": 300
+}

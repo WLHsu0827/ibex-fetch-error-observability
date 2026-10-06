@@ -1,0 +1,18 @@
+﻿2026-10-03T11:05:24.4526375Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-03T11:05:24.4529167Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-03T11:05:24.4532155Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-03T11:05:24.4534663Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-03T11:05:24.4877173Z shell: /usr/bin/bash -e {0}
+2026-10-03T11:05:24.4878335Z env:
+2026-10-03T11:05:24.4879243Z   DEBIAN_FRONTEND: noninteractive
+2026-10-03T11:05:24.4880482Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-03T11:05:24.4893774Z   GH_TOKEN: ***
+2026-10-03T11:05:24.4894662Z   MODE: pair
+2026-10-03T11:05:24.4895665Z   SOURCE_SHA: 8b1492e638c44b9b19b5226f9317b42cb16e4454
+2026-10-03T11:05:24.4897435Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1
+2026-10-03T11:05:24.4899150Z   PREPARATION_ATTEMPT: 0
+2026-10-03T11:05:24.4900157Z   PREPARATION_RUN: 37118113760
+2026-10-03T11:05:24.4901237Z ##[endgroup]
+2026-10-03T11:06:34.7152685Z NEXTPC_PIPELINE_STOP: STOP: ['make', '-j1', 'NUM_JOBS=1', 'CXX=/usr/bin/g++-13', 'CC=/usr/bin/gcc-13', 'LINK=/usr/bin/g++-13', 'AR=/usr/bin/ar', 'PYTHON3=/usr/bin/python3', 'PERL=/usr/bin/perl', 'OBJCACHE=', '-f', 'Vnextpc_top.mk', '--eval', "nextpc-driver-probe: ; @printf '%s\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'", 'nextpc-driver-probe']: exited:2
+2026-10-03T11:06:34.7519166Z {"admission": "nonmemory-nextpc-v2", "attempted_stages": 105, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1", "error": "STOP: ['make', '-j1', 'NUM_JOBS=1', 'CXX=/usr/bin/g++-13', 'CC=/usr/bin/gcc-13', 'LINK=/usr/bin/g++-13', 'AR=/usr/bin/ar', 'PYTHON3=/usr/bin/python3', 'PERL=/usr/bin/perl', 'OBJCACHE=', '-f', 'Vnextpc_top.mk', '--eval', \"nextpc-driver-probe: ; @printf '%s\\\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'\", 'nextpc-driver-probe']: exited:2", "mode": "pair", "preparation_run": "37118113760", "real_compilations": ["off"], "result": "STOP", "run_attempt": "1", "run_id": "37118514047", "schema": 1, "scientific_result": "NOT_QUALIFIED", "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454", "stream_schema": 2}
+2026-10-03T11:06:34.7703552Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,161 @@
+Offline contracts and archive only (no HDL)	Set up job	﻿2026-10-02T16:56:23.5372473Z Current runner version: '2.337.0'
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5400529Z ##[group]Runner Image Provisioner
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5401615Z Hosted Compute Agent
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5402223Z Version: 20260901.588
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5402905Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5403698Z Build Date: 2026-09-01T19:56:44Z
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5404411Z Worker ID: {8bed6f01-facf-449f-94f8-d30f10aa9b77}
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5405589Z Azure Region: westus
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5406324Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5408061Z ##[group]Operating System
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5408762Z Ubuntu
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5409295Z 24.04.5
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5409900Z LTS
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5410420Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5410973Z ##[group]Runner Image
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5411641Z Image: ubuntu-24.04
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5412282Z Version: 20260927.320.1
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5413436Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5415525Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5416596Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5417787Z ##[group]GITHUB_TOKEN Permissions
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5420376Z Actions: read
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5421052Z Contents: read
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5421699Z Metadata: read
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5422262Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5424354Z Secret source: Actions
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5425934Z Cache mode: write
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5426712Z Prepare workflow directory
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5769881Z Prepare all required actions
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.5820114Z Getting action download info
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:23.9498373Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Offline contracts and archive only (no HDL)	Set up job	2026-10-02T16:56:24.1835329Z Complete job name: Offline contracts and archive only (no HDL)
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-02T16:56:24.2868251Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2869363Z with:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2869874Z   ref: f80fa2b5beca8d0777b88ae574f69ad7b972bedf
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2870511Z   persist-credentials: false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2871123Z   repository: WLHsu0827/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2875154Z   token: ***
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2875628Z   ssh-strict: true
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2876083Z   ssh-user: git
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2876520Z   clean: true
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2876977Z   sparse-checkout-cone-mode: true
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2877514Z   fetch-depth: 1
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2877967Z   fetch-tags: false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2878428Z   show-progress: true
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2878898Z   lfs: false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2879323Z   submodules: false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2879795Z   set-safe-directory: true
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2880320Z   allow-unsafe-pr-checkout: false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.2881117Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.3912559Z Syncing repository: WLHsu0827/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.3915955Z ##[group]Getting Git version info
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.3917614Z Working directory is '/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability'
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.3919953Z [command]/usr/bin/git version
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.3978901Z git version 2.55.0
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4003888Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4020731Z Temporarily overriding HOME='/home/runner/work/_temp/400a10ec-254f-4d4e-a8f2-5cde21e4b11d' before making global git config changes
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4023741Z Adding repository directory to the temporary git global config as a safe directory
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4027799Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4082978Z Deleting the contents of '/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability'
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4093978Z ##[group]Initializing the repository
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4095717Z [command]/usr/bin/git init /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4198071Z hint: Using 'master' as the name for the initial branch. This default branch name
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4199576Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4200987Z hint: to use in all of your new repositories, which will suppress this warning,
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4202311Z hint: call:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4202978Z hint:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4203762Z hint: 	git config --global init.defaultBranch <name>
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4205151Z hint:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4206356Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4208129Z hint: 'development'. The just-created branch can be renamed via this command:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4209603Z hint:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4210419Z hint: 	git branch -m <name>
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4211315Z hint:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4212416Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4215039Z Initialized empty Git repository in /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/.git/
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4218772Z [command]/usr/bin/git remote add origin https://github.com/WLHsu0827/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4271510Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4272898Z ##[group]Disabling automatic garbage collection
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4276777Z [command]/usr/bin/git config --local gc.auto 0
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4311973Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4313436Z ##[group]Setting up auth
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4320804Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4356622Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4742690Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.4787561Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5023223Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5066103Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5307235Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5349047Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5349962Z ##[group]Fetching the repository
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.5359474Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin f80fa2b5beca8d0777b88ae574f69ad7b972bedf
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9247816Z From https://github.com/WLHsu0827/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9251918Z  * branch            f80fa2b5beca8d0777b88ae574f69ad7b972bedf -> FETCH_HEAD
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9255370Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9257170Z ##[group]Determining the checkout info
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9259117Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9266336Z [command]/usr/bin/git sparse-checkout disable
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9320548Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9355111Z ##[group]Checking out the ref
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9360245Z [command]/usr/bin/git checkout --progress --force f80fa2b5beca8d0777b88ae574f69ad7b972bedf
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9461148Z Note: switching to 'f80fa2b5beca8d0777b88ae574f69ad7b972bedf'.
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9462129Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9462789Z You are in 'detached HEAD' state. You can look around, make experimental
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9463788Z changes and commit them, and you can discard any commits you make in this
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9465074Z state without impacting any branches by switching back to a branch.
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9465936Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9466333Z If you want to create a new branch to retain commits you create, you may
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9467204Z do so (now or later) by using -c with the switch command. Example:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9467850Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9468258Z   git switch -c <new-branch-name>
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9468923Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9469344Z Or undo this operation with:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9469980Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9470363Z   git switch -
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9470861Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9471606Z Turn off this advice by setting config variable advice.detachedHead to false
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9472715Z 
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9473436Z HEAD is now at f80fa2b Add unvalidated fresh whole-core RVFI next-PC inputs
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9476780Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9516843Z [command]/usr/bin/git log -1 --format=%H
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9543071Z f80fa2b5beca8d0777b88ae574f69ad7b972bedf
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9585117Z ##[group]Removing auth
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9589744Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9622183Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9845630Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9877138Z http.https://github.com/.extraheader
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9886030Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:24.9924135Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.0145762Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.0176995Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Offline contracts and archive only (no HDL)	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.0415480Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	﻿2026-10-02T16:56:25.0791673Z ##[group]Run python3 -B -m rvfi_nextpc.seal
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.0792953Z ^[[36;1mpython3 -B -m rvfi_nextpc.seal^[[0m
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.0794080Z ^[[36;1mpython3 -B -m unittest rvfi_nextpc.tests -v^[[0m
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.0795785Z ^[[36;1mpython3 -B -m rvfi_nextpc.archive^[[0m
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.1255942Z shell: /usr/bin/bash -e {0}
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.1256576Z ##[endgroup]
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2686842Z Traceback (most recent call last):
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2688458Z   File "<frozen runpy>", line 198, in _run_module_as_main
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2689686Z   File "<frozen runpy>", line 88, in _run_code
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2691529Z   File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/seal.py", line 40, in <module>
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2692997Z     verify()
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2694200Z   File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/seal.py", line 29, in verify
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2696004Z     raise ValueError("source/workflow/license manifest mismatch")
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2697005Z ValueError: source/workflow/license manifest mismatch
+Offline contracts and archive only (no HDL)	Run python3 -B -m rvfi_nextpc.seal	2026-10-02T16:56:25.2823643Z ##[error]Process completed with exit code 1.
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-10-02T16:56:25.3014585Z Post job cleanup.
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.3874256Z [command]/usr/bin/git version
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.3916120Z git version 2.55.0
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.3955133Z Temporarily overriding HOME='/home/runner/work/_temp/0113cc34-8a36-4cbb-858a-0df908fecd7f' before making global git config changes
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.3957548Z Adding repository directory to the temporary git global config as a safe directory
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.3962249Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4006638Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4043285Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4293662Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4328496Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4584461Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Offline contracts and archive only (no HDL)	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-10-02T16:56:25.4620295Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Offline contracts and archive only (no HDL)	Complete job	﻿2026-10-02T16:56:25.5095226Z Cleaning up orphan processes
+Offline contracts and archive only (no HDL)	Complete job	2026-10-02T16:56:25.5461946Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

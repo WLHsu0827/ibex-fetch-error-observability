@@ -1,0 +1,32 @@
+{
+  "build_lock": {
+    "bytes": 79391,
+    "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+  },
+  "metadata": {
+    "license_expression": "Apache-2.0",
+    "license_files": {
+      "jsonschema2md-1.7.0.dist-info/licenses/LICENSE": {
+        "bytes": 11357,
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    "name": "jsonschema2md",
+    "requires_dist": [
+      "PyYAML (>=6,<7)",
+      "babel (>=2,<3)",
+      "markdown (>=3,<4)"
+    ],
+    "requires_python": ">=3.9",
+    "version": "1.7.0"
+  },
+  "schema": 1,
+  "source": {
+    "bytes": 20017,
+    "sha256": "d69a5b011bf355c005e3c18be4515ae46d2689b38b593ced8d03c5ab66ddbaf3"
+  },
+  "wheel": {
+    "bytes": 31463,
+    "sha256": "e03d5280e649f62c5ed98e040997fc05824d2d752880f1de13c711d07d56f7a4"
+  }
+}

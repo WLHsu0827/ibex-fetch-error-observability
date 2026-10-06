@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "sudo",
+    "apt-get",
+    "install",
+    "-y",
+    "--no-install-recommends",
+    "verilator=5.020-1",
+    "gcc-riscv64-unknown-elf=13.2.0-11ubuntu1+12",
+    "binutils-riscv64-unknown-elf=2.42-1ubuntu1+6"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37039019400",
+  "duration_seconds": 9.629375018999994,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 237,
+    "sha256": "3b419c69ff321ee6851fa5489a2bb0c9a2ef093815a709dbd05391f89767267f"
+  },
+  "stdout": {
+    "bytes": 3346,
+    "sha256": "2ba22b7504e3ea84bfe04413e93bd49cc630603fc8981153b1eec2600906646e"
+  },
+  "timeout_seconds": 480
+}

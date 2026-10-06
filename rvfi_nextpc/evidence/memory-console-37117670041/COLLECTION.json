@@ -1,0 +1,11 @@
+{
+  "collection": "Complete original pipeline-step console, separately collected after run; not inserted into hosted RAW_MANIFEST. No other job/environment logs published.",
+  "member": "Bounded dispatched observation and closure (not scientific PASS)/3_No automatic retries; always close Python pipeline receipts.txt",
+  "pipeline_console": {
+    "bytes": 2506,
+    "sha256": "5185fb7850a38ee4811781bce0d42006ee43a0d7e5cae2cbb528f8eb1b5064ac"
+  },
+  "run_id": "37117670041",
+  "schema": 1,
+  "source_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815"
+}

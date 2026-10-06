@@ -1,0 +1,1609 @@
+{
+  "groups": {
+    "build": {
+      "anyio": {
+        "license_expression": "MIT",
+        "license_files": {
+          "anyio-4.15.1.dist-info/licenses/LICENSE": {
+            "bytes": 1081,
+            "sha256": "5361ac9dc58f2ef5fd2e9b09c68297c17f04950909bbc8023bdb82eacf22c2b0"
+          }
+        },
+        "name": "anyio",
+        "requires_dist": [
+          "exceptiongroup>=1.0.2; python_version < \"3.11\"",
+          "idna>=2.8",
+          "typing_extensions>=4.16.0; python_version < \"3.15\"",
+          "trio>=0.32.0; extra == \"trio\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "4.15.1"
+      },
+      "babel": {
+        "license_expression": null,
+        "license_files": {
+          "babel-2.17.0.dist-info/LICENSE": {
+            "bytes": 1531,
+            "sha256": "7801a84fe811279cb350bdb4fb18f94c36b18ef813fa6aac043b6c6d39484d0d"
+          }
+        },
+        "name": "babel",
+        "requires_dist": [
+          "pytz>=2015.7; python_version < \"3.9\"",
+          "tzdata; sys_platform == \"win32\" and extra == \"dev\"",
+          "backports.zoneinfo; python_version < \"3.9\" and extra == \"dev\"",
+          "freezegun~=1.0; extra == \"dev\"",
+          "jinja2>=3.0; extra == \"dev\"",
+          "pytest-cov; extra == \"dev\"",
+          "pytest>=6.0; extra == \"dev\"",
+          "pytz; extra == \"dev\"",
+          "setuptools; extra == \"dev\""
+        ],
+        "requires_python": ">=3.8",
+        "version": "2.17.0"
+      },
+      "build": {
+        "license_expression": "MIT",
+        "license_files": {
+          "build-1.6.1.dist-info/licenses/LICENSE": {
+            "bytes": 1113,
+            "sha256": "aaf9a29ca5907971ccf07de025375db34539a8d5eeebce20b46099805722106f"
+          }
+        },
+        "name": "build",
+        "requires_dist": [
+          "packaging >= 24.0",
+          "pyproject_hooks",
+          "colorama; os_name == \"nt\"",
+          "importlib-metadata >= 4.6; python_full_version < \"3.10.2\"",
+          "tomli >= 1.1.0; python_version < \"3.11\"",
+          "keyring ; extra == \"keyring\"",
+          "uv >= 0.1.18 ; extra == \"uv\"",
+          "virtualenv >= 20.36.1 ; extra == \"virtualenv\""
+        ],
+        "requires_python": ">= 3.10",
+        "version": "1.6.1"
+      },
+      "cachecontrol": {
+        "license_expression": "Apache-2.0",
+        "license_files": {
+          "cachecontrol-0.14.4.dist-info/licenses/LICENSE.txt": {
+            "bytes": 558,
+            "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b"
+          }
+        },
+        "name": "cachecontrol",
+        "requires_dist": [
+          "requests>=2.16.0",
+          "msgpack>=0.5.2,<2.0.0",
+          "cachecontrol[filecache,redis] ; extra == 'dev'",
+          "cherrypy ; extra == 'dev'",
+          "cheroot>=11.1.2 ; extra == 'dev'",
+          "codespell ; extra == 'dev'",
+          "furo ; extra == 'dev'",
+          "mypy ; extra == 'dev'",
+          "pytest ; extra == 'dev'",
+          "pytest-cov ; extra == 'dev'",
+          "ruff ; extra == 'dev'",
+          "sphinx ; extra == 'dev'",
+          "sphinx-copybutton ; extra == 'dev'",
+          "types-redis ; extra == 'dev'",
+          "types-requests ; extra == 'dev'",
+          "filelock>=3.8.0 ; extra == 'filecache'",
+          "redis>=2.10.5 ; extra == 'redis'"
+        ],
+        "requires_python": ">=3.10",
+        "version": "0.14.4"
+      },
+      "certifi": {
+        "license_expression": null,
+        "license_files": {
+          "certifi-2026.7.22.dist-info/licenses/LICENSE": {
+            "bytes": 989,
+            "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+          }
+        },
+        "name": "certifi",
+        "requires_dist": [],
+        "requires_python": ">=3.7",
+        "version": "2026.7.22"
+      },
+      "cffi": {
+        "license_expression": "MIT-0",
+        "license_files": {
+          "cffi-2.1.1.dist-info/licenses/LICENSE": {
+            "bytes": 1123,
+            "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63"
+          }
+        },
+        "name": "cffi",
+        "requires_dist": [
+          "pycparser; implementation_name != \"PyPy\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "2.1.1"
+      },
+      "charset-normalizer": {
+        "license_expression": null,
+        "license_files": {
+          "charset_normalizer-3.5.2.dist-info/licenses/LICENSE": {
+            "bytes": 1071,
+            "sha256": "6d0d41bfe170ac6c7dc248c9a63e254d0fb45a60d50a8257d0af92c6e249b887"
+          }
+        },
+        "name": "charset-normalizer",
+        "requires_dist": [],
+        "requires_python": ">=3.7",
+        "version": "3.5.2"
+      },
+      "cleo": {
+        "license_expression": null,
+        "license_files": {
+          "cleo-2.1.0.dist-info/LICENSE": {
+            "bytes": 1061,
+            "sha256": "a2b9e0f3a35c5549b0b82edabcc0e229721437994d265cca96185e9f99f3a698"
+          }
+        },
+        "name": "cleo",
+        "requires_dist": [
+          "crashtest (>=0.4.1,<0.5.0)",
+          "rapidfuzz (>=3.0.0,<4.0.0)"
+        ],
+        "requires_python": ">=3.7,<4.0",
+        "version": "2.1.0"
+      },
+      "crashtest": {
+        "license_expression": null,
+        "license_files": {
+          "crashtest-0.4.1.dist-info/LICENSE": {
+            "bytes": 1062,
+            "sha256": "f1978133782b90f4733bc308ddb19267c3fe04797c88d9ed3bc219032495a982"
+          }
+        },
+        "name": "crashtest",
+        "requires_dist": [],
+        "requires_python": ">=3.7,<4.0",
+        "version": "0.4.1"
+      },
+      "cryptography": {
+        "license_expression": "Apache-2.0 OR BSD-3-Clause",
+        "license_files": {
+          "cryptography-50.0.2.dist-info/licenses/LICENSE": {
+            "bytes": 197,
+            "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb"
+          },
+          "cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE": {
+            "bytes": 11360,
+            "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe"
+          },
+          "cryptography-50.0.2.dist-info/licenses/LICENSE.BSD": {
+            "bytes": 1532,
+            "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb"
+          }
+        },
+        "name": "cryptography",
+        "requires_dist": [
+          "cffi>=2.0.0 ; platform_python_implementation != 'PyPy'",
+          "typing-extensions>=4.13.2 ; python_full_version < '3.11'",
+          "bcrypt>=3.1.5 ; extra == 'ssh'"
+        ],
+        "requires_python": ">=3.9, !=3.9.0, !=3.9.1",
+        "version": "50.0.2"
+      },
+      "distlib": {
+        "license_expression": null,
+        "license_files": {
+          "distlib-0.4.3.dist-info/licenses/LICENSE.txt": {
+            "bytes": 14531,
+            "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d"
+          }
+        },
+        "name": "distlib",
+        "requires_dist": [],
+        "requires_python": "",
+        "version": "0.4.3"
+      },
+      "dulwich": {
+        "license_expression": "Apache-2.0 OR GPL-2.0-or-later",
+        "license_files": {
+          "dulwich-0.24.10.dist-info/licenses/COPYING": {
+            "bytes": 29573,
+            "sha256": "e17db6e0f06d3a70a9a6a6e4e1b85c6dfaa2c7d0154147c798435e333f4b366d"
+          }
+        },
+        "name": "dulwich",
+        "requires_dist": [
+          "urllib3>=2.2.2",
+          "typing_extensions>=4.6.0; python_version < \"3.12\"",
+          "fastimport; extra == \"fastimport\"",
+          "urllib3>=2.2.2; extra == \"https\"",
+          "gpg; extra == \"pgp\"",
+          "paramiko; extra == \"paramiko\"",
+          "rich; extra == \"colordiff\"",
+          "ruff==0.13.2; extra == \"dev\"",
+          "mypy==1.18.2; extra == \"dev\"",
+          "dissolve>=0.1.1; extra == \"dev\"",
+          "codespell==2.4.1; extra == \"dev\"",
+          "merge3; extra == \"merge\"",
+          "atheris; extra == \"fuzzing\"",
+          "patiencediff; extra == \"patiencediff\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "0.24.10"
+      },
+      "dunamai": {
+        "license_expression": null,
+        "license_files": {
+          "dunamai-1.26.2.dist-info/licenses/LICENSE": {
+            "bytes": 1089,
+            "sha256": "cd75c5564078e3aadf662a9df3d23430f4705dfeedebbd0ebbeef53998ad94a8"
+          }
+        },
+        "name": "dunamai",
+        "requires_dist": [
+          "importlib-metadata (>=1.6.0) ; python_version < \"3.8\"",
+          "packaging (>=20.9)"
+        ],
+        "requires_python": ">=3.5",
+        "version": "1.26.2"
+      },
+      "fastjsonschema": {
+        "license_expression": null,
+        "license_files": {
+          "fastjsonschema-2.22.2.dist-info/licenses/AUTHORS": {
+            "bytes": 353,
+            "sha256": "3325516643a004650c147dd9e220bb579476d89ea4c694883ba1f2dbb0597b8f"
+          },
+          "fastjsonschema-2.22.2.dist-info/licenses/LICENSE": {
+            "bytes": 1518,
+            "sha256": "9ccddf69eb3998a60148debe85b94c5afed53691b6474692e78abcc0a0e544f1"
+          }
+        },
+        "name": "fastjsonschema",
+        "requires_dist": [
+          "colorama; extra == \"devel\"",
+          "jsonschema; extra == \"devel\"",
+          "json-spec; extra == \"devel\"",
+          "pylint; extra == \"devel\"",
+          "pytest; extra == \"devel\"",
+          "pytest-benchmark; extra == \"devel\"",
+          "pytest-cache; extra == \"devel\"",
+          "validictory; extra == \"devel\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "2.22.2"
+      },
+      "filelock": {
+        "license_expression": "MIT",
+        "license_files": {
+          "filelock-4.0.9.dist-info/licenses/LICENSE": {
+            "bytes": 1088,
+            "sha256": "608c89d5060ae9921adccf3236695bc654a9946e12323ef6c021dfa04e294d48"
+          }
+        },
+        "name": "filelock",
+        "requires_dist": [],
+        "requires_python": ">=3.10",
+        "version": "4.0.9"
+      },
+      "findpython": {
+        "license_expression": null,
+        "license_files": {
+          "findpython-0.7.1.dist-info/licenses/LICENSE": {
+            "bytes": 1075,
+            "sha256": "da09d04078d69825b0f2a7686cbd6452a6789a6edc9122ac3d8b52c6ca256398"
+          }
+        },
+        "name": "findpython",
+        "requires_dist": [
+          "packaging>=20",
+          "platformdirs>=4.3.6"
+        ],
+        "requires_python": ">=3.8",
+        "version": "0.7.1"
+      },
+      "h11": {
+        "license_expression": null,
+        "license_files": {
+          "h11-0.16.0.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1124,
+            "sha256": "37db5bb85926db28a427a25867f10b1232003aea1be69ccb851138adb8e6f361"
+          }
+        },
+        "name": "h11",
+        "requires_dist": [],
+        "requires_python": ">=3.8",
+        "version": "0.16.0"
+      },
+      "httpcore": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "httpcore-1.0.9.dist-info/licenses/LICENSE.md": {
+            "bytes": 1518,
+            "sha256": "fdcb59154c74cbaba16a11242f7740bea9f23d6feb5547917d8c5f94a80392a5"
+          }
+        },
+        "name": "httpcore",
+        "requires_dist": [
+          "certifi",
+          "h11>=0.16",
+          "anyio<5.0,>=4.0; extra == 'asyncio'",
+          "h2<5,>=3; extra == 'http2'",
+          "socksio==1.*; extra == 'socks'",
+          "trio<1.0,>=0.22.0; extra == 'trio'"
+        ],
+        "requires_python": ">=3.8",
+        "version": "1.0.9"
+      },
+      "httpx": {
+        "license_expression": null,
+        "license_files": {
+          "httpx-0.28.1.dist-info/licenses/LICENSE.md": {
+            "bytes": 1508,
+            "sha256": "4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d"
+          }
+        },
+        "name": "httpx",
+        "requires_dist": [
+          "anyio",
+          "certifi",
+          "httpcore==1.*",
+          "idna",
+          "brotli; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+          "brotlicffi; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+          "click==8.*; extra == 'cli'",
+          "pygments==2.*; extra == 'cli'",
+          "rich<14,>=10; extra == 'cli'",
+          "h2<5,>=3; extra == 'http2'",
+          "socksio==1.*; extra == 'socks'",
+          "zstandard>=0.18.0; extra == 'zstd'"
+        ],
+        "requires_python": ">=3.8",
+        "version": "0.28.1"
+      },
+      "idna": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "idna-3.20.dist-info/licenses/LICENSE.md": {
+            "bytes": 1541,
+            "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04"
+          }
+        },
+        "name": "idna",
+        "requires_dist": [
+          "ruff >= 0.16.0 ; extra == \"all\"",
+          "mypy >= 1.11.2 ; extra == \"all\"",
+          "ty >= 0.0.37 ; extra == \"all\"",
+          "pytest >= 8.3.2 ; extra == \"all\"",
+          "hypothesis >= 6.141.1 ; extra == \"all\"",
+          "coverage >= 7.10.0 ; extra == \"all\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "3.20"
+      },
+      "installer": {
+        "license_expression": null,
+        "license_files": {
+          "installer-0.7.0.dist-info/LICENSE": {
+            "bytes": 1057,
+            "sha256": "37b8b9f2569892fa54406383d431169dbb2115980d78b7efba6eeae5664c484f"
+          }
+        },
+        "name": "installer",
+        "requires_dist": [],
+        "requires_python": ">=3.7",
+        "version": "0.7.0"
+      },
+      "jaraco-classes": {
+        "license_expression": null,
+        "license_files": {
+          "jaraco.classes-3.4.0.dist-info/LICENSE": {
+            "bytes": 1023,
+            "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+          }
+        },
+        "name": "jaraco-classes",
+        "requires_dist": [
+          "more-itertools",
+          "sphinx >=3.5 ; extra == 'docs'",
+          "jaraco.packaging >=9.3 ; extra == 'docs'",
+          "rst.linker >=1.9 ; extra == 'docs'",
+          "furo ; extra == 'docs'",
+          "sphinx-lint ; extra == 'docs'",
+          "jaraco.tidelift >=1.4 ; extra == 'docs'",
+          "pytest >=6 ; extra == 'testing'",
+          "pytest-checkdocs >=2.4 ; extra == 'testing'",
+          "pytest-cov ; extra == 'testing'",
+          "pytest-mypy ; extra == 'testing'",
+          "pytest-enabler >=2.2 ; extra == 'testing'",
+          "pytest-ruff >=0.2.1 ; extra == 'testing'"
+        ],
+        "requires_python": ">=3.8",
+        "version": "3.4.0"
+      },
+      "jaraco-context": {
+        "license_expression": "MIT",
+        "license_files": {
+          "jaraco_context-6.1.2.dist-info/licenses/LICENSE": {
+            "bytes": 1076,
+            "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683"
+          }
+        },
+        "name": "jaraco-context",
+        "requires_dist": [
+          "backports.tarfile; python_version < \"3.12\"",
+          "pytest!=8.1.*,>=6; extra == \"test\"",
+          "jaraco.test>=5.6.0; extra == \"test\"",
+          "portend; extra == \"test\"",
+          "sphinx>=3.5; extra == \"doc\"",
+          "jaraco.packaging>=9.3; extra == \"doc\"",
+          "rst.linker>=1.9; extra == \"doc\"",
+          "furo; extra == \"doc\"",
+          "sphinx-lint; extra == \"doc\"",
+          "jaraco.tidelift>=1.4; extra == \"doc\"",
+          "pytest-checkdocs>=2.14; extra == \"check\"",
+          "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+          "pytest-cov; extra == \"cover\"",
+          "pytest-enabler>=3.4; extra == \"enabler\"",
+          "pytest-mypy>=1.0.1; platform_python_implementation != \"PyPy\" and extra == \"type\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "6.1.2"
+      },
+      "jaraco-functools": {
+        "license_expression": "MIT",
+        "license_files": {
+          "jaraco_functools-4.6.0.dist-info/licenses/LICENSE": {
+            "bytes": 1076,
+            "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683"
+          }
+        },
+        "name": "jaraco-functools",
+        "requires_dist": [
+          "more_itertools",
+          "pytest!=8.1.*,>=6; extra == \"test\"",
+          "jaraco.classes; extra == \"test\"",
+          "sphinx>=3.5; extra == \"doc\"",
+          "jaraco.packaging>=9.3; extra == \"doc\"",
+          "rst.linker>=1.9; extra == \"doc\"",
+          "furo; extra == \"doc\"",
+          "sphinx-lint; extra == \"doc\"",
+          "jaraco.tidelift>=1.4; extra == \"doc\"",
+          "pytest-checkdocs>=2.14; extra == \"check\"",
+          "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+          "pytest-cov; extra == \"cover\"",
+          "pytest-enabler>=3.4; extra == \"enabler\"",
+          "pytest-mypy>=1.0.1; platform_python_implementation != \"PyPy\" and extra == \"type\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "4.6.0"
+      },
+      "jeepney": {
+        "license_expression": "MIT",
+        "license_files": {
+          "jeepney-0.9.0.dist-info/licenses/LICENSE": {
+            "bytes": 1081,
+            "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154"
+          }
+        },
+        "name": "jeepney",
+        "requires_dist": [
+          "pytest ; extra == \"test\"",
+          "pytest-trio ; extra == \"test\"",
+          "pytest-asyncio >=0.17 ; extra == \"test\"",
+          "testpath ; extra == \"test\"",
+          "trio ; extra == \"test\"",
+          "async-timeout ; extra == \"test\" and ( python_version < '3.11')",
+          "trio ; extra == \"trio\""
+        ],
+        "requires_python": ">=3.7",
+        "version": "0.9.0"
+      },
+      "jinja2": {
+        "license_expression": null,
+        "license_files": {
+          "jinja2-3.1.6.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1475,
+            "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
+          }
+        },
+        "name": "jinja2",
+        "requires_dist": [
+          "MarkupSafe>=2.0",
+          "Babel>=2.7 ; extra == \"i18n\""
+        ],
+        "requires_python": ">=3.7",
+        "version": "3.1.6"
+      },
+      "keyring": {
+        "license_expression": "MIT",
+        "license_files": {
+          "keyring-25.7.0.dist-info/licenses/LICENSE": {
+            "bytes": 1076,
+            "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d"
+          }
+        },
+        "name": "keyring",
+        "requires_dist": [
+          "pywin32-ctypes>=0.2.0; sys_platform == \"win32\"",
+          "SecretStorage>=3.2; sys_platform == \"linux\"",
+          "jeepney>=0.4.2; sys_platform == \"linux\"",
+          "importlib_metadata>=4.11.4; python_version < \"3.12\"",
+          "jaraco.classes",
+          "jaraco.functools",
+          "jaraco.context",
+          "pytest!=8.1.*,>=6; extra == \"test\"",
+          "pyfakefs; extra == \"test\"",
+          "sphinx>=3.5; extra == \"doc\"",
+          "jaraco.packaging>=9.3; extra == \"doc\"",
+          "rst.linker>=1.9; extra == \"doc\"",
+          "furo; extra == \"doc\"",
+          "sphinx-lint; extra == \"doc\"",
+          "jaraco.tidelift>=1.4; extra == \"doc\"",
+          "pytest-checkdocs>=2.4; extra == \"check\"",
+          "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+          "pytest-cov; extra == \"cover\"",
+          "pytest-enabler>=3.4; extra == \"enabler\"",
+          "pytest-mypy>=1.0.1; extra == \"type\"",
+          "pygobject-stubs; extra == \"type\"",
+          "shtab; extra == \"type\"",
+          "types-pywin32; extra == \"type\"",
+          "shtab>=1.1.0; extra == \"completion\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "25.7.0"
+      },
+      "markupsafe": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "markupsafe-3.0.3.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1475,
+            "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"
+          }
+        },
+        "name": "markupsafe",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "3.0.3"
+      },
+      "more-itertools": {
+        "license_expression": "MIT",
+        "license_files": {
+          "more_itertools-11.1.0.dist-info/licenses/LICENSE": {
+            "bytes": 1053,
+            "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+          }
+        },
+        "name": "more-itertools",
+        "requires_dist": [],
+        "requires_python": ">=3.10",
+        "version": "11.1.0"
+      },
+      "msgpack": {
+        "license_expression": "Apache-2.0",
+        "license_files": {
+          "msgpack-1.2.3.dist-info/licenses/COPYING": {
+            "bytes": 614,
+            "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427"
+          }
+        },
+        "name": "msgpack",
+        "requires_dist": [],
+        "requires_python": ">=3.10",
+        "version": "1.2.3"
+      },
+      "packaging": {
+        "license_expression": "Apache-2.0 OR BSD-2-Clause",
+        "license_files": {
+          "packaging-26.3.dist-info/licenses/LICENSE": {
+            "bytes": 197,
+            "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+          },
+          "packaging-26.3.dist-info/licenses/LICENSE.APACHE": {
+            "bytes": 10174,
+            "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+          },
+          "packaging-26.3.dist-info/licenses/LICENSE.BSD": {
+            "bytes": 1344,
+            "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+          }
+        },
+        "name": "packaging",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "26.3"
+      },
+      "pbs-installer": {
+        "license_expression": null,
+        "license_files": {
+          "pbs_installer-2025.12.17.dist-info/licenses/LICENSE": {
+            "bytes": 1059,
+            "sha256": "633cd96a5b9ce5989d808e7f580e2c3b180920b4a3e564f9d8689c4c6399d63d"
+          }
+        },
+        "name": "pbs-installer",
+        "requires_dist": [
+          "httpx<1,>=0.27.0; extra == \"download\"",
+          "zstandard>=0.21.0; extra == \"install\"",
+          "pbs-installer[download,install]; extra == \"all\""
+        ],
+        "requires_python": ">=3.8",
+        "version": "2025.12.17"
+      },
+      "pip": {
+        "license_expression": "MIT",
+        "license_files": {
+          "pip-25.3.dist-info/licenses/AUTHORS.txt": {
+            "bytes": 11503,
+            "sha256": "1f7d99860167faae5bdc101c0d8aac4b0d0d37b4515581e95a2355347433cc1b"
+          },
+          "pip-25.3.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1093,
+            "sha256": "634300a669d49aeae65b12c6c48c924c51a4cdf3d1ff086dc3456dc8bcaa2104"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/cachecontrol/LICENSE.txt": {
+            "bytes": 558,
+            "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/certifi/LICENSE": {
+            "bytes": 989,
+            "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/dependency_groups/LICENSE.txt": {
+            "bytes": 1099,
+            "sha256": "1ab36e3e2a4ba8631625384f87e9e091db1faed034c5b23325b3239abf2cc525"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/distlib/LICENSE.txt": {
+            "bytes": 14531,
+            "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/distro/LICENSE": {
+            "bytes": 11325,
+            "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md": {
+            "bytes": 1541,
+            "sha256": "a59f0b0ef3635874109a4461ca44ff7a70d50696e814767bfaf721d4c9b0db0f"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/msgpack/COPYING": {
+            "bytes": 614,
+            "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE": {
+            "bytes": 197,
+            "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.APACHE": {
+            "bytes": 10174,
+            "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.BSD": {
+            "bytes": 1344,
+            "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pkg_resources/LICENSE": {
+            "bytes": 1023,
+            "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/platformdirs/LICENSE": {
+            "bytes": 1089,
+            "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pygments/LICENSE": {
+            "bytes": 1331,
+            "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pyproject_hooks/LICENSE": {
+            "bytes": 1081,
+            "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/requests/LICENSE": {
+            "bytes": 10142,
+            "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/resolvelib/LICENSE": {
+            "bytes": 751,
+            "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/rich/LICENSE": {
+            "bytes": 1056,
+            "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/tomli/LICENSE": {
+            "bytes": 1072,
+            "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/tomli_w/LICENSE": {
+            "bytes": 1072,
+            "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/truststore/LICENSE": {
+            "bytes": 1086,
+            "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/urllib3/LICENSE.txt": {
+            "bytes": 1115,
+            "sha256": "c37bf186e27cf9dbe9619e55edfe3cea7b30091ceb3da63c7dacbe0e6d77907b"
+          }
+        },
+        "name": "pip",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "25.3"
+      },
+      "pkginfo": {
+        "license_expression": null,
+        "license_files": {
+          "pkginfo-1.13.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1084,
+            "sha256": "08ea83077299fd21f6a14a1c9ba90da7d66162b6506d07c4471c4096ad8f1cd8"
+          }
+        },
+        "name": "pkginfo",
+        "requires_dist": [
+          "pytest; extra == \"testing\"",
+          "pytest-cov; extra == \"testing\"",
+          "wheel; extra == \"testing\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "1.13"
+      },
+      "platformdirs": {
+        "license_expression": "MIT",
+        "license_files": {
+          "platformdirs-4.12.2.dist-info/licenses/LICENSE": {
+            "bytes": 1089,
+            "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+          }
+        },
+        "name": "platformdirs",
+        "requires_dist": [],
+        "requires_python": ">=3.10",
+        "version": "4.12.2"
+      },
+      "poetry": {
+        "license_expression": "MIT",
+        "license_files": {
+          "poetry-2.2.1.dist-info/licenses/LICENSE": {
+            "bytes": 1070,
+            "sha256": "1786f071a510648a24695f295117f02bae0bbf0fb7c6730aafe9c93a3e4bf7ee"
+          }
+        },
+        "name": "poetry",
+        "requires_dist": [
+          "build (>=1.2.1,<2.0.0)",
+          "cachecontrol[filecache] (>=0.14.0,<0.15.0)",
+          "cleo (>=2.1.0,<3.0.0)",
+          "dulwich (>=0.24.0,<0.25.0)",
+          "fastjsonschema (>=2.18.0,<3.0.0)",
+          "findpython (>=0.6.2,<0.8.0)",
+          "importlib-metadata (>=4.4) ; python_version < \"3.10\"",
+          "installer (>=0.7.0,<0.8.0)",
+          "keyring (>=25.1.0,<26.0.0)",
+          "packaging (>=24.2)",
+          "pbs-installer[download,install] (>=2025.1.6,<2026.0.0)",
+          "pkginfo (>=1.12,<2.0)",
+          "platformdirs (>=3.0.0,<5)",
+          "poetry-core (==2.2.1)",
+          "pyproject-hooks (>=1.0.0,<2.0.0)",
+          "requests (>=2.26,<3.0)",
+          "requests-toolbelt (>=1.0.0,<2.0.0)",
+          "shellingham (>=1.5,<2.0)",
+          "tomli (>=2.0.1,<3.0.0) ; python_version < \"3.11\"",
+          "tomlkit (>=0.11.4,<1.0.0)",
+          "trove-classifiers (>=2022.5.19)",
+          "virtualenv (>=20.26.6)",
+          "xattr (>=1.0.0,<2.0.0) ; sys_platform == \"darwin\""
+        ],
+        "requires_python": ">=3.9,<4.0",
+        "version": "2.2.1"
+      },
+      "poetry-core": {
+        "license_expression": "MIT",
+        "license_files": {
+          "poetry_core-2.2.1.dist-info/licenses/LICENSE": {
+            "bytes": 1062,
+            "sha256": "f1978133782b90f4733bc308ddb19267c3fe04797c88d9ed3bc219032495a982"
+          }
+        },
+        "name": "poetry-core",
+        "requires_dist": [],
+        "requires_python": ">=3.9, <4.0",
+        "version": "2.2.1"
+      },
+      "poetry-dynamic-versioning": {
+        "license_expression": null,
+        "license_files": {
+          "poetry_dynamic_versioning-1.9.1.dist-info/LICENSE": {
+            "bytes": 1089,
+            "sha256": "cd75c5564078e3aadf662a9df3d23430f4705dfeedebbd0ebbeef53998ad94a8"
+          }
+        },
+        "name": "poetry-dynamic-versioning",
+        "requires_dist": [
+          "dunamai (>=1.25.0,<2.0.0)",
+          "jinja2 (>=2.11.1,<4)",
+          "poetry (>=1.2.0) ; extra == \"plugin\"",
+          "tomlkit (>=0.4)"
+        ],
+        "requires_python": ">=3.7,<4.0",
+        "version": "1.9.1"
+      },
+      "pycparser": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "pycparser-3.0.dist-info/licenses/LICENSE": {
+            "bytes": 1543,
+            "sha256": "0c846399369ea76ddd7b5c44fe6d16497415fcf015f5cbb508c24bf98b81c5b1"
+          }
+        },
+        "name": "pycparser",
+        "requires_dist": [],
+        "requires_python": ">=3.10",
+        "version": "3.0"
+      },
+      "pyproject-hooks": {
+        "license_expression": "MIT",
+        "license_files": {
+          "pyproject_hooks-1.3.3.dist-info/licenses/LICENSE": {
+            "bytes": 1081,
+            "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154"
+          }
+        },
+        "name": "pyproject-hooks",
+        "requires_dist": [],
+        "requires_python": ">=3.8",
+        "version": "1.3.3"
+      },
+      "python-discovery": {
+        "license_expression": null,
+        "license_files": {
+          "python_discovery-1.6.1.dist-info/licenses/LICENSE": {
+            "bytes": 1023,
+            "sha256": "90e25e1faf2a4aaea8d95ee8e7f5738b052a1acc0c9c58068101f931a86bd588"
+          }
+        },
+        "name": "python-discovery",
+        "requires_dist": [
+          "filelock>=3.15.4"
+        ],
+        "requires_python": ">=3.8",
+        "version": "1.6.1"
+      },
+      "rapidfuzz": {
+        "license_expression": "MIT",
+        "license_files": {
+          "rapidfuzz-3.14.6.dist-info/licenses/LICENSE": {
+            "bytes": 1092,
+            "sha256": "f34ccdffdff56fc417785915eedf18601d5479755df3c472b2c754c29802d683"
+          }
+        },
+        "name": "rapidfuzz",
+        "requires_dist": [
+          "numpy; extra == \"all\""
+        ],
+        "requires_python": ">=3.11",
+        "version": "3.14.6"
+      },
+      "requests": {
+        "license_expression": null,
+        "license_files": {
+          "requests-2.34.2.dist-info/licenses/LICENSE": {
+            "bytes": 10142,
+            "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+          },
+          "requests-2.34.2.dist-info/licenses/NOTICE": {
+            "bytes": 38,
+            "sha256": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc"
+          }
+        },
+        "name": "requests",
+        "requires_dist": [
+          "charset_normalizer<4,>=2",
+          "idna<4,>=2.5",
+          "urllib3<3,>=1.26",
+          "certifi>=2023.5.7",
+          "PySocks!=1.5.7,>=1.5.6; extra == \"socks\"",
+          "chardet<8,>=3.0.2; extra == \"use-chardet-on-py3\""
+        ],
+        "requires_python": ">=3.10",
+        "version": "2.34.2"
+      },
+      "requests-toolbelt": {
+        "license_expression": null,
+        "license_files": {
+          "requests_toolbelt-1.0.0.dist-info/LICENSE": {
+            "bytes": 596,
+            "sha256": "1f8cf8bdacd98ed6d36d0fec0c07f7765acebd6e81205962ab5146023b3c858d"
+          }
+        },
+        "name": "requests-toolbelt",
+        "requires_dist": [
+          "requests (<3.0.0,>=2.0.1)"
+        ],
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "version": "1.0.0"
+      },
+      "secretstorage": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "secretstorage-3.5.0.dist-info/licenses/LICENSE": {
+            "bytes": 1504,
+            "sha256": "e700357592bb93704cb040ce4a6663a85292716a4041b6a267f598f21658466f"
+          }
+        },
+        "name": "secretstorage",
+        "requires_dist": [
+          "cryptography>=2.0",
+          "jeepney>=0.6"
+        ],
+        "requires_python": ">=3.10",
+        "version": "3.5.0"
+      },
+      "shellingham": {
+        "license_expression": null,
+        "license_files": {
+          "shellingham-1.5.4.dist-info/LICENSE": {
+            "bytes": 751,
+            "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d"
+          }
+        },
+        "name": "shellingham",
+        "requires_dist": [],
+        "requires_python": ">=3.7",
+        "version": "1.5.4"
+      },
+      "tomlkit": {
+        "license_expression": null,
+        "license_files": {
+          "tomlkit-0.15.1.dist-info/licenses/LICENSE": {
+            "bytes": 1062,
+            "sha256": "f2f9b460ba719da6626add264d3782f275a4ff7aab677beda08b330911e23adb"
+          }
+        },
+        "name": "tomlkit",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "0.15.1"
+      },
+      "trove-classifiers": {
+        "license_expression": null,
+        "license_files": {
+          "trove_classifiers-2026.9.21.13.dist-info/licenses/LICENSE": {
+            "bytes": 11357,
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+          }
+        },
+        "name": "trove-classifiers",
+        "requires_dist": [],
+        "requires_python": "",
+        "version": "2026.9.21.13"
+      },
+      "typing-extensions": {
+        "license_expression": "PSF-2.0",
+        "license_files": {
+          "typing_extensions-4.16.0.dist-info/licenses/LICENSE": {
+            "bytes": 13936,
+            "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+          }
+        },
+        "name": "typing-extensions",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "4.16.0"
+      },
+      "urllib3": {
+        "license_expression": "MIT",
+        "license_files": {
+          "urllib3-2.8.0.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1093,
+            "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
+          }
+        },
+        "name": "urllib3",
+        "requires_dist": [
+          "brotli>=1.2.0; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+          "brotlicffi>=1.2.0.0; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+          "h2<5,>=4; extra == 'h2'",
+          "pysocks!=1.5.7,<2.0,>=1.5.6; extra == 'socks'",
+          "backports-zstd>=1.0.0; (python_version < '3.14') and extra == 'zstd'"
+        ],
+        "requires_python": ">=3.10",
+        "version": "2.8.0"
+      },
+      "virtualenv": {
+        "license_expression": "MIT",
+        "license_files": {
+          "virtualenv-21.14.5.dist-info/licenses/LICENSE": {
+            "bytes": 1077,
+            "sha256": "38ef740a641ff08df082680e98ab30d09badccee9e5fb686bce21212f3a663f0"
+          },
+          "virtualenv-21.14.5.dist-info/licenses/THIRD-PARTY-NOTICES.md": {
+            "bytes": 2846,
+            "sha256": "0e51b915e26da42c998b274c1a81804c5f9eea5ca49d69da2f96418872590825"
+          }
+        },
+        "name": "virtualenv",
+        "requires_dist": [
+          "distlib<1,>=0.3.7",
+          "filelock<5,>=3.24.2; python_version >= '3.10'",
+          "filelock<=3.19.1,>=3.16.1; python_version < '3.10'",
+          "packaging>=23.1",
+          "platformdirs<5,>=3.9.1",
+          "python-discovery>=1.6",
+          "typing-extensions>=4.13.2; python_version < '3.11'"
+        ],
+        "requires_python": ">=3.9",
+        "version": "21.14.5"
+      },
+      "zstandard": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "zstandard-0.25.0.dist-info/licenses/LICENSE": {
+            "bytes": 1484,
+            "sha256": "788fe85e53724a40b299051c4abc9cf74d42b27e7968325b80891c25f79adb4b"
+          }
+        },
+        "name": "zstandard",
+        "requires_dist": [
+          "cffi~=1.17; (platform_python_implementation != \"PyPy\" and python_version < \"3.14\") and extra == \"cffi\"",
+          "cffi>=2.0.0b; (platform_python_implementation != \"PyPy\" and python_version >= \"3.14\") and extra == \"cffi\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "0.25.0"
+      }
+    },
+    "runtime": {
+      "argcomplete": {
+        "license_expression": null,
+        "license_files": {
+          "argcomplete-3.6.2.dist-info/licenses/LICENSE.rst": {
+            "bytes": 10174,
+            "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+          },
+          "argcomplete-3.6.2.dist-info/licenses/NOTICE": {
+            "bytes": 387,
+            "sha256": "2c889c721ec8ae6d7664680afaefbb4c7620976f434b57a506ecd92f0649b6a0"
+          }
+        },
+        "name": "argcomplete",
+        "requires_dist": [
+          "coverage; extra == 'test'",
+          "mypy; extra == 'test'",
+          "pexpect; extra == 'test'",
+          "ruff; extra == 'test'",
+          "wheel; extra == 'test'"
+        ],
+        "requires_python": ">=3.8",
+        "version": "3.6.2"
+      },
+      "attrs": {
+        "license_expression": "MIT",
+        "license_files": {
+          "attrs-25.3.0.dist-info/licenses/LICENSE": {
+            "bytes": 1109,
+            "sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f"
+          }
+        },
+        "name": "attrs",
+        "requires_dist": [
+          "cloudpickle; (platform_python_implementation == 'CPython') and extra == 'benchmark'",
+          "hypothesis; extra == 'benchmark'",
+          "mypy>=1.11.1; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'benchmark'",
+          "pympler; extra == 'benchmark'",
+          "pytest-codspeed; extra == 'benchmark'",
+          "pytest-mypy-plugins; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'benchmark'",
+          "pytest-xdist[psutil]; extra == 'benchmark'",
+          "pytest>=4.3.0; extra == 'benchmark'",
+          "cloudpickle; (platform_python_implementation == 'CPython') and extra == 'cov'",
+          "coverage[toml]>=5.3; extra == 'cov'",
+          "hypothesis; extra == 'cov'",
+          "mypy>=1.11.1; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'cov'",
+          "pympler; extra == 'cov'",
+          "pytest-mypy-plugins; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'cov'",
+          "pytest-xdist[psutil]; extra == 'cov'",
+          "pytest>=4.3.0; extra == 'cov'",
+          "cloudpickle; (platform_python_implementation == 'CPython') and extra == 'dev'",
+          "hypothesis; extra == 'dev'",
+          "mypy>=1.11.1; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'dev'",
+          "pre-commit-uv; extra == 'dev'",
+          "pympler; extra == 'dev'",
+          "pytest-mypy-plugins; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'dev'",
+          "pytest-xdist[psutil]; extra == 'dev'",
+          "pytest>=4.3.0; extra == 'dev'",
+          "cogapp; extra == 'docs'",
+          "furo; extra == 'docs'",
+          "myst-parser; extra == 'docs'",
+          "sphinx; extra == 'docs'",
+          "sphinx-notfound-page; extra == 'docs'",
+          "sphinxcontrib-towncrier; extra == 'docs'",
+          "towncrier; extra == 'docs'",
+          "cloudpickle; (platform_python_implementation == 'CPython') and extra == 'tests'",
+          "hypothesis; extra == 'tests'",
+          "mypy>=1.11.1; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'tests'",
+          "pympler; extra == 'tests'",
+          "pytest-mypy-plugins; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'tests'",
+          "pytest-xdist[psutil]; extra == 'tests'",
+          "pytest>=4.3.0; extra == 'tests'",
+          "mypy>=1.11.1; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'tests-mypy'",
+          "pytest-mypy-plugins; (platform_python_implementation == 'CPython' and python_version >= '3.10') and extra == 'tests-mypy'"
+        ],
+        "requires_python": ">=3.8",
+        "version": "25.3.0"
+      },
+      "babel": {
+        "license_expression": null,
+        "license_files": {
+          "babel-2.18.0.dist-info/licenses/LICENSE": {
+            "bytes": 1531,
+            "sha256": "86bad5758c7859ba06251f8f12eee885eca31369923dfb2b87a7c13c3634d870"
+          }
+        },
+        "name": "babel",
+        "requires_dist": [
+          "pytz>=2015.7; python_version < \"3.9\"",
+          "tzdata; sys_platform == \"win32\" and extra == \"dev\"",
+          "backports.zoneinfo; python_version < \"3.9\" and extra == \"dev\"",
+          "freezegun~=1.0; extra == \"dev\"",
+          "jinja2>=3.0; extra == \"dev\"",
+          "pytest-cov; extra == \"dev\"",
+          "pytest>=6.0; extra == \"dev\"",
+          "pytz; extra == \"dev\"",
+          "setuptools; extra == \"dev\""
+        ],
+        "requires_python": ">=3.8",
+        "version": "2.18.0"
+      },
+      "edalize": {
+        "license_expression": null,
+        "license_files": {
+          "edalize-0.6.2.dist-info/licenses/LICENSE": {
+            "bytes": 1349,
+            "sha256": "d348984bef33444bd1d68798181a26982c65c5480ff89bf62fa9418dd511fe8f"
+          }
+        },
+        "name": "edalize",
+        "requires_dist": [
+          "Jinja2>=3",
+          "importlib_metadata>=1.4; python_version < \"3.10\""
+        ],
+        "requires_python": "<4,>=3.9",
+        "version": "0.6.2"
+      },
+      "fastjsonschema": {
+        "license_expression": null,
+        "license_files": {
+          "fastjsonschema-2.21.2.dist-info/licenses/AUTHORS": {
+            "bytes": 350,
+            "sha256": "0cb1a03754c498cd95a013387119fe82495ce0703c8cb2cf0c309e043d641a15"
+          },
+          "fastjsonschema-2.21.2.dist-info/licenses/LICENSE": {
+            "bytes": 1518,
+            "sha256": "9ccddf69eb3998a60148debe85b94c5afed53691b6474692e78abcc0a0e544f1"
+          }
+        },
+        "name": "fastjsonschema",
+        "requires_dist": [
+          "colorama; extra == \"devel\"",
+          "jsonschema; extra == \"devel\"",
+          "json-spec; extra == \"devel\"",
+          "pylint; extra == \"devel\"",
+          "pytest; extra == \"devel\"",
+          "pytest-benchmark; extra == \"devel\"",
+          "pytest-cache; extra == \"devel\"",
+          "validictory; extra == \"devel\""
+        ],
+        "requires_python": "",
+        "version": "2.21.2"
+      },
+      "fusesoc": {
+        "license_expression": null,
+        "license_files": {
+          "fusesoc-2.4.3.dist-info/licenses/LICENSE": {
+            "bytes": 1315,
+            "sha256": "bb94792802f1327befaa98cb006ad9f18e442d4479b4d896e409266e5d4de73f"
+          }
+        },
+        "name": "fusesoc",
+        "requires_dist": [
+          "edalize>=0.4.1",
+          "pyparsing>=2.3.1",
+          "pyyaml>=6.0",
+          "simplesat>=0.9.1",
+          "fastjsonschema",
+          "jsonschema2md",
+          "argcomplete"
+        ],
+        "requires_python": "<4,>=3.6",
+        "version": "2.4.3"
+      },
+      "jinja2": {
+        "license_expression": null,
+        "license_files": {
+          "jinja2-3.1.6.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1475,
+            "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
+          }
+        },
+        "name": "jinja2",
+        "requires_dist": [
+          "MarkupSafe>=2.0",
+          "Babel>=2.7 ; extra == \"i18n\""
+        ],
+        "requires_python": ">=3.7",
+        "version": "3.1.6"
+      },
+      "jsonschema": {
+        "license_expression": "MIT",
+        "license_files": {
+          "jsonschema-4.26.0.dist-info/licenses/COPYING": {
+            "bytes": 1057,
+            "sha256": "4f92a015a13c4d1a040bef018aa13430b4f1bc73b41b16bb846c346766de7439"
+          }
+        },
+        "name": "jsonschema",
+        "requires_dist": [
+          "attrs>=22.2.0",
+          "jsonschema-specifications>=2023.03.6",
+          "referencing>=0.28.4",
+          "rpds-py>=0.25.0",
+          "fqdn; extra == 'format'",
+          "idna; extra == 'format'",
+          "isoduration; extra == 'format'",
+          "jsonpointer>1.13; extra == 'format'",
+          "rfc3339-validator; extra == 'format'",
+          "rfc3987; extra == 'format'",
+          "uri-template; extra == 'format'",
+          "webcolors>=1.11; extra == 'format'",
+          "fqdn; extra == 'format-nongpl'",
+          "idna; extra == 'format-nongpl'",
+          "isoduration; extra == 'format-nongpl'",
+          "jsonpointer>1.13; extra == 'format-nongpl'",
+          "rfc3339-validator; extra == 'format-nongpl'",
+          "rfc3986-validator>0.1.0; extra == 'format-nongpl'",
+          "rfc3987-syntax>=1.1.0; extra == 'format-nongpl'",
+          "uri-template; extra == 'format-nongpl'",
+          "webcolors>=24.6.0; extra == 'format-nongpl'"
+        ],
+        "requires_python": ">=3.10",
+        "version": "4.26.0"
+      },
+      "jsonschema-specifications": {
+        "license_expression": "MIT",
+        "license_files": {
+          "jsonschema_specifications-2025.9.1.dist-info/licenses/COPYING": {
+            "bytes": 1057,
+            "sha256": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+          }
+        },
+        "name": "jsonschema-specifications",
+        "requires_dist": [
+          "referencing>=0.31.0"
+        ],
+        "requires_python": ">=3.9",
+        "version": "2025.9.1"
+      },
+      "jsonschema2md": {
+        "build_system": {
+          "build-backend": "poetry.core.masonry.api",
+          "requires": [
+            "poetry-core>=1.0.0",
+            "poetry-dynamic-versioning[plugin]>=0.19.0",
+            "poetry-dynamic-versioning",
+            "babel==2.17.0"
+          ]
+        },
+        "name": "jsonschema2md",
+        "requires_dist": [
+          "PyYAML (>=6,<7)",
+          "babel (>=2,<3)",
+          "markdown (>=3,<4)"
+        ],
+        "requires_python": ">=3.9",
+        "version": "1.7.0"
+      },
+      "mako": {
+        "license_expression": null,
+        "license_files": {
+          "mako-1.3.10.dist-info/licenses/LICENSE": {
+            "bytes": 1098,
+            "sha256": "68d7064e53e3ffa8e9f420a9e604bd2e2059d9c330492fa6ebd4eb3d48111689"
+          }
+        },
+        "name": "mako",
+        "requires_dist": [
+          "MarkupSafe>=0.9.2",
+          "pytest; extra == \"testing\"",
+          "Babel; extra == \"babel\"",
+          "lingua; extra == \"lingua\""
+        ],
+        "requires_python": ">=3.8",
+        "version": "1.3.10"
+      },
+      "markdown": {
+        "license_expression": "BSD-3-Clause",
+        "license_files": {
+          "markdown-3.11.dist-info/licenses/LICENSE.md": {
+            "bytes": 1650,
+            "sha256": "7ba4eb6d10b32b2d11dce13821340351cdbbb30ba8ccc67841db2ffd86e79aca"
+          }
+        },
+        "name": "markdown",
+        "requires_dist": [
+          "coverage; extra == \"testing\"",
+          "pyyaml; extra == \"testing\"",
+          "zensical==0.0.62; extra == \"docs\"",
+          "mdx_gh_links==0.4; extra == \"docs\"",
+          "mkdocstrings==1.0.6; extra == \"docs\"",
+          "mkdocstrings-python==1.16.8; extra == \"docs\"",
+          "pygments==2.21.0; extra == \"docs\"",
+          "pymdown-extensions==11.0.2; extra == \"docs\"",
+          "justhtml==3.11.2; extra == \"docs\"",
+          "ghp-import==2.1.0; extra == \"docs\""
+        ],
+        "requires_python": ">=3.11",
+        "version": "3.11"
+      },
+      "markupsafe": {
+        "license_expression": null,
+        "license_files": {
+          "MarkupSafe-3.0.2.dist-info/LICENSE.txt": {
+            "bytes": 1475,
+            "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"
+          }
+        },
+        "name": "markupsafe",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "3.0.2"
+      },
+      "okonomiyaki": {
+        "license_expression": null,
+        "license_files": {},
+        "name": "okonomiyaki",
+        "requires_dist": [
+          "attrs (>=16.1.0)",
+          "jsonschema (>=2.5.1)",
+          "six (>=1.9.0)",
+          "zipfile2 (>=0.0.12)",
+          "enum34; python_version==\"2.7\""
+        ],
+        "requires_python": "",
+        "version": "0.17.1"
+      },
+      "packaging": {
+        "license_expression": null,
+        "license_files": {
+          "packaging-25.0.dist-info/licenses/LICENSE": {
+            "bytes": 197,
+            "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+          },
+          "packaging-25.0.dist-info/licenses/LICENSE.APACHE": {
+            "bytes": 10174,
+            "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+          },
+          "packaging-25.0.dist-info/licenses/LICENSE.BSD": {
+            "bytes": 1344,
+            "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+          }
+        },
+        "name": "packaging",
+        "requires_dist": [],
+        "requires_python": ">=3.8",
+        "version": "25.0"
+      },
+      "pip": {
+        "license_expression": "MIT",
+        "license_files": {
+          "pip-25.3.dist-info/licenses/AUTHORS.txt": {
+            "bytes": 11503,
+            "sha256": "1f7d99860167faae5bdc101c0d8aac4b0d0d37b4515581e95a2355347433cc1b"
+          },
+          "pip-25.3.dist-info/licenses/LICENSE.txt": {
+            "bytes": 1093,
+            "sha256": "634300a669d49aeae65b12c6c48c924c51a4cdf3d1ff086dc3456dc8bcaa2104"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/cachecontrol/LICENSE.txt": {
+            "bytes": 558,
+            "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/certifi/LICENSE": {
+            "bytes": 989,
+            "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/dependency_groups/LICENSE.txt": {
+            "bytes": 1099,
+            "sha256": "1ab36e3e2a4ba8631625384f87e9e091db1faed034c5b23325b3239abf2cc525"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/distlib/LICENSE.txt": {
+            "bytes": 14531,
+            "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/distro/LICENSE": {
+            "bytes": 11325,
+            "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md": {
+            "bytes": 1541,
+            "sha256": "a59f0b0ef3635874109a4461ca44ff7a70d50696e814767bfaf721d4c9b0db0f"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/msgpack/COPYING": {
+            "bytes": 614,
+            "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE": {
+            "bytes": 197,
+            "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.APACHE": {
+            "bytes": 10174,
+            "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.BSD": {
+            "bytes": 1344,
+            "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pkg_resources/LICENSE": {
+            "bytes": 1023,
+            "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/platformdirs/LICENSE": {
+            "bytes": 1089,
+            "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pygments/LICENSE": {
+            "bytes": 1331,
+            "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/pyproject_hooks/LICENSE": {
+            "bytes": 1081,
+            "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/requests/LICENSE": {
+            "bytes": 10142,
+            "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/resolvelib/LICENSE": {
+            "bytes": 751,
+            "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/rich/LICENSE": {
+            "bytes": 1056,
+            "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/tomli/LICENSE": {
+            "bytes": 1072,
+            "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/tomli_w/LICENSE": {
+            "bytes": 1072,
+            "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/truststore/LICENSE": {
+            "bytes": 1086,
+            "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca"
+          },
+          "pip-25.3.dist-info/licenses/src/pip/_vendor/urllib3/LICENSE.txt": {
+            "bytes": 1115,
+            "sha256": "c37bf186e27cf9dbe9619e55edfe3cea7b30091ceb3da63c7dacbe0e6d77907b"
+          }
+        },
+        "name": "pip",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "25.3"
+      },
+      "pyparsing": {
+        "license_expression": null,
+        "license_files": {
+          "pyparsing-3.2.3.dist-info/LICENSE": {
+            "bytes": 1023,
+            "sha256": "10d5120a16805804ffda8b688c220bfb4e8f39741b57320604d455a309e01972"
+          }
+        },
+        "name": "pyparsing",
+        "requires_dist": [
+          "railroad-diagrams ; extra == \"diagrams\"",
+          "jinja2 ; extra == \"diagrams\""
+        ],
+        "requires_python": ">=3.9",
+        "version": "3.2.3"
+      },
+      "pyyaml": {
+        "license_expression": null,
+        "license_files": {
+          "PyYAML-6.0.2.dist-info/LICENSE": {
+            "bytes": 1101,
+            "sha256": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
+          }
+        },
+        "name": "pyyaml",
+        "requires_dist": [],
+        "requires_python": ">=3.8",
+        "version": "6.0.2"
+      },
+      "referencing": {
+        "license_expression": "MIT",
+        "license_files": {
+          "referencing-0.37.0.dist-info/licenses/COPYING": {
+            "bytes": 1057,
+            "sha256": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+          }
+        },
+        "name": "referencing",
+        "requires_dist": [
+          "attrs>=22.2.0",
+          "rpds-py>=0.7.0",
+          "typing-extensions>=4.4.0; python_version < '3.13'"
+        ],
+        "requires_python": ">=3.10",
+        "version": "0.37.0"
+      },
+      "rpds-py": {
+        "license_expression": "MIT",
+        "license_files": {
+          "rpds_py-2026.6.3.dist-info/licenses/LICENSE": {
+            "bytes": 1057,
+            "sha256": "314e4e91be3baa93c0fb4bccc9e4e97cd643eb839b065af921782c2175fe9909"
+          }
+        },
+        "name": "rpds-py",
+        "requires_dist": [],
+        "requires_python": ">=3.11",
+        "version": "2026.6.3"
+      },
+      "simplesat": {
+        "license_expression": null,
+        "license_files": {},
+        "name": "simplesat",
+        "requires_dist": [
+          "attrs>=17.4.0",
+          "okonomiyaki>=0.16.6",
+          "six>=1.10.0"
+        ],
+        "requires_python": ">=3.8",
+        "version": "0.9.2"
+      },
+      "six": {
+        "license_expression": null,
+        "license_files": {
+          "six-1.17.0.dist-info/LICENSE": {
+            "bytes": 1066,
+            "sha256": "4375ba20e2b9c6c4e7cad2940a628fd90e95cc3d50ee92aae755715d8ba1fbd0"
+          }
+        },
+        "name": "six",
+        "requires_dist": [],
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*",
+        "version": "1.17.0"
+      },
+      "typing-extensions": {
+        "license_expression": "PSF-2.0",
+        "license_files": {
+          "typing_extensions-4.16.0.dist-info/licenses/LICENSE": {
+            "bytes": 13936,
+            "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+          }
+        },
+        "name": "typing-extensions",
+        "requires_dist": [],
+        "requires_python": ">=3.9",
+        "version": "4.16.0"
+      },
+      "zipfile2": {
+        "license_expression": null,
+        "license_files": {},
+        "name": "zipfile2",
+        "requires_dist": [],
+        "requires_python": "",
+        "version": "0.0.12"
+      }
+    }
+  },
+  "lock": {
+    "bytes": 79391,
+    "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+  },
+  "privacy": "No author/maintainer/environment fields or source execution.",
+  "schema": 1
+}

@@ -1,0 +1,188 @@
+{
+  "actual_attempts": {
+    "off_cpu_builds": 0,
+    "off_cpu_runs": 0,
+    "on_cpu_builds": 0,
+    "on_cpu_runs": 0,
+    "pair_dispatches": 1,
+    "preparation_dispatches": 2,
+    "program_compilations": 0
+  },
+  "archive_identity": "Archive commit and later documentation head are outer identities recorded in PR/README, not self-hashed here.",
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+  "authorization_receipt": {
+    "bytes": 1630,
+    "sha256": "341e62575e62b271b490466a80b0fb1a3272582a13f1df147efaafa67bc52ae3"
+  },
+  "closure": "Sole pair dispatch consumed. Remaining preparation slots cannot authorize another pair/window. Original exhausted epoch and its immutable failures unchanged.",
+  "final_result": "PRE-CPU STOP / NOT_QUALIFIED",
+  "input_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+  "instrumentation": {
+    "compiled_sources_each": 176,
+    "loader_cases": 11,
+    "miniature_isa": "PASS",
+    "miniature_retirements": 3,
+    "miniature_samplers": "PASS",
+    "miniature_strict_next_pc": "PASS",
+    "reset_negatives": "SIGABRT 6 + marker PASS; marker+hang stays timed_out",
+    "stdlib_contracts": 26,
+    "stock_bind_fatal_warning_lint": "PASS OFF/ON"
+  },
+  "pair_stop": {
+    "byte_identical_manifests": {
+      "build-installed-tools.json": {
+        "bytes": 273969,
+        "sha256": "349192140ab5a592bc7ec32df4327c78a0047b7e3d9eb021ff08f0cdfd645e1f"
+      },
+      "input-equivalence.json": {
+        "bytes": 147,
+        "sha256": "20a7c4f672bbc6a278492c73f52ea8065a4136af667dabaf81744cc01e1a8fae"
+      },
+      "off/compiled-sources.json": {
+        "bytes": 29504,
+        "sha256": "9a5acc5df4486ac2f860f09a0057bbdf077b19984eac47371e0b0286055b3a6c"
+      },
+      "off/config.json": {
+        "bytes": 532,
+        "sha256": "4f76cd9edf99757344964f6ce70ee4e3540c2c647e956c573252f4fb7cc5c5a5"
+      },
+      "on/compiled-sources.json": {
+        "bytes": 29504,
+        "sha256": "9a5acc5df4486ac2f860f09a0057bbdf077b19984eac47371e0b0286055b3a6c"
+      },
+      "on/config.json": {
+        "bytes": 532,
+        "sha256": "3eb5c95e516ae188d44f845d49cdb9d656cf19c95df5a476ba34d2120ec3c727"
+      },
+      "runtime-installed-tools.json": {
+        "bytes": 147192,
+        "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+      }
+    },
+    "cause_limit": "Run-specific virtualenv shebang is source-supported likely explanation, not proved from unretained launcher bytes. No guard normalization or retry.",
+    "error": "STOP: qualified preparation identity changed: tool-identities.json",
+    "launcher_bytes_retained": false,
+    "other_executable_hashes_equal": true,
+    "stage": "preparation_binding after typed stage52 download exited0, stdout/stderr0 bytes",
+    "tool_byte_differences": {
+      "fusesoc": {
+        "pair": {
+          "bytes": 240,
+          "sha256": "d268907d8eac2653b89b06fff10ce8df2a5890943c31c36446bb17cff4d1a0ae"
+        },
+        "preparation": {
+          "bytes": 240,
+          "sha256": "a46ebf6e3f241c340aeed6047334c995acfb930502b91b5ba6556609c3fd82bc"
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "artifact_digest": "sha256:b3274e3991fae2a090c625e0618b6659fc080f6f050ffcbf4fb9f7058b498c73",
+      "artifact_id": 11251786909,
+      "byte_integrity": "PASS",
+      "console_collection": {
+        "bytes": 904,
+        "sha256": "88934f49dd2997252b29b3302def6919278e0e7216338a466093ca9f4cf6fac4"
+      },
+      "mode": "prepare",
+      "pipeline_console": {
+        "bytes": 2099,
+        "sha256": "5f4ca4fbc6eaaefecd7d3f9669148e2766472817a6aeeb22ca340f9dea5877b7"
+      },
+      "preparation_attempt": 1,
+      "raw_manifest": {
+        "bytes": 1937,
+        "sha256": "fb8537cbdfd5dfac2c14ba6d4906d354e0ccab1f099e01edeb4870f9f3875b37"
+      },
+      "raw_members": 12,
+      "real_compilations": [],
+      "result": "STOP",
+      "run_attempt": 1,
+      "run_id": "37064524358",
+      "scientific_result": "NOT_QUALIFIED",
+      "source_collection": "NOT_COLLECTED before failed guard; immutable public input commit only; no reconstruction",
+      "source_sha": "69d0265af7f985e968eb5eabc5f687e48596d486",
+      "summary": {
+        "bytes": 626,
+        "sha256": "013faa7b977c8fac45354e7c0230e805565e87a18fafb1b5328a7ffbafef6e09"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37064524358"
+    },
+    {
+      "artifact_digest": "sha256:22d8958caf65e32e34f719a5d11741740b1ad85478cee8ec1b4dcecf23109a0e",
+      "artifact_id": 11252491138,
+      "byte_integrity": "PASS",
+      "console_collection": {
+        "bytes": 904,
+        "sha256": "082eda1745354fd0476c93b067baa29ba2d014bf280656ae7d1a711e3f5657e1"
+      },
+      "mode": "prepare",
+      "pipeline_console": {
+        "bytes": 1447,
+        "sha256": "eef36533ec5a2d359073c3c5e361378a454afa30b650f16b9f736fa60937c806"
+      },
+      "preparation_attempt": 2,
+      "raw_manifest": {
+        "bytes": 32926,
+        "sha256": "1265e87a30f929a135ecbcb4d779ce8fa89e96b1abacfb4a9f818878a5255945"
+      },
+      "raw_members": 219,
+      "real_compilations": [],
+      "result": "PREPARATION_PASS",
+      "run_attempt": 1,
+      "run_id": "37065211892",
+      "scientific_result": "NOT_RUN",
+      "source_collection": "Reviewed source snapshot present, including hidden workflow",
+      "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+      "summary": {
+        "bytes": 358,
+        "sha256": "23cb7392e6961c823e7c5dcd695674aea29f9db747c898259bf8c6c11c7ea394"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37065211892"
+    },
+    {
+      "artifact_digest": "sha256:20bfcaa173c1de91aefb3427e3c325680a72fd759f5d1488a4c24a78c6c9bcea",
+      "artifact_id": 11251958531,
+      "byte_integrity": "PASS",
+      "console_collection": {
+        "bytes": 904,
+        "sha256": "cb110330bb32333aaf297a197e14f1f1d6aed6adcbb62da86090bfaa375538d5"
+      },
+      "mode": "pair",
+      "pipeline_console": {
+        "bytes": 1728,
+        "sha256": "17c809be0e92cdacd4fe88142674a48f1e302ae3863ffd059301fbde099509c7"
+      },
+      "preparation_attempt": 0,
+      "raw_manifest": {
+        "bytes": 33553,
+        "sha256": "b55807710041b72766f5c8ad99019a51f83fe87c366d42f80198a7853c606927"
+      },
+      "raw_members": 223,
+      "real_compilations": [],
+      "result": "STOP",
+      "run_attempt": 1,
+      "run_id": "37065546781",
+      "scientific_result": "NOT_QUALIFIED",
+      "source_collection": "Reviewed source snapshot present, including hidden workflow",
+      "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+      "summary": {
+        "bytes": 441,
+        "sha256": "11a54696991b9de5a32409d6cd83b19ab1782e2798dde8c2c7c84a1d25fe5f5b"
+      },
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37065546781"
+    }
+  ],
+  "schema": 1,
+  "whole_core": {
+    "branches": 0,
+    "coverage": "NOT_MEASURED",
+    "isa_execution": "NOT_RUN",
+    "reason": "NOT_RUN, not empty passing observations",
+    "retirements": 0,
+    "samplers": "NOT_RUN",
+    "strict_next_pc": "NOT_QUALIFIED"
+  }
+}

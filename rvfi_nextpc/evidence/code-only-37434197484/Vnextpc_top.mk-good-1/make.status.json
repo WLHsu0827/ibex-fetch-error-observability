@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "--no-print-directory",
+    "-f",
+    "nextpc_driver_probe.mk",
+    "NEXTPC_PROBE_MAKEFILE=Vnextpc_top.mk",
+    "nextpc-outer-driver-probe",
+    "NOTE=spaces 'quotes' \"double\" (parentheses) --eval=literal"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-code-only-make-wxisbrsd/synthetic output with spaces",
+  "duration_seconds": 0.0049771000000014,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 55,
+    "sha256": "17dc21e024115e0c08c94fd29896a3ac0e5a60ba40133e683d810b8e84fdcd11"
+  },
+  "timeout_seconds": 10
+}

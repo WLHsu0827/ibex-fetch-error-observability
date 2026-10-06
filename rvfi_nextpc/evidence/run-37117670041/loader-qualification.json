@@ -1,0 +1,57 @@
+{
+  "empty": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "good": {
+    "code": 0,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "negative": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "over_budget": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "overflow": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "oversized": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "trailing_text": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "truncated": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "wrong_boundary": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "wrong_terminal": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  },
+  "zero_budget": {
+    "code": 2,
+    "contract": "PASS",
+    "kind": "exited"
+  }
+}

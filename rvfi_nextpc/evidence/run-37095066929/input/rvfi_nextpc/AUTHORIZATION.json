@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "base": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+  "ibex": "4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8",
+  "max_preparations": 2,
+  "max_pairs": 1,
+  "max_build_seconds": 1500,
+  "max_run_seconds": 60,
+  "max_cycles": 20000,
+  "configuration": "custom-small-Zca-BP-toggle-not-named-supported",
+  "claim": "strict output-port metadata observation, not confirmed DUT bug or architectural misexecution"
+}

@@ -1,0 +1,51 @@
+{
+  "active": {
+    "distribution": "fusesoc",
+    "entry_point": "fusesoc.main:main",
+    "flags": [
+      "-I",
+      "-B",
+      "-m",
+      "fusesoc.main"
+    ],
+    "interpreter": {
+      "bytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "launcher_body": {
+      "bytes": 165,
+      "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+    },
+    "lock": {
+      "bytes": 79391,
+      "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+    },
+    "module": {
+      "bytes": 23564,
+      "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+    },
+    "python_version": "3.12.3",
+    "runtime_code": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "version": "2.4.3"
+  },
+  "diagnostic": {
+    "argv": [
+      "/tmp/rvfi-nextpc-37118514047/tools/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "fusesoc.main"
+    ],
+    "launcher": {
+      "bytes": 213,
+      "sha256": "187576e95b4e48c0d88969eff17dfabe48923cc9bf7d3304d8522d329bd46908"
+    },
+    "launcher_path": "/tmp/rvfi-nextpc-37118514047/tools/bin/fusesoc",
+    "python_resolved": "/usr/bin/python3.12",
+    "shebang": "#!/tmp/rvfi-nextpc-37118514047/tools/bin/python"
+  },
+  "schema": 1
+}

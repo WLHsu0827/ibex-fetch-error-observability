@@ -1,0 +1,87 @@
+{
+  "equal_active_entrypoint": {
+    "distribution": "fusesoc",
+    "entry_point": "fusesoc.main:main",
+    "flags": [
+      "-I",
+      "-B",
+      "-m",
+      "fusesoc.main"
+    ],
+    "interpreter": {
+      "bytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "launcher_body": {
+      "bytes": 165,
+      "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+    },
+    "lock": {
+      "bytes": 79391,
+      "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+    },
+    "module": {
+      "bytes": 23564,
+      "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+    },
+    "python_version": "3.12.3",
+    "runtime_code": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "version": "2.4.3"
+  },
+  "equal_identities": {
+    "build-installed-tools.json": {
+      "bytes": 273969,
+      "sha256": "349192140ab5a592bc7ec32df4327c78a0047b7e3d9eb021ff08f0cdfd645e1f"
+    },
+    "input-equivalence.json": {
+      "bytes": 147,
+      "sha256": "20a7c4f672bbc6a278492c73f52ea8065a4136af667dabaf81744cc01e1a8fae"
+    },
+    "off/compiled-sources.json": {
+      "bytes": 29504,
+      "sha256": "9a5acc5df4486ac2f860f09a0057bbdf077b19984eac47371e0b0286055b3a6c"
+    },
+    "off/config.json": {
+      "bytes": 532,
+      "sha256": "4f76cd9edf99757344964f6ce70ee4e3540c2c647e956c573252f4fb7cc5c5a5"
+    },
+    "on/compiled-sources.json": {
+      "bytes": 29504,
+      "sha256": "9a5acc5df4486ac2f860f09a0057bbdf077b19984eac47371e0b0286055b3a6c"
+    },
+    "on/config.json": {
+      "bytes": 532,
+      "sha256": "3eb5c95e516ae188d44f845d49cdb9d656cf19c95df5a476ba34d2120ec3c727"
+    },
+    "runtime-installed-tools.json": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "tool-identities.json": {
+      "bytes": 1311,
+      "sha256": "5996808630898840fd80f14e079baf54f00de9b542e81e656b4aaf24660f0153"
+    }
+  },
+  "raw_manifest": {
+    "bytes": 36319,
+    "sha256": "c849f7f161d6b16fc6ba888f322871c2097d642bde0a56bf3b258d63aae5d7d3"
+  },
+  "result": "PASS",
+  "run_id": "37094924126",
+  "schema": 1,
+  "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+  "unused_launcher_diagnostics": {
+    "boundary": "Not executed. Each exact pinned body/shebang/path checked; only per-run venv path may differ.",
+    "pair": {
+      "bytes": 213,
+      "sha256": "30e04f940176ff6a75afc54cb15e20b899865dd7406fb74119f4c90ae0d32506"
+    },
+    "preparation": {
+      "bytes": 213,
+      "sha256": "d4f4dcb6c4f5f178af74081e1ff3fc446e7c02a481e8c0e4e4b08bd615714fd2"
+    }
+  }
+}

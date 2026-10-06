@@ -1,0 +1,10 @@
+{
+  "actual_workflow_conclusion": "failure",
+  "error": "Initial offline source seal failed due to Windows CRLF versus committed Git LF; no HDL setup or real CPU build attempted.",
+  "mode": "offline",
+  "real_compilations": [],
+  "result": "STOP",
+  "run_id": "37037374236",
+  "schema": 1,
+  "source_sha": "f80fa2b5beca8d0777b88ae574f69ad7b972bedf"
+}

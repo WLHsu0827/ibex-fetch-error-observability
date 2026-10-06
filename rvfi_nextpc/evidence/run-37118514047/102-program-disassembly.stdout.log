@@ -1,0 +1,79 @@
+
+fresh.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+80000080 <_start>:
+80000080:	00000a13          	li	s4,0
+80000084:	fff00413          	li	s0,-1
+
+80000088 <back_ceq>:
+80000088:	00140413          	addi	s0,s0,1
+8000008c:	001a0a13          	addi	s4,s4,1
+80000090:	dc65                	beqz	s0,80000088 <back_ceq>
+80000092:	00300413          	li	s0,3
+
+80000096 <back_cne>:
+80000096:	fff40413          	addi	s0,s0,-1
+8000009a:	001a0a13          	addi	s4,s4,1
+8000009e:	fc65                	bnez	s0,80000096 <back_cne>
+800000a0:	00000513          	li	a0,0
+800000a4:	00100593          	li	a1,1
+
+800000a8 <back_eq>:
+800000a8:	00150513          	addi	a0,a0,1
+800000ac:	001a0a13          	addi	s4,s4,1
+800000b0:	feb50ce3          	beq	a0,a1,800000a8 <back_eq>
+800000b4:	00300513          	li	a0,3
+800000b8:	00000593          	li	a1,0
+
+800000bc <back_ne>:
+800000bc:	fff50513          	addi	a0,a0,-1
+800000c0:	001a0a13          	addi	s4,s4,1
+800000c4:	feb51ce3          	bne	a0,a1,800000bc <back_ne>
+800000c8:	00000413          	li	s0,0
+800000cc:	c019                	beqz	s0,800000d2 <forward_ceq_taken>
+800000ce:	065a0a13          	addi	s4,s4,101
+
+800000d2 <forward_ceq_taken>:
+800000d2:	00100413          	li	s0,1
+800000d6:	c019                	beqz	s0,800000dc <forward_ceq_not_taken>
+800000d8:	002a0a13          	addi	s4,s4,2
+
+800000dc <forward_ceq_not_taken>:
+800000dc:	e019                	bnez	s0,800000e2 <forward_cne_taken>
+800000de:	067a0a13          	addi	s4,s4,103
+
+800000e2 <forward_cne_taken>:
+800000e2:	00000413          	li	s0,0
+800000e6:	e019                	bnez	s0,800000ec <forward_cne_not_taken>
+800000e8:	003a0a13          	addi	s4,s4,3
+
+800000ec <forward_cne_not_taken>:
+800000ec:	00500513          	li	a0,5
+800000f0:	00500593          	li	a1,5
+800000f4:	00b50463          	beq	a0,a1,800000fc <forward_eq_taken>
+800000f8:	06ba0a13          	addi	s4,s4,107
+
+800000fc <forward_eq_taken>:
+800000fc:	00600593          	li	a1,6
+80000100:	00b50463          	beq	a0,a1,80000108 <forward_eq_not_taken>
+80000104:	004a0a13          	addi	s4,s4,4
+
+80000108 <forward_eq_not_taken>:
+80000108:	00b51463          	bne	a0,a1,80000110 <forward_ne_taken>
+8000010c:	06da0a13          	addi	s4,s4,109
+
+80000110 <forward_ne_taken>:
+80000110:	00500593          	li	a1,5
+80000114:	00b51463          	bne	a0,a1,8000011c <drain>
+80000118:	005a0a13          	addi	s4,s4,5
+
+8000011c <drain>:
+8000011c:	00000013          	nop
+80000120:	00000013          	nop
+80000124:	00000013          	nop
+
+80000128 <terminal>:
+80000128:	0000006f          	j	80000128 <terminal>

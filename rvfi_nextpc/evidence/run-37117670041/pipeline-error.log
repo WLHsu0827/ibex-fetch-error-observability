@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 735, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 673, in execute
+    self.miniature()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 341, in miniature
+    self.command("miniature-build", [
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 65, in command
+    require_success(status)
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/process.py", line 74, in require_success
+    raise RuntimeError(f"STOP: {status['argv']}: {status['kind']}:{status['code']}")
+RuntimeError: STOP: ['verilator', '--cc', '--exe', '-Wall', '--top-module', 'sampler_fixture', '-DOBSERVER_TARGET=sampler_fixture', '--Mdir', '/tmp/rvfi-nextpc-37117670041/miniature', '-CFLAGS', '-std=c++17 -Wall -Wextra -Werror', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/sampler_fixture.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/rvfi_observer.sv', '/tmp/rvfi-nextpc-37117670041/inputs/rvfi_nextpc/fixture.cpp']: exited:1

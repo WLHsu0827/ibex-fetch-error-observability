@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37118514047/miniature/Vsampler_fixture",
+    "no_reset",
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/miniature-no_reset/cpp.tsv",
+    "+sv_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/miniature-no_reset/sv.tsv"
+  ],
+  "code": 6,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 0.166112346999995,
+  "kind": "signaled",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 213,
+    "sha256": "ae2251445d87fefdcab9c7c9cf08a17eab15939cdc8274b4312d36304fc4b86e"
+  },
+  "timeout_seconds": 10
+}

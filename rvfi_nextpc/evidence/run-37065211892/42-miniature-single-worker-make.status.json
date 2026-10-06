@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "-f",
+    "Vsampler_fixture.mk",
+    "CXX=g++-13",
+    "CC=gcc-13"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37065211892/miniature",
+  "duration_seconds": 6.132232862999999,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 2842,
+    "sha256": "cff521fef78119dbfb87bce116b68ec84a83ef68b0b06498fdb7261dbbda9a94"
+  },
+  "timeout_seconds": 300
+}

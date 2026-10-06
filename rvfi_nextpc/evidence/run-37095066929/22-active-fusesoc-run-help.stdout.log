@@ -1,0 +1,40 @@
+usage: main.py run [-h] [--clean] [--no-export] [--build-root BUILD_ROOT]
+                   [--work-root WORK_ROOT] [--filter FILTER] [--setup]
+                   [--build] [--run] [--target TARGET] [--tool TOOL]
+                   [--flag FLAG] [--resolve-env-vars-early]
+                   [--system-name SYSTEM_NAME] [--allow-additional-properties]
+                   [--lockfile LOCKFILE] [--mapping MAPPING]
+                   system ...
+
+positional arguments:
+  system                Select a system to operate on
+  backendargs           arguments to be sent to backend
+
+options:
+  -h, --help            show this help message and exit
+  --clean               Clean build directory on start
+  --no-export           Reference source files from their current location
+                        instead of exporting to a build tree
+  --build-root BUILD_ROOT
+                        Output directory for build. VLNV will be appended
+                        (defaults to build/)
+  --work-root WORK_ROOT
+                        Output directory for build. VLNV will not be appended
+                        (overrides build-root)
+  --filter FILTER       Add filter. Can be specified multiple times to add
+                        multiple filters
+  --setup               Execute setup stage
+  --build               Execute build stage
+  --run                 Execute run stage
+  --target TARGET       Override default target
+  --tool TOOL           Override default tool for target
+  --flag FLAG           Set custom use flags. Can be specified multiple times
+  --resolve-env-vars-early
+                        Resolve environment variables in FuseSoC (defaults to
+                        no resolution)
+  --system-name SYSTEM_NAME
+                        Override default VLNV name for system
+  --allow-additional-properties
+                        Allow additional properties in core files
+  --lockfile LOCKFILE   Lockfile file path
+  --mapping MAPPING     The VLNV of a core's mapping to apply.

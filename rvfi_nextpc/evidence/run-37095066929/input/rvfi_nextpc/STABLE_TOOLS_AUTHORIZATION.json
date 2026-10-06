@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "base": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+  "ibex": "4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8",
+  "decision_local_time": "2026-10-03T11:46:59+08:00",
+  "user_reply": "\u53ef\u4ee5 \u958b\u59cb\u5427",
+  "decision": "Coordinator 3b061029-7034-4983-82e1-914f28afb4fa relayed the user's approval to begin the stable execution-entrypoint repair, requalification and bounded hosted replay phase. The conservative established bounds below are retained, not a claim the user separately selected expanded limits.",
+  "supersession": "Distinct new authorization. Original one-pair and recovery-1 epochs are closed/consumed; no old unused slots are reused.",
+  "max_preparations": 4,
+  "max_pairs": 1,
+  "max_off_builds": 1,
+  "max_on_builds": 1,
+  "max_off_runs": 1,
+  "max_on_runs": 1,
+  "max_build_seconds": 1400,
+  "max_run_seconds": 60,
+  "max_cycles": 20000,
+  "configuration": "custom-small-Zca-BP-toggle-not-named-supported",
+  "gates": "All same-source executable/package/dependency, active entrypoint/raw launcher, strict loader, independent sampler/reset miniature, typed fatal/timeout, stock bind fatal-warning lint and effective source/config gates before one pair. OFF strict qualification is mandatory before ON.",
+  "limits": "Every dispatch consumes its attempt even before tools/HDL. No reruns, retries, erased attempts, counter resets, shadow windows, agents/sessions, local installs/heavy/HDL/program work, private publication, DUT/oracle weakening, extra configuration/pair, merge or self-acceptance. Resource/safety breach closes this phase. No source/tool/program/oracle changes, refreeze or retry once OFF CPU compilation starts.",
+  "closed_epochs": [
+    {
+      "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+      "runs": [
+        {"id": 37037708980, "head_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13", "mode": "prepare", "preparation_attempt": 1, "conclusion": "failure"},
+        {"id": 37039019400, "head_sha": "c50b3975c188eea33bb7e92cb75b21bc9a04f9e2", "mode": "prepare", "preparation_attempt": 2, "conclusion": "failure"}
+      ]
+    },
+    {
+      "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+      "runs": [
+        {"id": 37064524358, "head_sha": "69d0265af7f985e968eb5eabc5f687e48596d486", "mode": "prepare", "preparation_attempt": 1, "conclusion": "failure"},
+        {"id": 37065211892, "head_sha": "8afa40840e9ff469a2a74713d12c01154f2471df", "mode": "prepare", "preparation_attempt": 2, "conclusion": "success"},
+        {"id": 37065546781, "head_sha": "8afa40840e9ff469a2a74713d12c01154f2471df", "mode": "pair", "preparation_attempt": 0, "conclusion": "failure"}
+      ]
+    }
+  ],
+  "claim": "Strict independent output-port metadata observation only; no confirmed DUT bug, architectural misexecution, novelty, PPA or general error-rate claim. Old launcher-byte gap remains unproved."
+}

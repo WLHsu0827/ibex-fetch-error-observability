@@ -1,0 +1,129 @@
+{
+  "authorization": {
+    "admission": "nonmemory-nextpc-v2",
+    "approval_timestamp": null,
+    "base": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+    "claim": "Strict independent next-PC output-port observation on a fixed non-memory decoded ISA path with independently observed no-data-transaction controls. Read-mask metadata retained/descriptive, NOT full memory-RVFI verification. Old strict STOP never requalified. No confirmed DUT bug, architectural misexecution, novelty, PPA, general error-rate or human-replication claim.",
+    "closed_epochs": [
+      {
+        "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+        "runs": [
+          {
+            "conclusion": "failure",
+            "head_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13",
+            "id": 37037708980,
+            "mode": "prepare",
+            "preparation_attempt": 1
+          },
+          {
+            "conclusion": "failure",
+            "head_sha": "c50b3975c188eea33bb7e92cb75b21bc9a04f9e2",
+            "id": 37039019400,
+            "mode": "prepare",
+            "preparation_attempt": 2
+          }
+        ]
+      },
+      {
+        "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+        "runs": [
+          {
+            "conclusion": "failure",
+            "head_sha": "69d0265af7f985e968eb5eabc5f687e48596d486",
+            "id": 37064524358,
+            "mode": "prepare",
+            "preparation_attempt": 1
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+            "id": 37065211892,
+            "mode": "prepare",
+            "preparation_attempt": 2
+          },
+          {
+            "conclusion": "failure",
+            "head_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+            "id": 37065546781,
+            "mode": "pair",
+            "preparation_attempt": 0
+          }
+        ]
+      },
+      {
+        "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+            "id": 37094924126,
+            "mode": "prepare",
+            "preparation_attempt": 1
+          },
+          {
+            "conclusion": "failure",
+            "head_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa",
+            "id": 37095066929,
+            "mode": "pair",
+            "preparation_attempt": 0
+          }
+        ]
+      }
+    ],
+    "configuration": "custom-small-Zca-BP-toggle-not-named-supported",
+    "continuation_turn_started": "2026-10-03T16:57:35.079+08:00",
+    "decision": "Coordinator 3b061029-7034-4983-82e1-914f28afb4fa relayed this exact new user selection. Approved question: repair/requalify in existing draft PR3, at most FOUR total hosted preparations and ONE conditional OFF/ON pair, ON only after qualified OFF, preserve every old STOP. Turn start is not an exact approval timestamp.",
+    "ibex": "4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8",
+    "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+    "limits": "Distinct new authorization, not old unused slots. Every created preparation dispatch counts, including pre-tools failures. No reruns/retries/shadow windows/counter resets, agents/sessions, local install/heavy/HDL/program/formal work, private inputs, DUT changes, additional config/pair, merge/upstream/profile changes. Safety/resource breach closes the epoch. No code/tools/program/oracle/sampler changes/refreeze/retry after OFF compilation starts.",
+    "max_build_seconds": 1400,
+    "max_cycles": 20000,
+    "max_off_builds": 1,
+    "max_off_runs": 1,
+    "max_on_builds": 1,
+    "max_on_runs": 1,
+    "max_pairs": 1,
+    "max_preparations": 4,
+    "max_run_seconds": 60,
+    "repository": "WLHsu0827/ibex-fetch-error-observability",
+    "schema": 1,
+    "user_reply": "\u6388\u6b0a\u4fee\u5fa9\u8207\u65b0\u4e00\u7d44\u6709\u754c hosted OFF\uff0fON\uff08\u5efa\u8b70\uff09"
+  },
+  "history": [
+    {
+      "conclusion": null,
+      "display_title": "RVFI next-PC pair p0 WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+      "event": "workflow_dispatch",
+      "head_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+      "id": 37118514047,
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "display_title": "RVFI next-PC prepare p2 WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+      "event": "workflow_dispatch",
+      "head_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+      "id": 37118113760,
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "display_title": "RVFI next-PC prepare p1 WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1",
+      "event": "workflow_dispatch",
+      "head_sha": "6342f9fe8e92738f5fa01e6d11a4bcf60983a815",
+      "id": 37117670041,
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "mode": "pair",
+  "preparation_attempt": 0,
+  "preparation_run": "37118113760",
+  "receipt_semantics": "exclusive creation in this run; GitHub history is the attempt gate",
+  "run_attempt": 1,
+  "run_id": "37118514047",
+  "schema": 1,
+  "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454"
+}

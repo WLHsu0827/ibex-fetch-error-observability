@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-recovery-1",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "base": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+  "ibex": "4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8",
+  "decision_local_time": "2026-10-03T04:46:00+08:00",
+  "decision": "User explicitly selected bounded repair and one hosted OFF/ON pair, relayed by coordinator 3b061029-7034-4983-82e1-914f28afb4fa.",
+  "supersession": "A distinct new epoch. The original one-pair epoch and its exhausted two-preparation allowance remain unchanged.",
+  "max_preparations": 4,
+  "max_pairs": 1,
+  "max_off_builds": 1,
+  "max_on_builds": 1,
+  "max_off_runs": 1,
+  "max_on_runs": 1,
+  "max_build_seconds": 1400,
+  "max_run_seconds": 60,
+  "max_cycles": 20000,
+  "configuration": "custom-small-Zca-BP-toggle-not-named-supported",
+  "gates": "Complete dependency lock/preflight; same final source stock bind fatal-warning lint, actual observer/reset miniature, typed fatal/timeout and strict input negatives before OFF. ON only after strict OFF qualification.",
+  "limits": "Every preparation dispatch consumes one of four total attempts, even tools-only failures. No reruns, retries, erased attempts, third-party agents, local heavy work, private publication, DUT/oracle weakening, extra configuration, extra pair, merge or self-acceptance. Infrastructure/safety breach stops the epoch. No input changes or refreeze after OFF CPU compilation begins.",
+  "claim": "Strict output-port metadata observation only; not a confirmed DUT bug, architectural misexecution or novelty claim."
+}

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "gh",
+    "run",
+    "download",
+    "37118113760",
+    "--repo",
+    "WLHsu0827/ibex-fetch-error-observability",
+    "--name",
+    "rvfi-nextpc-run-37118113760-attempt-1",
+    "--dir",
+    "/tmp/rvfi-nextpc-37118514047/qualified-preparation"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118514047",
+  "duration_seconds": 0.5175711529999916,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 120
+}

@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37095066929/builds/off/Vnextpc_top",
+    "/tmp/rvfi-nextpc-37095066929/fresh.bin",
+    "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/off/cpp.tsv",
+    "2147483944",
+    "20000",
+    "+sv_log=/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/nextpc-output/off/sv.tsv"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.006236602000001312,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 85,
+    "sha256": "85da03d2d160ec346b68a34dd8506ca09f8ee8ce71b55bb8d01611319f364778"
+  },
+  "timeout_seconds": 60
+}

@@ -1,0 +1,13 @@
+{
+  "attempted_stages": 56,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "PREPARATION_PASS",
+  "run_attempt": "1",
+  "run_id": "37094924126",
+  "schema": 1,
+  "scientific_result": "NOT_RUN",
+  "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+}

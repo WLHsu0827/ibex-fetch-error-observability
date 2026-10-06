@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "--no-print-directory",
+    "-f",
+    "nextpc_driver_probe.mk",
+    "NEXTPC_PROBE_MAKEFILE=Vnextpc_top.mk",
+    "nextpc-outer-driver-probe",
+    "NEXTPC_PROBE_MAKEFILE=Vmissing.mk"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-code-only-make-a9785zyv/synthetic output with spaces",
+  "duration_seconds": 0.004940766000000707,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 196,
+    "sha256": "bf10a004ea179e74e187ce62522741e3d1bacd0715c13bd0ea1f0b3cbb446894"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 10
+}

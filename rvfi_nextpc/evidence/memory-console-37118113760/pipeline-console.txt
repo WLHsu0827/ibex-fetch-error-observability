@@ -1,0 +1,16 @@
+﻿2026-10-03T10:58:22.5525376Z ##[group]Run python3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \
+2026-10-03T10:58:22.5528157Z [36;1mpython3 -B -m rvfi_nextpc.hosted --mode "$MODE" --source-sha "$SOURCE_SHA" \[0m
+2026-10-03T10:58:22.5530750Z [36;1m  --authorization "$AUTHORIZATION" --preparation-attempt "$PREPARATION_ATTEMPT" \[0m
+2026-10-03T10:58:22.5533155Z [36;1m  --preparation-run "$PREPARATION_RUN" --output nextpc-output[0m
+2026-10-03T10:58:22.5849630Z shell: /usr/bin/bash -e {0}
+2026-10-03T10:58:22.5850770Z env:
+2026-10-03T10:58:22.5851669Z   DEBIAN_FRONTEND: noninteractive
+2026-10-03T10:58:22.5852915Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-03T10:58:22.5865373Z   GH_TOKEN: ***
+2026-10-03T10:58:22.5866308Z   MODE: prepare
+2026-10-03T10:58:22.5867375Z   SOURCE_SHA: 8b1492e638c44b9b19b5226f9317b42cb16e4454
+2026-10-03T10:58:22.5869148Z   AUTHORIZATION: WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1
+2026-10-03T10:58:22.5870802Z   PREPARATION_ATTEMPT: 2
+2026-10-03T10:58:22.5871844Z   PREPARATION_RUN: 
+2026-10-03T10:58:22.5872820Z ##[endgroup]
+2026-10-03T10:59:27.8415595Z {"admission": "nonmemory-nextpc-v2", "attempted_stages": 97, "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1", "mode": "prepare", "preparation_run": "", "real_compilations": [], "result": "PREPARATION_PASS", "run_attempt": "1", "run_id": "37118113760", "schema": 1, "scientific_result": "NOT_RUN", "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454", "stream_schema": 2}

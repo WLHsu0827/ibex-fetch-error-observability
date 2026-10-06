@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 550, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 496, in execute
+    self.preparation_binding()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 393, in preparation_binding
+    raise RuntimeError(f"STOP: qualified preparation identity changed: {name}")
+RuntimeError: STOP: qualified preparation identity changed: tool-identities.json

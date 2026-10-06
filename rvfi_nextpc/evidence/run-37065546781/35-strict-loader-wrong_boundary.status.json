@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37065546781/loader-fixture",
+    "/tmp/rvfi-nextpc-37065546781/loader-wrong_boundary.bin",
+    "2147483778",
+    "20000"
+  ],
+  "code": 2,
+  "cwd": "/tmp/rvfi-nextpc-37065546781",
+  "duration_seconds": 0.003495676000000003,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 54,
+    "sha256": "4110eb13426926ccd2de1d629396ef564300c3252977f1a1cae947eb23bdf7ba"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "timeout_seconds": 5
+}

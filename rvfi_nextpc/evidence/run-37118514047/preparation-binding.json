@@ -1,0 +1,142 @@
+{
+  "equal_active_entrypoint": {
+    "distribution": "fusesoc",
+    "entry_point": "fusesoc.main:main",
+    "flags": [
+      "-I",
+      "-B",
+      "-m",
+      "fusesoc.main"
+    ],
+    "interpreter": {
+      "bytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "launcher_body": {
+      "bytes": 165,
+      "sha256": "c3995e0f2c5ce06fa5264468ed6d7230b13db49c32e7406be98769870724390b"
+    },
+    "lock": {
+      "bytes": 79391,
+      "sha256": "261d4dae7790aa057ed944a3c5484ed57bcef908289e4369e6ead5cce5705129"
+    },
+    "module": {
+      "bytes": 23564,
+      "sha256": "f427929f52aac67c80a9c8e070d41bf19e651ce82bb17974fadbe23d5dbf9d53"
+    },
+    "python_version": "3.12.3",
+    "runtime_code": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "version": "2.4.3"
+  },
+  "equal_identities": {
+    "build-installed-tools.json": {
+      "bytes": 273969,
+      "sha256": "349192140ab5a592bc7ec32df4327c78a0047b7e3d9eb021ff08f0cdfd645e1f"
+    },
+    "driver-scope.json": {
+      "bytes": 12226,
+      "sha256": "b3efee8bc39247a60b5770f9023c7d38e079d5b14a13c1be36019d7fed12374d"
+    },
+    "input-equivalence.json": {
+      "bytes": 147,
+      "sha256": "20a7c4f672bbc6a278492c73f52ea8065a4136af667dabaf81744cc01e1a8fae"
+    },
+    "installed-verilated.mk": {
+      "bytes": 12468,
+      "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+    },
+    "installed-verilator-includer.py": {
+      "bytes": 960,
+      "sha256": "35eb42ac191488cec88fbdc8681214633f34d1b9c06efdfb38d13ef018f994ac"
+    },
+    "miniature-qualification.json": {
+      "bytes": 3050,
+      "sha256": "575722cbc0b15fa562256bebd24fa705ff10bda419f317e4e7c60231ee8b050e"
+    },
+    "off/compiled-sources.json": {
+      "bytes": 29504,
+      "sha256": "f4e33cc09c654cfe7c15e97a79e2cb1b51c31467af63cfe445ff9db19ebeafc2"
+    },
+    "off/config.json": {
+      "bytes": 532,
+      "sha256": "4f76cd9edf99757344964f6ce70ee4e3540c2c647e956c573252f4fb7cc5c5a5"
+    },
+    "on/compiled-sources.json": {
+      "bytes": 29504,
+      "sha256": "f4e33cc09c654cfe7c15e97a79e2cb1b51c31467af63cfe445ff9db19ebeafc2"
+    },
+    "on/config.json": {
+      "bytes": 532,
+      "sha256": "3eb5c95e516ae188d44f845d49cdb9d656cf19c95df5a476ba34d2120ec3c727"
+    },
+    "runtime-installed-tools.json": {
+      "bytes": 147192,
+      "sha256": "b12e3b722893dbba46369a38430f951d983993dd59850ed4471f34f4468a70d4"
+    },
+    "tool-identities.json": {
+      "bytes": 1311,
+      "sha256": "5996808630898840fd80f14e079baf54f00de9b542e81e656b4aaf24660f0153"
+    }
+  },
+  "equal_recursive_drivers": {
+    "expanded": {
+      "AR": "/usr/bin/ar",
+      "CC": "/usr/bin/gcc-13",
+      "CXX": "/usr/bin/g++-13",
+      "LINK": "/usr/bin/g++-13",
+      "MAKEFLAGS": " -j1 --no-print-directory -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE=",
+      "OBJCACHE": "",
+      "PERL": "/usr/bin/perl",
+      "PYTHON3": "/usr/bin/python3"
+    },
+    "installed_make": {
+      "bytes": 12468,
+      "sha256": "6627e31262da0a6fe244b7b81cdae94373f738d2745d6b377a6309740b9935a9"
+    },
+    "invocation": [
+      "make",
+      "-j1",
+      "NUM_JOBS=1",
+      "CXX=/usr/bin/g++-13",
+      "CC=/usr/bin/gcc-13",
+      "LINK=/usr/bin/g++-13",
+      "AR=/usr/bin/ar",
+      "PYTHON3=/usr/bin/python3",
+      "PERL=/usr/bin/perl",
+      "OBJCACHE="
+    ]
+  },
+  "generated_recipe_bytes": {
+    "boundary": "Exact raw recipes retained and validated independently; generated user-source paths are run-local. Active resolved drivers and installed recipes/code bind exactly, no generic byte normalization.",
+    "pair": {
+      "bytes": 2016,
+      "sha256": "c82cb9cb7a43d99ea6e9a353efb6fb7b6c3c576831805831272e1cf7c9e107f8"
+    },
+    "preparation": {
+      "bytes": 2016,
+      "sha256": "fbe59535f53e7f0a06d5b11696a95f19f4a17299dfa105fd40886e62066f5054"
+    }
+  },
+  "raw_manifest": {
+    "bytes": 63369,
+    "sha256": "209d9b19eec6c6d213210d63e71aa8bd90b19305f20e63a62b35bbd727d19c89"
+  },
+  "result": "PASS",
+  "run_id": "37118113760",
+  "schema": 1,
+  "source_sha": "8b1492e638c44b9b19b5226f9317b42cb16e4454",
+  "unused_launcher_diagnostics": {
+    "boundary": "Not executed. Each exact pinned body/shebang/path checked; only per-run venv path may differ.",
+    "pair": {
+      "bytes": 213,
+      "sha256": "187576e95b4e48c0d88969eff17dfabe48923cc9bf7d3304d8522d329bd46908"
+    },
+    "preparation": {
+      "bytes": 213,
+      "sha256": "517e4a8393846c760d285aeae363b4d75b79873f90588aa4ecdd703d64cd8585"
+    }
+  }
+}

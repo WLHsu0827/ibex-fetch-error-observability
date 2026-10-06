@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "riscv64-unknown-elf-objdump",
+    "-d",
+    "fresh.elf"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.004169560000008232,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 2577,
+    "sha256": "00d6ebca28d7d4846a08c2e6d24081e1457a56899e8287c21a29a262ac30ef6b"
+  },
+  "timeout_seconds": 300
+}

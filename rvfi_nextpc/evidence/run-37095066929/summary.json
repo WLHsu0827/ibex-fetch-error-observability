@@ -1,0 +1,16 @@
+{
+  "attempted_stages": 64,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-stable-tools-1",
+  "error": "unexpected trap/halt/interrupt/debug/memory",
+  "mode": "pair",
+  "preparation_run": "37094924126",
+  "real_compilations": [
+    "off"
+  ],
+  "result": "STOP",
+  "run_attempt": "1",
+  "run_id": "37095066929",
+  "schema": 1,
+  "scientific_result": "NOT_QUALIFIED",
+  "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+}

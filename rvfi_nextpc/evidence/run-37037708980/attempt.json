@@ -1,0 +1,35 @@
+{
+  "authorization": {
+    "base": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+    "claim": "strict output-port metadata observation, not confirmed DUT bug or architectural misexecution",
+    "configuration": "custom-small-Zca-BP-toggle-not-named-supported",
+    "ibex": "4dd3932a36b5af5ac002bddbe16a1b4ead1a6fd8",
+    "identity": "WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+    "max_build_seconds": 1500,
+    "max_cycles": 20000,
+    "max_pairs": 1,
+    "max_preparations": 2,
+    "max_run_seconds": 60,
+    "repository": "WLHsu0827/ibex-fetch-error-observability",
+    "schema": 1
+  },
+  "history": [
+    {
+      "conclusion": null,
+      "display_title": "RVFI next-PC prepare p1 WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+      "event": "workflow_dispatch",
+      "head_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13",
+      "id": 37037708980,
+      "run_attempt": 1,
+      "status": "in_progress"
+    }
+  ],
+  "mode": "prepare",
+  "preparation_attempt": 1,
+  "preparation_run": "",
+  "receipt_semantics": "exclusive creation in this run; GitHub history is the attempt gate",
+  "run_attempt": 1,
+  "run_id": "37037708980",
+  "schema": 1,
+  "source_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13"
+}

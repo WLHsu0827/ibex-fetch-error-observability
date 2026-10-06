@@ -1,0 +1,111 @@
+{
+  "accepted_scientific_stop_baseline": "002cee1333024d5f2d98e0eb9708c1b650350e4d",
+  "all_measurement_epochs_closed": true,
+  "artifact": {
+    "boundary": "Original small synthetic make receipts/fields/recipes only. No model/tool binaries, waves/build trees, fresh program, entire job/environment dump or private material.",
+    "complete_original_step_console": {
+      "bytes": 2170,
+      "sha256": "35fd283e9f12b678a8c6ee664157fd5985485451a278179e2b55bca09d80f31f"
+    },
+    "id": "11398328116",
+    "manifest": {
+      "bytes": 118999,
+      "sha256": "92ee10e671db1b83d05fdc2c57c3b9560b6d8754a2356c1fc53c5ed83373396e"
+    },
+    "members": 734,
+    "run_attempt": 1,
+    "run_id": "37434197484",
+    "separate_console_collection": {
+      "bytes": 533,
+      "sha256": "61d6f68e9229e097a27ae0f200b5633ed0866788169bf79b01436f5a7220cfb8"
+    },
+    "summary": {
+      "bytes": 11569,
+      "sha256": "c578dad470c16d155c5fb3dcb2a051770e40c0e258a6e81f28467f24d8214b37"
+    },
+    "zip": {
+      "bytes": 222254,
+      "sha256": "5dcbe22fa1e10e296faec30429ec8723b27684e3414160b3c4d6ce1f9cc72687"
+    }
+  },
+  "authorization": {
+    "immutable_git_lf_blob": {
+      "bytes": 1806,
+      "sha256": "aaa5e3007db2bd5c8cb788f6eab4d59976a2b41b270b3693980f52a9d96e0765"
+    },
+    "path": "rvfi_nextpc/CODE_ONLY_AUTHORIZATION.json",
+    "semantics": "Exact selections, date supplied by coordinator; no invented exact approval timestamp or renewed measurement epoch."
+  },
+  "ci": {
+    "closure_loop_guard": "Only push whose current SOURCE_MANIFEST differs from HEAD^ starts code-only make. Evidence/prose closure keeps manifest unchanged, so no recursive validation/archive loop.",
+    "code_only_job": "112171966417",
+    "result": "Offline/archive PASS and separate CODE_ONLY GNU make PASS; observation SKIPPED, no dispatch",
+    "source_pr_observation_job": "112171990623",
+    "source_pr_offline_job": "112171901358",
+    "source_pr_run": "37434204470",
+    "source_push_observation_job": "112171968574",
+    "source_push_offline_job": "112171878351",
+    "source_push_run": "37434197484"
+  },
+  "code_path": {
+    "exact_original_fields": 14,
+    "names": [
+      "Vsampler_fixture.mk",
+      "Vnextpc_top.mk"
+    ],
+    "retention": "Make file functions and sentinel framing retain full MAKEFLAGS/MFLAGS/MAKEOVERRIDES whitespace/quotes/parentheses/newlines. No shell interpolation, normalization, field deletion or old actual-model reprobe.",
+    "script": {
+      "bytes": 658,
+      "sha256": "52e119d7b891a246b8c408146967f895568214a2cf3e6573c61e5917172691f8"
+    },
+    "shared": "Hosted.probe_drivers -> prepare_probe -> nextpc_driver_probe.mk recursive child -> probe_receipt/read_probe",
+    "strict_gates": "Exact CXX/CC/LINK/AR/Python/perl, empty OBJCACHE, NUM_JOBS=1, MAKELEVEL=1, actual recursive child/name, only -j1 and no jobserver/unexpected parallelism; complete exact field set."
+  },
+  "historical_science": "PRE-RUN STOP / NOT_RUN / NOT_QUALIFIED, unchanged",
+  "new_hdl_program_cpu_compilations": 0,
+  "new_model_runs": 0,
+  "new_observation_dispatches": 0,
+  "new_sealed_source": {
+    "boundary": "New readiness code only. Old 36-input manifests and every old source snapshot remain pinned unchanged; no retroactive application of repair.",
+    "input_count": 39,
+    "manifest": {
+      "bytes": 5852,
+      "sha256": "7a7918b2171d6cf0112777ffdf41de2e508dc6f303ff2f6e1735160d745c6b70"
+    }
+  },
+  "outer_identity": "Source/run/archive/final-head are distinct; enclosing immutable archive commit identifies this index, not a self-hash finalizer.",
+  "remaining_untested_execution_boundary": [
+    "Actual changed Verilator/HDL setup/export/fatal-warning bind/build and generated model recipe were not exercised.",
+    "Actual CPU compiler/link-driver and model identity, independent clock/reset/bus/sampler/ISA/next-PC/terminal path remain unqualified on the new source.",
+    "Any measurement needs new explicit user scope/authorization and full final-same-source qualification; old unused slots authorize nothing.",
+    "No old raw stream or actual model was rerun/reprobed/permissively requalified; no science, DUT-bug, architectural-error, novelty, PPA/error-rate or human-replication claim."
+  ],
+  "result": "PIPELINE_CONTRACTS_PASS",
+  "review_boundary": "READY_FOR_REVIEW, not measurement qualification or coordinator acceptance",
+  "schema": 1,
+  "scope": "CODE_ONLY",
+  "source_sha": "d0212cc1796921dfd325e32df6c45589f155ebec",
+  "validation": {
+    "actual_synthetic_make_cases": 38,
+    "actual_synthetic_make_suite_tests": 4,
+    "full_shaped_positive_cases": 10,
+    "make_binary": {
+      "bytes": 259808,
+      "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"
+    },
+    "missing_generated_recipe_exit2_cases": 2,
+    "offline_hosted_tests": "52 PASS, no skipped POSIX signal contract",
+    "offline_local_posix_only_skip": 1,
+    "offline_stdlib_tests": 52,
+    "recursive_timeout124_cases": 2,
+    "remaining_path": [
+      "Immutable freeze prior receipts/program/config/source and mutation/missing/path negatives",
+      "Primary/fallback/missing/ambiguous model path selection using unexecuted synthetic files",
+      "Exact process/config/four-terminal/cycle shape and timeout/marker rejection",
+      "Strict OFF control/sampler/ISA/next-PC PASS and exited0 before conditional ON, synthetic orchestration only",
+      "Exclusive original exception/terminal byte closure; CODE_ONLY rejection before snapshot/tool admission"
+    ],
+    "strict_expanded_value_negative_cases": 24,
+    "versions": "Preinstalled hosted GNU Make 4.3; no apt/pip/dependency installation"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "archive_commit": "6491399",
+  "correct_public_input_identity": {
+    "bytes": 1607,
+    "sha256": "055ac91448def03127ed21a0f017fd64320df222a71fdb54cffb43ff97f67a8d"
+  },
+  "corrects": "RECOVERY_INDEX.json.authorization_receipt",
+  "incorrect_local_working_file_identity": {
+    "bytes": 1630,
+    "sha256": "341e62575e62b271b490466a80b0fb1a3272582a13f1df147efaafa67bc52ae3"
+  },
+  "original_index_identity": {
+    "bytes": 7137,
+    "sha256": "8b83824aa2ccf071009b40d6475fc63c51b0d191a85934486a00c3b224651776"
+  },
+  "public_path": "rvfi_nextpc/RECOVERY_AUTHORIZATION.json",
+  "reason": "Derived index used Windows CRLF working-file bytes, not immutable Git LF blob. This separate correction preserves the original index, all hosted raw evidence and receipts unchanged.",
+  "schema": 1,
+  "source_sha": "8afa40840e9ff469a2a74713d12c01154f2471df",
+  "validation": "Canonical Git blob equals retained successful preparation source snapshot byte-for-byte. No real dispatch or instrumentation change."
+}

@@ -1,0 +1,9 @@
+{
+  "freeze": {
+    "bytes": 44744,
+    "sha256": "0b2d303265b2b4c33810ee961920a60bfc409aaf1e924e0a233a9fc6e664bc24"
+  },
+  "label": "off",
+  "retry_allowed": false,
+  "source_sha": "e2cede4e8b89dba481665fdcda370e1e9d9aebaa"
+}

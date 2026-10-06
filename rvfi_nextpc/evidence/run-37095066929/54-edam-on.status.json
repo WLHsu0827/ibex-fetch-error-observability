@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/tmp/rvfi-nextpc-37095066929/tools/bin/python",
+    "-c",
+    "import json,sys,yaml; print(json.dumps(yaml.safe_load(open(sys.argv[1])),sort_keys=True))",
+    "/tmp/rvfi-nextpc-37095066929/builds/on/wlh_observations_nextpc_1.0.eda.yml"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37095066929",
+  "duration_seconds": 0.11644403100001455,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 43728,
+    "sha256": "0551ee26744b2fc09c57537a87bc59436654e342a659d6dec03505301eb74b38"
+  },
+  "timeout_seconds": 300
+}

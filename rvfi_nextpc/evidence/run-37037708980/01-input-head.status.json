@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "git",
+    "rev-parse",
+    "HEAD"
+  ],
+  "code": 0,
+  "cwd": "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability",
+  "duration_seconds": 0.00769671600000521,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 41,
+    "sha256": "f895374c27a751574c4e3facd3dad06eea8fa34aa01a9e0ec033e1f046175f0b"
+  },
+  "timeout_seconds": 300
+}

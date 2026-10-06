@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 448, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 391, in execute
+    self.setup()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 154, in setup
+    self.command("apt-tools", [
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 58, in command
+    require_success(status)
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/process.py", line 74, in require_success
+    raise RuntimeError(f"STOP: {status['argv']}: {status['kind']}:{status['code']}")
+RuntimeError: STOP: ['sudo', 'apt-get', 'install', '-y', '--no-install-recommends', 'verilator=5.020-1', 'gcc-riscv64-unknown-elf=13.2.0-11build1', 'binutils-riscv64-unknown-elf=2.42-2ubuntu2']: exited:100

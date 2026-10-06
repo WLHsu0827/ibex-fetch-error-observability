@@ -1,0 +1,121 @@
+{
+  "boundary": "SYNTHETIC recipe only; installed_make slot identifies this fixture, not a Verilator include or actual model.",
+  "expanded": {
+    "AR": "/usr/bin/ar",
+    "CC": "/usr/bin/gcc-13",
+    "CXX": "/usr/bin/g++-13",
+    "LINK": "/usr/bin/g++-13",
+    "MAKEFLAGS": " -j1 --no-print-directory -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE= NEXTPC_PROBE_MAKEFILE=Vsampler_fixture.mk NOTE=spaces\\ 'quotes'\\ \"double\"\\ (parentheses)\\ --eval=literal",
+    "MAKELEVEL": "1",
+    "MAKEOVERRIDES": "NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE= NEXTPC_PROBE_MAKEFILE=Vsampler_fixture.mk NOTE=spaces\\ 'quotes'\\ \"double\"\\ (parentheses)\\ --eval=literal",
+    "MFLAGS": "-j1 --no-print-directory",
+    "NEXTPC_PROBE_CHILD": "1",
+    "NEXTPC_PROBE_MAKEFILE": "Vsampler_fixture.mk",
+    "NUM_JOBS": "1",
+    "OBJCACHE": "",
+    "PERL": "/usr/bin/perl",
+    "PYTHON3": "/usr/bin/python3"
+  },
+  "fields": {
+    "AR": {
+      "bytes": 29,
+      "sha256": "dc28e12a7efadffeed1ecf84b8ceb3ef4e74fe4627f284e3ae3d3d023425d478"
+    },
+    "CC": {
+      "bytes": 33,
+      "sha256": "a611bfbf590ebdca2c037361c28a93596b1d41320ac3a638f4d8c56e64f75ffc"
+    },
+    "CXX": {
+      "bytes": 33,
+      "sha256": "4e165ba68c95d5559d445c898a16e6d71390839cac5f27debc0237759de88e39"
+    },
+    "LINK": {
+      "bytes": 33,
+      "sha256": "4e165ba68c95d5559d445c898a16e6d71390839cac5f27debc0237759de88e39"
+    },
+    "MAKEFLAGS": {
+      "bytes": 312,
+      "sha256": "965936e3a26e98603368f98cbc181b7668267002be735cea466f3fbdb6d03180"
+    },
+    "MAKELEVEL": {
+      "bytes": 19,
+      "sha256": "cc1772ab523cb78be9135b5ada7b70c57264dfe7d46382992cc8da42060e53fd"
+    },
+    "MAKEOVERRIDES": {
+      "bytes": 283,
+      "sha256": "c7aefaf1ab487a937dcd3ac39aecedc187b2ef26c231c10d7e1b59ed2330bfb6"
+    },
+    "MFLAGS": {
+      "bytes": 42,
+      "sha256": "ca9a94e9e04c67cc011fe0e1c1b9dcc979ff4221ac9eb0ea1fa075b3cd74327e"
+    },
+    "NEXTPC_PROBE_CHILD": {
+      "bytes": 19,
+      "sha256": "cc1772ab523cb78be9135b5ada7b70c57264dfe7d46382992cc8da42060e53fd"
+    },
+    "NEXTPC_PROBE_MAKEFILE": {
+      "bytes": 37,
+      "sha256": "6255ae2c3ba6794b210ce607bb5031c3353b8a5c3163241696c1845904730f42"
+    },
+    "NUM_JOBS": {
+      "bytes": 19,
+      "sha256": "cc1772ab523cb78be9135b5ada7b70c57264dfe7d46382992cc8da42060e53fd"
+    },
+    "OBJCACHE": {
+      "bytes": 18,
+      "sha256": "efa3bf17794d953755355e30bd8999c90d40d99cf621891b880981fe02266b40"
+    },
+    "PERL": {
+      "bytes": 31,
+      "sha256": "19a2d511c0d5b966d1cba281fd07dcdc368026eb7af7b62310f8ecabb634da7c"
+    },
+    "PYTHON3": {
+      "bytes": 34,
+      "sha256": "4c6878c0ccf6ded1b33864d81ab9f11ddf359250d06f35965156a054ad000174"
+    }
+  },
+  "generated_make": {
+    "bytes": 628,
+    "sha256": "da947637163327397eb8578aa3b8a047d4081db179c8435fade9748646491280"
+  },
+  "installed_make": {
+    "bytes": 628,
+    "sha256": "da947637163327397eb8578aa3b8a047d4081db179c8435fade9748646491280"
+  },
+  "invocation": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE="
+  ],
+  "probe_argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "--no-print-directory",
+    "-f",
+    "nextpc_driver_probe.mk",
+    "NEXTPC_PROBE_MAKEFILE=Vsampler_fixture.mk",
+    "nextpc-outer-driver-probe"
+  ],
+  "probe_script": {
+    "bytes": 658,
+    "sha256": "52e119d7b891a246b8c408146967f895568214a2cf3e6573c61e5917172691f8"
+  },
+  "result": "PASS",
+  "schema": 2,
+  "semantics": "Original make-expanded values use file functions, never shell interpolation. Sentinel framing preserves whitespace/quotes/newlines; no flag normalization."
+}

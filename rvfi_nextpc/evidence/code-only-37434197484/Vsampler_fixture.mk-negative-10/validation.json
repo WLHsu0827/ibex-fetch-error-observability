@@ -1,0 +1,4 @@
+{
+  "error": "recursive make is not explicitly single-worker",
+  "result": "REJECTED"
+}

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 735, in main
+    pipeline.execute()
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 698, in execute
+    off = self.measure(0, builds[0][0], image, contract)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 628, in measure
+    self.command(f"{label}-actual-driver-probe", [
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/hosted.py", line 65, in command
+    require_success(status)
+  File "/home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/rvfi_nextpc/process.py", line 74, in require_success
+    raise RuntimeError(f"STOP: {status['argv']}: {status['kind']}:{status['code']}")
+RuntimeError: STOP: ['make', '-j1', 'NUM_JOBS=1', 'CXX=/usr/bin/g++-13', 'CC=/usr/bin/gcc-13', 'LINK=/usr/bin/g++-13', 'AR=/usr/bin/ar', 'PYTHON3=/usr/bin/python3', 'PERL=/usr/bin/perl', 'OBJCACHE=', '-f', 'Vnextpc_top.mk', '--eval', "nextpc-driver-probe: ; @printf '%s\\n' 'CXX=$(CXX)' 'CC=$(CC)' 'LINK=$(LINK)' 'AR=$(AR)' 'PYTHON3=$(PYTHON3)' 'PERL=$(PERL)' 'OBJCACHE=$(OBJCACHE)' 'MAKEFLAGS=$(MAKEFLAGS)'", 'nextpc-driver-probe']: exited:2

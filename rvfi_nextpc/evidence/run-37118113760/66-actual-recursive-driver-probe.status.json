@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "make",
+    "-j1",
+    "NUM_JOBS=1",
+    "CXX=/usr/bin/g++-13",
+    "CC=/usr/bin/gcc-13",
+    "LINK=/usr/bin/g++-13",
+    "AR=/usr/bin/ar",
+    "PYTHON3=/usr/bin/python3",
+    "PERL=/usr/bin/perl",
+    "OBJCACHE=",
+    "--no-print-directory",
+    "-f",
+    "/tmp/rvfi-nextpc-37118113760/inputs/rvfi_nextpc/driver_probe.mk",
+    "nextpc-outer-driver-probe"
+  ],
+  "code": 0,
+  "cwd": "/tmp/rvfi-nextpc-37118113760/miniature",
+  "duration_seconds": 0.018489184000003434,
+  "kind": "exited",
+  "schema": 1,
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 329,
+    "sha256": "52ba0d1b1148b225589a06c7dda8f22196514c562e891bd35ddbbe1f2614c8f1"
+  },
+  "timeout_seconds": 300
+}

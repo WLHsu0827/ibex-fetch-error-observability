@@ -1,0 +1,13 @@
+{
+  "attempted_stages": 6,
+  "authorization": "WLHsu0827-2026-10-03-rvfi-nextpc-one-pair",
+  "error": "STOP: ['sudo', 'apt-get', 'install', '-y', '--no-install-recommends', 'verilator=5.020-1', 'gcc-riscv64-unknown-elf=13.2.0-11build1', 'binutils-riscv64-unknown-elf=2.42-2ubuntu2']: exited:100",
+  "mode": "prepare",
+  "preparation_run": "",
+  "real_compilations": [],
+  "result": "STOP",
+  "run_attempt": "1",
+  "run_id": "37037708980",
+  "schema": 1,
+  "source_sha": "b25f2d215e1652e3d102f3aa4f2478ad64b42a13"
+}

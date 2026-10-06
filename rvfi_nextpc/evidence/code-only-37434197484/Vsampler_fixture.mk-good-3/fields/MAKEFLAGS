@@ -1,0 +1,4 @@
+ -j1 --no-print-directory --eval=define\ NEXTPC_TEXT
+spaces\ 'quotes'\ (parentheses)
+endef -- NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=/usr/bin/g++-13 CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE= NEXTPC_PROBE_MAKEFILE=Vsampler_fixture.mk
+NEXTPC_END_VALUE
