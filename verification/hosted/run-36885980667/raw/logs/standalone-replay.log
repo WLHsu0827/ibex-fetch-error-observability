@@ -1,0 +1,4 @@
+hit_control: PASS (bus_err=0, if_err=0, cache_hits=1)
+speculative_hit: PASS (bus_err=1, if_err=0, cache_hits=1)
+demand_miss: PASS (bus_err=1, if_err=1, cache_hits=0)
+Machine-readable observations: build/fetch_error_pilot/replayed_cache.json

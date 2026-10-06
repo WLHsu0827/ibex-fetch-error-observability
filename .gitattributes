@@ -1,6 +1,7 @@
 /experiment/* -text whitespace=-blank-at-eol
 /observations/*.json -text whitespace=-blank-at-eol
 /verification/*.json -text whitespace=-blank-at-eol
+/verification/hosted/** -text whitespace=-blank-at-eol
 /historical/observations/*.json -text whitespace=-blank-at-eol
 /historical/verification/*.json -text whitespace=-blank-at-eol
 /patches/*.patch -text whitespace=-blank-at-eol

@@ -6,6 +6,45 @@
 > The original material is Apache-2.0 under [LICENSE](LICENSE) and
 > [NOTICE](NOTICE); upstream Ibex attribution is retained separately.
 
+## Start here: check the package without building RTL
+
+Requires **Git and Python 3.12**, with no third-party Python packages or EDA
+tools. These improvements are under review in [PR #1](https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/1),
+so clone its branch explicitly; the unmerged default branch does not yet
+contain this verification entry.
+
+```sh
+git clone --single-branch --branch wlhsu0827-ibex-replay-ci \
+  https://github.com/WLHsu0827/ibex-fetch-error-observability.git
+cd ibex-fetch-error-observability
+python3 -B scripts/verify.py
+```
+
+In Windows PowerShell, put the `git clone` command on one line and use
+`py -3.12 -B scripts\verify.py` for the last command.
+
+**A successful offline check** exits zero after the file/provenance audit,
+comparison of both stored replay suites, and adversarial checker tests.
+It prints **PACKAGE/OFFLINE validation of frozen public evidence, NOT fresh
+RTL.** No RTL is executed or tools downloaded. A reported whole-core
+binary-hash difference is expected for the frozen replay; every other
+parsed field, type and ordered event must match. JSON byte equality is
+reported separately, not inferred.
+
+| Verification level | Entry and evidence | Boundary |
+| --- | --- | --- |
+| Package / offline | Command above; [checker contracts](tests/test_package.py) | Validates public stored evidence, not a fresh simulation |
+| Fresh automated RTL | [Hosted workflow](.github/workflows/replay.yml); [verified final-tip run 36887152817](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36887152817) and [persistent proof](verification/hosted/README.md) | Fresh GitHub-hosted Ubuntu installation/build, three cases per suite; automated, not human |
+| Independent human RTL | [Linux reproduction recipe](REPRODUCE.md#assemble-a-clean-isolated-upstream-checkout) | Still unverified; no independent manual execution is claimed |
+
+See [REPRODUCE.md](REPRODUCE.md) for exact tools, bounded builds and failure
+diagnostics, and [VERIFICATION.md](VERIFICATION.md) for run identities and
+limitations. The archived success proves input commit
+`cfeeb13460b1b4efdf924666d12df79153616638`, not each later publication.
+For the current PR head, inspect **both** package and fresh-RTL jobs in
+[PR #1's checks](https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/1/checks);
+the workflow file alone is not a passed gate.
+
 ## Question, precedent, and contribution
 
 With a single error injected on a one-cycle instruction-bus response at a
@@ -54,6 +93,12 @@ window is approximately 60 cycles after the selected response; no field
 failure rate, general detection accuracy, or hardware claim follows.
 
 ## What is in this bundle
+
+The [persistent public hosted archive](verification/hosted/README.md)
+retains the final-tip success and initial failure payloads beyond Actions'
+14-day artifact expiry, without replacing the original observations.
+The original two agent replays used separate builds on the same WSL host,
+not two independent hosts or human reproductions.
 
 - Complete **current-source** [standalone raw observations](observations/results.json)
   and [whole-core raw observations](observations/core_results.json), including

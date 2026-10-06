@@ -5,10 +5,13 @@
 
 import argparse
 import hashlib
-import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
+
+sys.dont_write_bytecode = True
+from evidence import load_source_manifest
 
 
 BUNDLE = Path(__file__).resolve().parents[1]
@@ -41,7 +44,7 @@ def main():
     args = parser.parse_args()
     checkout = args.checkout.resolve(strict=True)
     pin = (BUNDLE / "UPSTREAM_COMMIT").read_text(encoding="ascii").strip()
-    manifest = json.loads((BUNDLE / "SOURCE_MANIFEST.json").read_text(encoding="utf-8"))
+    manifest = load_source_manifest(BUNDLE / "SOURCE_MANIFEST.json")
     sources = manifest["source_sha256"]
     if manifest["upstream_commit"] != pin or sha256(PATCH) != manifest["patch_sha256"]:
         raise RuntimeError("Bundle pin or patch differs from source manifest")

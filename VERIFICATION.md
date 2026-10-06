@@ -1,4 +1,101 @@
-# RTL verification on the originating WSL host
+# Verification evidence: package, automated RTL, and human boundaries
+
+## Public package and fresh hosted gate
+
+**Persistent evidence:** the [hosted archive](verification/hosted/README.md)
+now retains all 30 downloaded public payload files from final-tip
+[run 36887152817](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36887152817)
+(55,971 bytes) and all 23 from the initial failed run (34,691 bytes).
+Its original success input is
+`cfeeb13460b1b4efdf924666d12df79153616638`, **not** the newer commit that
+publishes the archive. Raw outputs remain unchanged; separately labeled
+derived manifests record provenance and per-file byte hashes. This
+persists proof beyond Actions' 14-day retention without replacing any
+original/historical observations or claiming a new execution.
+
+`python3 -B scripts/verify.py` verifies the frozen public package and checker
+contracts offline. It is **not a new RTL execution**. The separate
+[workflow](.github/workflows/replay.yml) installs tools from public package
+sources on GitHub-hosted Ubuntu 24.04, then stages, rebuilds, replays, lints
+and strictly compares against the unchanged public observations.
+
+**Hosted execution: PASS, 2026-10-01.**
+[Run 36886500143](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36886500143)
+checked bundle commit `e23f8738bd85f0f2d4b66e0716919bb8c579bc29` and
+upstream `7cd891ef267e8db36813b29cb8851142ab2636d5`. Both jobs completed
+successfully. This was a new automated GitHub-hosted VM, not the originating
+WSL host, an empty OS image, or an independent human reproduction.
+
+| Required check | Observed hosted outcome |
+| --- | --- |
+| Package / offline checker contracts | PASS; 12 standard-library tests |
+| Fresh pinned upstream staging and both model builds | PASS; no compiled cache restored |
+| Standalone I-cache replay | **3/3 PASS** |
+| Whole-core replay with RVFI/CSR observations | **3/3 PASS** |
+| Default-off Simple System lint | PASS |
+| Strict complete-event/source/classification comparison | PASS |
+| Final frozen-package/provenance audit | PASS; zero flagged locations |
+
+The inspected public artifact `public-rtl-replay-36886500143-1`
+(16,707 compressed bytes; 14-day retention) contains environment,
+24 command/exit records (**all exit 0**), bounded log tails, replay JSON,
+hashes and success summary. Installed environment: **Ubuntu 24.04.5 LTS**
+(GitHub image `20260927.320.1`), Python **3.12.3**, Verilator
+**5.020-1**, g++-13 **13.3.0-6ubuntu2~24.04.1** (default g++ also
+**13.3.0**), make **4.3-4.1build2**, libelf-dev
+**0.190-1.1ubuntu0.1**, FuseSoC **2.4.3**, Edalize **0.6.8**, and
+Python packaging **24.2**. The artifact records the remaining resolved
+Python dependencies rather than claiming they were all frozen.
+
+Downloaded hosted JSON was also compared locally against the unchanged
+public observations. Cache JSON SHA-256 remains
+`440a64d2eb4fd3b9ebbb956eb3c7ea0f4daa4859ace7935d846d7afc1cfe291f`
+and is **byte-identical**. Hosted core JSON SHA-256 is
+`cb95e524ca81eff1a7270078fb8f3c67670730a3bd20cd37e6146a49fd44855d`;
+its compiled binary SHA-256 is
+`7ec775fcc1d9d9f20dec46b659784d619bbbef285b061120634545ddc671fe1b`.
+Core JSON/binary bytes differ from the original record, while **every other
+parsed field and exact cycle-tagged event matches**. Only hashes, not the
+binary, are uploaded. No cause for binary differences or binary
+reproducibility is claimed.
+
+**Independent end-user manual RTL execution remains unverified.** These
+are the same three directed cases per suite, not new fault-rate samples,
+a novel CPU bug, general detection accuracy or a paper.
+
+**Preserved failed hosted attempt:** [run 36885980667](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36885980667)
+tested `be309fb4e54363b6f39e7e2b4401486d6a89a27c`. The package job passed
+all 12 tests; the freshly built standalone cache passed **3/3** and its
+JSON hash matched the frozen cache. The whole-core pre-build tool-version
+hook failed with `ModuleNotFoundError: No module named 'packaging'`.
+Whole-core replay, default-off lint and final comparison were **not run**;
+this is not a passing RTL gate. The public failure artifact includes the
+actual environment, commands/exit codes, cache JSON and failure log.
+The follow-up pins the missing public Python dependency and the exact
+observed apt package revisions; the upstream tool check is not bypassed.
+
+The checker upgrade rejects duplicate JSON keys and JSON boolean/numeric
+type substitutions rather than silently accepting them. The audit now
+locks all eight existing observation/replay JSON files to their recorded
+byte hashes. Its legitimate Git-worktree support verifies the bundle root
+and publication history; only app-private `refs/copilot/checkpoints/*`
+(not pushed by a normal branch push) are excluded. Other reachable refs
+remain audited. No frozen source, manifest, patch, observation, historical
+dataset or license/notice bytes were rewritten.
+
+The current offline checker also distinguishes **field presence from
+null**: an unexpected `binary_sha256: null` on a cache result is rejected,
+not discarded as though absent. Binary-hash differences remain permitted
+only when both records contain valid hashes. Strict JSON parsing and the
+shared nine-source manifest contract give filename-specific failures for
+malformed input; comparison identifies the first differing typed field or
+ordered event. CLI help/staging leave the package bytecode-free, and the
+offline entry rejects unsupported flags rather than implying a fresh run.
+These contracts use tiny temporary mutations of public evidence, not new
+RTL cases or observations. Original eight JSON records, 19 protected
+files and the complete published hosted archive remain unchanged.
+
+## Original agent-executed RTL verification on the same WSL host
 
 **Executed**, with the corrected Copyright 2026 Wei-Lun Hsu / Apache-2.0
 experiment headers. The four earlier raw JSONs are preserved, unchanged,
@@ -77,9 +174,10 @@ cache-to-IF = **1/0/0/2**. Warm speculative bus error remains an
 architectural negative (NOP retires without trap); cold demanded miss
 traps with `mcause=1`, `mepc=mtval=0x00100100`.
 
-**Still not verified:** fresh tool installation, another host/OS or CI,
-end-user independent manual execution, or security/legal review. Hosting
-these measurements does not constitute a new RTL run on GitHub. The
+**Those historical runs did not verify:** fresh tool installation, another
+host/OS or CI, end-user independent manual execution, or security/legal
+review. Merely hosting those measurements does not constitute a new RTL
+run on GitHub; hosted evidence, if available, is recorded separately above. The
 checked scenarios are three directed trials, not a population-level
 fault rate, novel Ibex bug or paper.
 

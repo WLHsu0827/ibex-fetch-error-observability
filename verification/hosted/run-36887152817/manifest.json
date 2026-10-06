@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "record_kind": "DERIVED archive provenance and byte checksums, not simulator output",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "run_id": 36887152817,
+  "run_attempt": 1,
+  "run_url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36887152817",
+  "input_bundle_commit": "cfeeb13460b1b4efdf924666d12df79153616638",
+  "github_event_commit": "14e8195321b8fc44fc09b77e9b332f8a335fc78a",
+  "upstream_commit": "7cd891ef267e8db36813b29cb8851142ab2636d5",
+  "source_manifest_sha256": "799c4f93d3594d464a9e7414f3731385b7edb3ad7e45c2ac08385255ea8a8522",
+  "artifact": {
+    "name": "public-rtl-replay-36887152817-1",
+    "id": 11174569115,
+    "created_at": "2026-10-01T15:52:19Z",
+    "github_reported_zip_bytes": 16729,
+    "github_reported_zip_digest": "sha256:0ecb328a890fa97408b8fd7e783c55ad0e9992a46a122ad01ee8dd16046cccfa",
+    "payload_directory": "raw"
+  },
+  "raw_file_count": 30,
+  "raw_bytes": 55971,
+  "files": {
+    "commands.json": {
+      "bytes": 5864,
+      "sha256": "ea2b109e7c8572d4d3ec2c327498f92f43ff0dace65b944621ed1d267c0989de"
+    },
+    "environment.json": {
+      "bytes": 1722,
+      "sha256": "8bf623ef4701dccb4a59d043fbfaee1733ade08aeab381305f9d6fe9bc867856"
+    },
+    "hashes.json": {
+      "bytes": 291,
+      "sha256": "6cfcfb44a537bef4d093d763450a3ac1a660a9e380fc7fce01c85c774b08872d"
+    },
+    "logs/apt-install.log": {
+      "bytes": 3167,
+      "sha256": "d897ee5a20039143cc1b47c150db8f3925284db458fac4114763c02621cd4295"
+    },
+    "logs/apt-update.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/apt-versions.log": {
+      "bytes": 98,
+      "sha256": "82f92931e11cdb11045987bfdebc5276f0b3886b73e552c00a7e7952742730ad"
+    },
+    "logs/backend-options.log": {
+      "bytes": 9982,
+      "sha256": "524f6fd96b38be68189aa2ec43a48d07062f615377b754aea2f5fd3528e3aa73"
+    },
+    "logs/bundle-version.log": {
+      "bytes": 41,
+      "sha256": "eee34d3a0362a1b0a7b4cc021430be81a1b5cce1feea493218505e4c6fa7b01f"
+    },
+    "logs/compiler-version.log": {
+      "bytes": 7,
+      "sha256": "bb6aade8c4ca40cae9cb1be8abe12377f651fccd82954af74ec61703b6608fc5"
+    },
+    "logs/core-build.log": {
+      "bytes": 3607,
+      "sha256": "64b8e74d4aa410752bac4bbb629bf3fadbbebf5a942126e2e032cb3c07e9935f"
+    },
+    "logs/core-replay.log": {
+      "bytes": 238,
+      "sha256": "35cd0d3f2208de8214f6abe809a42bf28789c4ee163c32653eecf8c69b81898e"
+    },
+    "logs/default-compiler-version.log": {
+      "bytes": 7,
+      "sha256": "bb6aade8c4ca40cae9cb1be8abe12377f651fccd82954af74ec61703b6608fc5"
+    },
+    "logs/default-off-lint.log": {
+      "bytes": 3607,
+      "sha256": "42446369dc309aa6a1ee6e2149a1c6ac960c1a73494704613207d4d86c730bd4"
+    },
+    "logs/final-package-audit.log": {
+      "bytes": 61,
+      "sha256": "bd6a71fd9348bd63a2cf5847a31cc0d24794330cede98ce9edb669a889ac36c3"
+    },
+    "logs/make-version.log": {
+      "bytes": 297,
+      "sha256": "8ee498ee2fc27e8dcdf99191b454077df95e3840d841ec94321748b6d7f36819"
+    },
+    "logs/pip-install.log": {
+      "bytes": 4659,
+      "sha256": "91fde0d46f42d6d4d4d0663153838e5292c185ac9b73690cd2e32ae1c6b675fa"
+    },
+    "logs/pip-versions.log": {
+      "bytes": 275,
+      "sha256": "37da67fdfaddb973271e38ffa23b4f88404d62eb8d221008c4ddf8eb308b94c2"
+    },
+    "logs/stage.log": {
+      "bytes": 147,
+      "sha256": "07e40f1738ef431b9705abbf7db3b50cab375176f7af59d7473f1c7d7771a9f5"
+    },
+    "logs/staged-status.log": {
+      "bytes": 138,
+      "sha256": "77da0b20246d6b69e51a43b9a79fce48a034ddc2b7fa3f184d555cb10abedf9b"
+    },
+    "logs/standalone-replay.log": {
+      "bytes": 241,
+      "sha256": "b2b6c6ab8e2b96a06fdcfebb1563cef02c997e7cefde5b9dc66132ccb9b9ca1b"
+    },
+    "logs/strict-compare.log": {
+      "bytes": 330,
+      "sha256": "472acbeeeae41d0bb3fff6284566b719b244ab420e2851870bdb4289a0d73b2b"
+    },
+    "logs/upstream-checkout.log": {
+      "bytes": 73,
+      "sha256": "c6e7b8035f59cc329ded41048a8acf16b463be67b8ec91fa0649494dd5ca40b7"
+    },
+    "logs/upstream-clone.log": {
+      "bytes": 47,
+      "sha256": "a61447a5ed253886257d473d17ebfefc0a264beefbfb119b657bc34085d6e951"
+    },
+    "logs/upstream-fetch.log": {
+      "bytes": 113,
+      "sha256": "3079c0a4f4ac04d8213070ed4e3f5bbc1df166583295e01429bd661058abe548"
+    },
+    "logs/upstream-line-endings.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/upstream-version.log": {
+      "bytes": 41,
+      "sha256": "4f3fd0147aebc34affe46efa0e1ce6074f7922b0791396ac00f610e587636ba9"
+    },
+    "logs/verilator-version.log": {
+      "bytes": 48,
+      "sha256": "26daf9ad1ba36ee1c20cab9a869d0a1fbb8117230c80c78ec2d8cf597f64c4a5"
+    },
+    "replayed_cache.json": {
+      "bytes": 5494,
+      "sha256": "440a64d2eb4fd3b9ebbb956eb3c7ea0f4daa4859ace7935d846d7afc1cfe291f"
+    },
+    "replayed_core.json": {
+      "bytes": 15190,
+      "sha256": "cb95e524ca81eff1a7270078fb8f3c67670730a3bd20cd37e6146a49fd44855d"
+    },
+    "summary.json": {
+      "bytes": 186,
+      "sha256": "024f993aa6ca9a82c4e3636fed6600f14a4cadecf2a986e8addd10e3073377d5"
+    }
+  }
+}

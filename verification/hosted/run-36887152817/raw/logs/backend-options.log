@@ -1,0 +1,185 @@
+INFO: Preparing lowrisc:dv:dv_fcov_macros:0
+INFO: Preparing lowrisc:dv:secded_enc:0
+INFO: Preparing lowrisc:dv_verilator:ibex_pcounts:0
+INFO: Preparing lowrisc:dv_verilator:simutil_verilator:0
+INFO: Preparing lowrisc:ibex:ibex_pkg:0.1
+INFO: Preparing lowrisc:prim_generic:ram_1p_pkg:0
+INFO: Preparing lowrisc:prim_generic:ram_2p_pkg:0
+INFO: Preparing lowrisc:prim_generic:rom_pkg:0
+INFO: Preparing lowrisc:prim:util_get_scramble_params:0
+INFO: Preparing lowrisc:prim:util_memload:0
+INFO: Preparing lowrisc:tool:check_tool_requirements:0.1
+INFO: Preparing lowrisc:dv_verilator:memutil_dpi:0
+INFO: Preparing lowrisc:lint:common:0.1
+INFO: Preparing lowrisc:prim_generic:ram_1r1w_pkg:0
+INFO: Preparing lowrisc:dv_verilator:memutil_verilator:0
+INFO: Preparing lowrisc:prim:assert:0.1
+INFO: Preparing lowrisc:prim:cipher_pkg:0.1
+INFO: Preparing lowrisc:prim_generic:and2:0
+INFO: Preparing lowrisc:prim_generic:buf:0
+INFO: Preparing lowrisc:prim_generic:clock_buf:0
+INFO: Preparing lowrisc:prim_generic:clock_gating:0
+INFO: Preparing lowrisc:prim_generic:flop:0
+INFO: Preparing lowrisc:prim_generic:flop_no_rst:0
+INFO: Preparing lowrisc:prim_generic:prim_pkg:0
+INFO: Preparing lowrisc:prim_generic:usb_diff_rx:0
+INFO: Preparing lowrisc:prim_generic:xnor2:0
+INFO: Preparing lowrisc:prim_generic:xor2:0
+INFO: Preparing lowrisc:prim:pad_wrapper_pkg:0
+INFO: Preparing lowrisc:prim:secded:0.1
+INFO: Preparing lowrisc:ibex:ibex_icache:0.1
+INFO: Preparing lowrisc:ibex:ibex_tracer:0.1
+INFO: Preparing lowrisc:prim:cdc_rand_delay:0
+INFO: Preparing lowrisc:prim:cipher:0
+INFO: Preparing lowrisc:prim:count:0
+INFO: Preparing lowrisc:prim_generic:clock_mux2:0
+INFO: Preparing lowrisc:prim_generic:pad_attr:0
+INFO: Preparing lowrisc:prim_generic:pad_wrapper:0
+INFO: Preparing lowrisc:prim_generic:ram_1p:0
+INFO: Preparing lowrisc:prim_generic:ram_1r1w:0
+INFO: Preparing lowrisc:prim_generic:ram_2p:0
+INFO: Preparing lowrisc:prim_generic:rom:0
+INFO: Preparing lowrisc:prim:lfsr:0.1
+INFO: Preparing lowrisc:prim:mubi_pkg:0.1
+INFO: Preparing lowrisc:prim:sec_anchor:0.1
+INFO: Preparing lowrisc:prim:util:0.1
+INFO: Preparing pulp-platform:common_cells:common_cells:0.1
+INFO: Preparing lowrisc:ibex:sim_shared:0
+INFO: Preparing lowrisc:prim_generic:clock_inv:0
+INFO: Preparing lowrisc:prim_generic:flop_2sync:0
+INFO: Preparing lowrisc:prim_generic:flop_en:0
+INFO: Preparing lowrisc:prim:mubi:0.1
+INFO: Preparing lowrisc:prim:onehot:0
+INFO: Preparing lowrisc:prim:ram_1p_adv:0.1
+INFO: Preparing lowrisc:ibex:ibex_core:0.1
+INFO: Preparing lowrisc:prim:fifo:0
+INFO: Preparing lowrisc:prim_generic:clock_div:0
+INFO: Preparing lowrisc:prim_generic:rst_sync:0
+INFO: Preparing lowrisc:prim:ram_1p_scr:0.1
+INFO: Preparing lowrisc:prim_generic:all:0.1
+INFO: Preparing lowrisc:ibex:ibex_top:0.1
+INFO: Preparing lowrisc:ibex:ibex_top_tracing:0.1
+INFO: Preparing lowrisc:ibex:ibex_simple_system_core:0
+INFO: Preparing lowrisc:ibex:ibex_simple_system:0
+usage: fusesoc run lowrisc_ibex_ibex_simple_system_0 [-h] [--RVFI [RVFI]]
+                                                     [--RV32E RV32E]
+                                                     [--RV32M RV32M]
+                                                     [--RV32B RV32B]
+                                                     [--RV32ZC RV32ZC]
+                                                     [--RegFile REGFILE]
+                                                     [--INSTR_CYCLE_DELAY INSTR_CYCLE_DELAY]
+                                                     [--ICache ICACHE]
+                                                     [--ICacheScramble ICACHESCRAMBLE]
+                                                     [--ICacheECC ICACHEECC]
+                                                     [--BranchTargetALU BRANCHTARGETALU]
+                                                     [--WritebackStage WRITEBACKSTAGE]
+                                                     [--SecureIbex SECUREIBEX]
+                                                     [--BranchPredictor BRANCHPREDICTOR]
+                                                     [--DbgTriggerEn DBGTRIGGEREN]
+                                                     [--PMPEnable PMPENABLE]
+                                                     [--PMPGranularity PMPGRANULARITY]
+                                                     [--PMPNumRegions PMPNUMREGIONS]
+                                                     [--MHPMCounterNum MHPMCOUNTERNUM]
+                                                     [--MHPMCounterWidth MHPMCOUNTERWIDTH]
+                                                     [--SRAMInitFile SRAMINITFILE]
+                                                     [--FetchFaultPilot FETCHFAULTPILOT]
+                                                     [--mode MODE]
+                                                     [--cli_parser CLI_PARSER]
+                                                     [--exe EXE]
+                                                     [--gen-xml GEN_XML]
+                                                     [--gen-dpi-hdr GEN_DPI_HDR]
+                                                     [--gen-preprocess GEN_PREPROCESS]
+                                                     [--libs LIBS]
+                                                     [--verilator_options VERILATOR_OPTIONS]
+                                                     [--make_options MAKE_OPTIONS]
+                                                     [--run_options RUN_OPTIONS]
+
+options:
+  -h, --help            show this help message and exit
+
+Verilog defines (Compile-time global symbol):
+  --RVFI [RVFI]         No description
+  --RV32M RV32M         RV32M implementation parameter enum. See the
+                        ibex_pkg::rv32m_e enum in ibex_pkg.sv for permitted
+                        values.
+  --RV32B RV32B         Bitmanip implementation parameter enum. See the
+                        ibex_pkg::rv32b_e enum in ibex_pkg.sv for permitted
+                        values.
+  --RV32ZC RV32ZC       Compressed instructions parameter enum. See the
+                        ibex_pkg::rv32zc_e enum in ibex_pkg.sv for permitted
+                        values.
+  --RegFile REGFILE     Register file implementation parameter enum. See the
+                        ibex_pkg::regfile_e enum in ibex_pkg.sv for permitted
+                        values.
+  --INSTR_CYCLE_DELAY INSTR_CYCLE_DELAY
+                        Number of cycles to delay the instruction RAM access.
+                        This is on top of the single-cycle access that the RAM
+                        requires.
+
+Verilog parameters (Compile-time option):
+  --RV32E RV32E         Enable the E ISA extension (reduced register set)
+                        [0/1]
+  --ICache ICACHE       Enable instruction cache
+  --ICacheScramble ICACHESCRAMBLE
+                        Enables ICache scrambling feature (EXPERIMENTAL) [0/1]
+  --ICacheECC ICACHEECC
+                        Enable ECC protection in instruction cache
+  --BranchTargetALU BRANCHTARGETALU
+                        Enables separate branch target ALU (increasing branch
+                        performance EXPERIMENTAL)
+  --WritebackStage WRITEBACKSTAGE
+                        Enables third pipeline stage (EXPERIMENTAL)
+  --SecureIbex SECUREIBEX
+                        Enables security hardening features (EXPERIMENTAL)
+                        [0/1]
+  --BranchPredictor BRANCHPREDICTOR
+                        Enables static branch prediction (EXPERIMENTAL)
+  --DbgTriggerEn DBGTRIGGEREN
+                        Enable support for debug triggers.
+  --PMPEnable PMPENABLE
+                        Enable PMP
+  --PMPGranularity PMPGRANULARITY
+                        Granularity of NAPOT range, 0 = 4 byte, 1 = byte, 2 =
+                        16 byte, 3 = 32 byte etc
+  --PMPNumRegions PMPNUMREGIONS
+                        Number of PMP regions
+  --MHPMCounterNum MHPMCOUNTERNUM
+                        Number of performance monitor event counters [0/29]
+  --MHPMCounterWidth MHPMCOUNTERWIDTH
+                        Bit width of performance monitor event counters
+                        [32/64]
+  --SRAMInitFile SRAMINITFILE
+                        Path to a vmem file to initialize the RAM with
+  --FetchFaultPilot FETCHFAULTPILOT
+                        Enable the opt-in instruction-fetch fault
+                        observability pilot
+
+Backend arguments:
+  --mode MODE           Select compilation mode. Legal values are *binary*,
+                        *cc*, *dpi-hdr-only*, *lint-only*, *none*,
+                        *preprocess-only*, *sc*, *xml-only*. See Verilator
+                        documentation for function:
+                        https://veripool.org/guide/latest/exe_verilator.html
+  --cli_parser CLI_PARSER
+                        **Deprecated: Use run_options instead** : Select
+                        whether FuseSoC should handle command-line arguments
+                        (*managed*) or if they should be passed directly to
+                        the verilated model (*raw*). Default is *managed*
+  --exe EXE             Controls whether to create an executable. Set to
+                        'false' when something else will do the final linking
+  --gen-xml GEN_XML     Generate XML output
+  --gen-dpi-hdr GEN_DPI_HDR
+                        Generate DPI header output
+  --gen-preprocess GEN_PREPROCESS
+                        Generate preprocessor output
+  --libs LIBS           Extra libraries for the verilated model to link
+                        against
+  --verilator_options VERILATOR_OPTIONS
+                        Additional options for verilator
+  --make_options MAKE_OPTIONS
+                        Additional arguments passed to make when compiling the
+                        simulation. This is commonly used to set
+                        OPT/OPT_FAST/OPT_SLOW.
+  --run_options RUN_OPTIONS
+                        Additional arguments directly passed to the verilated
+                        model

@@ -1,0 +1,4 @@
+hit_control: PASS (bus=0, IF=0, trap=0, retired=20)
+speculative_hit: PASS (bus=1, IF=0, trap=0, retired=20)
+demand_miss: PASS (bus=1, IF=1, trap=1, retired=0)
+Machine-readable core observations: build/fetch_error_pilot/replayed_core.json

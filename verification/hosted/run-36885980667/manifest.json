@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "record_kind": "DERIVED archive provenance and byte checksums, not simulator output",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "run_id": 36885980667,
+  "run_attempt": 1,
+  "run_url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/36885980667",
+  "input_bundle_commit": "be309fb4e54363b6f39e7e2b4401486d6a89a27c",
+  "github_event_commit": "57ecbb4c3f6c2b877aebaa12bd740d2298734e81",
+  "upstream_commit": "7cd891ef267e8db36813b29cb8851142ab2636d5",
+  "source_manifest_sha256": "799c4f93d3594d464a9e7414f3731385b7edb3ad7e45c2ac08385255ea8a8522",
+  "artifact": {
+    "name": "public-rtl-replay-36885980667-1",
+    "id": 11173519199,
+    "created_at": "2026-10-01T15:41:43Z",
+    "github_reported_zip_bytes": 12746,
+    "github_reported_zip_digest": "sha256:9e44ed85f16e781349f9810c05e8f81e47e9ee666ec25a9294ec95aca56943c7",
+    "payload_directory": "raw"
+  },
+  "raw_file_count": 23,
+  "raw_bytes": 34691,
+  "files": {
+    "commands.json": {
+      "bytes": 4348,
+      "sha256": "a0256f67bb0c311266aacb048a675251a517108b4449308be57a179a8f564a0e"
+    },
+    "environment.json": {
+      "bytes": 2023,
+      "sha256": "273002c8212dea7110bf98e63bc059e242c009f3c109378e88745f1e6dbe8764"
+    },
+    "hashes.json": {
+      "bytes": 96,
+      "sha256": "e7a6e02cbb5c45e3e8c4766138ee58e1b3b5efd61d8345f47b0d33c7f30f0e11"
+    },
+    "logs/apt-install.log": {
+      "bytes": 3048,
+      "sha256": "e636e2605fb1fa85838883886bbca24ba91ddd2e18f0c25376353d4e01b85abd"
+    },
+    "logs/apt-update.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/apt-versions.log": {
+      "bytes": 98,
+      "sha256": "82f92931e11cdb11045987bfdebc5276f0b3886b73e552c00a7e7952742730ad"
+    },
+    "logs/backend-options.log": {
+      "bytes": 9982,
+      "sha256": "524f6fd96b38be68189aa2ec43a48d07062f615377b754aea2f5fd3528e3aa73"
+    },
+    "logs/bundle-version.log": {
+      "bytes": 41,
+      "sha256": "0556c9c7f715a259293ddc4cceb7a64a7efc0c3b96e57e205ce5e8546cef889b"
+    },
+    "logs/compiler-version.log": {
+      "bytes": 7,
+      "sha256": "bb6aade8c4ca40cae9cb1be8abe12377f651fccd82954af74ec61703b6608fc5"
+    },
+    "logs/core-build.log": {
+      "bytes": 3661,
+      "sha256": "ecddb976137820db22d57dc4f2c2430521ffb305383ba16bd88d200a9d912b20"
+    },
+    "logs/make-version.log": {
+      "bytes": 297,
+      "sha256": "8ee498ee2fc27e8dcdf99191b454077df95e3840d841ec94321748b6d7f36819"
+    },
+    "logs/pip-install.log": {
+      "bytes": 4489,
+      "sha256": "a9849aaf5530c12f1b0c6d34a005959dc4f66a4e12808fbfb283b11dc303b8a2"
+    },
+    "logs/pip-versions.log": {
+      "bytes": 259,
+      "sha256": "36130629b51caa659c4bb7ad396431448f7fb1a7d7ceb0a0c153ac2cafd9cc93"
+    },
+    "logs/stage.log": {
+      "bytes": 147,
+      "sha256": "07e40f1738ef431b9705abbf7db3b50cab375176f7af59d7473f1c7d7771a9f5"
+    },
+    "logs/staged-status.log": {
+      "bytes": 138,
+      "sha256": "77da0b20246d6b69e51a43b9a79fce48a034ddc2b7fa3f184d555cb10abedf9b"
+    },
+    "logs/standalone-replay.log": {
+      "bytes": 241,
+      "sha256": "b2b6c6ab8e2b96a06fdcfebb1563cef02c997e7cefde5b9dc66132ccb9b9ca1b"
+    },
+    "logs/upstream-checkout.log": {
+      "bytes": 73,
+      "sha256": "c6e7b8035f59cc329ded41048a8acf16b463be67b8ec91fa0649494dd5ca40b7"
+    },
+    "logs/upstream-clone.log": {
+      "bytes": 47,
+      "sha256": "a61447a5ed253886257d473d17ebfefc0a264beefbfb119b657bc34085d6e951"
+    },
+    "logs/upstream-fetch.log": {
+      "bytes": 113,
+      "sha256": "3079c0a4f4ac04d8213070ed4e3f5bbc1df166583295e01429bd661058abe548"
+    },
+    "logs/upstream-line-endings.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/upstream-version.log": {
+      "bytes": 41,
+      "sha256": "4f3fd0147aebc34affe46efa0e1ce6074f7922b0791396ac00f610e587636ba9"
+    },
+    "logs/verilator-version.log": {
+      "bytes": 48,
+      "sha256": "26daf9ad1ba36ee1c20cab9a869d0a1fbb8117230c80c78ec2d8cf597f64c4a5"
+    },
+    "replayed_cache.json": {
+      "bytes": 5494,
+      "sha256": "440a64d2eb4fd3b9ebbb956eb3c7ea0f4daa4859ace7935d846d7afc1cfe291f"
+    }
+  }
+}
