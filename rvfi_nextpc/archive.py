@@ -26,6 +26,41 @@ def privacy_review(data: bytes) -> None:
         raise ValueError("credential/private-path candidate")
 
 
+def verify_code_only(directory: Path) -> dict[str, object]:
+    privacy_review((directory / "CODE_ONLY_MANIFEST.json").read_bytes())
+    manifest = json.loads((directory / "CODE_ONLY_MANIFEST.json").read_bytes())
+    actual = {path.relative_to(directory).as_posix(): identity(path)
+              for path in sorted(directory.rglob("*"))
+              if path.is_file() and path.name != "CODE_ONLY_MANIFEST.json"}
+    if manifest["schema"] != 1 or manifest["scope"] != "CODE_ONLY" or actual != manifest["files"]:
+        raise ValueError("changed/missing/extra code-only artifact bytes")
+    summary = json.loads((directory / "summary.json").read_bytes())
+    if summary["scope"] != "CODE_ONLY" or summary["source_sha"] != manifest["source_sha"] or (
+        summary["result"] not in ("PIPELINE_CONTRACTS_PASS", "PIPELINE_CONTRACTS_FAIL")
+        or summary["scientific_result"] != "NOT_RUN" or summary["observation_dispatches"] != 0
+        or summary["hdl_cpu_program_compilations_and_runs"] != 0
+        or summary["attempted_synthetic_make_cases"] != len(summary["cases"])
+    ):
+        raise ValueError("code-only artifact misrepresented as measurement")
+    for name in actual:
+        path = directory / name
+        privacy_review(path.read_bytes())
+        if path.suffix in (".o", ".a", ".fst", ".vcd", ".exe", ".bin", ".elf"):
+            raise ValueError("binary/wave outside code-only archive policy")
+        if name.endswith(".status.json"):
+            status = json.loads(path.read_bytes())
+            if status["kind"] not in ("exited", "signaled", "timed_out", "spawn_error") or (
+                status["argv"][0] != "make"
+            ):
+                raise ValueError("untyped or non-make code-only command")
+            prefix = name.removesuffix(".status.json")
+            for stream in ("stdout", "stderr"):
+                if status[stream] != identity(directory / f"{prefix}.{stream}.log"):
+                    raise ValueError("code-only original command bytes changed")
+    return {"scope": "CODE_ONLY", "archive_integrity": "PASS", "source_sha": manifest["source_sha"],
+            "result": summary["result"], "scientific_result": "NOT_RUN", "members": len(actual)}
+
+
 def verify_archive(directory: Path, collection: dict[str, object] | None = None) -> dict[str, object]:
     manifest = json.loads((directory / "RAW_MANIFEST.json").read_text(encoding="ascii"))
     actual = {path.relative_to(directory).as_posix(): identity(path)
@@ -127,7 +162,7 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
                 if json.loads((directory / label / "build-command-contract.json").read_text())["result"] != "PASS":
                     raise ValueError("preparation missing actual generated build command check")
         if summary["authorization"] == "WLHsu0827-2026-10-03-rvfi-nextpc-memory-admission-1":
-            from .drivers import validate_probe, validate_recipes
+            from .drivers import read_probe, validate_probe, validate_recipes
             from .tests import tiny_contract
 
             scope = json.loads((directory / "driver-scope.json").read_text())
@@ -136,7 +171,13 @@ def verify_archive(directory: Path, collection: dict[str, object] | None = None)
                 directory / "installed-verilated.mk"
             ):
                 raise ValueError("missing qualified actual LINK/driver identities")
-            validate_probe("\n".join(key + "=" + value for key, value in recursive["expanded"].items()))
+            if recursive.get("schema") == 2:
+                if read_probe(directory / "miniature-driver-probe", "Vsampler_fixture.mk") != recursive["expanded"]:
+                    raise ValueError("original framed driver receipt changed")
+                if recursive["probe_script"] != identity(directory / "input/rvfi_nextpc/driver_probe.mk"):
+                    raise ValueError("shared probe source identity changed")
+            else:
+                validate_probe("\n".join(key + "=" + value for key, value in recursive["expanded"].items()))
             validate_recipes((directory / "miniature-generated.mk").read_text(),
                              (directory / "installed-verilated.mk").read_text())
             if not scope["files"] or scope["make"] != recursive["invocation"]:
@@ -175,5 +216,8 @@ if __name__ == "__main__":
     collections = json.loads(collection_path.read_text())["archives"] if collection_path.exists() else {}
     for directory in directories:
         print(json.dumps(verify_archive(directory, collections.get(directory.name)), sort_keys=True))
+    if args.directory is None:
+        for directory in sorted((ROOT / "rvfi_nextpc" / "evidence").glob("code-only-*")):
+            print(json.dumps(verify_code_only(directory), sort_keys=True))
     if not directories:
         print("NEXTPC_NO_ARCHIVE_YET: input-only, no claimed DUT result")

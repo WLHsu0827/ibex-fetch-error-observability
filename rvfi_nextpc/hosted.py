@@ -18,7 +18,7 @@ import traceback
 
 from .check import parse, qualify
 from .admission import NAME, SCHEMA
-from .drivers import DRIVERS, MAKE, PROBE, validate_commands, validate_probe, validate_recipes
+from .drivers import DRIVERS, MAKE, PROBE_DIRECTORY, prepare_probe, probe_receipt, validate_commands, validate_recipes
 from .isa import BOOT, MAX_CYCLES, freeze
 from .entrypoint import FLAGS, compare as compare_entrypoints
 from .inputs import boundaries, build_options, validate_elf
@@ -27,6 +27,7 @@ from .process import expected_fatal, identity, require_success, run, write_json
 from .seal import ROOT, verify
 from .tests import tiny_contract
 from .toolchain import wheel_metadata
+from .readiness import model_binary, require_measurement_authorization, require_qualified_off, termination, verify_freeze
 
 
 class Hosted:
@@ -69,6 +70,7 @@ class Hosted:
         return next(self.output.glob(f"{self.stage:02d}-*.stdout.log")).read_bytes()
 
     def guard(self) -> None:
+        require_measurement_authorization()
         if platform.system() != "Linux" or os.environ.get("GITHUB_ACTIONS") != "true":
             raise RuntimeError("STOP: agent replay requires a GitHub-hosted Linux dispatch")
         if os.environ.get("RUNNER_ENVIRONMENT") != "github-hosted":
@@ -349,17 +351,9 @@ class Hosted:
         generated = build / "Vsampler_fixture.mk"
         validate_recipes(generated.read_text(), self.installed_make.read_text())
         shutil.copyfile(generated, self.output / "miniature-generated.mk")
-        self.command("actual-recursive-driver-probe", [
-            *MAKE, "--no-print-directory", "-f",
-            str(self.work / "inputs/rvfi_nextpc/driver_probe.mk"), "nextpc-outer-driver-probe",
-        ], build)
-        expanded = validate_probe(self.last_stdout().decode())
-        write_json(self.output / "recursive-drivers.json", {
-            "result": "PASS", "expanded": expanded,
-            "installed_make": identity(self.installed_make),
-            "generated_make": identity(generated),
-            "invocation": MAKE,
-        })
+        receipt = self.probe_drivers(build, generated.name, self.output / "miniature-driver-probe",
+                                     "actual-recursive-driver-probe")
+        write_json(self.output / "recursive-drivers.json", receipt)
         self.command("miniature-single-worker-make", [*MAKE, "-f", generated.name],
                      build, timeout=300)
         write_json(self.output / "miniature-actual-commands.json",
@@ -420,6 +414,18 @@ class Hosted:
                         else:
                             raise RuntimeError("STOP: independent control negative admitted")
         write_json(self.output / "miniature-qualification.json", results)
+
+    def probe_drivers(self, build: Path, makefile: str, destination: Path,
+                      name: str) -> dict[str, object]:
+        argv = prepare_probe(build, self.work / "inputs/rvfi_nextpc/driver_probe.mk", makefile)
+        try:
+            self.command(name, argv, build, timeout=10)
+        finally:
+            shutil.copytree(build / PROBE_DIRECTORY, destination)
+        receipt = probe_receipt(build, makefile)
+        receipt["installed_make"] = identity(self.installed_make)
+        receipt["probe_argv"] = argv
+        return receipt
 
     def driver_scope(self) -> None:
         self.command("installed-verilator-root", ["verilator", "--getenv", "VERILATOR_ROOT"])
@@ -594,6 +600,7 @@ class Hosted:
 
     def measure(self, bp: int, build: Path, image: bytes, contract: dict[str, object]) -> dict[str, object]:
         label = "off" if bp == 0 else "on"
+        verify_freeze(self.output, self.args.source_sha)
         verify()
         self.verify_drivers()
         current = {name: identity(self.python.resolve() if name == "active-runtime-python" else
@@ -625,19 +632,15 @@ class Hosted:
         validate_recipes(generated.read_text(), self.installed_make.read_text(),
                          (build / "Makefile").read_text())
         shutil.copyfile(generated, self.output / label / "generated-model.mk")
-        self.command(f"{label}-actual-driver-probe", [
-            *MAKE, "-f", generated.name, "--eval", PROBE, "nextpc-driver-probe",
-        ], build)
+        receipt = self.probe_drivers(build, generated.name, self.output / label / "driver-probe",
+                                     f"{label}-actual-driver-probe")
         write_json(self.output / label / "actual-drivers.json", {
-            "result": "PASS", "expanded": validate_probe(self.last_stdout().decode()),
+            **receipt,
             "generated_make": identity(generated), "driver_scope": identity(self.output / "driver-scope.json"),
             "actual_commands": actual_commands,
         })
-        binary = build / "Vnextpc_top"
-        if not binary.exists():
-            binary = build / "obj_dir" / "Vnextpc_top"
-        if not binary.is_file():
-            raise RuntimeError("STOP: missing actual model executable")
+        verify_freeze(self.output, self.args.source_sha)
+        binary = model_binary(build, "Vnextpc_top")
         write_json(self.output / label / "model-identity.json", identity(binary))
         destination = self.output / label
         status = self.command(f"{label}-run-once", [
@@ -646,16 +649,18 @@ class Hosted:
         ], timeout=60)
         prefix = f"{self.stage:02d}-{label}-run-once"
         text = (self.output / f"{prefix}.stdout.log").read_text()
-        if f"NEXTPC_CONFIG BP={bp} WB=0 BTA=0 ZC=0 IC=0" not in text or "NEXTPC_COMPLETE" not in text:
-            raise RuntimeError("STOP: model configuration/termination identity mismatch")
+        cycles = termination(text, bp, status)
         if identity(self.work / "fresh.bin") != identity(self.output / "fresh.bin"):
             raise RuntimeError("STOP: loaded program bytes changed")
         result = qualify(destination / "cpp.tsv", destination / "sv.tsv", image, contract)
+        if result["cpp_cycles"] != cycles:
+            raise RuntimeError("STOP: terminal marker/raw cycle boundary mismatch")
         result["process"] = {"kind": status["kind"], "code": status["code"]}
         write_json(destination / "qualification.json", result)
         self.summary[label] = result
         verify()
         self.verify_drivers()
+        verify_freeze(self.output, self.args.source_sha)
         return result
 
     def capture_entrypoint(self, name: str = "entrypoint.json") -> None:
@@ -696,8 +701,7 @@ class Hosted:
         }
         write_json(self.output / "freeze.json", frozen)
         off = self.measure(0, builds[0][0], image, contract)
-        if off["strict_next_pc"] != "PASS":
-            raise RuntimeError("STOP: OFF strict metadata failed; ON not authorized")
+        require_qualified_off(off)
         on = self.measure(1, builds[1][0], image, contract)
         self.summary.update(result="PAIR_OBSERVED",
                             scientific_result="FAIL" if on["strict_next_pc"] == "FAIL" else "PASS",

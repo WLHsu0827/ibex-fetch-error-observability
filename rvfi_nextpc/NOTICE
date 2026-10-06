@@ -1,6 +1,12 @@
 Fresh Ibex RVFI Next-PC Output-Port Observation
 Copyright 2026 Wei-Lun Hsu.
 
+The 2026-10-06 code-only shared-probe/readiness repair is original source and
+synthetic validation only, not renewed measurement authorization. All prior
+accepted STOP evidence and notices remain unchanged in their immutable input
+commits/snapshots. No new program/HDL/CPU build, model run or observation
+dispatch is part of this repair; there is no qualified whole-core outcome.
+
 Original program, harness, sampler, oracle, tests, automation, new observations
 and prose are Apache-2.0, with GitHub Copilot App assistance. This is not
 independent human replication or lowRISC endorsement.

@@ -1,5 +1,18 @@
 # Publication review
 
+Current lead boundary: **draft / no working qualified whole-core pair**.
+The new 2026-10-06 CODE_ONLY receipt permits shared safe driver-probe source
+repair and lightweight synthetic contracts, not measurement. All accepted
+evidence at002cee1333024d5f2d98e0eb9708c1b650350e4d, original authorizations,
+indexes, raw/source snapshots, manifests, consoles and missing-byte limitations
+remain immutable. New source sealing does not apply a fix to the old experiment.
+Actual make validation is a separate preinstalled-tool job on disposable
+synthetic recipes with the same shared invocation/naming as miniature/model,
+not an archived model reprobe or HDL/CPU/program qualification. Its small
+original typed logs/framed values are publishable public test artifacts; no
+tool/model binaries or full job/environment dumps. The real changed execution
+boundary remains untested; historical science remains NOT_RUN/NOT_QUALIFIED.
+
 Agent review boundary, not legal advice or a human signature:
 
 - The new files are freshly authored under the owner's existing Apache-2.0

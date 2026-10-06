@@ -12,18 +12,22 @@ import signal
 import struct
 import sys
 import tempfile
+import time
 import unittest
+from unittest.mock import Mock, patch
 
 from .check import parse, qualify
 from .admission import CONTROLS, NAME, SCHEMA, control
-from .drivers import DRIVERS, MAKE, validate_commands, validate_probe, validate_recipes
-from .archive import privacy_review, verify_archive
+from .drivers import (DRIVERS, MAKE, PROBE_DIRECTORY, PROBE_FIELDS, VALUE_END, prepare_probe,
+                      read_probe, validate_commands, validate_expanded, validate_probe, validate_recipes)
+from .archive import privacy_review, verify_archive, verify_code_only
 from .dependencies import TARGET, canonical, compatible_wheel, graph, marker, satisfies, validate
 from .history import parse_history, qualify_history
 from .entrypoint import FLAGS, LAUNCHER_BODY, compare as compare_entrypoints, digest, read_receipt, validate as validate_entrypoint
 from .inputs import boundaries, build_options, validate_elf
 from .isa import BOOT, FIELDS, FIRST_ORDER, decode, execute, freeze, sext
 from .process import expected_fatal, identity, require_success, run, write_json
+from .readiness import model_binary, require_qualified_off, termination, verify_freeze
 
 
 def tiny_contract() -> tuple[bytes, dict[str, object]]:
@@ -239,7 +243,7 @@ class HistoryContracts(unittest.TestCase):
             with patch.dict(os.environ, environment), patch("rvfi_nextpc.hosted.platform.system",
                                                             return_value="Linux"), patch(
                 "rvfi_nextpc.hosted.verify", return_value={}
-            ):
+            ), patch("rvfi_nextpc.hosted.require_measurement_authorization"):
                 with self.assertRaises((RuntimeError, ValueError)):
                     pipeline.execute()
             self.assertNotIn("forbidden_tools", calls)
@@ -521,6 +525,57 @@ class StreamContracts(unittest.TestCase):
 
 
 class DriverContracts(unittest.TestCase):
+    def test_new_framed_fields_preserve_exact_makeflags_and_shape(self) -> None:
+        values = {
+            **DRIVERS, "NUM_JOBS": "1", "MAKELEVEL": "1",
+            "MAKEFLAGS": " -j1 --no-print-directory --eval=spaces\\ 'unmatched\\ (parentheses) -- NUM_JOBS=1",
+            "MFLAGS": "-j1 --no-print-directory --eval=spaces\\ 'unmatched\\ (parentheses)",
+            "MAKEOVERRIDES": "NOTE=  'quotes' (parentheses)\nline two  ",
+            "NEXTPC_PROBE_MAKEFILE": "Vnextpc_top.mk", "NEXTPC_PROBE_CHILD": "1",
+        }
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for key, value in values.items():
+                (root / key).write_bytes(value.encode() + VALUE_END)
+            self.assertEqual(read_probe(root, "Vnextpc_top.mk"), values)
+            for key in PROBE_FIELDS:
+                original = (root / key).read_bytes()
+                (root / key).write_bytes(original[:-1])
+                with self.assertRaises(ValueError):
+                    read_probe(root, "Vnextpc_top.mk")
+                (root / key).write_bytes(original)
+            (root / "duplicate").write_bytes(b"LINK=extra")
+            with self.assertRaises(ValueError):
+                read_probe(root, "Vnextpc_top.mk")
+        for changes in ({"NUM_JOBS": "2"}, {"MAKELEVEL": "0"}, {"NEXTPC_PROBE_CHILD": "0"},
+                        {"NEXTPC_PROBE_MAKEFILE": "Vsampler_fixture.mk"},
+                        {"MFLAGS": "-j2"}, {"MFLAGS": "-j1 --jobserver-auth=3,4"},
+                        {"MAKEFLAGS": "-j1 -j2 -- NUM_JOBS=1"}):
+            with self.assertRaises(ValueError):
+                validate_expanded(values | changes, "Vnextpc_top.mk")
+        for key in DRIVERS:
+            with self.assertRaises(ValueError):
+                validate_expanded(values | {key: "alias"}, "Vnextpc_top.mk")
+
+    def test_shared_parameterized_invocation_is_file_based_and_exclusive(self) -> None:
+        script = Path(__file__).with_name("driver_probe.mk")
+        for model in ("Vsampler_fixture.mk", "Vnextpc_top.mk"):
+            with tempfile.TemporaryDirectory() as temp:
+                build = Path(temp)
+                (build / model).write_bytes(b"# Synthetic make name only")
+                argv = prepare_probe(build, script, model)
+                self.assertEqual(argv, [*MAKE, "--no-print-directory", "-f", "nextpc_driver_probe.mk",
+                                        f"NEXTPC_PROBE_MAKEFILE={model}", "nextpc-outer-driver-probe"])
+                self.assertNotIn("--eval", argv)
+                self.assertEqual((build / "nextpc_driver_probe.mk").read_bytes(), script.read_bytes())
+                self.assertTrue((build / PROBE_DIRECTORY).is_dir())
+                with self.assertRaises(FileExistsError):
+                    prepare_probe(build, script, model)
+        with tempfile.TemporaryDirectory() as temp:
+            for bad in ("../Vnextpc_top.mk", "Vwrong.mk", "Vname;command.mk"):
+                with self.assertRaises(ValueError):
+                    prepare_probe(Path(temp), script, bad)
+
     def test_actual_link_compile_archive_commands_and_changed_inputs(self) -> None:
         good = "/usr/bin/g++-13 -c -o main.o main.cpp\n/usr/bin/ar -rc model.a model.o\n/usr/bin/g++-13 main.o model.a -o Vfixture\n"
         self.assertEqual(validate_commands(good, "Vfixture")["compile_commands"], 1)
@@ -606,7 +661,168 @@ class ProcessContracts(unittest.TestCase):
         self.assertEqual((status["kind"], status["code"]), ("exited", 4))
 
 
+class RemainingPathContracts(unittest.TestCase):
+    def test_code_only_guard_rejects_before_any_tool_or_snapshot(self) -> None:
+        from .hosted import Hosted
+
+        hosted = Hosted.__new__(Hosted)
+        hosted.command = Mock(side_effect=AssertionError("no command authorized"))
+        hosted.capture_sources = Mock(side_effect=AssertionError("no snapshot authorized"))
+        with self.assertRaisesRegex(RuntimeError, "CODE_ONLY"):
+            hosted.guard()
+        hosted.command.assert_not_called()
+        hosted.capture_sources.assert_not_called()
+
+    def test_all_frozen_receipts_and_explicit_bindings_remain_exact(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            names = {"fresh.elf": "program_elf", "fresh.bin": "program_bytes",
+                     "program-contract.json": "contract", "input-equivalence.json": "equivalence",
+                     "compiled-source.json": None, "installed-driver.json": None}
+            for name in names:
+                (root / name).write_bytes(b"new synthetic bytes " + name.encode())
+            frozen = {"schema": 2, "source_sha": "a" * 40,
+                      "prior_receipts": {name: identity(root / name) for name in names}}
+            frozen.update({key: identity(root / name) for name, key in names.items() if key})
+            write_json(root / "freeze.json", frozen)
+            verify_freeze(root, "a" * 40)
+            for name in names:
+                original = (root / name).read_bytes()
+                (root / name).write_bytes(original + b"changed")
+                with self.assertRaises(ValueError):
+                    verify_freeze(root, "a" * 40)
+                (root / name).write_bytes(original)
+            with self.assertRaises(ValueError):
+                verify_freeze(root, "b" * 40)
+            for name in ("fresh.elf", "../outside"):
+                changed = copy.deepcopy(frozen)
+                if name == "fresh.elf":
+                    changed["prior_receipts"].pop(name)
+                else:
+                    changed["prior_receipts"][name] = {"bytes": 0, "sha256": "a" * 64}
+                (root / "freeze.json").write_text(json.dumps(changed))
+                with self.assertRaises(ValueError):
+                    verify_freeze(root, "a" * 40)
+
+    def test_model_name_primary_fallback_missing_ambiguous_and_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            with self.assertRaises(ValueError):
+                model_binary(root, "Vnextpc_top")
+            primary = root / "Vnextpc_top"
+            primary.write_bytes(b"Synthetic path test only, never executed")
+            primary.chmod(0o700)
+            self.assertEqual(model_binary(root, "Vnextpc_top"), primary)
+            fallback = root / "obj_dir" / "Vnextpc_top"
+            fallback.parent.mkdir()
+            fallback.write_bytes(primary.read_bytes())
+            fallback.chmod(0o700)
+            with self.assertRaises(ValueError):
+                model_binary(root, "Vnextpc_top")
+            primary.unlink()
+            self.assertEqual(model_binary(root, "Vnextpc_top"), fallback)
+            fallback.unlink()
+            fallback.mkdir()
+            with self.assertRaises(ValueError):
+                model_binary(root, "Vnextpc_top")
+
+    def test_exact_terminal_shape_and_process_gate(self) -> None:
+        good = "NEXTPC_CONFIG BP=0 WB=0 BTA=0 ZC=0 IC=0\nNEXTPC_COMPLETE terminal_records=4 cycles=99\n"
+        status = {"kind": "exited", "code": 0, "argv": ["synthetic-no-model"]}
+        self.assertEqual(termination(good, 0, status), 99)
+        for text in (good + good, good.replace("records=4", "records=3"),
+                     good.replace("cycles=99", "cycles=20001"), good.replace("cycles=99", "cycles=0"),
+                     good.replace("BP=0", "BP=1"), good + "NEXTPC_STOP failure\n",
+                     good.replace("cycles=99", "cycles=99 trailing"), "\n".join(reversed(good.splitlines())),
+                     good.replace("NEXTPC_COMPLETE", "some NEXTPC_COMPLETE")):
+            with self.assertRaises(ValueError):
+                termination(text, 0, status)
+        for kind, code in (("exited", 2), ("timed_out", 124), ("signaled", 6), ("spawn_error", 2)):
+            with self.assertRaises(RuntimeError):
+                termination(good, 0, status | {"kind": kind, "code": code})
+
+    def test_conditional_on_never_promotes_bad_off(self) -> None:
+        from .hosted import Hosted
+
+        good = {key: "PASS" for key in
+                ("samplers", "observed_no_data_transactions", "isa_execution", "strict_next_pc")}
+        good["process"] = {"kind": "exited", "code": 0}
+        require_qualified_off(good)
+        for key in good:
+            bad = good | {key: "NOT_QUALIFIED"}
+            with self.assertRaises(RuntimeError):
+                require_qualified_off(bad)
+        for off in (good, good | {"strict_next_pc": "FAIL"}, good | {"samplers": "NOT_RUN"}):
+            with tempfile.TemporaryDirectory() as temp:
+                hosted = Hosted.__new__(Hosted)
+                hosted.output = Path(temp)
+                hosted.args = Mock(mode="pair", source_sha="a" * 40)
+                hosted.auth = {"max_build_seconds": 1400, "max_run_seconds": 60,
+                               "ibex": "b" * 40, "identity": "synthetic-only"}
+                hosted.deadline = time.monotonic() + 3420
+                hosted.summary = {}
+                for name in ("guard", "setup", "loader", "miniature", "lint", "compare_inputs",
+                             "preparation_binding"):
+                    setattr(hosted, name, Mock())
+                hosted.configure = Mock(side_effect=[(Path("off"), {}), (Path("on"), {})])
+                for name in ("fresh.elf", "fresh.bin", "program-contract.json", "input-equivalence.json"):
+                    (hosted.output / name).write_bytes(b"Synthetic orchestration bytes only")
+                hosted.program = Mock(return_value=(b"synthetic", {}))
+                hosted.measure = Mock(side_effect=[off, good])
+                with patch("rvfi_nextpc.hosted.verify", return_value={}), patch.dict(
+                    os.environ, {"GITHUB_RUN_ID": "synthetic-only"}
+                ):
+                    if off == good:
+                        hosted.execute()
+                        self.assertEqual(hosted.measure.call_count, 2)
+                        self.assertEqual(hosted.summary["scientific_result"], "PASS")
+                    else:
+                        with self.assertRaises(RuntimeError):
+                            hosted.execute()
+                        self.assertEqual(hosted.measure.call_count, 1)
+                self.assertEqual(hosted.measure.call_args_list[0].args[0], 0)
+
+    def test_exception_closure_retains_original_bytes_and_science_stop(self) -> None:
+        from .hosted import Hosted
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            original = b"Original final step\xff\n"
+            (root / "synthetic.stderr.log").write_bytes(original)
+            write_json(root / "dispatch-input.json", {"source_sha": "a" * 40})
+            hosted = Hosted.__new__(Hosted)
+            hosted.output, hosted.stage = root, 1
+            hosted.args = Mock(source_sha="a" * 40)
+            hosted.summary = {"result": "STOP", "source_sha": "a" * 40, "real_compilations": []}
+            hosted.close(RuntimeError("synthetic gate rejection, not an HDL run"))
+            self.assertEqual((root / "synthetic.stderr.log").read_bytes(), original)
+            self.assertEqual(verify_archive(root)["scientific_result"], "NOT_QUALIFIED")
+
+
 class ArchiveContracts(unittest.TestCase):
+    def test_code_only_archive_cannot_promote_science_or_lose_bytes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            summary = {"scope": "CODE_ONLY", "source_sha": "a" * 40,
+                       "result": "PIPELINE_CONTRACTS_PASS", "scientific_result": "NOT_RUN",
+                       "observation_dispatches": 0, "hdl_cpu_program_compilations_and_runs": 0,
+                       "attempted_synthetic_make_cases": 0, "cases": []}
+            write_json(root / "summary.json", summary)
+            manifest = {"schema": 1, "scope": "CODE_ONLY", "source_sha": "a" * 40,
+                        "files": {"summary.json": identity(root / "summary.json")}}
+            write_json(root / "CODE_ONLY_MANIFEST.json", manifest)
+            self.assertEqual(verify_code_only(root)["scientific_result"], "NOT_RUN")
+            for key, value in (("scientific_result", "PASS"), ("observation_dispatches", 1),
+                               ("hdl_cpu_program_compilations_and_runs", 1)):
+                (root / "summary.json").write_text(json.dumps(summary | {key: value}))
+                manifest["files"]["summary.json"] = identity(root / "summary.json")
+                (root / "CODE_ONLY_MANIFEST.json").write_text(json.dumps(manifest))
+                with self.assertRaises(ValueError):
+                    verify_code_only(root)
+            (root / "extra.log").write_bytes(b"extra")
+            with self.assertRaises(ValueError):
+                verify_code_only(root)
+
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

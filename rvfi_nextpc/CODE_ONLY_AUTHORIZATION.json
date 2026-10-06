@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "identity": "WLHsu0827-2026-10-06-rvfi-nextpc-code-only-readiness-1",
+  "scope": "CODE_ONLY",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "authorization_date": "2026-10-06",
+  "exact_approval_timestamp": null,
+  "user_selections": [
+    "\u5148\u5f37\u5316\u7a0b\u5f0f\u3001\u6e2c\u8a66\u8207\u9996\u9801\uff0c\u6240\u6709 PR \u66ab\u4e0d\u5408\u4f75",
+    "\u4e00\u8d77\u4fee\u5fa9\u8207\u9a57\u8b49\u7ba1\u7dda\uff1b\u4e0d\u958b\u65b0 CPU \u8a66\u9a57\uff08\u5efa\u8b70\uff09"
+  ],
+  "relay": "Coordinator session 3b061029-7034-4983-82e1-914f28afb4fa relayed explicit code-only repair/validation authorization. No exact approval time was supplied.",
+  "accepted_stop_baseline": "002cee1333024d5f2d98e0eb9708c1b650350e4d",
+  "measurement_authorized": false,
+  "all_measurement_epochs_closed": true,
+  "allowed": [
+    "Repair shared safe file-based miniature/model driver-probe invocation and strict remaining-path contracts",
+    "Lightweight stdlib synthetic tests; preinstalled hosted GNU make on disposable non-HDL fixtures",
+    "Owner-branch normal push, offline/archive-only CI and small immutable code-only receipts"
+  ],
+  "forbidden": [
+    "Preparation/pair/observation dispatch or renewal of unused slots",
+    "HDL/Verilator/FuseSoC setup/export, program/crosscompiler/CPU compilation, model execution or formal work",
+    "Old raw/model reprobe, permissive requalification, gate weakening or alteration of accepted evidence",
+    "Installation, private artifacts, new agents/sessions, merge/force/amend/upstream/profile/DCO actions"
+  ],
+  "result_boundary": "PIPELINE_CONTRACTS_PASS/FAIL or READY_FOR_REVIEW only. Historical science remains PRE-RUN STOP / NOT_RUN / NOT_QUALIFIED; fresh explicit authorization is required for any future measurement."
+}

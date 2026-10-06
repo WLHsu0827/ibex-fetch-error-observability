@@ -48,16 +48,46 @@ jobs:
     name: Offline contracts and archive only (no HDL)
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    outputs:
+      code_only_changed: ${{ steps.code_scope.outputs.changed }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ inputs.source_sha || github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 2
+      - id: code_scope
+        if: github.event_name == 'push'
+        run: python3 -B -m rvfi_nextpc.readiness --source-changed >> "$GITHUB_OUTPUT"
       - run: |
           python3 -B -m rvfi_nextpc.seal
           python3 -B -m rvfi_nextpc.dependencies
           python3 -B -m unittest rvfi_nextpc.tests -v
           python3 -B -m rvfi_nextpc.archive
+
+  code_only_make:
+    name: CODE_ONLY synthetic GNU make contracts (no HDL or CPU)
+    if: github.event_name == 'push' && needs.offline.outputs.code_only_changed == 'true'
+    needs: offline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Preinstalled GNU make on disposable synthetic recipes only
+        run: python3 -B -m rvfi_nextpc.make_contracts --output code-only-output
+      - name: Preserve small original code-only receipts, never model artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rvfi-nextpc-code-only-${{ github.run_id }}-attempt-${{ github.run_attempt }}
+          path: code-only-output/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 9
 
   hosted:
     name: Bounded dispatched observation and closure (not scientific PASS)

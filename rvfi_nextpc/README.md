@@ -1,4 +1,53 @@
-# RVFI next-PC: memory-admission PRE-RUN STOP
+# RVFI next-PC: draft STOP evidence and code-only readiness
+
+**Draft / no qualified working whole-core pair.** The accepted scientific
+boundary remains the immutable **PRE-RUN STOP / NOT_QUALIFIED** at
+`002cee1333024d5f2d98e0eb9708c1b650350e4d`. All measurement epochs are CLOSED.
+The distinct 2026-10-06 [`CODE_ONLY_AUTHORIZATION.json`](CODE_ONLY_AUTHORIZATION.json)
+authorizes source/contracts repair only, **zero new observation dispatches,
+HDL/program/CPU compilation or model runs**. It is not a preparation, a repair
+applied to the old experiment, or a successful requalification of old evidence.
+
+### Code-only shared probe and remaining-path contracts
+
+The miniature and model now use the **same** `Hosted.probe_drivers` ->
+`prepare_probe` -> file-based recursive `driver_probe.mk` path, parameterized by
+the actual `Vsampler_fixture.mk` / `Vnextpc_top.mk` name. Neither constructs an
+`--eval` shell `printf` recipe. GNU make's file functions retain original
+expanded driver/NUM_JOBS/MAKELEVEL/MAKEFLAGS/MFLAGS/MAKEOVERRIDES values in
+separate sentinel-framed fields, including spaces, quotes, parentheses and
+newlines. The strict parser requires the complete exact field set, exact
+qualified drivers, empty OBJCACHE, worker1 and real child recursion, and checks
+both actual make option lists for only `-j1`, without jobserver/unexpected
+parallelism. No shell interpolation, field removal, truncation or broad
+normalization substitutes for a driver identity.
+
+The separate **CODE_ONLY synthetic GNU make** push job uses Ubuntu's preinstalled
+make and Python only: no installation or HDL tool invocation. Disposable
+synthetic makefiles with both real naming conventions test recursive shape,
+hostile-to-shell but legal flag text, every driver/helper/worker override,
+parallelism, missing/duplicate/truncated receipts and recursive timeout.
+They do not read or reprobe an archived actual model. Push/PR offline/archive
+jobs leave observation SKIPPED; code-only make runs only when the sealed
+current source changes, not on a subsequent evidence/prose closure commit.
+
+Small stdlib contracts also cover all frozen prior inputs, primary/fallback/
+missing/ambiguous executable paths, exact process/config/four-terminal/cycle
+markers, strict OFF control/sampler/ISA/next-PC gating before ON, and original
+failure/console closure. The measurement entry guard explicitly rejects the
+CODE_ONLY scope **before any snapshot/tool operation**. Source and synthetic
+contracts are readiness evidence only; the real changed HDL/setup/export/
+compiler/model/clock/bus/sampling/termination path has **not** been executed.
+Fresh explicit user measurement authorization and full same-source hosted
+qualification would be required to evaluate that boundary. No old raw stream,
+oracle, mask/control gate or stock DUT/tool has been altered or promoted.
+
+The current source manifest versions these new inputs. Historical statements
+below about 36 sealed inputs, prior freeze identities and the accepted final
+head refer **only to their pinned old input commits/snapshots**, never to the
+new readiness source or a retroactive fix.
+
+## Accepted closed memory-admission PRE-RUN STOP
 
 **PRE-RUN STOP / NOT_QUALIFIED: one OFF CPU build, zero OFF/ON CPU runs;
 ON not compiled.** The accepted stable-tools **OFF-QUALIFICATION
