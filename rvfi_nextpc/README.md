@@ -10,6 +10,21 @@ applied to the old experiment, or a successful requalification of old evidence.
 
 ### Code-only shared probe and remaining-path contracts
 
+**PIPELINE_CONTRACTS_PASS / READY_FOR_REVIEW, not CPU qualification.**
+[`evidence/CODE_ONLY_READINESS_INDEX.json`](evidence/CODE_ONLY_READINESS_INDEX.json)
+binds the new immutable source, actual synthetic make receipts and original
+selected step console. It does not replace any historical scientific index.
+
+| Code-only identity | Exact result |
+| --- | --- |
+| New sealed source | `d0212cc1796921dfd325e32df6c45589f155ebec`; 39 current inputs |
+| [Source push](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434197484) / [source PR CI](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434204470) | 52 hosted stdlib contracts and offline/archive PASS; observation SKIPPED |
+| [Separate CODE_ONLY job](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434197484/job/112171966417) | Preinstalled GNU Make 4.3; 4 test methods / 38 actual disposable synthetic cases PASS |
+| Synthetic make cases | 10 full-shaped positives, 24 strict expanded-value rejections despite make exit0, 2 missing-recipe exit2 and 2 recursive timeout124 cases, across both naming conventions |
+| Original artifact | ID `11398328116`; 734 manifest members; ZIP 222254 bytes / SHA256 `5dcbe22fa1e10e296faec30429ec8723b27684e3414160b3c4d6ce1f9cc72687` |
+| Original manifest / step console | SHA256 `92ee10e671db1b83d05fdc2c57c3b9560b6d8754a2356c1fc53c5ed83373396e` / `35fd283e9f12b678a8c6ee664157fd5985485451a278179e2b55bca09d80f31f` |
+| New HDL/program/CPU compilation, model runs, observation dispatches | **0 / 0 / 0**; all measurement epochs remain CLOSED |
+
 The miniature and model now use the **same** `Hosted.probe_drivers` ->
 `prepare_probe` -> file-based recursive `driver_probe.mk` path, parameterized by
 the actual `Vsampler_fixture.mk` / `Vnextpc_top.mk` name. Neither constructs an

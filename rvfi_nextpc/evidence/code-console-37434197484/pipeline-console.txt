@@ -1,0 +1,14 @@
+﻿2026-10-06T08:09:26.6136422Z ##[group]Run python3 -B -m rvfi_nextpc.make_contracts --output code-only-output
+2026-10-06T08:09:26.6136814Z [36;1mpython3 -B -m rvfi_nextpc.make_contracts --output code-only-output[0m
+2026-10-06T08:09:26.6528309Z shell: /usr/bin/bash -e {0}
+2026-10-06T08:09:26.6528479Z ##[endgroup]
+2026-10-06T08:09:27.3387813Z test_missing_duplicate_truncated_and_incomplete_receipts (__main__.MakeContracts.test_missing_duplicate_truncated_and_incomplete_receipts) ... ok
+2026-10-06T08:09:27.4002495Z test_same_shared_path_for_both_model_names (__main__.MakeContracts.test_same_shared_path_for_both_model_names) ... ok
+2026-10-06T08:09:29.4085055Z test_timeout_kills_recursive_fixture_without_success_receipt (__main__.MakeContracts.test_timeout_kills_recursive_fixture_without_success_receipt) ... ok
+2026-10-06T08:09:29.5870958Z test_wrong_drivers_workers_and_actual_parallelism_rejected (__main__.MakeContracts.test_wrong_drivers_workers_and_actual_parallelism_rejected) ... ok
+2026-10-06T08:09:29.5871480Z 
+2026-10-06T08:09:29.5871692Z ----------------------------------------------------------------------
+2026-10-06T08:09:29.5871982Z Ran 4 tests in 2.278s
+2026-10-06T08:09:29.5872173Z 
+2026-10-06T08:09:29.5872241Z OK
+2026-10-06T08:09:29.6307181Z {"attempted_synthetic_make_cases": 38, "authorization": {"bytes": 1806, "sha256": "aaa5e3007db2bd5c8cb788f6eab4d59976a2b41b270b3693980f52a9d96e0765"}, "hdl_cpu_program_compilations_and_runs": 0, "limitations": "Disposable synthetic make variables only; no archived actual model/program probe, HDL setup/export/build or CPU execution. Historical accepted PRE-RUN STOP remains NOT_QUALIFIED.", "make_binary": {"bytes": 259808, "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"}, "observation_dispatches": 0, "result": "PIPELINE_CONTRACTS_PASS", "run_attempt": "1", "run_id": "37434197484", "schema": 1, "scientific_result": "NOT_RUN", "scope": "CODE_ONLY", "sealed_input_count": 39, "source_manifest": {"bytes": 5852, "sha256": "7a7918b2171d6cf0112777ffdf41de2e508dc6f303ff2f6e1735160d745c6b70"}, "source_sha": "d0212cc1796921dfd325e32df6c45589f155ebec", "tests_run": 4}

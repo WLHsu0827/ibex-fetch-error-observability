@@ -7,6 +7,13 @@ accepted STOP evidence and notices remain unchanged in their immutable input
 commits/snapshots. No new program/HDL/CPU build, model run or observation
 dispatch is part of this repair; there is no qualified whole-core outcome.
 
+The distinct code-only archive retains original disposable synthetic GNU make
+recipes/expanded-value fields/typed receipts from source
+d0212cc1796921dfd325e32df6c45589f155ebec and job112171966417, not actual
+model or program artifacts. GNU Make 4.3 version text retains its public GNU
+copyright/license notice. PIPELINE_CONTRACTS_PASS is synthetic pipeline
+readiness, not a newly qualified RVFI/ISA/next-PC observation.
+
 Original program, harness, sampler, oracle, tests, automation, new observations
 and prose are Apache-2.0, with GitHub Copilot App assistance. This is not
 independent human replication or lowRISC endorsement.

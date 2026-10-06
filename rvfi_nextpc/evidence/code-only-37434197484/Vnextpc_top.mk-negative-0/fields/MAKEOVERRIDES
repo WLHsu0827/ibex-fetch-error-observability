@@ -1,0 +1,2 @@
+NEXTPC_PROBE_CHILD=1 NUM_JOBS=1 CXX=unqualified CC=/usr/bin/gcc-13 LINK=/usr/bin/g++-13 AR=/usr/bin/ar PYTHON3=/usr/bin/python3 PERL=/usr/bin/perl OBJCACHE= NEXTPC_PROBE_MAKEFILE=Vnextpc_top.mk
+NEXTPC_END_VALUE

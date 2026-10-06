@@ -13,6 +13,27 @@ original typed logs/framed values are publishable public test artifacts; no
 tool/model binaries or full job/environment dumps. The real changed execution
 boundary remains untested; historical science remains NOT_RUN/NOT_QUALIFIED.
 
+Code-only final review: source`d0212cc1796921dfd325e32df6c45589f155ebec`
+passed 52 hosted stdlib contracts and the separate preinstalled GNU Make 4.3
+job`112171966417` in push`37434197484`: 4 test methods / 38 actual synthetic
+make cases. Both naming conventions use the same Hosted adapter and retain
+all 14 original framed values. Independent inspection checked every positive
+full output shape against the fixture's separate captures, all 24
+expanded-value rejections despite exit0, missing-recipe exit2 and recursive
+timeout124 receipts. Missing/duplicate/truncated-field negatives were tested
+without relabeling exit0 as qualification. No archived actual-model probe ran.
+
+All 734 original artifact members plus the manifest and complete selected
+2170-byte original step console were independently retrieved, byte-checked
+and privacy-reviewed before exclusive publication. The new index uses
+immutable Git LF authorization/source identities, not Windows working CRLF.
+No whole job/environment dump, model/tool binary, wave/build tree or program
+artifact is included. All 2237 accepted baseline evidence/authorization blobs
+remain unchanged. The new result is PIPELINE_CONTRACTS_PASS / READY_FOR_REVIEW,
+not coordinator acceptance or actual CPU/control/ISA/next-PC qualification.
+Zero new HDL/program/CPU compilations, model runs and observation dispatches;
+all measurement epochs remain CLOSED and PR3 remains draft.
+
 Agent review boundary, not legal advice or a human signature:
 
 - The new files are freshly authored under the owner's existing Apache-2.0

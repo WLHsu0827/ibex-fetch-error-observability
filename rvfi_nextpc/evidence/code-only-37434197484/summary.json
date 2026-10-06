@@ -1,0 +1,409 @@
+{
+  "attempted_synthetic_make_cases": 38,
+  "authorization": {
+    "bytes": 1806,
+    "sha256": "aaa5e3007db2bd5c8cb788f6eab4d59976a2b41b270b3693980f52a9d96e0765"
+  },
+  "cases": [
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-shape",
+      "original_status": {
+        "bytes": 813,
+        "sha256": "71630e4d74ef77af760cc0dd5350b37c0f94bbf7a5c5916eaa6c5961c23b36c4"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 2,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-missing-generated",
+      "original_status": {
+        "bytes": 855,
+        "sha256": "9ce1e3ffdbeed5cac8376e48069e7780d5e7e4311b5248ee2f51822ce97f5c7d"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-shape",
+      "original_status": {
+        "bytes": 808,
+        "sha256": "45e11b91252366495b8870c14900b2827529346efb9cdd4d42eef80604d4b461"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 2,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-missing-generated",
+      "original_status": {
+        "bytes": 850,
+        "sha256": "52970acb03f9004dc3fa4b03127b95706a1e2b75b7032b9758d8b498f64c64be"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-good-0",
+      "original_status": {
+        "bytes": 813,
+        "sha256": "732717fde9499cd6242a7f5f69ab5fc8d1a6f7fb30bfd9af59d2c9c73fb37d27"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-good-1",
+      "original_status": {
+        "bytes": 881,
+        "sha256": "0f525fce59e653a990bce562d354fd6b66a691c8f06a1906738373360b7291d3"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-good-2",
+      "original_status": {
+        "bytes": 896,
+        "sha256": "7a7f33d8ba7ec538560ecef5150e9df6a673417203d78bab75b3005a603a01df"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-good-3",
+      "original_status": {
+        "bytes": 891,
+        "sha256": "db9f263501547dbf4a25241f3047341df41fbf01cafcebef432cb29dfa815169"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-good-0",
+      "original_status": {
+        "bytes": 808,
+        "sha256": "e5d80cf8a7977ec8f372d5fd30d9590e52f7c7caedd20926cfcdec0143c777b2"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-good-1",
+      "original_status": {
+        "bytes": 874,
+        "sha256": "20ee50ddd7e5f218ef6236187a33e0ea1a32eef23d3855edcd5b47c119dbadbe"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-good-2",
+      "original_status": {
+        "bytes": 891,
+        "sha256": "17d17e003cdb6b8053a602fda496f3f9a4fde2683f6318ae68941e7529d063ef"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-good-3",
+      "original_status": {
+        "bytes": 886,
+        "sha256": "02e1c4f2cfe4e0b7767518e49bc09430388d88bd480586246e21ce4494eeaaaa"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 124,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-timeout",
+      "original_status": {
+        "bytes": 814,
+        "sha256": "8091d9fb9c1a99adf8607ed93e989585a669f879f52490920fa20b4eb43f0603"
+      },
+      "status": "timed_out"
+    },
+    {
+      "code": 124,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-timeout",
+      "original_status": {
+        "bytes": 809,
+        "sha256": "898437e647ca1169a1322600d15445969c665e702f0e801945a7bd67765732ac"
+      },
+      "status": "timed_out"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-0",
+      "original_status": {
+        "bytes": 836,
+        "sha256": "12442383c62d915f31f528bca5aadd3d2dbe48878dfb686e28c91f085d8357ed"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-1",
+      "original_status": {
+        "bytes": 835,
+        "sha256": "44fa9168b273649c44ca5144567a3a029ad7aede5b04eca85dfca86d51203569"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-2",
+      "original_status": {
+        "bytes": 836,
+        "sha256": "6209c67949297df736d5342643a7cd5c0a4cfa4ed17ebc8cf760f91c9c5e34f6"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-3",
+      "original_status": {
+        "bytes": 835,
+        "sha256": "c084f72697a4a8dd1ef017bd5e8e44d77fa12a741c51df9fcac7576b8baa870f"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-4",
+      "original_status": {
+        "bytes": 840,
+        "sha256": "0958bf18709d17df97894b03c8296cea9383919cfed7b08ebcf8a0c67fd78f8d"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-5",
+      "original_status": {
+        "bytes": 838,
+        "sha256": "d4142edd7f9b906cc577bb5b02e128806241fb1e0eecab1e0027ecab4e1278b0"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-6",
+      "original_status": {
+        "bytes": 841,
+        "sha256": "9b4a0a3f74d98f66d7a45ee8223817da1f5d30e8148713c0b2e5a196404e6f8e"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-7",
+      "original_status": {
+        "bytes": 831,
+        "sha256": "0061eabcea27bed7e43bad7d958ccf2c4c6f3951e7ddbfa891350162a9d9544f"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-8",
+      "original_status": {
+        "bytes": 824,
+        "sha256": "dac479e42f786aff90fae774e0ae41ff05ef2df7f50259023d9a19f40d9cf1a2"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-9",
+      "original_status": {
+        "bytes": 824,
+        "sha256": "65b3239a554d1ccbaa7b8719f124bb3f15595b8727aaaaa7dea6f40bd33edf57"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-negative-10",
+      "original_status": {
+        "bytes": 828,
+        "sha256": "0c8f3659a6576303f0a79bae92984586f6fee6422a0b9cfbffddd8be41718248"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vsampler_fixture.mk",
+      "name": "Vsampler_fixture.mk-override-link",
+      "original_status": {
+        "bytes": 813,
+        "sha256": "8c231b30282621c087fe53a1c3e52a836fbf730765523e8aedd3e8d521fda725"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-0",
+      "original_status": {
+        "bytes": 831,
+        "sha256": "712526d8c78164d654f2e327b19b7bf6a30a91d241e0ef4cc4178b4f2b9de486"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-1",
+      "original_status": {
+        "bytes": 830,
+        "sha256": "0abcf129ecbd4c1e43d1b9d3b649526ec759921f9f4e9025d5d26f80c2def334"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-2",
+      "original_status": {
+        "bytes": 832,
+        "sha256": "8224cf2b7008659d6f89171024449f8c26a2913a849023ec97d0e6685ed600b1"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-3",
+      "original_status": {
+        "bytes": 830,
+        "sha256": "ac370c9d6f0e037176bd0c614b055872b59cdc854ba4eb0e335d866a16d20076"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-4",
+      "original_status": {
+        "bytes": 835,
+        "sha256": "b78115b53e7ce66232719cb71261d0c78bad9ccf990a401a45227e272fc1d8b7"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-5",
+      "original_status": {
+        "bytes": 833,
+        "sha256": "70374b5db17052c041405b148ca558e54442387ddd565c3b2c97f0cb6b1beb82"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-6",
+      "original_status": {
+        "bytes": 836,
+        "sha256": "e200027542ed9905022ef9a4fd214f29e00aba3a8fb52e76d64bfe972256de83"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-7",
+      "original_status": {
+        "bytes": 826,
+        "sha256": "343c8472add60879376bb90e9fe19d5bc313e35f8a057ee1beb3473d1f414f9f"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-8",
+      "original_status": {
+        "bytes": 819,
+        "sha256": "57271cfffc106fcae1060878ee44b912dcb04564218cdcde922b89b0eda9601f"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-9",
+      "original_status": {
+        "bytes": 819,
+        "sha256": "f73240e28616cb24cdae7453332967d695dddfe03311710de5daada4952c0d50"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-negative-10",
+      "original_status": {
+        "bytes": 825,
+        "sha256": "751f5e851930cca698709a64cc8113857c5f1aa521a9392230833e0155dbbe87"
+      },
+      "status": "exited"
+    },
+    {
+      "code": 0,
+      "model": "Vnextpc_top.mk",
+      "name": "Vnextpc_top.mk-override-link",
+      "original_status": {
+        "bytes": 808,
+        "sha256": "b33714926a5a1d38bccab740fd91e82c6bb7c4fdd87e1cb00f1c5ae4adbc0bd4"
+      },
+      "status": "exited"
+    }
+  ],
+  "hdl_cpu_program_compilations_and_runs": 0,
+  "limitations": "Disposable synthetic make variables only; no archived actual model/program probe, HDL setup/export/build or CPU execution. Historical accepted PRE-RUN STOP remains NOT_QUALIFIED.",
+  "make_binary": {
+    "bytes": 259808,
+    "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"
+  },
+  "observation_dispatches": 0,
+  "result": "PIPELINE_CONTRACTS_PASS",
+  "run_attempt": "1",
+  "run_id": "37434197484",
+  "schema": 1,
+  "scientific_result": "NOT_RUN",
+  "scope": "CODE_ONLY",
+  "sealed_input_count": 39,
+  "source_manifest": {
+    "bytes": 5852,
+    "sha256": "7a7918b2171d6cf0112777ffdf41de2e508dc6f303ff2f6e1735160d745c6b70"
+  },
+  "source_sha": "d0212cc1796921dfd325e32df6c45589f155ebec",
+  "tests_run": 4
+}
