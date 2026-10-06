@@ -1,0 +1,21 @@
+{
+  "license": "Apache-2.0",
+  "hash_bytes": "text bytes after CRLF-to-LF normalization; lone CR rejected",
+  "scope": "standalone synthetic trace-monitor source; no CPU bind or private evidence",
+  "source_sha256": {
+    ".github/workflows/trace-monitor.yml": "4dfd41acb757e73a9706f1750406827f7ec0be419b3de7c94454acc536585721",
+    "monitor/README.md": "44a09b4c249dadde82ed0d7cd05ddd52981e40ffe8eb420c5139c32b4be5f9a7",
+    "monitor/__init__.py": "ad4078f49cb691e705080855cc6bb9beea95f7b26a17277af6f53ba23a8e8524",
+    "monitor/evidence/.gitattributes": "dabe63faea541789c0deeb5fe96af06fc5174e1131f20f58ca4e9959befa7631",
+    "monitor/process_runner.py": "4999943decdd5d3d11b0a4dc0583c18e4b226c474b16c09f1f8b4e18b63ae48e",
+    "monitor/run_all.py": "a41c97478b2236138d0d2611a09d6db7c92b18408d8ef6c8394ef41e9dfea40e",
+    "monitor/tests/__init__.py": "c7de0f71fccb44d308df5791292fffa05c068217b5ee79c5074c6bad237d19c7",
+    "monitor/tests/test_process_runner.py": "dd3087c39983f3a28eaee53dbae1611ebb4a5988be477d25084b88e64708f1ca",
+    "monitor/tests/test_source_manifest.py": "ceb4dc54c5be39b2f6b939cac0847e3378d91734e43f9d168ca68600a9cd363e",
+    "monitor/tests/test_trace_check.py": "13b51c0244661409371ef09906c8eaabe4a45b6bcd5d64e3f30b40ce10dbe3ae",
+    "monitor/trace_check.py": "a2773120f402bd43868deb2484c4c8cbfbdd9309fbe5094c70475ef0899d59f7",
+    "monitor/trace_monitor_fixture.sv": "ba787a55d8c0c7b154e9b43191602772e78e643df4a8c51e32013a1dcbaefdf0",
+    "monitor/trace_phase_observer.sv": "031271d44a315c99b0716a01213b444438fbfad574125a4f35ff7bb1e2e1bf96",
+    "monitor/unarmed_trace_counterexample.sv": "81a1495e652bf9c6c337d1ea359eb513aca195b5784d3d0b2ac24ffe7b6123a4"
+  }
+}
