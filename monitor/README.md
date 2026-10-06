@@ -91,8 +91,13 @@ does not retain executables. Permanent hosted evidence is archived under
 `monitor/evidence/` only after an actual successful GitHub-hosted run.
 [`SOURCE_MANIFEST.json`](SOURCE_MANIFEST.json) hashes each public source as
 text bytes after CRLF-to-LF normalization and rejects lone carriage returns;
-the resulting values are therefore the actual committed LF-content hashes on
-both Windows and Linux rather than hashes of platform checkout conversions.
+these are declared canonicalized text seals that verify the same logical text
+across Windows and Linux checkouts. They are not necessarily hashes of the raw
+Git blob bytes: the pre-existing `evidence/.gitattributes` blob is intentionally
+retained with CRLF bytes, while its source-manifest seal is computed after the
+declared CRLF-to-LF normalization. In contrast, each evidence
+`RAW_MANIFEST.json` fixes the exact observed/downloaded bytes with no text
+normalization.
 
 The first archived [verified run 36952633401](evidence/run-36952633401/) used
 Ubuntu 24.04, Verilator 5.020-1, GCC 13.3.0, and Python 3.12.3. It compiled

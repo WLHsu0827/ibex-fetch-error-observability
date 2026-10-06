@@ -4,7 +4,7 @@
   "scope": "standalone synthetic trace-monitor source; no CPU bind or private evidence",
   "source_sha256": {
     ".github/workflows/trace-monitor.yml": "4dfd41acb757e73a9706f1750406827f7ec0be419b3de7c94454acc536585721",
-    "monitor/README.md": "57f515c80b1c0f3a453e2527ccb5f7a92003b7523732aba2557e5399d52e96cf",
+    "monitor/README.md": "44a09b4c249dadde82ed0d7cd05ddd52981e40ffe8eb420c5139c32b4be5f9a7",
     "monitor/__init__.py": "ad4078f49cb691e705080855cc6bb9beea95f7b26a17277af6f53ba23a8e8524",
     "monitor/evidence/.gitattributes": "dabe63faea541789c0deeb5fe96af06fc5174e1131f20f58ca4e9959befa7631",
     "monitor/process_runner.py": "4999943decdd5d3d11b0a4dc0583c18e4b226c474b16c09f1f8b4e18b63ae48e",
