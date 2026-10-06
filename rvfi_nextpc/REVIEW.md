@@ -34,6 +34,11 @@ not coordinator acceptance or actual CPU/control/ISA/next-PC qualification.
 Zero new HDL/program/CPU compilations, model runs and observation dispatches;
 all measurement epochs remain CLOSED and PR3 remains draft.
 
+Archive`6486bb48fc9b8b37993896623c8c1121bb7109d0` encloses the new original
+code-only evidence/index. The later publication head changes attribution-
+credited prose only, not that archive or the 39 sealed source inputs. Neither
+ordinary closure push starts another synthetic make job or observation.
+
 Agent review boundary, not legal advice or a human signature:
 
 - The new files are freshly authored under the owner's existing Apache-2.0

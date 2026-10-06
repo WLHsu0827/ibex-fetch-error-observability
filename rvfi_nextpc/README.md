@@ -18,6 +18,7 @@ selected step console. It does not replace any historical scientific index.
 | Code-only identity | Exact result |
 | --- | --- |
 | New sealed source | `d0212cc1796921dfd325e32df6c45589f155ebec`; 39 current inputs |
+| Immutable code-only evidence archive | `6486bb48fc9b8b37993896623c8c1121bb7109d0`; later publication prose leaves its original evidence bytes unchanged |
 | [Source push](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434197484) / [source PR CI](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434204470) | 52 hosted stdlib contracts and offline/archive PASS; observation SKIPPED |
 | [Separate CODE_ONLY job](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37434197484/job/112171966417) | Preinstalled GNU Make 4.3; 4 test methods / 38 actual disposable synthetic cases PASS |
 | Synthetic make cases | 10 full-shaped positives, 24 strict expanded-value rejections despite make exit0, 2 missing-recipe exit2 and 2 recursive timeout124 cases, across both naming conventions |
