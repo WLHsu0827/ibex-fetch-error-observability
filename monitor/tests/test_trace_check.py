@@ -153,6 +153,38 @@ class TraceContractTests(unittest.TestCase):
             self.assertNotEqual(rejected.returncode, 0)
             self.assertIn("row sequence must be", rejected.stderr)
 
+    def test_excessively_long_decimal_has_context_without_traceback(self):
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "events.tsv"
+            path.write_text(GOOD_TEXT.replace("Q\t0\t", f"Q\t{'9' * 5000}\t", 1))
+            with self.assertRaisesRegex(
+                TraceError, r"line 1 Q\.cycle: integer conversion rejected"
+            ):
+                parse_trace(path)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-B",
+                    "-m",
+                    "monitor.run_all",
+                    "--mode",
+                    "check",
+                    "--trace",
+                    str(path),
+                ],
+                cwd=Path(__file__).resolve().parents[2],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout, "")
+            self.assertIn(
+                "trace rejected: line 1 Q.cycle: integer conversion rejected",
+                result.stderr,
+            )
+            self.assertNotIn("Traceback", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

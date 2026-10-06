@@ -41,15 +41,18 @@ Offline contracts need only Python 3.12 and the standard library:
 python -B -m monitor.run_all --mode offline
 ```
 
-Validate an existing synthetic TSV without installing Verilator:
+Validate a TSV from this controlled positive fixture without installing
+Verilator:
 
 ```sh
 python -B -m monitor.run_all --mode check --trace path/to/events.tsv
 ```
 
-Input is UTF-8, tab-separated, and uses the exact decimal/fixed-width hex
-schema emitted by the public observer. Success prints one JSON record with the
-trace SHA-256 and row counts. Rejection
+Check mode is intentionally not a generic CPU, ISA, or arbitrary observer
+workload validator: it requires this fixture's exact values, counts, and
+`Q/B/PRE/POST/Q/R` sequence. Input is UTF-8, tab-separated, and uses the exact
+decimal/fixed-width hex schema emitted by the public observer. Success prints
+one JSON record with the trace SHA-256 and row counts. Rejection
 exits nonzero with a line, row kind, field name, or expected physical sequence;
 negative values, loose or over-width hex, out-of-range bit/index fields,
 partial/extra/duplicate rows, and reordered phases are rejected.

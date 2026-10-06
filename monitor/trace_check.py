@@ -76,7 +76,12 @@ def _parse_field(
             "unsigned decimal" if base == 10 else f"exactly {hex_width} hex digits"
         )
         raise TraceError(f"line {line_number} {kind}.{name}: expected {syntax}")
-    value = int(raw, base)
+    try:
+        value = int(raw, base)
+    except ValueError as exc:
+        raise TraceError(
+            f"line {line_number} {kind}.{name}: integer conversion rejected"
+        ) from exc
     if maximum is not None and value > maximum:
         raise TraceError(
             f"line {line_number} {kind}.{name}: {value} exceeds {maximum}"
