@@ -13,6 +13,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from bounded import capture, Limits
 from config import HERE
 from sources import LIMIT, digest
+from hosted_gate import check_extension_identities
 
 WORK = HERE / "_sources" / "tools"
 RECEIPTS = HERE / "_receipts" / "tools"
@@ -27,11 +28,14 @@ def size(directory):
 def caps():
     if size(HERE / "_sources") + size(HERE / "_receipts") > LIMIT:
         raise RuntimeError("5 GiB source/artifact increment cap exceeded; STOP")
-    if size(HERE / "_receipts") > MAX_RECEIPTS:
-        raise RuntimeError("16 MiB selected receipt cap exceeded; STOP")
+    if size(HERE / "receipts") + size(HERE / "_receipts") > MAX_RECEIPTS - 65536:
+        raise RuntimeError("aggregate 16 MiB publication/receipt cap exceeded; STOP")
 
 
 def download(url, path, expected, expected_bytes):
+    caps()
+    if size(HERE / "_sources") + size(HERE / "_receipts") + expected_bytes > LIMIT:
+        raise RuntimeError("fixed download would exceed 5 GiB increment; STOP")
     if path.exists():
         raise RuntimeError("refusing to overwrite a download")
     total, checksum = 0, hashlib.sha256()
@@ -60,7 +64,7 @@ def download(url, path, expected, expected_bytes):
 
 def probe(name, argv, seconds=30):
     caps()
-    remaining = MAX_RECEIPTS - size(HERE / "_receipts")
+    remaining = MAX_RECEIPTS - 65536 - size(HERE / "receipts") - size(HERE / "_receipts")
     if remaining < 4096:
         raise RuntimeError("receipt cap has no room; STOP")
     record, streams = capture(
@@ -84,8 +88,17 @@ def install_and_probe():
             or sys.version.split()[0] != deps["python"]):
         raise RuntimeError("fixed hosted Linux/Python preparation job only; no local installation")
     gate = json.loads((HERE / "_receipts" / "tool-attempt.json").read_text())
-    if gate["reserved_attempt"] not in (1, 2) or gate["scope"] != "PREPARATION_ONLY":
+    if (not gate.get("authorized") or gate["scope"] != "PREPARATION_ONLY"
+            or gate["run_id"] != int(os.environ["GITHUB_RUN_ID"])
+            or gate["run_attempt"] != int(os.environ["GITHUB_RUN_ATTEMPT"])
+            or gate["run_attempt"] != 1):
         raise RuntimeError("no bounded hosted presence authorization")
+    if gate["slot"] == "extension-1":
+        if (gate["reserved_attempt"] != 1
+                or gate["approval_sha256"] != check_extension_identities()):
+            raise RuntimeError("immutable extension reservation mismatch; STOP")
+    elif gate["slot"] != "original" or gate["reserved_attempt"] not in (1, 2):
+        raise RuntimeError("unknown hosted presence slot; STOP")
     WORK.mkdir(parents=True, exist_ok=False)
     RECEIPTS.mkdir(parents=True, exist_ok=False)
     probe("python-version", [sys.executable, "-I", "-B", "--version"])
@@ -141,6 +154,8 @@ def install_and_probe():
     ]))
     if packages.get("edalize") != "0.6.0":
         raise RuntimeError("Edalize version mismatch")
+    probe("python-module-imports", [str(python), "-I", "-B", "-c",
+                                   "import fusesoc,edalize; print('fusesoc edalize IMPORTED')"])
     riscv = deps["riscv"]
     archive = WORK / "riscv.tar.gz"
     download(riscv["url"], archive, riscv["sha256"], riscv["bytes"])
@@ -148,7 +163,7 @@ def install_and_probe():
     destination.mkdir()
     with tarfile.open(archive) as tar:
         members = tar.getmembers()
-        if sum(m.size for m in members) + size(HERE / "_sources") > LIMIT:
+        if sum(m.size for m in members) + size(HERE / "_sources") + size(HERE / "_receipts") > LIMIT:
             raise RuntimeError("expanded toolchain exceeds 5 GiB; STOP")
         tar.extractall(destination, filter="data")
     distributions.append(dict(riscv, name="xpack-riscv-none-elf-gcc", format="tar.gz"))

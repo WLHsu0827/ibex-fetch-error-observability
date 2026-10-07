@@ -36,8 +36,10 @@ The independent `stock-profile-prepare.yml` runs offline stdlib contracts and
 static source checks on scoped PR changes. Only initial PR opening, explicit
 `tools-presence` dispatch, or the owner repair label
 `stock-profile-tools-attempt-2` can enter the hosted install/probe stage.
-The live Actions-step ledger enforces at most **two** install attempts, including
-reruns; source/doc/archive-only changes do not reinstall tools. This workflow is
+The original Actions-step ledger retains its **two**-attempt ceiling.
+A separately recorded user decision now permits **one** tool-only extension,
+not a reset or retrospective enlargement of that ceiling. Source/doc/archive-only
+changes do not reinstall tools. This workflow is
 new on an unmerged branch, so GitHub may not register manual dispatch until it
 exists on the default branch; PR events are the current entry point. No default
 branch change or merge is needed for preparation publication.
@@ -47,7 +49,8 @@ repair-head offline job also ran setup-python outside that intended isolation:
 **one additional offline Python-bootstrap event, a preparation-boundary
 deviation**, separate from the two presence-stage attempts. Its history is not
 erased or excused by calling it qualification. Final code and receipt-seal CI
-both skipped the installer; no further bootstrap/install is performed.
+both skipped the installer. The new extension permits one additional bootstrap
+and one presence-stage invocation, not another offline bootstrap.
 
 One Ubuntu-24.04 worker, 20-minute job, 5-GiB source/artifact increment and
 16-MiB selected receipt caps are hard boundaries. Cap exhaustion means STOP, not
@@ -73,18 +76,43 @@ wrong `share/verilator/verilator_bin` lookup seen in presence attempt 1. It
 does not establish a working HDL build/include configuration. Attempt 1's
 original failed status and complete bounded streams are preserved, not replaced.
 
-**Current tool boundary: BLOCKED; 2/2 presence attempts consumed.** Attempt 2
+**Original tool boundary: BLOCKED; 2/2 presence attempts consumed.** Attempt 2
 successfully version-probed Python 3.12.10, GNU Make 4.3, Verilator 5.020 and
 host g++ 13.2.0, then pip refused the proposed lock: jsonschema2md 1.5.2 requires
 PyYAML==6.0.2 and markdown==3.7, while the attempted lock selected 6.0.3/3.9.
-The final proposed lock corrects both exact constraints and an offline regression
-checks them, but **that revised lock has never been installed/probed**.
+The corrected proposed lock fixes both exact constraints and an offline regression
+checks them. At the original publication it was **not installed/probed**.
 FuseSoC/Edalize imports and all RISC-V target/sysroot/multilib/libm probes were
 **NOT_REACHED**. No third presence-stage attempt, local installation or gate
-bypass is authorized or performed. The separate historical offline bootstrap
+bypass was authorized or performed under the original ceiling. The separate historical offline bootstrap
 above must not be hidden in the 2/2 presence-stage count. Successful
 offline/archive checks cannot clear this blocker; a new preparation decision
-is needed before further tool attempts.
+was required before further tool attempts; the following extension is that
+separate new decision, not qualification or a CPU authorization.
+
+### One new tool-only extension
+
+`tool_extension_approval.json` records the user's selection and accepted
+`3af2c0433d1c91c46cecc37ad470f74aed757eca` baseline. It pins the unchanged
+source/config/dependency/wheel/apt/lock identities, including PyYAML 6.0.2 and
+Markdown 3.7. The sole new entry is the owner PR4 label
+`stock-profile-tool-only-extension-1`. Before setup-python, its reservation
+requires exactly two prior original reservations, no prior extension
+reservation, run attempt 1 and matching immutable manifests/lock. Any started
+extension reservation consumes the slot conservatively, even if it fails.
+Reruns, duplicate events, old exhausted entries and inconsistent history fail
+closed. The single concurrency group also serializes PR and dispatch entries;
+the original entry never borrows the extension slot.
+
+Only a successful reservation emits the setup/install step authorization.
+The installer rechecks the matching run/attempt/approval and identities before
+creating a tool prefix. Offline tests cover exhaustion, reruns, duplicated or
+failed reservations, skipped steps, wrong history and changed identities.
+Published original receipts plus new selected logs share the unchanged 16-MiB
+cap; manifests/wrappers have reserved headroom. The extension has one Ubuntu
+24.04 worker and the unchanged 20-minute / 5-GiB boundaries. No retries,
+compiler inputs, CPU/program/HDL execution or merge are enabled.
+Actual extension status and receipts are recorded in `publication.json`.
 
 ## Configuration and external binding
 

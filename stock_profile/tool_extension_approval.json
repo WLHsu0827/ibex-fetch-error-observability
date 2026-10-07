@@ -1,0 +1,26 @@
+{
+  "slot": "tool-only-extension-1",
+  "scope": "PREPARATION_ONLY",
+  "user_selection": "追加 1 次工具準備，仍禁止 CPU／HDL 執行（建議）",
+  "authorization_source": "User decision relayed by chat 3b061029-7034-4983-82e1-914f28afb4fa on 2026-10-07",
+  "accepted_baseline_head": "3af2c0433d1c91c46cecc37ad470f74aed757eca",
+  "label": "stock-profile-tool-only-extension-1",
+  "additional_presence_attempts": 1,
+  "original_attempt_limit": 2,
+  "original_attempt_run_ids": [37585490171, 37586071977],
+  "historical_additional_offline_bootstrap_run": 37586036447,
+  "job_minutes": 20,
+  "workers": 1,
+  "source_artifact_increment_bytes": 5368709120,
+  "aggregate_selected_publication_bytes": 16777216,
+  "cpu_program_hdl_compile_run": "NOT_AUTHORIZED",
+  "merge": "NOT_AUTHORIZED",
+  "canonical_lf_git_file_sha256": {
+    "source_manifest.json": "bc72153f149c6603d048e2f62f4ee8a3eaf0984ed15801a11f8d0387fc4e1c71",
+    "config.json": "8f167bc3f719c51664bd62ce3e6a4a9c0439b965eb8ff4ab93af857b5f6c7c63",
+    "dependencies.json": "07a0bb16319113649ddb0a4de7b98efe581cf09a659805f0a52d378b11e694ac",
+    "requirements.lock": "e71697f22daccc6cd8658da6259fef447ebe91b08f1a0af1dff4be4128636621",
+    "wheel_manifest.json": "f461bcf63856405a021f18e8633c44ad834baf31f1fe265762320ae72cbcd81a",
+    "apt_manifest.json": "0fd3a0c6dba622f5c6e96c61db7446f7595cf2ccd19f63b809f22a4d733e18e7"
+  }
+}

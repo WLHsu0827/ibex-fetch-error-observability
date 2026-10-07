@@ -173,6 +173,88 @@ class ScopeContracts(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "mandatory exact dependency conflict"):
             check_exact_requirements(broken)
 
+    def test_extension_reservation_fail_closed(self):
+        from hosted_gate import reservation
+        self.assertEqual(reservation("extension-1", 1, 2, 0), 1)
+        for arguments in (("original", 1, 2, 0), ("original", 1, 1, 1),
+                          ("original", 2, 0, 0), ("extension-1", 2, 2, 0),
+                          ("extension-1", 1, 2, 1), ("extension-1", 1, 2, 2),
+                          ("extension-1", 1, 1, 0), ("extension-1", 1, 3, 0),
+                          ("unknown", 1, 2, 0)):
+            with self.subTest(arguments=arguments), self.assertRaises(RuntimeError):
+                reservation(*arguments)
+
+    def test_started_reservation_ledger(self):
+        from hosted_gate import LEGACY_STEP, EXTENSION_STEP, started_reservations
+        jobs = [{"steps": [
+            {"name": LEGACY_STEP, "started_at": "time", "conclusion": "success"},
+            {"name": LEGACY_STEP, "started_at": "time", "conclusion": "skipped"},
+            {"name": EXTENSION_STEP, "started_at": None, "conclusion": "cancelled"},
+            {"name": EXTENSION_STEP, "started_at": "time", "conclusion": "failure"},
+        ]}]
+        self.assertEqual(started_reservations(jobs), {LEGACY_STEP: 1, EXTENSION_STEP: 1})
+
+    def test_extension_accepted_identities_and_changed_lock_refused(self):
+        import hosted_gate
+        self.assertEqual(len(hosted_gate.check_extension_identities()), 64)
+        with tempfile.TemporaryDirectory() as root:
+            root = pathlib.Path(root)
+            approval = json.loads((HERE / "tool_extension_approval.json").read_bytes())
+            (root / "tool_extension_approval.json").write_text(json.dumps(approval))
+            (root / "source_manifest.json").write_text("altered")
+            with mock.patch.object(hosted_gate, "HERE", root):
+                with self.assertRaisesRegex(RuntimeError, "immutable identity changed"):
+                    hosted_gate.check_extension_identities()
+
+    def test_entry_outputs_refuse_duplicate_rerun_old_or_wrong_event(self):
+        import contextlib
+        import io
+        import hosted_gate
+        for case in ("approved", "duplicate", "rerun", "old_entry", "wrong_label"):
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as root:
+                root = pathlib.Path(root)
+                event = {"number": 4, "action": "labeled",
+                         "label": {"name": hosted_gate.LABEL},
+                         "pull_request": {"head": {"ref": "wlhsu0827-stock-workload-preparation",
+                                                   "sha": "a" * 40,
+                                                   "repo": {"full_name": "WLHsu0827/ibex-fetch-error-observability"}}}}
+                if case == "wrong_label":
+                    event["label"]["name"] = "unapproved"
+                (root / "event.json").write_text(json.dumps(event))
+                (root / "output").write_text("")
+                env = {"GITHUB_REPOSITORY": "WLHsu0827/ibex-fetch-error-observability",
+                       "GITHUB_EVENT_NAME": "pull_request", "GITHUB_RUN_ID": "99",
+                       "GITHUB_RUN_ATTEMPT": "2" if case == "rerun" else "1",
+                       "GITHUB_SHA": "a" * 40, "GITHUB_EVENT_PATH": str(root / "event.json"),
+                       "GITHUB_OUTPUT": str(root / "output")}
+                runs = [{"id": n, "run_attempt": 1} for n in (10, 11)]
+                if case == "duplicate":
+                    runs.append({"id": 12, "run_attempt": 1})
+
+                def fake_api(path):
+                    if path == "actions/runs/99":
+                        return {"workflow_id": 1}
+                    if path.startswith("actions/workflows/"):
+                        return {"total_count": len(runs), "workflow_runs": runs}
+                    name = (hosted_gate.EXTENSION_STEP if "/12/" in path
+                            else hosted_gate.LEGACY_STEP)
+                    return {"total_count": 1, "jobs": [{"steps": [
+                        {"name": name, "started_at": "time", "conclusion": "success"}]}]}
+
+                mode = "original" if case == "old_entry" else "extension-1"
+                with mock.patch.dict(os.environ, env), mock.patch.object(hosted_gate, "HERE", root), \
+                        mock.patch.object(hosted_gate, "api", side_effect=fake_api), \
+                        mock.patch.object(hosted_gate, "check_extension_identities",
+                                          return_value="b" * 64), \
+                        contextlib.redirect_stdout(io.StringIO()):
+                    if case == "approved":
+                        hosted_gate.run_gate(mode)
+                        self.assertEqual((root / "output").read_text(), "authorized=true\n")
+                    else:
+                        with self.assertRaises(SystemExit):
+                            hosted_gate.run_gate(mode)
+                        self.assertEqual((root / "output").read_text(), "")
+
 
 if __name__ == "__main__":
     unittest.main()

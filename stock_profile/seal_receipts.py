@@ -9,6 +9,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 RECEIPTS = HERE / "_receipts"
 SELECTED = RECEIPTS / "selected"
 MAXIMUM = 16 * 1024**2
+PUBLISHED_BYTES = sum(p.stat().st_size for p in (HERE / "receipts").rglob("*") if p.is_file())
 
 
 if __name__ == "__main__":
@@ -27,8 +28,8 @@ if __name__ == "__main__":
             raise SystemExit("symlink receipt refused; STOP")
         data = path.read_bytes()
         total += len(data)
-        if total > MAXIMUM - 65536:
-            raise SystemExit("16 MiB selected receipt cap exceeded; STOP; no success archive")
+        if PUBLISHED_BYTES + total > MAXIMUM - 65536:
+            raise SystemExit("aggregate 16 MiB selected publication cap exceeded; STOP; no success archive")
         relative = path.relative_to(RECEIPTS)
         target = SELECTED / relative
         target.parent.mkdir(parents=True, exist_ok=True)

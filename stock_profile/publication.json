@@ -58,7 +58,7 @@
   "tool_presence": {
     "attempts_consumed": 2,
     "maximum_authorized_attempts": 2,
-    "further_attempts": "NOT_AUTHORIZED",
+    "further_original_attempts": "NOT_AUTHORIZED",
     "status": "BLOCKED",
     "historical_additional_offline_python_bootstrap_events": 1,
     "historical_bootstrap_boundary_deviation": "Repair-head offline run 37586036447 invoked setup-python outside intended presence-only installation isolation. This is disclosed separately, not hidden in the two presence-stage attempts; final code and receipt-seal runs skipped all installers.",
@@ -67,6 +67,17 @@
       "gnu_make": "4.3",
       "verilator": "5.020",
       "host_gxx": "13.2.0"
+    },
+    "tool_only_extension": {
+      "slot": "tool-only-extension-1",
+      "accepted_baseline": "3af2c0433d1c91c46cecc37ad470f74aed757eca",
+      "approval_receipt": "tool_extension_approval.json",
+      "additional_authorized_attempts": 1,
+      "consumed_attempts": 0,
+      "status": "AUTHORIZED_NOT_YET_ATTEMPTED",
+      "original_ceiling_remains": 2,
+      "cpu_program_hdl_compile_run": "NOT_AUTHORIZED",
+      "historical_offline_bootstrap_events_separate_from_presence_count": 1
     },
     "not_reached": [
       "FuseSoC installed entrypoint/import probe",
