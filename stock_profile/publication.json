@@ -10,7 +10,8 @@
     "initial_source_seal_and_package": "0b5f6709853b3ef179f2def5f906699723f054ff",
     "actually_attempted_repair_recipe": "1fe1ed742c11133286e0d6692493b271c37ddaba",
     "final_contract_code_and_static_lock_correction": "c92a207224b36213391d971cb5fdffe9c0f02b33",
-    "receipt_seal_and_final_documentation": "Resolved externally in the handoff: the publication commit containing this file. No self-referential commit hash is fabricated."
+    "receipt_seal": "fb6d6c1c77bc912133c4ca44cbca71065d683438",
+    "final_documentation": "Resolved externally in the handoff: the documentation commit containing this file. No self-referential commit hash is fabricated."
   },
   "sources": {
     "ibex": {
@@ -59,6 +60,8 @@
     "maximum_authorized_attempts": 2,
     "further_attempts": "NOT_AUTHORIZED",
     "status": "BLOCKED",
+    "historical_additional_offline_python_bootstrap_events": 1,
+    "historical_bootstrap_boundary_deviation": "Repair-head offline run 37586036447 invoked setup-python outside intended presence-only installation isolation. This is disclosed separately, not hidden in the two presence-stage attempts; final code and receipt-seal runs skipped all installers.",
     "actually_version_probed_in_attempt_2": {
       "python": "3.12.10",
       "gnu_make": "4.3",
@@ -102,6 +105,7 @@
       "kind": "HISTORICAL_OFFLINE_REPAIR_CHECK",
       "conclusion": "success",
       "historical_setup_python_bootstrap": true,
+      "preparation_boundary_deviation": "Additional offline Python bootstrap outside intended presence-only installation isolation",
       "tool_presence_stage": "SKIPPED",
       "artifact_id": 11465774537,
       "github_zip_sha256": "f55111c7b0b6c18775a8de96c84b4090021758a73516eed88440aa944d7c8e9c",
@@ -140,6 +144,20 @@
       "artifact_manifest_sha256": "267d6c0cb4d8c0deae2202e15f86e007338a6c07d6aa1c234c121fda47cdce6a",
       "original_selected_bytes": 465511,
       "original_receipts": "receipts/37588728006",
+      "archive_is_qualification": false
+    },
+    {
+      "run_id": 37589095680,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37589095680",
+      "head": "fb6d6c1c77bc912133c4ca44cbca71065d683438",
+      "kind": "RECEIPT_SEAL_OFFLINE_CHECK",
+      "conclusion": "success",
+      "contracts_and_static_source_steps": "PASSED",
+      "presence_reservation": "SKIPPED",
+      "setup_python_installer": "SKIPPED",
+      "tool_presence_stage": "SKIPPED",
+      "artifact_id": 11468095993,
+      "github_zip_sha256": "38847c7d26499dbf38db7c9dffededee2c01d373828f43de43713a75dd19955c",
       "archive_is_qualification": false
     }
   ],

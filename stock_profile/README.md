@@ -43,8 +43,11 @@ exists on the default branch; PR events are the current entry point. No default
 branch change or merge is needed for preparation publication.
 Final offline jobs use the runner's preinstalled Python; the fixed setup-python
 binary installer is now confined to a reserved presence stage. The historical
-repair-head offline job also ran setup-python (ordinary CI bootstrap, no
-dependency/presence stage); its history is not erased or relabeled.
+repair-head offline job also ran setup-python outside that intended isolation:
+**one additional offline Python-bootstrap event, a preparation-boundary
+deviation**, separate from the two presence-stage attempts. Its history is not
+erased or excused by calling it qualification. Final code and receipt-seal CI
+both skipped the installer; no further bootstrap/install is performed.
 
 One Ubuntu-24.04 worker, 20-minute job, 5-GiB source/artifact increment and
 16-MiB selected receipt caps are hard boundaries. Cap exhaustion means STOP, not
@@ -77,9 +80,11 @@ PyYAML==6.0.2 and markdown==3.7, while the attempted lock selected 6.0.3/3.9.
 The final proposed lock corrects both exact constraints and an offline regression
 checks them, but **that revised lock has never been installed/probed**.
 FuseSoC/Edalize imports and all RISC-V target/sysroot/multilib/libm probes were
-**NOT_REACHED**. No third tool installation, local installation or gate bypass
-is authorized or performed. Successful offline/archive checks cannot clear this
-blocker; a new preparation decision is needed before further tool attempts.
+**NOT_REACHED**. No third presence-stage attempt, local installation or gate
+bypass is authorized or performed. The separate historical offline bootstrap
+above must not be hidden in the 2/2 presence-stage count. Successful
+offline/archive checks cannot clear this blocker; a new preparation decision
+is needed before further tool attempts.
 
 ## Configuration and external binding
 
@@ -193,7 +198,8 @@ the POSIX resource method explicitly skipped.
 
 See `publication.json` for exact source-seal, actually attempted tool, final
 contract code and immutable receipt identities, and `LICENSES.md` for the
-source/license boundary. The later receipt-seal/final-documentation commit is
-resolved externally in the handoff, not fabricated in its own contents.
+source/license boundary. The receipt-seal head is
+`fb6d6c1c77bc912133c4ca44cbca71065d683438`; the later final-documentation
+commit is resolved externally in the handoff, not fabricated in its own contents.
 No existing PR, archive, observation dispatch or upstream/primary checkout
 is changed.
