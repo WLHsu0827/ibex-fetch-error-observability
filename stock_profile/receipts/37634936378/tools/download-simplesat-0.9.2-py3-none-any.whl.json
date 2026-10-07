@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/43/62/1fed9c4c0a4c31a8aaaffe68da566fc6c18fb3dcd7991256264e12669354/simplesat-0.9.2-py3-none-any.whl",
+  "expected_bytes": 249125,
+  "expected_sha256": "dde724538ccc5bddfdf57aa366cfb0cec0e3cae8c5d1ebc56f4cfb47948a8f97",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 249125,
+  "actual_sha256": "dde724538ccc5bddfdf57aa366cfb0cec0e3cae8c5d1ebc56f4cfb47948a8f97"
+}

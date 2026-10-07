@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/10/5e/1aa9a93198c6b64513c9d7752de7422c06402de6600a8767da1524f9570b/pyparsing-3.2.5-py3-none-any.whl",
+  "expected_bytes": 113890,
+  "expected_sha256": "e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 113890,
+  "actual_sha256": "e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e"
+}

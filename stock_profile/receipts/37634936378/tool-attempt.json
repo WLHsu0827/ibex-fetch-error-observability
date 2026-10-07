@@ -1,0 +1,14 @@
+{
+  "prior_original_reservations": 2,
+  "prior_extension_reservations": 0,
+  "slot": "extension-1",
+  "authorized": true,
+  "original_maximum": 2,
+  "extension_maximum": 1,
+  "run_id": 37634936378,
+  "run_attempt": 1,
+  "code_head": "dae23817d5012f89920906c97109d0ecbb257d99",
+  "scope": "PREPARATION_ONLY",
+  "reserved_attempt": 1,
+  "approval_sha256": "8fb5b327d5d8e4c41d2e57554fffd076a2e88d788de39477ded7d5e9ca689cf4"
+}

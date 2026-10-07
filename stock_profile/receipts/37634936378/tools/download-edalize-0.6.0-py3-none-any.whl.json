@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/9c/41/539b030f3827ad43d3002e420d46676758855325f8d62abb43e9538b7190/edalize-0.6.0-py3-none-any.whl",
+  "expected_bytes": 166451,
+  "expected_sha256": "dab4b602faee41028924a73a97917f4911c676a5cfadcee5548ac38168f70034",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 166451,
+  "actual_sha256": "dab4b602faee41028924a73a97917f4911c676a5cfadcee5548ac38168f70034"
+}

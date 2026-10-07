@@ -1,0 +1,10 @@
+CoreMark Size    : 666
+Iterations       : 10
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x1234
+Correct operation validated. See README.md for run and reporting rules.
+STOCK_PROFILE_V1 workload=coremark config=8f167bc3f719c51664bd62ce3e6a4a9c0439b965eb8ff4ab93af857b5f6c7c63 mode=selfcheck_only verify=1 complete=1

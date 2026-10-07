@@ -1,7 +1,7 @@
 {
   "scope": "PREPARATION_ONLY",
   "cpu_program_compile_run": "NOT_AUTHORIZED",
-  "preparation_status": "PARTIAL_BLOCKED",
+  "preparation_status": "TOOL_PRESENCE_PROBED_CPU_NOT_AUTHORIZED",
   "repository": "WLHsu0827/ibex-fetch-error-observability",
   "branch": "wlhsu0827-stock-workload-preparation",
   "draft_pr": "https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/4",
@@ -56,6 +56,7 @@
     "observation_cost": "NOT_MEASURED"
   },
   "tool_presence": {
+    "record_scope": "ORIGINAL_TWO_ATTEMPTS_HISTORICAL_STATUS_NOT_OVERWRITTEN",
     "attempts_consumed": 2,
     "maximum_authorized_attempts": 2,
     "further_original_attempts": "NOT_AUTHORIZED",
@@ -68,17 +69,6 @@
       "verilator": "5.020",
       "host_gxx": "13.2.0"
     },
-    "tool_only_extension": {
-      "slot": "tool-only-extension-1",
-      "accepted_baseline": "3af2c0433d1c91c46cecc37ad470f74aed757eca",
-      "approval_receipt": "tool_extension_approval.json",
-      "additional_authorized_attempts": 1,
-      "consumed_attempts": 0,
-      "status": "AUTHORIZED_NOT_YET_ATTEMPTED",
-      "original_ceiling_remains": 2,
-      "cpu_program_hdl_compile_run": "NOT_AUTHORIZED",
-      "historical_offline_bootstrap_events_separate_from_presence_count": 1
-    },
     "not_reached": [
       "FuseSoC installed entrypoint/import probe",
       "Edalize installed import probe",
@@ -89,9 +79,124 @@
       "jsonschema2md": "1.5.2",
       "PyYAML": "6.0.2",
       "Markdown": "3.7",
-      "status": "STATIC_CORRECTION_NOT_INSTALLED_NOT_PROBED"
+      "status": "STATIC_CORRECTION_NOT_INSTALLED_NOT_PROBED_AT_ORIGINAL_PUBLICATION"
     },
     "presence_is_abi_cpu_qualification": false
+  },
+  "tool_only_extension": {
+    "slot": "tool-only-extension-1",
+    "accepted_baseline": "3af2c0433d1c91c46cecc37ad470f74aed757eca",
+    "approval_receipt": "tool_extension_approval.json",
+    "additional_authorized_attempts": 1,
+    "consumed_attempts": 1,
+    "status": "PROBED",
+    "further_extension_attempts": "NOT_AUTHORIZED",
+    "code_and_actual_tool_head": "dae23817d5012f89920906c97109d0ecbb257d99",
+    "receipt_seal_and_final_doc_heads": "Resolved externally in the handoff, not fabricated in their own contents.",
+    "approval_sha256": "8fb5b327d5d8e4c41d2e57554fffd076a2e88d788de39477ded7d5e9ca689cf4",
+    "offline_gate_check": {
+      "run_id": 37634805795,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37634805795",
+      "head": "dae23817d5012f89920906c97109d0ecbb257d99",
+      "conclusion": "success",
+      "reservations_setup_install": "ALL_SKIPPED"
+    },
+    "actual_presence_run": {
+      "run_id": 37634936378,
+      "run_attempt": 1,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37634936378",
+      "conclusion": "success",
+      "job_id": 112838551694,
+      "job_seconds": 101,
+      "worker_count": 1,
+      "old_reservation_step": "SKIPPED",
+      "extension_reservation_step": {
+        "invocations": 1,
+        "conclusion": "success",
+        "started_at": "2026-10-07T14:13:49Z",
+        "completed_at": "2026-10-07T14:13:53Z",
+        "prior_original_reservations": 2,
+        "prior_extension_reservations": 0
+      },
+      "setup_python_step": {
+        "invocations": 1,
+        "conclusion": "success",
+        "started_at": "2026-10-07T14:13:53Z",
+        "completed_at": "2026-10-07T14:14:02Z"
+      },
+      "install_step": {
+        "invocations": 1,
+        "conclusion": "success",
+        "started_at": "2026-10-07T14:14:16Z",
+        "completed_at": "2026-10-07T14:15:24Z"
+      },
+      "stdlib_methods_passed": 19,
+      "real_posix_resource_and_descendant_cases": "PASSED",
+      "source_and_config_checks": "STATIC_CHECKED",
+      "artifact_id": 11489510232,
+      "artifact_name": "stock-profile-prepare-37634936378-1",
+      "github_zip_sha256": "e222ca0536ca60cb342b9d8d1a16bb67d336d67f415693478bab5930cea25a9b",
+      "artifact_manifest_sha256": "6d9a760634d4255620e1da409248eb07268a0143485318c75948d7ea8d72cdcb",
+      "original_member_count_including_manifest": 316,
+      "original_selected_bytes_including_manifest": 585555,
+      "original_receipts": "receipts/37634936378",
+      "presence_json_sha256": "486b50af4f54bfd31b95eb4ea75fc3be4afa58864464999e9560c04348f2ee83",
+      "archive_is_qualification": false
+    },
+    "cumulative_ledger": {
+      "original_presence_attempts": 2,
+      "separate_extension_presence_attempts": 1,
+      "total_presence_attempts": 3,
+      "presence_install_stage_invocations": 3,
+      "historical_additional_offline_bootstrap_events": 1,
+      "total_setup_python_events": 4,
+      "original_epoch_and_ceiling": "CLOSED_EXHAUSTED_NOT_RETROACTIVELY_ENLARGED",
+      "new_slot": "CONSUMED_NO_RETRY"
+    },
+    "actual_probed_versions": {
+      "python": "3.12.10",
+      "gnu_make": "4.3",
+      "verilator": "5.020",
+      "host_gxx": "13.2.0",
+      "fusesoc": "2.4.3",
+      "edalize": "0.6.0",
+      "xpack_distribution": "14.2.0-3",
+      "riscv_gcc": "14.2.0",
+      "PyYAML": "6.0.2",
+      "Markdown": "3.7",
+      "python_module_imports": "fusesoc edalize IMPORTED"
+    },
+    "riscv_metadata": {
+      "target": "riscv-none-elf",
+      "probed_options": [
+        "-march=rv32im_zicsr",
+        "-mabi=ilp32"
+      ],
+      "target_options_output": "reports unchanged rv32im_zicsr / ilp32",
+      "selected_multidir": "rv32im/ilp32",
+      "selected_multilib_options": "@march=rv32im@mabi=ilp32",
+      "library_selection": "Compiler's explicit rv32im/ilp32 multilib for unchanged requested flags; no ISA/ABI substitution and no link/emitted-ISA qualification.",
+      "library_sha256": {
+        "libm.a": "46d1b97c3814cf913a7a0768a85652c97a744ec83d5c5ba7614aa589fac54ee0",
+        "libc.a": "781d614af057a568a22c50627e9f1ed0d160af37c71827ce689bb01adc7be110",
+        "libgcc.a": "93ce293d6968e9dbd52748b3f48192b7e41847f0a8938b1b257f3599d10ed971"
+      },
+      "abi_link_execution_qualification": "NOT_VERIFIED"
+    },
+    "public_source_config_and_fixed_tool_identities": "UNCHANGED_FROM_ACCEPTED_BASELINE",
+    "aggregate_receipt_bytes": {
+      "old_three_original_selected_sets_including_manifests": 1493566,
+      "old_three_run_wrappers": 1597,
+      "new_original_selected_set_including_manifest": 585555,
+      "new_run_wrapper": 568,
+      "all_original_selected_sets_including_manifests": 2079121,
+      "all_run_wrappers": 2165,
+      "aggregate_publication": 2081286,
+      "maximum": 16777216
+    },
+    "original_ceiling_remains": 2,
+    "cpu_program_hdl_compile_run": "NOT_AUTHORIZED",
+    "historical_offline_bootstrap_events_separate_from_presence_count": 1
   },
   "runs": [
     {
@@ -191,7 +296,7 @@
     "CPU entry and local tool installation refusal"
   ],
   "blocked_or_untested": [
-    "Corrected dependency lock installation and complete tool provenance/presence",
+    "Hermetic host runtime/build qualification; presence does not qualify the CPU model",
     "Actual HDL binding and model build",
     "Program compilation, linker/startup/libm/ABI compatibility",
     "Emitted/executed ISA and real workload runtime selfchecks",

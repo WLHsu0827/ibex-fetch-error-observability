@@ -33,11 +33,11 @@ adapter under ignored `_receipts/adapter/`; it invokes **no** HDL tools.
 operations, not CI regeneration or compilation. They never install local tools.
 
 The independent `stock-profile-prepare.yml` runs offline stdlib contracts and
-static source checks on scoped PR changes. Only initial PR opening, explicit
+static source checks on scoped PR changes. Original entries are initial PR opening, explicit
 `tools-presence` dispatch, or the owner repair label
-`stock-profile-tools-attempt-2` can enter the hosted install/probe stage.
+`stock-profile-tools-attempt-2`; all are now exhausted and refuse installation.
 The original Actions-step ledger retains its **two**-attempt ceiling.
-A separately recorded user decision now permits **one** tool-only extension,
+A separately recorded user decision permitted **one** tool-only extension,
 not a reset or retrospective enlargement of that ceiling. Source/doc/archive-only
 changes do not reinstall tools. This workflow is
 new on an unmerged branch, so GitHub may not register manual dispatch until it
@@ -49,7 +49,7 @@ repair-head offline job also ran setup-python outside that intended isolation:
 **one additional offline Python-bootstrap event, a preparation-boundary
 deviation**, separate from the two presence-stage attempts. Its history is not
 erased or excused by calling it qualification. Final code and receipt-seal CI
-both skipped the installer. The new extension permits one additional bootstrap
+both skipped the installer. The new extension consumed one additional bootstrap
 and one presence-stage invocation, not another offline bootstrap.
 
 One Ubuntu-24.04 worker, 20-minute job, 5-GiB source/artifact increment and
@@ -66,8 +66,8 @@ target/multilib/sysroot/library-selection read probes. Its intended FuseSoC
 entry is `python -I -B -m fusesoc.main --version`, never setup/export/build.
 GNU Make and host C++ execute `--version` only. The intended RISC-V GCC queries
 retain the exact proposed `-march=rv32im_zicsr -mabi=ilp32`; they never compile.
-Neither FuseSoC nor RISC-V probes were reached in the actual attempts.
-Missing or incompatible
+Neither FuseSoC nor RISC-V probes were reached in the two original attempts;
+both were reached in the separate extension below. Missing or incompatible
 libraries/options stop the presence stage, never substitute ISA, ABI or source.
 Shared Ubuntu runtime dependencies are not a hermetic qualified CPU model.
 The fixed Debian Verilator wrapper is version-probed with `VERILATOR_ROOT`
@@ -83,8 +83,9 @@ PyYAML==6.0.2 and markdown==3.7, while the attempted lock selected 6.0.3/3.9.
 The corrected proposed lock fixes both exact constraints and an offline regression
 checks them. At the original publication it was **not installed/probed**.
 FuseSoC/Edalize imports and all RISC-V target/sysroot/multilib/libm probes were
-**NOT_REACHED**. No third presence-stage attempt, local installation or gate
-bypass was authorized or performed under the original ceiling. The separate historical offline bootstrap
+**NOT_REACHED** in those original attempts. No third presence-stage attempt,
+local installation or gate bypass was authorized or performed under the
+original ceiling. The separate historical offline bootstrap
 above must not be hidden in the 2/2 presence-stage count. Successful
 offline/archive checks cannot clear this blocker; a new preparation decision
 was required before further tool attempts; the following extension is that
@@ -112,7 +113,32 @@ Published original receipts plus new selected logs share the unchanged 16-MiB
 cap; manifests/wrappers have reserved headroom. The extension has one Ubuntu
 24.04 worker and the unchanged 20-minute / 5-GiB boundaries. No retries,
 compiler inputs, CPU/program/HDL execution or merge are enabled.
-Actual extension status and receipts are recorded in `publication.json`.
+The single extension [run 37634936378](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37634936378),
+attempt 1 at code/tool head `dae23817d5012f89920906c97109d0ecbb257d99`,
+finished successfully in 101 seconds with exactly one reservation,
+setup-python and install invocation. All 19 stdlib methods passed on Linux.
+Fixed downloads matched their hashes and all 33 installation/metadata child
+commands terminated normally with complete bounded streams. Python 3.12.10,
+Make 4.3, Verilator 5.020, g++ 13.2.0, FuseSoC 2.4.3, Edalize 0.6.0 and
+xPack RISC-V GCC 14.2.0-3 are now **PROBED/PRESENCE**, not qualified.
+The unchanged lock with PyYAML 6.0.2 / Markdown 3.7 installed successfully;
+FuseSoC/Edalize module imports succeeded.
+
+RISC-V metadata reports target `riscv-none-elf` and the unchanged requested
+`rv32im_zicsr` / `ilp32`. For those flags the compiler selects its explicit
+`rv32im/ilp32` multilib, with libm/libc/libgcc paths and hashes preserved.
+This is the compiler's metadata selection, not an ISA/ABI substitution, emitted
+instruction check or link/runtime qualification. No compiler input was supplied.
+The shared Ubuntu host runtime is still non-hermetic.
+
+Original new receipts plus their manifest occupy 585,555 bytes (316 members);
+all four original selected sets total 2,079,121 bytes. Four run wrappers add
+2,165 bytes, making aggregate publication 2,081,286 bytes, below 16 MiB.
+All three older selected sets remain byte-identical. Cumulative presence
+attempts are **2 old failed + 1 separately authorized successful**, and the
+one historical offline bootstrap is still listed separately (four total
+setup-python events). The new slot is consumed; no retries or further tool
+installation are authorized. Exact identities are in `publication.json`.
 
 ## Configuration and external binding
 

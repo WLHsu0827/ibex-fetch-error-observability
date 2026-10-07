@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/74/41/7a4b0ae6bff4ca1938f51943a0b77804acf459357f570f72d78567dc9570/jsonschema2md-1.5.2-py3-none-any.whl",
+  "expected_bytes": 12125,
+  "expected_sha256": "50492b944514ceac69d979d410b1a8a865c6a05a9bbc65a6a277ce10a61a9cab",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 12125,
+  "actual_sha256": "50492b944514ceac69d979d410b1a8a865c6a05a9bbc65a6a277ce10a61a9cab"
+}
