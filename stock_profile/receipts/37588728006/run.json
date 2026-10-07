@@ -1,0 +1,12 @@
+{
+  "scope": "PREPARATION_ONLY",
+  "code_head": "c92a207224b36213391d971cb5fdffe9c0f02b33",
+  "run_id": 37588728006,
+  "conclusion": "success",
+  "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37588728006",
+  "artifact_manifest_sha256": "267d6c0cb4d8c0deae2202e15f86e007338a6c07d6aa1c234c121fda47cdce6a",
+  "github_zip_sha256_locally_checked": "532f69063ae0ad287ebf90bebf704faddeace8bd0a6159e2ec38445c55ae3db3",
+  "original_selected_bytes": 465511,
+  "archive_is_qualification": false,
+  "cpu_program_compile_run": "NOT_AUTHORIZED"
+}

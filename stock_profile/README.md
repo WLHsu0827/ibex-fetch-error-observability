@@ -55,11 +55,13 @@ The Ubuntu snapshot is fixed to `20240425T000000Z`. jsonschema2md 1.5.2 is chose
 explicitly because it publishes a CPython-3.12-compatible pure wheel; 1.7.0 does
 not. This is a preparation dependency choice, not an ISA/toolchain fallback.
 
-Only version/package metadata, RISC-V target/multilib/sysroot/library-selection
-read probes execute. FuseSoC is invoked as `python -I -B -m fusesoc.main
---version`, never setup/export/build. GNU Make and host C++ execute `--version`
-only. RISC-V GCC executes metadata queries with the exact proposed
-`-march=rv32im_zicsr -mabi=ilp32`; it never compiles. Missing or incompatible
+The presence recipe permits only version/package metadata and RISC-V
+target/multilib/sysroot/library-selection read probes. Its intended FuseSoC
+entry is `python -I -B -m fusesoc.main --version`, never setup/export/build.
+GNU Make and host C++ execute `--version` only. The intended RISC-V GCC queries
+retain the exact proposed `-march=rv32im_zicsr -mabi=ilp32`; they never compile.
+Neither FuseSoC nor RISC-V probes were reached in the actual attempts.
+Missing or incompatible
 libraries/options stop the presence stage, never substitute ISA, ABI or source.
 Shared Ubuntu runtime dependencies are not a hermetic qualified CPU model.
 The fixed Debian Verilator wrapper is version-probed with `VERILATOR_ROOT`
@@ -135,8 +137,8 @@ has been compiled or executed. `ports/coremark_main.c` would wrap only the
 renamed vendored framework main, leaving algorithms/inputs/port untouched;
 CoreMark's unconditional main return never asserts verifier success.
 
-The versioned completion record binds workload, the canonical-LF Git config-file SHA-256,
-`selfcheck_only`, verifier state and completion. Real software output is in
+The versioned completion record binds workload, the canonical-LF Git config-file
+SHA-256, `selfcheck_only`, verifier state and completion. Real software output is in
 SimpleSystem's **ibex_simple_system.log** (not presumed simulator stdout).
 The internal runner handles stdout, stderr and a separate program log, requiring
 clean bounded termination **and** a single complete valid record. A future
@@ -180,7 +182,18 @@ full-width counters/overflow handling, timing accuracy, overhead calibration,
 same-boundary comparisons, PPA, performance/novelty/paper claims, future holdout,
 and source/executable redistribution where individual rights are unclear.
 Presence, static seals, synthetic contracts and artifact archival never upgrade
-any of these to qualification. See `publication.json` for actual published code,
-run and immutable receipt identities when available, and `LICENSES.md` for the
-source/license boundary. No existing PR, archive, observation dispatch or
-upstream/primary checkout is changed.
+any of these to qualification. The final contract code at
+`c92a207224b36213391d971cb5fdffe9c0f02b33` passed all 15 stdlib test methods
+and static source checks in [offline Ubuntu run 37588728006](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37588728006).
+That run skipped presence reservation, setup-python and all tool installation.
+Its 34 synthetic case receipts (including spawn failure) and both failed
+presence attempts are preserved under `receipts/`; their green archive status
+is never CPU/ABI qualification. Windows passed the same 15-method suite with
+the POSIX resource method explicitly skipped.
+
+See `publication.json` for exact source-seal, actually attempted tool, final
+contract code and immutable receipt identities, and `LICENSES.md` for the
+source/license boundary. The later receipt-seal/final-documentation commit is
+resolved externally in the handoff, not fabricated in its own contents.
+No existing PR, archive, observation dispatch or upstream/primary checkout
+is changed.

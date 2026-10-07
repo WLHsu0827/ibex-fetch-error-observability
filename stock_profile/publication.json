@@ -1,0 +1,182 @@
+{
+  "scope": "PREPARATION_ONLY",
+  "cpu_program_compile_run": "NOT_AUTHORIZED",
+  "preparation_status": "PARTIAL_BLOCKED",
+  "repository": "WLHsu0827/ibex-fetch-error-observability",
+  "branch": "wlhsu0827-stock-workload-preparation",
+  "draft_pr": "https://github.com/WLHsu0827/ibex-fetch-error-observability/pull/4",
+  "owner_main_baseline": "b6047fd245cd8541b2cb006d65c988df17a51ee3",
+  "heads": {
+    "initial_source_seal_and_package": "0b5f6709853b3ef179f2def5f906699723f054ff",
+    "actually_attempted_repair_recipe": "1fe1ed742c11133286e0d6692493b271c37ddaba",
+    "final_contract_code_and_static_lock_correction": "c92a207224b36213391d971cb5fdffe9c0f02b33",
+    "receipt_seal_and_final_documentation": "Resolved externally in the handoff: the publication commit containing this file. No self-referential commit hash is fabricated."
+  },
+  "sources": {
+    "ibex": {
+      "commit": "af456e25575013668ab56725268126f6b0feca35",
+      "root_tree": "7a9f3750e5ab7f75ac5504b528fc677fb77f22dc",
+      "archive_sha256": "bc353cf3d99af40ccd8f7b36872c36ad9ddc74240f4bd943907dd2c48fb30e39"
+    },
+    "embench": {
+      "commit": "09c2ed8c3b7008c95d08b038de4a3f6dc103ed70",
+      "root_tree": "b88459b702d04b50488f4ca9c4002d44657fd830",
+      "archive_sha256": "715bd9f368564cebb2694c555d35d58028fe0293ac7635a2528863fde57f0480",
+      "official_workloads_sealed": 19,
+      "classification": "EXPLORATORY",
+      "global_scale_factor": 1,
+      "warmup_heat": 1
+    },
+    "coremark": {
+      "actual_vendored_tree": "8e634d5b42c34a6e1e049e75a7bc070c50d2326b",
+      "ibex_port_tree": "e86619e4e7bbdd084ff0ffa12cc65e7b69798eec",
+      "mode": "selfcheck_only",
+      "official_compliant_score": "NOT_CLAIMED"
+    },
+    "cpu_implementation_bytes": "UNCHANGED",
+    "input_license_verifier_file_hashes": "source_manifest.json"
+  },
+  "final_code_git_file_sha256": {
+    "source_manifest.json": "bc72153f149c6603d048e2f62f4ee8a3eaf0984ed15801a11f8d0387fc4e1c71",
+    "config.json": "8f167bc3f719c51664bd62ce3e6a4a9c0439b965eb8ff4ab93af857b5f6c7c63",
+    "dependencies.json": "07a0bb16319113649ddb0a4de7b98efe581cf09a659805f0a52d378b11e694ac",
+    "requirements.lock": "e71697f22daccc6cd8658da6259fef447ebe91b08f1a0af1dff4be4128636621",
+    "wheel_manifest.json": "f461bcf63856405a021f18e8633c44ad834baf31f1fe265762320ae72cbcd81a",
+    "apt_manifest.json": "0fd3a0c6dba622f5c6e96c61db7446f7595cf2ccd19f63b809f22a4d733e18e7"
+  },
+  "configuration": {
+    "name": "small-observe-hpm10-40",
+    "official_small_fields_fixed": 19,
+    "only_small_field_difference": "MHPMCounterNum 0 -> 10",
+    "width": 40,
+    "base_isa": "ibex_pkg::BaseIsaRV32I",
+    "external_mapping": "STATIC_CHECKED",
+    "actual_hdl_binding": "NOT_VERIFIED",
+    "observation_cost": "NOT_MEASURED"
+  },
+  "tool_presence": {
+    "attempts_consumed": 2,
+    "maximum_authorized_attempts": 2,
+    "further_attempts": "NOT_AUTHORIZED",
+    "status": "BLOCKED",
+    "actually_version_probed_in_attempt_2": {
+      "python": "3.12.10",
+      "gnu_make": "4.3",
+      "verilator": "5.020",
+      "host_gxx": "13.2.0"
+    },
+    "not_reached": [
+      "FuseSoC installed entrypoint/import probe",
+      "Edalize installed import probe",
+      "RISC-V compiler download/version/target metadata",
+      "RISC-V sysroot/multilib/libm and exact rv32im_zicsr/ilp32 library selection"
+    ],
+    "corrected_exact_dependency_metadata": {
+      "jsonschema2md": "1.5.2",
+      "PyYAML": "6.0.2",
+      "Markdown": "3.7",
+      "status": "STATIC_CORRECTION_NOT_INSTALLED_NOT_PROBED"
+    },
+    "presence_is_abi_cpu_qualification": false
+  },
+  "runs": [
+    {
+      "run_id": 37585490171,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37585490171",
+      "head": "0b5f6709853b3ef179f2def5f906699723f054ff",
+      "kind": "TOOL_PRESENCE_ATTEMPT_1",
+      "conclusion": "failure",
+      "blocker": "Wrong VERILATOR_ROOT made the pinned wrapper search for a missing share/verilator/verilator_bin.",
+      "linux_stdlib_test_methods_passed": 13,
+      "artifact_id": 11466486056,
+      "github_zip_sha256": "21106ed5ec42341cb06ce4e01b68f2e4f35eccffb86728941f80903549215abd",
+      "artifact_manifest_sha256": "7e2ef967e42e2dec71b73a3769b773a2a9da5d0ff7103a49cbdb6b9c7dea485a",
+      "original_selected_bytes": 499459,
+      "original_receipts": "receipts/37585490171",
+      "archive_is_qualification": false
+    },
+    {
+      "run_id": 37586036447,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37586036447",
+      "head": "1fe1ed742c11133286e0d6692493b271c37ddaba",
+      "kind": "HISTORICAL_OFFLINE_REPAIR_CHECK",
+      "conclusion": "success",
+      "historical_setup_python_bootstrap": true,
+      "tool_presence_stage": "SKIPPED",
+      "artifact_id": 11465774537,
+      "github_zip_sha256": "f55111c7b0b6c18775a8de96c84b4090021758a73516eed88440aa944d7c8e9c",
+      "archive_is_qualification": false
+    },
+    {
+      "run_id": 37586071977,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37586071977",
+      "head": "1fe1ed742c11133286e0d6692493b271c37ddaba",
+      "kind": "TOOL_PRESENCE_ATTEMPT_2",
+      "conclusion": "failure",
+      "blocker": "Pip rejected PyYAML 6.0.3 / Markdown 3.9 against jsonschema2md 1.5.2 mandatory exact requirements 6.0.2 / 3.7.",
+      "linux_stdlib_test_methods_passed": 14,
+      "artifact_id": 11466502014,
+      "github_zip_sha256": "5d720a155bf911d9c8215ed439319ef610fff605c933a6c0e09f5c91f8e90536",
+      "artifact_manifest_sha256": "a281a8be2cbae22d8d3d2150abca5f2835c9da646ec519fbc44b17fb7b67a2d4",
+      "original_selected_bytes": 528596,
+      "original_receipts": "receipts/37586071977",
+      "archive_is_qualification": false
+    },
+    {
+      "run_id": 37588728006,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37588728006",
+      "head": "c92a207224b36213391d971cb5fdffe9c0f02b33",
+      "kind": "FINAL_CONTRACT_CODE_OFFLINE_CHECK",
+      "conclusion": "success",
+      "linux_stdlib_test_methods_passed": 15,
+      "synthetic_case_receipts_including_spawn_failure": 34,
+      "posix_resource_and_descendant_cases": "PASSED",
+      "source_seal_and_external_mapping": "STATIC_CHECKED",
+      "presence_reservation": "SKIPPED",
+      "setup_python_installer": "SKIPPED",
+      "tool_presence_stage": "SKIPPED",
+      "artifact_id": 11467153376,
+      "github_zip_sha256": "532f69063ae0ad287ebf90bebf704faddeace8bd0a6159e2ec38445c55ae3db3",
+      "artifact_manifest_sha256": "267d6c0cb4d8c0deae2202e15f86e007338a6c07d6aa1c234c121fda47cdce6a",
+      "original_selected_bytes": 465511,
+      "original_receipts": "receipts/37588728006",
+      "archive_is_qualification": false
+    }
+  ],
+  "local_final_code_check": {
+    "stdlib_test_methods": 15,
+    "conclusion": "success",
+    "posix_resource_method": "SKIPPED_ON_WINDOWS",
+    "windows_raw_config_bytes_are_not_the_canonical_git_config_identity": true
+  },
+  "negative_cases": [
+    "missing, duplicate, truncated and malformed completion records",
+    "wrong configuration, workload, output channel and invalid UTF-8",
+    "verifier -1, 0 and unexpected values",
+    "marker followed by hang, cycle-timeout exit zero, trap, signal and nonzero exit",
+    "spawn failure and stdout/stderr/program-log output limits",
+    "real POSIX CPU/file/address limits and descendant-held pipes",
+    "CoreMark bad/unknown CRC, missing/duplicate fields, wrong inputs and official errors",
+    "forged CoreMark verifier assertion",
+    "old exact dependency conflict",
+    "CPU entry and local tool installation refusal"
+  ],
+  "blocked_or_untested": [
+    "Corrected dependency lock installation and complete tool provenance/presence",
+    "Actual HDL binding and model build",
+    "Program compilation, linker/startup/libm/ABI compatibility",
+    "Emitted/executed ISA and real workload runtime selfchecks",
+    "40-bit counter capture, overflow handling and common observation boundaries",
+    "Timing accuracy and read/inhibit/start/stop overhead calibration",
+    "Same-boundary whole-application performance comparison",
+    "PPA, performance, novelty and paper-ready claims",
+    "Future holdout selection",
+    "Source/executable redistribution where individual rights are unclear"
+  ],
+  "prior_state_not_reopened": {
+    "measurement_epochs": "CLOSED",
+    "old_rvfi_observation_dispatch_count": 10,
+    "old_pr_branch_main_profile_archive_changes_by_this_package": "NONE",
+    "proposed_41_cpu_runs_and_one_model_build": "NOT_AUTHORIZED"
+  }
+}
