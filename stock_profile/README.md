@@ -103,7 +103,9 @@ reservation, run attempt 1 and matching immutable manifests/lock. Any started
 extension reservation consumes the slot conservatively, even if it fails.
 Reruns, duplicate events, old exhausted entries and inconsistent history fail
 closed. The single concurrency group also serializes PR and dispatch entries;
-the original entry never borrows the extension slot.
+the original entry never borrows the extension slot. These guards apply to
+the current published workflow; historical workflows are immutable, and
+replaying older workflow versions is not authorized or a way to reuse slots.
 
 Only a successful reservation emits the setup/install step authorization.
 The installer rechecks the matching run/attempt/approval and identities before
@@ -139,6 +141,11 @@ attempts are **2 old failed + 1 separately authorized successful**, and the
 one historical offline bootstrap is still listed separately (four total
 setup-python events). The new slot is consumed; no retries or further tool
 installation are authorized. Exact identities are in `publication.json`.
+The extension receipt-seal head is
+`2c5e2219b4d2fedcba372ae793df59503a72ab25`; its
+[offline CI 37635915207](https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37635915207)
+passed contracts/static checks with both reservations, setup-python and install
+skipped. The later documentation head is resolved externally in the handoff.
 
 ## Configuration and external binding
 

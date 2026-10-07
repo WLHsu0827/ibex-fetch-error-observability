@@ -11,7 +11,7 @@
     "actually_attempted_repair_recipe": "1fe1ed742c11133286e0d6692493b271c37ddaba",
     "final_contract_code_and_static_lock_correction": "c92a207224b36213391d971cb5fdffe9c0f02b33",
     "receipt_seal": "fb6d6c1c77bc912133c4ca44cbca71065d683438",
-    "final_documentation": "Resolved externally in the handoff: the documentation commit containing this file. No self-referential commit hash is fabricated."
+    "original_final_documentation": "3af2c0433d1c91c46cecc37ad470f74aed757eca"
   },
   "sources": {
     "ibex": {
@@ -92,7 +92,8 @@
     "status": "PROBED",
     "further_extension_attempts": "NOT_AUTHORIZED",
     "code_and_actual_tool_head": "dae23817d5012f89920906c97109d0ecbb257d99",
-    "receipt_seal_and_final_doc_heads": "Resolved externally in the handoff, not fabricated in their own contents.",
+    "receipt_seal_head": "2c5e2219b4d2fedcba372ae793df59503a72ab25",
+    "final_doc_head": "Resolved externally in the handoff, not fabricated in its own contents.",
     "approval_sha256": "8fb5b327d5d8e4c41d2e57554fffd076a2e88d788de39477ded7d5e9ca689cf4",
     "offline_gate_check": {
       "run_id": 37634805795,
@@ -100,6 +101,17 @@
       "head": "dae23817d5012f89920906c97109d0ecbb257d99",
       "conclusion": "success",
       "reservations_setup_install": "ALL_SKIPPED"
+    },
+    "offline_receipt_seal_check": {
+      "run_id": 37635915207,
+      "url": "https://github.com/WLHsu0827/ibex-fetch-error-observability/actions/runs/37635915207",
+      "head": "2c5e2219b4d2fedcba372ae793df59503a72ab25",
+      "conclusion": "success",
+      "contracts_and_static_source_steps": "PASSED",
+      "original_reservation_extension_reservation_setup_install": "ALL_SKIPPED",
+      "artifact_id": 11489150998,
+      "github_zip_sha256": "5c627aace61da546c5c3b4e6fdb8231d472aec910af482440c91eec36413d77b",
+      "archive_is_qualification": false
     },
     "actual_presence_run": {
       "run_id": 37634936378,
