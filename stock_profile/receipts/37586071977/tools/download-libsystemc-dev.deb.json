@@ -1,0 +1,9 @@
+{
+  "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/universe/s/systemc/libsystemc-dev_2.3.4-3build1_amd64.deb",
+  "expected_bytes": 241070,
+  "expected_sha256": "96e4c7fc044bc1558f0c4dfb43fa134826578977397920a0a575714218d7c1af",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 241070,
+  "actual_sha256": "96e4c7fc044bc1558f0c4dfb43fa134826578977397920a0a575714218d7c1af"
+}

@@ -1,0 +1,6 @@
+{
+  "scope": "PREPARATION_ONLY",
+  "presence_provenance": "BLOCKED",
+  "error": "pip-install: exit_nonzero; original bounded streams retained",
+  "cpu_program_compile_run": "NOT_AUTHORIZED"
+}

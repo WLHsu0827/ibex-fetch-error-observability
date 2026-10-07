@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "<PYTHON>/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "venv",
+    "<PACKAGE>/_sources/tools/venv"
+  ],
+  "termination": "exit_zero",
+  "returncode": 0,
+  "detail": "",
+  "wall_seconds": 3.2294824489999883,
+  "limits": {
+    "wall_seconds": 90,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

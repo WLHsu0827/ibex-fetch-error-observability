@@ -40,7 +40,7 @@ if __name__ == "__main__":
             if jobs["total_count"] > 100:
                 raise SystemExit("job history exceeds bounded query; STOP")
             for job in jobs["jobs"]:
-                prior += sum(step["name"] == "Install selected tools (presence only)"
+                prior += sum(step["name"] == "Reserve bounded hosted presence attempt"
                              and step.get("started_at") is not None
                              and step.get("conclusion") != "skipped"
                              for step in job.get("steps", []))

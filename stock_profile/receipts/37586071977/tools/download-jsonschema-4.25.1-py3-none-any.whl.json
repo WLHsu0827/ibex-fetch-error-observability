@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/bf/9c/8c95d856233c1f82500c2450b8c68576b4cf1c871db3afac5c34ff84e6fd/jsonschema-4.25.1-py3-none-any.whl",
+  "expected_bytes": 90040,
+  "expected_sha256": "3fba0169e345c7175110351d456342c364814cfcf3b964ba4587f22915230a63",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 90040,
+  "actual_sha256": "3fba0169e345c7175110351d456342c364814cfcf3b964ba4587f22915230a63"
+}

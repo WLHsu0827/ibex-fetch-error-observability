@@ -1,0 +1,9 @@
+{
+  "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/e/elfutils/libelf1t64_0.190-1.1build4_amd64.deb",
+  "expected_bytes": 57594,
+  "expected_sha256": "b277e52769302778bd052376ac6687b52954b6605dd5f781bff8631e3504d58f",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 57594,
+  "actual_sha256": "b277e52769302778bd052376ac6687b52954b6605dd5f781bff8631e3504d58f"
+}

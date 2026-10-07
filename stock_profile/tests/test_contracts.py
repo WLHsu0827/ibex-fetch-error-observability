@@ -50,7 +50,7 @@ class ProcessContracts(unittest.TestCase):
 
     def test_bad_markers_never_pass(self):
         for case in ("missing", "duplicate", "truncated", "malformed", "configwrong",
-                     "workloadwrong", "selfcheck_invalid", "bad_utf8"):
+                     "workloadwrong", "selfcheck_invalid", "bad_utf8", "wrong_channel"):
             with self.subTest(case=case):
                 _, result, _ = self.run_case(case)
                 self.assertFalse(result["completed"])
@@ -110,7 +110,8 @@ class ProcessContracts(unittest.TestCase):
         for case, expected in (("coremark", "VERIFIED"), ("coremark_bad_crc", "FAILED"),
                                ("coremark_unknown", "FAILED"), ("coremark_missing", "NOT_VERIFIED"),
                                ("coremark_duplicate", "NOT_VERIFIED"),
-                               ("coremark_wrong_input", "FAILED"), ("coremark_error", "FAILED")):
+                               ("coremark_wrong_input", "FAILED"), ("coremark_error", "FAILED"),
+                               ("coremark_forged_verify", "NOT_VERIFIED")):
             with self.subTest(case=case):
                 _, result, _ = self.run_case(case, workload="coremark")
                 self.assertEqual(result["verification"], expected)
@@ -153,7 +154,8 @@ class ScopeContracts(unittest.TestCase):
             self.assertTrue(all(len(r["sha256"]) == 64 for r in files))
 
     def test_published_receipts_preserve_original_bytes(self):
-        for path in (HERE / "receipts").glob("*/artifact_manifest.json"):
+        from import_receipts import physical
+        for path in physical(HERE / "receipts").glob("*/artifact_manifest.json"):
             manifest = json.loads(path.read_bytes())
             self.assertEqual(manifest["kind"], "SELECTED_RECEIPT_ARCHIVE_NOT_QUALIFICATION")
             for record in manifest["files"]:
@@ -162,6 +164,14 @@ class ScopeContracts(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(data).hexdigest(), record["sha256"])
             run = json.loads((path.parent / "run.json").read_bytes())
             self.assertFalse(run["archive_is_qualification"])
+
+    def test_fixed_exact_tool_dependency_contract(self):
+        from lock_tools import check_exact_requirements
+        wheels = json.loads((HERE / "wheel_manifest.json").read_bytes())
+        check_exact_requirements(wheels)
+        broken = [dict(r, version="6.0.3") if r["name"] == "PyYAML" else r for r in wheels]
+        with self.assertRaisesRegex(ValueError, "mandatory exact dependency conflict"):
+            check_exact_requirements(broken)
 
 
 if __name__ == "__main__":

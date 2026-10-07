@@ -14,24 +14,24 @@
   },
   {
     "name": "Markdown",
-    "version": "3.9",
-    "metadata_source": "https://pypi.org/pypi/Markdown/3.9/json",
+    "version": "3.7",
+    "metadata_source": "https://pypi.org/pypi/Markdown/3.7/json",
     "requires_dist": [
       "importlib-metadata>=4.4; python_version < \"3.10\"",
-      "coverage; extra == \"testing\"",
-      "pyyaml; extra == \"testing\"",
-      "mkdocs>=1.6; extra == \"docs\"",
+      "mkdocs>=1.5; extra == \"docs\"",
       "mkdocs-nature>=0.6; extra == \"docs\"",
-      "mdx_gh_links>=0.2; extra == \"docs\"",
+      "mdx-gh-links>=0.2; extra == \"docs\"",
       "mkdocstrings[python]; extra == \"docs\"",
       "mkdocs-gen-files; extra == \"docs\"",
       "mkdocs-section-index; extra == \"docs\"",
-      "mkdocs-literate-nav; extra == \"docs\""
+      "mkdocs-literate-nav; extra == \"docs\"",
+      "coverage; extra == \"testing\"",
+      "pyyaml; extra == \"testing\""
     ],
-    "filename": "markdown-3.9-py3-none-any.whl",
-    "url": "https://files.pythonhosted.org/packages/70/ae/44c4a6a4cbb496d93c6257954260fe3a6e91b7bed2240e5dad2a717f5111/markdown-3.9-py3-none-any.whl",
-    "sha256": "9f4d91ed810864ea88a6f32c07ba8bee1346c0cc1f6b1f9f6c822f2a9667d280",
-    "bytes": 107441
+    "filename": "Markdown-3.7-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/3f/08/83871f3c50fc983b88547c196d11cf8c3340e37c32d2e9d6152abe2c61f7/Markdown-3.7-py3-none-any.whl",
+    "sha256": "7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803",
+    "bytes": 106349
   },
   {
     "name": "MarkupSafe",
@@ -45,13 +45,13 @@
   },
   {
     "name": "PyYAML",
-    "version": "6.0.3",
-    "metadata_source": "https://pypi.org/pypi/PyYAML/6.0.3/json",
+    "version": "6.0.2",
+    "metadata_source": "https://pypi.org/pypi/PyYAML/6.0.2/json",
     "requires_dist": null,
-    "filename": "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
-    "url": "https://files.pythonhosted.org/packages/8b/9d/b3589d3877982d4f2329302ef98a8026e7f4443c765c46cfecc8858c6b4b/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
-    "sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
-    "bytes": 807870
+    "filename": "PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "url": "https://files.pythonhosted.org/packages/b9/2b/614b4752f2e127db5cc206abc23a8c19678e92b23c3db30fc86ab731d3bd/PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "sha256": "80bab7bfc629882493af4aa31a4cfa43a4c57c83813253626916b8c7ada83476",
+    "bytes": 767542
   },
   {
     "name": "argcomplete",

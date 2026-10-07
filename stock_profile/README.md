@@ -41,6 +41,10 @@ reruns; source/doc/archive-only changes do not reinstall tools. This workflow is
 new on an unmerged branch, so GitHub may not register manual dispatch until it
 exists on the default branch; PR events are the current entry point. No default
 branch change or merge is needed for preparation publication.
+Final offline jobs use the runner's preinstalled Python; the fixed setup-python
+binary installer is now confined to a reserved presence stage. The historical
+repair-head offline job also ran setup-python (ordinary CI bootstrap, no
+dependency/presence stage); its history is not erased or relabeled.
 
 One Ubuntu-24.04 worker, 20-minute job, 5-GiB source/artifact increment and
 16-MiB selected receipt caps are hard boundaries. Cap exhaustion means STOP, not
@@ -63,6 +67,17 @@ unset after requiring its job-local sibling `verilator_bin`; this avoids the
 wrong `share/verilator/verilator_bin` lookup seen in presence attempt 1. It
 does not establish a working HDL build/include configuration. Attempt 1's
 original failed status and complete bounded streams are preserved, not replaced.
+
+**Current tool boundary: BLOCKED; 2/2 presence attempts consumed.** Attempt 2
+successfully version-probed Python 3.12.10, GNU Make 4.3, Verilator 5.020 and
+host g++ 13.2.0, then pip refused the proposed lock: jsonschema2md 1.5.2 requires
+PyYAML==6.0.2 and markdown==3.7, while the attempted lock selected 6.0.3/3.9.
+The final proposed lock corrects both exact constraints and an offline regression
+checks them, but **that revised lock has never been installed/probed**.
+FuseSoC/Edalize imports and all RISC-V target/sysroot/multilib/libm probes were
+**NOT_REACHED**. No third tool installation, local installation or gate bypass
+is authorized or performed. Successful offline/archive checks cannot clear this
+blocker; a new preparation decision is needed before further tool attempts.
 
 ## Configuration and external binding
 
@@ -136,7 +151,8 @@ logs are retained byte-for-byte within caps; truncated logs are explicitly
 failure, never successful evidence. Real stdlib child cases cover missing,
 duplicate, truncated, malformed, wrong configuration/workload, verifier -1/0/
 invalid, invalid UTF-8, marker+hang, timeout-exit0, trap, signal, nonzero exit,
-spawn error and floods in all three streams. Linux also exercises actual
+spawn error, wrong-channel/forged CoreMark verifier assertions, and floods in
+all three streams. Linux also exercises actual
 RLIMIT_CPU/RLIMIT_FSIZE, an actual RLIMIT_AS-induced MemoryError reported by
 the resource-aware synthetic child, and a descendant holding output pipes. Windows cannot
 enforce those POSIX resource caps; that local subset is explicitly skipped.

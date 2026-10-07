@@ -37,6 +37,9 @@ def classify(termination, stdout, stderr, program, workload):
     if workload not in (*WORKLOADS, "coremark"):
         result["reason"] = "unlisted workload"
         return result
+    if PREFIX.encode() in stdout or PREFIX.encode() in stderr:
+        result["reason"] = "completion marker in the wrong output channel"
+        return result
     lines = [line for line in text.splitlines() if PREFIX in line]
     if len(lines) != 1 or not text.endswith("\n"):
         result["reason"] = "missing/duplicate/truncated marker"
@@ -44,6 +47,9 @@ def classify(termination, stdout, stderr, program, workload):
     match = MARKER.fullmatch(lines[0])
     if match is None or match[1] != workload or match[2] != CONFIG_SHA:
         result["reason"] = "malformed marker or workload/config mismatch"
+        return result
+    if workload == "coremark" and match[3] != "-1":
+        result["reason"] = "CoreMark wrapper cannot supply a verifier-return assertion"
         return result
     result["completed"] = True
     if workload == "coremark":

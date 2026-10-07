@@ -35,6 +35,8 @@ if case.startswith("coremark"):
         text = text.replace("Iterations       : 10", "Iterations       : 11")
     elif case == "coremark_error":
         text += "ERROR! Please define ee_u32 to a 32b unsigned type!\n"
+    elif case == "coremark_forged_verify":
+        text = text.replace("verify=-1", "verify=1")
     log.write_bytes(text.encode())
 elif case == "missing":
     log.write_bytes(b"normal halt without selfcheck\n")
@@ -64,6 +66,8 @@ print("synthetic stdout", flush=True)
 print("synthetic stderr", file=sys.stderr, flush=True)
 if case in ("hang", "marker_hang"):
     time.sleep(30)
+elif case == "wrong_channel":
+    print(marker, end="", flush=True)
 elif case == "cycle_timeout":
     print("Simulation timeout of 50000000 cycles reached, shutting down simulation.")
 elif case == "trap":
