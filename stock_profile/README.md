@@ -58,6 +58,11 @@ only. RISC-V GCC executes metadata queries with the exact proposed
 `-march=rv32im_zicsr -mabi=ilp32`; it never compiles. Missing or incompatible
 libraries/options stop the presence stage, never substitute ISA, ABI or source.
 Shared Ubuntu runtime dependencies are not a hermetic qualified CPU model.
+The fixed Debian Verilator wrapper is version-probed with `VERILATOR_ROOT`
+unset after requiring its job-local sibling `verilator_bin`; this avoids the
+wrong `share/verilator/verilator_bin` lookup seen in presence attempt 1. It
+does not establish a working HDL build/include configuration. Attempt 1's
+original failed status and complete bounded streams are preserved, not replaced.
 
 ## Configuration and external binding
 

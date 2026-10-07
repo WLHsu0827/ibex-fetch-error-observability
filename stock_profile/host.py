@@ -102,7 +102,11 @@ def install_and_probe():
         distributions.append(dict(record, name=name, format="deb"))
     # Unpacking is installation into a private prefix, not dpkg system mutation.
     usr = prefix / "usr"
-    os.environ["VERILATOR_ROOT"] = str(usr / "share" / "verilator")
+    # The Debian wrapper resolves its sibling binary for version-only invocation.
+    # Setting VERILATOR_ROOT to share/ incorrectly redirects its binary lookup.
+    if not (usr / "bin" / "verilator_bin").is_file():
+        raise RuntimeError("fixed Verilator sibling binary is absent; STOP")
+    os.environ.pop("VERILATOR_ROOT", None)
     os.environ["LD_LIBRARY_PATH"] = str(usr / "lib" / "x86_64-linux-gnu")
     make = probe("make-version", [str(usr / "bin" / "make"), "--version"])
     if "GNU Make 4.3" not in make:

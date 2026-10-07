@@ -152,6 +152,17 @@ class ScopeContracts(unittest.TestCase):
             self.assertTrue(files)
             self.assertTrue(all(len(r["sha256"]) == 64 for r in files))
 
+    def test_published_receipts_preserve_original_bytes(self):
+        for path in (HERE / "receipts").glob("*/artifact_manifest.json"):
+            manifest = json.loads(path.read_bytes())
+            self.assertEqual(manifest["kind"], "SELECTED_RECEIPT_ARCHIVE_NOT_QUALIFICATION")
+            for record in manifest["files"]:
+                data = path.parent.joinpath(*record["path"].split("/")).read_bytes()
+                self.assertEqual(len(data), record["bytes"])
+                self.assertEqual(hashlib.sha256(data).hexdigest(), record["sha256"])
+            run = json.loads((path.parent / "run.json").read_bytes())
+            self.assertFalse(run["archive_is_qualification"])
+
 
 if __name__ == "__main__":
     unittest.main()
