@@ -1,0 +1,44 @@
+{
+  "capture": {
+    "argv": [
+      "python",
+      "-I",
+      "-B",
+      "synthetic_child.py",
+      "trap"
+    ],
+    "termination": "exit_zero",
+    "returncode": 0,
+    "detail": "",
+    "wall_seconds": 0.10394124599999799,
+    "limits": {
+      "wall_seconds": 1.5,
+      "output_bytes": 131072,
+      "address_bytes": 536870912,
+      "cpu_seconds": 2,
+      "file_bytes": 131072
+    },
+    "resource_enforcement": "POSIX_RLIMIT",
+    "truncated": false,
+    "streams": {
+      "stdout": {
+        "bytes": 30,
+        "sha256": "5a975ced6a4dce0ee3f331760c625627dbe8fbd0c67c7d45abba8fb231ad94f1"
+      },
+      "stderr": {
+        "bytes": 17,
+        "sha256": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe"
+      },
+      "program": {
+        "bytes": 149,
+        "sha256": "0f3afb88cf8173f25f4e108d6cf24db4619ef0d7e087b18ad889074b86fb8525"
+      }
+    }
+  },
+  "contract": {
+    "termination": "trap",
+    "completed": false,
+    "verification": "FAILED",
+    "reason": "trap/stop diagnostic"
+  }
+}

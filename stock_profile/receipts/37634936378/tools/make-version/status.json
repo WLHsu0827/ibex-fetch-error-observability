@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "<PACKAGE>/_sources/tools/prefix/usr/bin/make",
+    "--version"
+  ],
+  "termination": "exit_zero",
+  "returncode": 0,
+  "detail": "",
+  "wall_seconds": 0.011076682999998866,
+  "limits": {
+    "wall_seconds": 30,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 297,
+      "sha256": "8ee498ee2fc27e8dcdf99191b454077df95e3840d841ec94321748b6d7f36819"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

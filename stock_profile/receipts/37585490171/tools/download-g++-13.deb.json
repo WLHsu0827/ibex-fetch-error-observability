@@ -1,0 +1,9 @@
+{
+  "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/g++-13_13.2.0-23ubuntu4_amd64.deb",
+  "expected_bytes": 14500,
+  "expected_sha256": "d7c1d0f12aa096d94af5dfc17022457b71c69264efd59aa97e582188c1379b95",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 14500,
+  "actual_sha256": "d7c1d0f12aa096d94af5dfc17022457b71c69264efd59aa97e582188c1379b95"
+}

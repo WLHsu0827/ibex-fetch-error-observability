@@ -1,0 +1,9 @@
+{
+  "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/z/zlib/zlib1g_1.3.dfsg-3.1ubuntu2_amd64.deb",
+  "expected_bytes": 62784,
+  "expected_sha256": "0b93d16d7498f092fa3070fbbad28cdbc6b3d640f1a7681b96fc37f20d1219f1",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 62784,
+  "actual_sha256": "0b93d16d7498f092fa3070fbbad28cdbc6b3d640f1a7681b96fc37f20d1219f1"
+}

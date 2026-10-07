@@ -1,0 +1,2 @@
+sh: 1: exec: /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/stock_profile/_sources/tools/prefix/usr/share/verilator/verilator_bin: not found
+%Error: Command Failed ulimit -s unlimited 2>/dev/null; exec /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/stock_profile/_sources/tools/prefix/usr/share/verilator/verilator_bin --version

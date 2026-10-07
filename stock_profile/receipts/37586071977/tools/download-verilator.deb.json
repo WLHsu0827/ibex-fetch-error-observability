@@ -1,0 +1,9 @@
+{
+  "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/universe/v/verilator/verilator_5.020-1_amd64.deb",
+  "expected_bytes": 6940528,
+  "expected_sha256": "bb74ca8c32c73eb903ee91da64c8b58cfbe095c229967a95782108afb67bb3ca",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 6940528,
+  "actual_sha256": "bb74ca8c32c73eb903ee91da64c8b58cfbe095c229967a95782108afb67bb3ca"
+}

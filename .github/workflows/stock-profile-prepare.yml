@@ -1,0 +1,79 @@
+name: Stock profile preparation only
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    paths:
+      - stock_profile/**
+      - .github/workflows/stock-profile-prepare.yml
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Preparation stage (never CPU/program compile or run)
+        type: choice
+        options: [contracts, tools-presence]
+        default: contracts
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: stock-profile-owner-preparation-tools
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.repository == 'WLHsu0827/ibex-fetch-error-observability'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PREPARATION_ONLY: "1"
+      NO_CPU_RUN: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Reserve bounded hosted presence attempt
+        id: original
+        if: >-
+          github.event.action == 'opened' ||
+          (github.event.action == 'labeled' && github.event.label.name == 'stock-profile-tools-attempt-2') ||
+          (github.event_name == 'workflow_dispatch' && inputs.stage == 'tools-presence')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B stock_profile/hosted_gate.py
+      - name: Reserve tool-only extension slot 1
+        id: extension
+        if: github.event.action == 'labeled' && github.event.label.name == 'stock-profile-tool-only-extension-1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B stock_profile/hosted_gate.py --slot extension-1
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        if: >-
+          steps.original.outputs.authorized == 'true' ||
+          steps.extension.outputs.authorized == 'true'
+        with:
+          python-version: "3.12.10"
+      - name: Offline stdlib synthetic contracts
+        run: python -I -B stock_profile/validate.py
+      - name: Seal pinned public sources (static only)
+        run: python -I -B stock_profile/freeze.py
+      - name: Install selected tools (presence only)
+        if: >-
+          steps.original.outputs.authorized == 'true' ||
+          steps.extension.outputs.authorized == 'true'
+        run: python -I -B stock_profile/host.py --mode PREPARATION_ONLY
+      - name: Seal selected receipts, never qualification
+        if: always()
+        run: python -I -B stock_profile/seal_receipts.py
+      - name: Preserve bounded selected preparation receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stock-profile-prepare-${{ github.run_id }}-${{ github.run_attempt }}
+          path: stock_profile/_receipts/selected
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,44 @@
+{
+  "capture": {
+    "argv": [
+      "python",
+      "-I",
+      "-B",
+      "synthetic_child.py",
+      "selfcheck_minus1"
+    ],
+    "termination": "exit_zero",
+    "returncode": 0,
+    "detail": "",
+    "wall_seconds": 0.11418369900000158,
+    "limits": {
+      "wall_seconds": 1.5,
+      "output_bytes": 131072,
+      "address_bytes": 536870912,
+      "cpu_seconds": 2,
+      "file_bytes": 131072
+    },
+    "resource_enforcement": "POSIX_RLIMIT",
+    "truncated": false,
+    "streams": {
+      "stdout": {
+        "bytes": 17,
+        "sha256": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec"
+      },
+      "stderr": {
+        "bytes": 17,
+        "sha256": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe"
+      },
+      "program": {
+        "bytes": 150,
+        "sha256": "09db0c12959594523da653923f7db48e9885851c7147a14287cb192e65ee1f19"
+      }
+    }
+  },
+  "contract": {
+    "termination": "exit_zero",
+    "completed": true,
+    "verification": "NOT_VERIFIED",
+    "reason": "official verifier return (1/0/-1); selfcheck_only"
+  }
+}

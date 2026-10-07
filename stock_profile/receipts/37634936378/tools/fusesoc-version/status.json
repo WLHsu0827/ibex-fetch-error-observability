@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "<PACKAGE>/_sources/tools/venv/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "fusesoc.main",
+    "--version"
+  ],
+  "termination": "exit_zero",
+  "returncode": 0,
+  "detail": "",
+  "wall_seconds": 0.7788311939999915,
+  "limits": {
+    "wall_seconds": 30,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 6,
+      "sha256": "e4cf0f13257be2accc4bcb9613548624c13b7f1857229ed43e967fce34171b9a"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

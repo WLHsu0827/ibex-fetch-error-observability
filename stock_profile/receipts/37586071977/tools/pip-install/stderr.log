@@ -1,0 +1,2 @@
+ERROR: Cannot install -r /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/stock_profile/requirements.lock (line 12), -r /home/runner/work/ibex-fetch-error-observability/ibex-fetch-error-observability/stock_profile/requirements.lock (line 15) and PyYAML==6.0.3 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts

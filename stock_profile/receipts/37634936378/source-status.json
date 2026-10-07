@@ -1,0 +1,56 @@
+{
+  "scope": "PREPARATION_ONLY",
+  "source_bytes_and_hashes": "SEALED_STATIC_ONLY",
+  "manifest_sha256": "bc72153f149c6603d048e2f62f4ee8a3eaf0984ed15801a11f8d0387fc4e1c71",
+  "binding": {
+    "config_sha256": "8f167bc3f719c51664bd62ce3e6a4a9c0439b965eb8ff4ab93af857b5f6c7c63",
+    "parameters": {
+      "BaseIsa": "ibex_pkg::BaseIsaRV32I",
+      "RV32E": 0,
+      "RV32M": "ibex_pkg::RV32MFast",
+      "RV32B": "ibex_pkg::RV32BNone",
+      "RV32ZC": "ibex_pkg::RV32Zca",
+      "RegFile": "ibex_pkg::RegFileFF",
+      "BranchTargetALU": 0,
+      "WritebackStage": 0,
+      "ICache": 0,
+      "ICacheECC": 0,
+      "ICacheScramble": 0,
+      "BranchPredictor": 0,
+      "DbgTriggerEn": 0,
+      "SecureIbex": 0,
+      "PMPEnable": 0,
+      "PMPGranularity": 0,
+      "PMPNumRegions": 4,
+      "MHPMCounterNum": 10,
+      "MHPMCounterWidth": 40
+    },
+    "static_source_checks": "PASSED",
+    "hdl_binding": "NOT_VERIFIED",
+    "differences": [
+      "External core names/fileset and shim; unchanged original SimpleSystem/top/C++",
+      "BaseIsa vlogdefine explicitly aliases BASE_ISA; pure RV32I",
+      "All 19 official small fields fixed; MHPMCounterNum alone changes 0 -> 10"
+    ],
+    "extra_system_defaults": {
+      "INSTR_CYCLE_DELAY": 0,
+      "LockstepOffset": 1,
+      "ICacheTweakInfection": 0,
+      "SRAMInitFile": ""
+    },
+    "generated_files": {
+      "stock_profile_config.h": "8773f7de48a6ab7f836d4f12ef7087b80bc55aad5521b414128cbafb14366099",
+      "system_core.core": "667874fd7f3c29982a58b6d68ed30ac7b2223b67a1d86dac0a041aaa85e7fa7a",
+      "system.core": "1c18ed0a669f319acea1b84504b8e0ddc112db1884b767aa923bcc2063a88a54",
+      "base_isa_shim.sv": "18a548879364bb5879fdbba71c8c2ae7bc562d86c3967453ec16bf7875b5c70c"
+    },
+    "proposed_future_runtime_argv": [
+      "<NOT_AUTHORIZED_SIMULATOR>",
+      "--meminit=ram,<NOT_AUTHORIZED_ELF>",
+      "--term-after-cycles=50000000",
+      "+ibex_tracer_enable=0"
+    ]
+  },
+  "cpu_implementation_changes": "NONE",
+  "cpu_program_compile_run": "NOT_AUTHORIZED"
+}

@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "<ABSENT_SYNTHETIC_EXECUTABLE>"
+  ],
+  "termination": "spawn_error",
+  "returncode": null,
+  "detail": "FileNotFoundError: [Errno 2] No such file or directory: '<SYNTHETIC_ROOT>/absent-executable'",
+  "wall_seconds": 0.0030004959999985203,
+  "limits": {
+    "wall_seconds": 3.0,
+    "output_bytes": 131072,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "POSIX_RLIMIT",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

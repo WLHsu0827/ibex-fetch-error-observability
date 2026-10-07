@@ -1,0 +1,46 @@
+{
+  "argv": [
+    "<PACKAGE>/_sources/tools/venv/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "pip",
+    "install",
+    "--disable-pip-version-check",
+    "--no-index",
+    "--find-links",
+    "<PACKAGE>/_sources/tools/wheels",
+    "--only-binary=:all:",
+    "--require-hashes",
+    "--no-compile",
+    "-r",
+    "<PACKAGE>/requirements.lock"
+  ],
+  "termination": "exit_nonzero",
+  "returncode": 1,
+  "detail": "",
+  "wall_seconds": 1.332610774999992,
+  "limits": {
+    "wall_seconds": 120,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 7851,
+      "sha256": "ef34283e0230107e4a9ddb285f094ce9cd49abbb2d8d6145f62ebb4cef1f030f"
+    },
+    "stderr": {
+      "bytes": 491,
+      "sha256": "f58dd2d21d100abaf988fa9fad511c6b99dff999ab3842851098210d6c12d2d7"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

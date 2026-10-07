@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/dc/7f/11e87614ab420f123ab987d83705df299677135bb6ee2f304967348d860e/okonomiyaki-1.4.0-py2.py3-none-any.whl",
+  "expected_bytes": 3088387,
+  "expected_sha256": "174af185f866fc42fdb58b2d6c7107d870f795e3f404b9c6278f8e62f87f0f83",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 3088387,
+  "actual_sha256": "174af185f866fc42fdb58b2d6c7107d870f795e3f404b9c6278f8e62f87f0f83"
+}

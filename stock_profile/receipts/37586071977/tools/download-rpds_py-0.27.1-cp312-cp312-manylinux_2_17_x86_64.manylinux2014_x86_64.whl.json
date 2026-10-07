@@ -1,0 +1,9 @@
+{
+  "url": "https://files.pythonhosted.org/packages/ed/7b/8f4fee9ba1fb5ec856eb22d725a4efa3deb47f769597c809e03578b0f9d9/rpds_py-0.27.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+  "expected_bytes": 386883,
+  "expected_sha256": "466bfe65bd932da36ff279ddd92de56b042f2266d752719beb97b08526268ec5",
+  "status": "HASH_MATCHED",
+  "format": "stdlib HTTPS transfer, not a command",
+  "actual_bytes": 386883,
+  "actual_sha256": "466bfe65bd932da36ff279ddd92de56b042f2266d752719beb97b08526268ec5"
+}

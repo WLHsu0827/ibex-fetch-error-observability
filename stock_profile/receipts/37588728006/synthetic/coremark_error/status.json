@@ -1,0 +1,44 @@
+{
+  "capture": {
+    "argv": [
+      "python",
+      "-I",
+      "-B",
+      "synthetic_child.py",
+      "coremark_error"
+    ],
+    "termination": "exit_zero",
+    "returncode": 0,
+    "detail": "",
+    "wall_seconds": 0.04365086900000392,
+    "limits": {
+      "wall_seconds": 1.5,
+      "output_bytes": 131072,
+      "address_bytes": 536870912,
+      "cpu_seconds": 2,
+      "file_bytes": 131072
+    },
+    "resource_enforcement": "POSIX_RLIMIT",
+    "truncated": false,
+    "streams": {
+      "stdout": {
+        "bytes": 17,
+        "sha256": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec"
+      },
+      "stderr": {
+        "bytes": 17,
+        "sha256": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe"
+      },
+      "program": {
+        "bytes": 472,
+        "sha256": "e9ff2b4bb2b6713a139d9fa814dd5f0d0cd5be6befa8e315619c33be394bff42"
+      }
+    }
+  },
+  "contract": {
+    "termination": "exit_zero",
+    "completed": true,
+    "verification": "FAILED",
+    "reason": "official CoreMark error diagnostic"
+  }
+}

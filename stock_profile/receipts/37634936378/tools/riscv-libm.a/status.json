@@ -1,0 +1,35 @@
+{
+  "argv": [
+    "<PACKAGE>/_sources/tools/riscv/xpack-riscv-none-elf-gcc-14.2.0-3/bin/riscv-none-elf-gcc",
+    "-march=rv32im_zicsr",
+    "-mabi=ilp32",
+    "-print-file-name=libm.a"
+  ],
+  "termination": "exit_zero",
+  "returncode": 0,
+  "detail": "",
+  "wall_seconds": 0.011336679999999433,
+  "limits": {
+    "wall_seconds": 30,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 237,
+      "sha256": "5dd45336ed0c59617c2fb3fe0c3c49829699f7a67a27c939f12aab2e2fe463da"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

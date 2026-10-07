@@ -1,0 +1,20 @@
+test_all_output_channels_bounded (__main__.ProcessContracts.test_all_output_channels_bounded) ... ok
+test_bad_markers_never_pass (__main__.ProcessContracts.test_bad_markers_never_pass) ... ok
+test_complete_selfcheck (__main__.ProcessContracts.test_complete_selfcheck) ... ok
+test_coremark_official_semantics (__main__.ProcessContracts.test_coremark_official_semantics) ... ok
+test_marker_followed_by_failure (__main__.ProcessContracts.test_marker_followed_by_failure) ... ok
+test_real_resource_and_descendant_cases (__main__.ProcessContracts.test_real_resource_and_descendant_cases) ... ok
+test_spawn_error (__main__.ProcessContracts.test_spawn_error) ... ok
+test_verifier_tristate (__main__.ProcessContracts.test_verifier_tristate) ... ok
+test_configuration (__main__.ScopeContracts.test_configuration) ... ok
+test_cpu_always_refused (__main__.ScopeContracts.test_cpu_always_refused) ... ok
+test_fixed_exact_tool_dependency_contract (__main__.ScopeContracts.test_fixed_exact_tool_dependency_contract) ... ok
+test_invalid_caps (__main__.ScopeContracts.test_invalid_caps) ... ok
+test_local_tool_install_refused (__main__.ScopeContracts.test_local_tool_install_refused) ... ok
+test_published_receipts_preserve_original_bytes (__main__.ScopeContracts.test_published_receipts_preserve_original_bytes) ... ok
+test_source_seal_covers_every_workload (__main__.ScopeContracts.test_source_seal_covers_every_workload) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 7.064s
+
+OK

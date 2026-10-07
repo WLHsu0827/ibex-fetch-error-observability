@@ -1,0 +1,44 @@
+{
+  "capture": {
+    "argv": [
+      "python",
+      "-I",
+      "-B",
+      "synthetic_child.py",
+      "flood_program"
+    ],
+    "termination": "output_limit",
+    "returncode": 0,
+    "detail": "combined stdout/stderr/program cap exceeded",
+    "wall_seconds": 0.11447120399999733,
+    "limits": {
+      "wall_seconds": 1.5,
+      "output_bytes": 131072,
+      "address_bytes": 536870912,
+      "cpu_seconds": 2,
+      "file_bytes": 524288
+    },
+    "resource_enforcement": "POSIX_RLIMIT",
+    "truncated": true,
+    "streams": {
+      "stdout": {
+        "bytes": 17,
+        "sha256": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec"
+      },
+      "stderr": {
+        "bytes": 17,
+        "sha256": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe"
+      },
+      "program": {
+        "bytes": 131038,
+        "sha256": "301d3d8f158115b11bfe648cf9b8d4bc9888e588423e0452e907adde2ba45cf1"
+      }
+    }
+  },
+  "contract": {
+    "termination": "output_limit",
+    "completed": false,
+    "verification": "NOT_VERIFIED",
+    "reason": "output_limit"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "stock_profile/tests/test_contracts.py",
+    "-v"
+  ],
+  "termination": "exit_zero",
+  "returncode": 0,
+  "detail": "",
+  "wall_seconds": 10.482253698999997,
+  "limits": {
+    "wall_seconds": 90,
+    "output_bytes": 524288,
+    "address_bytes": 536870912,
+    "cpu_seconds": 2,
+    "file_bytes": 131072
+  },
+  "resource_enforcement": "NOT_ENFORCED (portable synthetic/version probes only)",
+  "truncated": false,
+  "streams": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "bytes": 2030,
+      "sha256": "97bdb437b8cb5558fbe645073cf08b455addd6fc8a4d43764d9bb228aa48cc63"
+    },
+    "program": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
