@@ -1,0 +1,119 @@
+{
+  "indices": [
+    {
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/dists/noble/main/binary-amd64/Packages.xz",
+      "sha256": "2a6a199e1031a5c279cb346646d594993f35b1c03dd4a82aaa0323980dd92451"
+    },
+    {
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/dists/noble/universe/binary-amd64/Packages.xz",
+      "sha256": "3fc51c4b30522baf9a2bfd5d47e8af21b4bf7dcdb4b49da9667947a9a11c5ea6"
+    }
+  ],
+  "packages": {
+    "g++-13": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "d7c1d0f12aa096d94af5dfc17022457b71c69264efd59aa97e582188c1379b95",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/g++-13_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 14500,
+      "depends": "g++-13-x86-64-linux-gnu (= 13.2.0-23ubuntu4), gcc-13-base (= 13.2.0-23ubuntu4), gcc-13 (= 13.2.0-23ubuntu4)"
+    },
+    "g++-13-x86-64-linux-gnu": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "0e4230118942fa4a082152eed4d9c6d443c2347bf0024fd3319f7dd75ffc8fb1",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/g++-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 12544650,
+      "depends": "gcc-13-base (= 13.2.0-23ubuntu4), gcc-13-x86-64-linux-gnu (= 13.2.0-23ubuntu4), libstdc++-13-dev (= 13.2.0-23ubuntu4), libc6 (>= 2.38), libgmp10 (>= 2:6.3.0+dfsg), libisl23 (>= 0.15), libmpc3 (>= 1.1.0), libmpfr6 (>= 3.1.3), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)"
+    },
+    "gcc-13": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "03170f01bec12ab5a0907c16ad8f439ed3184cedfbb8ea51ba0d8ddd19d787e7",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/gcc-13_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 482052,
+      "depends": "gcc-13-x86-64-linux-gnu (= 13.2.0-23ubuntu4), gcc-13-base (= 13.2.0-23ubuntu4), binutils (>= 2.42)"
+    },
+    "gcc-13-base": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "2613608b046eb9416878fa4e30aa8e34831775bb0cc7ae6efef6d230986dbb5a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/gcc-13-base_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 48958,
+      "depends": null
+    },
+    "gcc-13-x86-64-linux-gnu": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "92f94ad8c5d42472fd032f7820aaeb9df2cc08559ef062a3a277573c03d26a08",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/gcc-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 21869806,
+      "depends": "cpp-13-x86-64-linux-gnu (= 13.2.0-23ubuntu4), gcc-13-base (= 13.2.0-23ubuntu4), libcc1-0 (>= 13.2.0-23ubuntu4), binutils-x86-64-linux-gnu (>= 2.42), libgcc-13-dev (= 13.2.0-23ubuntu4), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libgmp10 (>= 2:6.3.0+dfsg), libisl23 (>= 0.15), libmpc3 (>= 1.1.0), libmpfr6 (>= 3.1.3), libstdc++6 (>= 5), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)"
+    },
+    "libelf-dev": {
+      "version": "0.190-1.1build4",
+      "sha256": "540ef7d433b642c9333374e9580dd3cc21b1ef9532787d994998b5131ef82ea4",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/e/elfutils/libelf-dev_0.190-1.1build4_amd64.deb",
+      "bytes": 68546,
+      "depends": "libelf1t64 (= 0.190-1.1build4), zlib1g-dev, libzstd-dev"
+    },
+    "libelf1t64": {
+      "version": "0.190-1.1build4",
+      "sha256": "b277e52769302778bd052376ac6687b52954b6605dd5f781bff8631e3504d58f",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/e/elfutils/libelf1t64_0.190-1.1build4_amd64.deb",
+      "bytes": 57594,
+      "depends": "libc6 (>= 2.38), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)"
+    },
+    "libgcc-13-dev": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "d36c9acb969dd37fdc0496120715d8bba67a5cc43a0c2569717314e6ad80020c",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/libgcc-13-dev_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 2687706,
+      "depends": "gcc-13-base (= 13.2.0-23ubuntu4), libgcc-s1 (>= 13.2.0-23ubuntu4), libgomp1 (>= 13.2.0-23ubuntu4), libitm1 (>= 13.2.0-23ubuntu4), libatomic1 (>= 13.2.0-23ubuntu4), libasan8 (>= 13.2.0-23ubuntu4), liblsan0 (>= 13.2.0-23ubuntu4), libtsan2 (>= 13.2.0-23ubuntu4), libubsan1 (>= 13.2.0-23ubuntu4), libhwasan0 (>= 13.2.0-23ubuntu4), libquadmath0 (>= 13.2.0-23ubuntu4)"
+    },
+    "libstdc++-13-dev": {
+      "version": "13.2.0-23ubuntu4",
+      "sha256": "0e34b7a6ad0d9db6c718301a0c30a077590decbb31099d0fd6ac957222d77a94",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/g/gcc-13/libstdc++-13-dev_13.2.0-23ubuntu4_amd64.deb",
+      "bytes": 2399142,
+      "depends": "gcc-13-base (= 13.2.0-23ubuntu4), libgcc-13-dev (= 13.2.0-23ubuntu4), libstdc++6 (>= 13.2.0-23ubuntu4), libc6-dev (>= 2.13-0ubuntu6)"
+    },
+    "make": {
+      "version": "4.3-4.1build2",
+      "sha256": "1fe6a815b56c7b6e9ce4086a363f09444bbd0a0d30e230c453d0b78e44b57a99",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/m/make-dfsg/make_4.3-4.1build2_amd64.deb",
+      "bytes": 179752,
+      "depends": "libc6 (>= 2.38)"
+    },
+    "zlib1g": {
+      "version": "1:1.3.dfsg-3.1ubuntu2",
+      "sha256": "0b93d16d7498f092fa3070fbbad28cdbc6b3d640f1a7681b96fc37f20d1219f1",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/z/zlib/zlib1g_1.3.dfsg-3.1ubuntu2_amd64.deb",
+      "bytes": 62784,
+      "depends": "libc6 (>= 2.14)"
+    },
+    "zlib1g-dev": {
+      "version": "1:1.3.dfsg-3.1ubuntu2",
+      "sha256": "7360405fbf49e35dca2f7a4ebeac7d4fe5fe3b2db99adac70e11e104f53b2642",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/main/z/zlib/zlib1g-dev_1.3.dfsg-3.1ubuntu2_amd64.deb",
+      "bytes": 894096,
+      "depends": "zlib1g (= 1:1.3.dfsg-3.1ubuntu2), libc6-dev | libc-dev"
+    },
+    "libsystemc": {
+      "version": "2.3.4-3build1",
+      "sha256": "5589e68bbd24025ab0fbf48a5133d35b1d81ce8e5a2418ce2eeebfec48cbdca7",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/universe/s/systemc/libsystemc_2.3.4-3build1_amd64.deb",
+      "bytes": 474232,
+      "depends": "libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)"
+    },
+    "libsystemc-dev": {
+      "version": "2.3.4-3build1",
+      "sha256": "96e4c7fc044bc1558f0c4dfb43fa134826578977397920a0a575714218d7c1af",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/universe/s/systemc/libsystemc-dev_2.3.4-3build1_amd64.deb",
+      "bytes": 241070,
+      "depends": "libsystemc (= 2.3.4-3build1)"
+    },
+    "verilator": {
+      "version": "5.020-1",
+      "sha256": "bb74ca8c32c73eb903ee91da64c8b58cfbe095c229967a95782108afb67bb3ca",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z/pool/universe/v/verilator/verilator_5.020-1_amd64.deb",
+      "bytes": 6940528,
+      "depends": "python3, perl:any, libc6 (>= 2.38), libjs-sphinxdoc (>= 7.2.2), sphinx-rtd-theme-common (>= 2.0.0+dfsg)"
+    }
+  }
+}

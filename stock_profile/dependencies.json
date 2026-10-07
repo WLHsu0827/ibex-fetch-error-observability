@@ -1,0 +1,41 @@
+{
+  "scope": "PREPARATION_ONLY",
+  "host": "GitHub-hosted Ubuntu 24.04 amd64",
+  "python": "3.12.10",
+  "python_source": "actions/python-versions binary distribution via pinned setup-python",
+  "apt_snapshot": "https://snapshot.ubuntu.com/ubuntu/20240425T000000Z",
+  "apt_suite": "noble",
+  "packages": {
+    "verilator": "5.020-1",
+    "make": "4.3-4.1build2",
+    "g++-13": "13.2.0-23ubuntu4",
+    "g++-13-x86-64-linux-gnu": "13.2.0-23ubuntu4",
+    "gcc-13": "13.2.0-23ubuntu4",
+    "gcc-13-x86-64-linux-gnu": "13.2.0-23ubuntu4",
+    "gcc-13-base": "13.2.0-23ubuntu4",
+    "libgcc-13-dev": "13.2.0-23ubuntu4",
+    "libstdc++-13-dev": "13.2.0-23ubuntu4",
+    "libelf-dev": "0.190-1.1build4",
+    "libelf1t64": "0.190-1.1build4",
+    "libsystemc-dev": "2.3.4-3build1",
+    "libsystemc": "2.3.4-3build1",
+    "zlib1g-dev": "1:1.3.dfsg-3.1ubuntu2",
+    "zlib1g": "1:1.3.dfsg-3.1ubuntu2"
+  },
+  "riscv": {
+    "version": "14.2.0-3",
+    "url": "https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v14.2.0-3/xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz",
+    "publisher_checksum_url": "https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v14.2.0-3/xpack-riscv-none-elf-gcc-14.2.0-3-linux-x64.tar.gz.sha",
+    "sha256": "f574415b63f12b09bdd3475223ab492a465d23810646c90c13a4c3b676c83503",
+    "bytes": 344375405,
+    "target": "riscv-none-elf",
+    "qualification": "NOT_VERIFIED"
+  },
+  "budget": {
+    "hosted_tool_attempts": 2,
+    "job_minutes": 20,
+    "workers": 1,
+    "source_artifact_increment_bytes": 5368709120,
+    "selected_receipt_bytes": 16777216
+  }
+}
